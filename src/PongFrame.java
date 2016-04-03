@@ -10,16 +10,16 @@ import javax.swing.JFrame;
 /**
  * @author Aurelien Ribon | http://www.aurelienribon.com/
  */
-public class TheFrame extends JFrame {
+public class PongFrame extends JFrame {
 	private final SLPanel panel = new SLPanel();
-	private final ThePanel p1 = new ThePanel("1", "data/img1.jpg");
-	private final ThePanel p2 = new ThePanel("2", "data/img2.jpg");
-	private final ThePanel p3 = new ThePanel("3", "data/img3.jpg");
-	private final ThePanel p4 = new ThePanel("4", "data/img4.jpg");
-	private final ThePanel p5 = new ThePanel("5", "data/img5.jpg");
+	private final PingPanel p1 = new PingPanel("1", "data/img1.jpg");
+	private final PingPanel p2 = new PingPanel("2", "data/img2.jpg");
+	private final PingPanel p3 = new PingPanel("3", "data/img3.jpg");
+	private final PingPanel p4 = new PingPanel("4", "data/img4.jpg");
+	private final PingPanel p5 = new PingPanel("5", "data/img5.jpg");
 	private final SLConfig mainCfg, p1Cfg, p2Cfg, p3Cfg, p4Cfg, p5Cfg;
 
-	public TheFrame() {
+	public PongFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Sliding Panels Test");
 		getContentPane().setBackground(Color.WHITE);

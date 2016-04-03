@@ -20,7 +20,7 @@ import javax.swing.SwingConstants;
 /**
  * @author Aurelien Ribon | http://www.aurelienribon.com/
  */
-public class ThePanel extends JPanel {
+public class PingPanel extends JPanel {
 	private static final Color FG_COLOR = new Color(0xFFFFFF);
 	private static final Color BG_COLOR = new Color(0x3B5998);
 	private static final Color BORDER_COLOR = new Color(0x000000);
@@ -33,7 +33,7 @@ public class ThePanel extends JPanel {
 	private boolean hover = false;
 	private int borderThickness = 2;
 
-	public ThePanel(String name, String imgPath) {
+	public PingPanel(String name, String imgPath) {
 		setBackground(BG_COLOR);
 		setLayout(new BorderLayout());
 
@@ -76,14 +76,14 @@ public class ThePanel extends JPanel {
 
 	private void showBorder() {
 		tweenManager.killTarget(borderThickness);
-		Tween.to(ThePanel.this, Accessor.BORDER_THICKNESS, 0.4f)
+		Tween.to(PingPanel.this, Accessor.BORDER_THICKNESS, 0.4f)
 			.target(10)
 			.start(tweenManager);
 	}
 
 	private void hideBorder() {
 		tweenManager.killTarget(borderThickness);
-		Tween.to(ThePanel.this, Accessor.BORDER_THICKNESS, 0.4f)
+		Tween.to(PingPanel.this, Accessor.BORDER_THICKNESS, 0.4f)
 			.target(2)
 			.start(tweenManager);
 	}
@@ -129,7 +129,7 @@ public class ThePanel extends JPanel {
 
 		@Override
 		public int getValues(Component target, int tweenType, float[] returnValues) {
-			ThePanel tp = (ThePanel) target;
+			PingPanel tp = (PingPanel) target;
 
 			int ret = super.getValues(target, tweenType, returnValues);
 			if (ret >= 0) return ret;
@@ -142,7 +142,7 @@ public class ThePanel extends JPanel {
 
 		@Override
 		public void setValues(Component target, int tweenType, float[] newValues) {
-			ThePanel tp = (ThePanel) target;
+			PingPanel tp = (PingPanel) target;
 
 			super.setValues(target, tweenType, newValues);
 
