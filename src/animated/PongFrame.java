@@ -1,3 +1,4 @@
+package animated;
 import slidinglayout.SLAnimator;
 import slidinglayout.SLConfig;
 import slidinglayout.SLKeyframe;

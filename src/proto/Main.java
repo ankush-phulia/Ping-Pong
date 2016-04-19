@@ -1,3 +1,4 @@
+package proto;
 import java.awt.BorderLayout;
 
 import javax.swing.JFrame;

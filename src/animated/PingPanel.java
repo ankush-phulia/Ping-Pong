@@ -1,3 +1,4 @@
+package animated;
 import slidinglayout.SLAnimator;
 import aurelienribon.tweenengine.Tween;
 import aurelienribon.tweenengine.TweenManager;
