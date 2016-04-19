@@ -21,7 +21,7 @@ public class PongFrame extends JFrame {
 
 	public PongFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setTitle("Sliding Panels Test");
+		setTitle("Swing Pong");
 		getContentPane().setBackground(Color.WHITE);
 		getContentPane().add(panel, BorderLayout.CENTER);
 
