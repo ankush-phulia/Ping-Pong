@@ -1,13 +1,13 @@
 public class Paddle {
 	
-	private double dia;
-	private double Xdim;
-	private double Ydim;
-	private double cXpos;
-    private double cYpos;    
-    private double cXvel;
-    private double cYvel;
-    private double type;
+	public double dia;
+	public double Xdim;
+	public double Ydim;
+	public double cXpos;
+    public double cYpos;    
+    public double cXvel;
+    public double cYvel;
+    public double type;
     
 //    public Paddle(double typ,double Xstart,double Ystart){
 //    	if (typ==0){
@@ -45,31 +45,31 @@ public class Paddle {
     	this.type=t;
     }
     
-    public void set_dia(int d){
+    public void set_dia(double d){
     	this.dia=d;
     }
     
-    public void set_xdim(int d){
+    public void set_xdim(double d){
     	this.Xdim=d;
     }
     
-    public void set_ydim(int d){
+    public void set_ydim(double d){
     	this.Ydim=d;
     }
     
-    public void set_Xpos(int x){
+    public void set_Xpos(double x){
     	this.cXpos=x;
     }
 
-    public void set_Ypos(int y){
+    public void set_Ypos(double y){
     	this.cYpos=y;
     }
     
-    public void set_cXvel(int vx){
+    public void set_cXvel(double vx){
     	this.cXvel=vx;
     }
     
-    public void set_cYvel(int vy){
+    public void set_cYvel(double vy){
     	this.cYvel=vy;
     }
     
