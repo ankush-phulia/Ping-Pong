@@ -156,156 +156,161 @@ public class Board extends JPanel implements ActionListener, KeyListener{
     	//positions of the players
     	Paddle P1=this.players.get(0);
     	double playerOneRight = P1.cXpos - P1.Xdim;
-    	double playerOneTop = P1.cYpos-P1.Ydim/2;
-    	double playerOneBottom = P1.cXpos+P1.Ydim/2;
+    	double playerOneTop = P1.cYpos-(P1.Ydim/2);
+    	double playerOneBottom = playerOneTop+(P1.Ydim);
     	
     	Paddle P2=this.players.get(1);
     	double playerTwoLeft = P2.cXpos + P2.Xdim;
-    	double playerTwoTop = P2.cYpos-P2.Ydim/2;
-    	double playerTwoBottom = P2.cXpos+P2.Ydim/2;
+    	double playerTwoTop = P2.cYpos - (P2.Ydim/2);
+    	double playerTwoBottom = playerTwoTop + (P2.Ydim);
     	
     	if (this.players.size()>2){
     		
     		Paddle P3=this.players.get(2);
-        	double playerThreeRight = P3.cXpos+P3.Xdim/2;
-        	double playerThreeLeft = P3.cXpos-P3.Xdim/2;
+        	double playerThreeRight = P3.cXpos+(P3.Xdim/2);
+        	double playerThreeLeft = P3.cXpos-(P3.Xdim/2);
         	double playerThreeBottom = P3.cYpos - P3.Ydim;
         	
         	if (this.players.size()>3){
         		
         		Paddle P4=this.players.get(3);
-            	double playerFourRight = P4.cXpos+P4.Xdim/2;
-            	double playerFourLeft = P4.cXpos-P4.Xdim/2;
+            	double playerFourRight = P4.cXpos+(P4.Xdim/2);
+            	double playerFourLeft = P4.cXpos-(P4.Xdim/2);
             	double playerFourTop = P4.cYpos + P4.Ydim;
             	
         		//will the ball go off the left side?
-            	if (nextLeftPos <= playerOneRight) { 
+            	if (nextLeftPos < playerOneRight) { 
                     //is it going to miss the paddle?
-                    if (b.Ypos <= playerOneTop || b.Ypos >= playerOneBottom) {
+                    if (b.Ypos < playerOneTop || b.Ypos > playerOneBottom) {
                     	
-                    	this.playerScores[b.origin]++;
-                        this.playerLives[0]--;
+                    	if (this.playerLives[0]>0){
+                    		if (this.playerLives[b.origin]>0){
+                            	this.playerScores[b.origin]++;
+                            }
+                            this.playerLives[0]--;
+                    	}                    	
 
-                        if (playerLives[0] == 0) {
-                            this.state="Done";
-                        }
                     }
                     b.origin=0;
                     b.Xvel *=-1;
                 }
                 //will the ball go off the right side?
-            	if (nextRightPos >= playerTwoLeft) {
+            	if (nextRightPos > playerTwoLeft) {
                     //is it going to miss the paddle?
-                	if (b.Ypos <= playerTwoTop || b.Ypos >= playerTwoBottom) {
+                	if (b.Ypos < playerTwoTop || b.Ypos > playerTwoBottom) {
 
-                    	this.playerScores[b.origin]++;
-                        this.playerLives[1]--;
-
-                        if (playerLives[1] == 0) {
-                            this.state="Done";
-                        }
+                		if (this.playerLives[1]>0){
+                			if (this.playerLives[b.origin]>0){
+                            	this.playerScores[b.origin]++;
+                            }
+                            this.playerLives[1]--;
+                    	}
                     }
                 	b.origin=1;
                     b.Xvel *= -1;
                 }
               //will the ball go off the top?
-                if (nextTopPos <= playerThreeBottom) {
+                if (nextTopPos < playerThreeBottom) {
                     //is it going to miss the paddle?
-                	if (b.Xpos >= playerThreeRight || b.Xpos <= playerThreeLeft) {
+                	if (b.Xpos > playerThreeRight || b.Xpos < playerThreeLeft) {
 
-                    	this.playerScores[b.origin]++;
-                        this.playerLives[2]--;
-
-                        if (playerLives[2] == 0) {
-                            //this.state="Done";
-                        }
+                		if (this.playerLives[2]>0){
+                			if (this.playerLives[b.origin]>0){
+                            	this.playerScores[b.origin]++;
+                            }
+                            this.playerLives[2]--;
+                    	}
                     }
                 	b.origin=2;
                     b.Yvel *= -1;
                 }
               //will the ball go off the bottom?
-                if (nextBottomPos >= playerFourTop) {
+                if (nextBottomPos > playerFourTop) {
                     //is it going to miss the paddle?
-                	if (b.Xpos >= playerFourRight || b.Xpos <= playerFourLeft) {
+                	if (b.Xpos > playerFourRight || b.Xpos < playerFourLeft) {
 
-                    	this.playerScores[b.origin]++;
-                        this.playerLives[3]--;
-
-                        if (playerLives[3] == 0) {
-                            this.state="Done";
-                        }
+                		if (this.playerLives[3]>0){
+                			if (this.playerLives[b.origin]>0){
+                            	this.playerScores[b.origin]++;
+                            }
+                            this.playerLives[3]--;
+                    	}
                     }
                 	b.origin=3;
                     b.Yvel *= -1;
-                }
-        	
-        		
+                }        	
+                if (zeros(this.playerLives,3)){
+            		this.state="Done";
+            	}
         	}
         	else{
         		//bounce off the bottom
-        		if (nextBottomPos >= this.getHeight()) {
+        		if (nextBottomPos > this.getHeight()) {
         			b.origin=3;
                     b.Yvel *=-1;               
                 }
         		//will the ball go off the left side?
-        		if (nextLeftPos <= playerOneRight) { 
+        		if (nextLeftPos < playerOneRight) { 
                     //is it going to miss the paddle?
-                    if (b.Ypos <= playerOneTop || b.Ypos >= playerOneBottom) {
+                    if (b.Ypos < playerOneTop || b.Ypos > playerOneBottom) {
                     	
-                    	this.playerScores[b.origin]++;
-                        this.playerLives[0]--;
-
-                        if (playerLives[0] == 0) {
-                            this.state="Done";
-                        }
+                    	if (this.playerLives[0]>0){
+                    		if (this.playerLives[b.origin]>0){
+                            	this.playerScores[b.origin]++;
+                            }
+                            this.playerLives[0]--;
+                    	}
                     }
                     b.origin=0;
                     b.Xvel *=-1;
                 }
                 //will the ball go off the right side?
-        		if (nextRightPos >= playerTwoLeft) {
+        		if (nextRightPos > playerTwoLeft) {
                     //is it going to miss the paddle?
-                	if (b.Ypos <= playerTwoTop || b.Ypos >= playerTwoBottom) {
+                	if (b.Ypos < playerTwoTop || b.Ypos > playerTwoBottom) {
 
-                    	this.playerScores[b.origin]++;
-                        this.playerLives[1]--;
-
-                        if (playerLives[1] == 0) {
-                            this.state="Done";
-                        }
+                		if (this.playerLives[1]>0){
+                			if (this.playerLives[b.origin]>0){
+                            	this.playerScores[b.origin]++;
+                            }
+                            this.playerLives[1]--;
+                    	}
                     }
                 	b.origin=1;
                     b.Xvel *= -1;
                 }
               //will the ball go off the top?
-                if (nextTopPos <= playerThreeBottom) {
+                if (nextTopPos < playerThreeBottom) {
                     //is it going to miss the paddle?
-                	if (b.Xpos >= playerThreeRight || b.Xpos <= playerThreeLeft) {
-
-                    	this.playerScores[b.origin]++;
-                        this.playerLives[2]--;
-
-                        if (playerLives[2] == 0) {
-                            this.state="Done";
-                        }
+                	if (b.Xpos > playerThreeRight || b.Xpos < playerThreeLeft) {
+                    	
+                		if (this.playerLives[2]>0){
+                            this.playerLives[2]--;
+                            if (this.playerLives[b.origin]>0){
+                            	this.playerScores[b.origin]++;
+                            }                            
+                    	}
                     }
                 	b.origin=2;
                     b.Yvel *= -1;
                 }
                 
         	}
+        	if (zeros(this.playerLives,3)){
+        		this.state="Done";
+        	}
     		
     	}
     	else{
     		//bounce off the top and bottom
-    		if (nextTopPos <= 0 || nextBottomPos >= this.getHeight()) {
+    		if (nextTopPos < 0 || nextBottomPos > this.getHeight()) {
                 b.Yvel *=-1;               
             }
     		//will the ball go off the left side?
-            if (nextLeftPos <= playerOneRight) { 
+            if (nextLeftPos < playerOneRight) { 
                 //is it going to miss the paddle?
-                if (b.Ypos <= playerOneTop || b.Ypos >= playerOneBottom) {
-
+                if (b.Ypos < playerOneTop || b.Ypos > playerOneBottom) {
+            		          	
                 	this.playerScores[1]++;
                     this.playerLives[0]--;
 
@@ -316,11 +321,11 @@ public class Board extends JPanel implements ActionListener, KeyListener{
                 b.Xvel *=-1;
             }
             //will the ball go off the right side?
-            if (nextRightPos >= playerTwoLeft) {
+            if (nextRightPos > playerTwoLeft) {
                 //is it going to miss the paddle?
-            	if (b.Ypos <= playerTwoTop || b.Ypos >= playerTwoBottom) {
-
-                	this.playerScores[0]++;
+            	if (b.Ypos < playerTwoTop || b.Ypos > playerTwoBottom) {
+                	
+            		this.playerScores[0]++;
                     this.playerLives[1]--;
 
                     if (playerLives[1] == 0) {
@@ -381,17 +386,17 @@ public class Board extends JPanel implements ActionListener, KeyListener{
 				
 				//draw the scores
 	            g.setFont(new Font(Font.DIALOG, Font.BOLD, 36));
-	            g.drawString(String.valueOf(this.playerScores[0]), (int)(this.Xdim/2-200), (int) (this.Ydim/2-100));
-	            g.drawString(String.valueOf(this.playerLives[0]), (int)(this.Xdim/2-200), (int) (this.Ydim/2+100));
-	            g.drawString(String.valueOf(this.playerScores[1]), (int)(this.Xdim/2+200), (int) (this.Ydim/2-100));
-	            g.drawString(String.valueOf(this.playerLives[1]), (int)(this.Xdim/2+200), (int) (this.Ydim/2+100));
+	            g.drawString(String.valueOf(this.playerScores[0]), (int)(this.getHeight()/2-200), (int) (getWidth()/2-100));
+	            g.drawString(String.valueOf(this.playerLives[0]), (int)(this.getHeight()/2-200), (int) (getWidth()/2+100));
+	            g.drawString(String.valueOf(this.playerScores[1]), (int)(this.getHeight()/2+200), (int) (getWidth()/2-100));
+	            g.drawString(String.valueOf(this.playerLives[1]), (int)(this.getHeight()/2+200), (int) (getWidth()/2+100));
 	            
 	            if (this.players.size()>2){
-	            	g.drawString(String.valueOf(this.playerScores[2]), (int)(this.Xdim/2-100), (int) (this.Ydim/2-200));
-		            g.drawString(String.valueOf(this.playerLives[2]), (int)(this.Xdim/2+100), (int) (this.Ydim/2-200));
+	            	g.drawString(String.valueOf(this.playerScores[2]), (int)(this.getHeight()/2-100), (int) (getWidth()/2-200));
+		            g.drawString(String.valueOf(this.playerLives[2]), (int)(this.getHeight()/2+100), (int) (getWidth()/2-200));
 		            if (this.players.size()>3){
-		            	g.drawString(String.valueOf(this.playerScores[3]), (int)(this.Xdim/2-100), (int) (this.Ydim/2+200));
-			            g.drawString(String.valueOf(this.playerLives[3]), (int)(this.Xdim/2+100), (int) (this.Ydim/2+200));
+		            	g.drawString(String.valueOf(this.playerScores[3]), (int)(this.getHeight()/2-100), (int) (getWidth()/2+200));
+			            g.drawString(String.valueOf(this.playerLives[3]), (int)(this.getHeight()/2+100), (int) (getWidth()/2+200));
 			            
 		            }
 		            else{
@@ -410,7 +415,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
 				int winner=0;
 				int maxscore=0;
 				for (int i=1;i<3;i++){
-					int sc=this.playerLives[i]+this.playerScores[i];
+					int sc=this.playerLives[i];
 					if (sc>maxscore){
 						winner=i;
 						maxscore=sc;
@@ -424,7 +429,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
     }
     
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
+		
 	}
 	
 	public void keyPressed(KeyEvent e) {
@@ -475,13 +480,13 @@ public class Board extends JPanel implements ActionListener, KeyListener{
 	            }
 				else if (e.getKeyCode() == KeyEvent.VK_2) {
 					this.ball_num=2;
-					this.balls.add(new Ball(this.Xdim/2, this.Ydim/2, 6, 12,0));
+					this.balls.add(new Ball(this.getHeight()/2, getWidth()/2, 6, 12,0));
 					this.state="Playing";
 	            }
 				else if (e.getKeyCode() == KeyEvent.VK_3) {
 					this.ball_num=3;
-					this.balls.add(new Ball(this.Xdim/2, this.Ydim/2, 6, 12,0));
-					this.balls.add(new Ball(this.Xdim/2, this.Ydim/2, 12, 6,3));
+					this.balls.add(new Ball(this.getHeight()/2, getWidth()/2, 6, 12,0));
+					this.balls.add(new Ball(this.getHeight()/2, getWidth()/2, 12, 6,3));
 					this.state="Playing";
 	            }
 				if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
@@ -573,5 +578,13 @@ public class Board extends JPanel implements ActionListener, KeyListener{
 		
 	}
 	
-    
+    public boolean zeros(int[] arr, int z){
+    	int cnt = 0;
+    	for (int i=0;i<arr.length;i++){
+    		if (arr[i]==0){
+    			cnt++;
+    		}
+    	}
+    	return cnt==z;
+    }
 }
