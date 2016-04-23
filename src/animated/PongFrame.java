@@ -1,4 +1,4 @@
-package animated;
+ package animated;
 import slidinglayout.SLAnimator;
 import slidinglayout.SLConfig;
 import slidinglayout.SLKeyframe;
@@ -7,6 +7,7 @@ import slidinglayout.SLSide;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 /**
  * @author Aurelien Ribon | http://www.aurelienribon.com/
@@ -17,8 +18,8 @@ public class PongFrame extends JFrame {
 	private final PingPanel p2 = new PingPanel("2", "data/img2.jpg");
 	private final PingPanel p3 = new PingPanel("3", "data/img3.jpg");
 	private final PingPanel p4 = new PingPanel("4", "data/img4.jpg");
-	private final PingPanel p5 = new PingPanel("5", "data/img5.jpg");
-	private final SLConfig mainCfg, p1Cfg, p2Cfg, p3Cfg, p4Cfg, p5Cfg;
+	//private final PingPanel p5 = new PingPanel("5", "data/img5.jpg");
+	private final SLConfig mainCfg, p1Cfg, p2Cfg, p3Cfg, p4Cfg;
 
 	public PongFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -30,11 +31,11 @@ public class PongFrame extends JFrame {
 		p2.setAction(p2Action);
 		p3.setAction(p3Action);
 		p4.setAction(p4Action);
-		p5.setAction(p5Action);
+		//p5.setAction(p5Action);
 
 		mainCfg = new SLConfig(panel)
 			.gap(10, 10)
-			.row(1f).col(250).col(1f).col(2f)
+			.row(1f).col(250).col(1f)
 			.beginGrid(0, 0)
 				.row(2f).row(1f).col(1f)
 				.place(0, 0, p1)
@@ -44,19 +45,19 @@ public class PongFrame extends JFrame {
 				.row(1f).row(2f).col(1f)
 				.place(0, 0, p3)
 				.place(1, 0, p4)
-			.endGrid()
-			.place(0, 2, p5);
+			.endGrid();
+			//.place(0, 2, p5);
 
 		p1Cfg = new SLConfig(panel)
 			.gap(10, 10)
-			.row(1f).col(250).col(1f).col(2f)
+			.row(1f).col(250).col(1f)
 			.place(0, 0, p1)
 			.beginGrid(0, 1)
 				.row(1f).row(2f).col(1f)
 				.place(0, 0, p3)
 				.place(1, 0, p4)
-			.endGrid()
-			.place(0, 2, p5);
+			.endGrid();
+			//.place(0, 2, p5);
 
 		p2Cfg = new SLConfig(panel)
 			.gap(10, 10)
@@ -69,14 +70,14 @@ public class PongFrame extends JFrame {
 					.place(0, 1, p3)
 				.endGrid()
 				.place(1, 0, p2)
-			.endGrid()
-			.place(0, 1, p5);
+			.endGrid();
+			//.place(0, 1, p5);
 
 		p3Cfg = new SLConfig(panel)
 			.gap(10, 10)
-			.row(1f).col(2f).col(1f)
-			.place(0, 0, p3)
-			.place(0, 1, p5);
+			.row(1f).col(2f)
+			.place(0, 0, p3);
+			//.place(0, 1, p5);
 
 		p4Cfg = new SLConfig(panel)
 			.gap(10, 10)
@@ -86,10 +87,10 @@ public class PongFrame extends JFrame {
 			.place(0, 1, p3)
 			.place(1, 1, p4);
 
-		p5Cfg = new SLConfig(panel)
-			.gap(10, 10)
-			.row(1f).col(1f)
-			.place(0, 0, p5);
+//		p5Cfg = new SLConfig(panel)
+//			.gap(10, 10)
+//			.row(1f).col(1f)
+//			.place(0, 0, p5);
 
 		panel.setTweenManager(SLAnimator.createTweenManager());
 		panel.initialize(mainCfg);
@@ -100,7 +101,7 @@ public class PongFrame extends JFrame {
 		p2.disableAction();
 		p3.disableAction();
 		p4.disableAction();
-		p5.disableAction();
+		//p5.disableAction();
 	}
 
 	private void enableActions() {
@@ -108,7 +109,7 @@ public class PongFrame extends JFrame {
 		p2.enableAction();
 		p3.enableAction();
 		p4.enableAction();
-		p5.enableAction();
+		//p5.enableAction();
 	}
 
 	private final Runnable p1Action = new Runnable() {@Override public void run() {
@@ -198,7 +199,7 @@ public class PongFrame extends JFrame {
 
 		panel.createTransition()
 			.push(new SLKeyframe(p4Cfg, 0.6f)
-				.setEndSide(SLSide.RIGHT, p5)
+				.setEndSide(SLSide.RIGHT)
 				.setCallback(new SLKeyframe.Callback() {@Override public void done() {
 					p4.setAction(p4BackAction);
 					p4.enableAction();
@@ -211,7 +212,7 @@ public class PongFrame extends JFrame {
 
 		panel.createTransition()
 			.push(new SLKeyframe(mainCfg, 0.6f)
-				.setStartSide(SLSide.RIGHT, p5)
+				.setStartSide(SLSide.RIGHT)
 				.setCallback(new SLKeyframe.Callback() {@Override public void done() {
 					p4.setAction(p4Action);
 					enableActions();
@@ -219,29 +220,29 @@ public class PongFrame extends JFrame {
 			.play();
 	}};
 
-	private final Runnable p5Action = new Runnable() {@Override public void run() {
-		disableActions();
-
-		panel.createTransition()
-			.push(new SLKeyframe(p5Cfg, 0.8f)
-				.setEndSide(SLSide.LEFT, p1, p2, p3, p4)
-				.setCallback(new SLKeyframe.Callback() {@Override public void done() {
-					p5.setAction(p5BackAction);
-					p5.enableAction();
-				}}))
-			.play();
-	}};
-
-	private final Runnable p5BackAction = new Runnable() {@Override public void run() {
-		disableActions();
-
-		panel.createTransition()
-			.push(new SLKeyframe(mainCfg, 0.8f)
-				.setStartSide(SLSide.LEFT, p1, p2, p3, p4)
-				.setCallback(new SLKeyframe.Callback() {@Override public void done() {
-					p5.setAction(p5Action);
-					enableActions();
-				}}))
-			.play();
-	}};
+//	private final Runnable p5Action = new Runnable() {@Override public void run() {
+//		disableActions();
+//
+//		panel.createTransition()
+//			.push(new SLKeyframe(p5Cfg, 0.8f)
+//				.setEndSide(SLSide.LEFT, p1, p2, p3, p4)
+//				.setCallback(new SLKeyframe.Callback() {@Override public void done() {
+//					p5.setAction(p5BackAction);
+//					p5.enableAction();
+//				}}))
+//			.play();
+//	}};
+//
+//	private final Runnable p5BackAction = new Runnable() {@Override public void run() {
+//		disableActions();
+//
+//		panel.createTransition()
+//			.push(new SLKeyframe(mainCfg, 0.8f)
+//				.setStartSide(SLSide.LEFT, p1, p2, p3, p4)
+//				.setCallback(new SLKeyframe.Callback() {@Override public void done() {
+//					p5.setAction(p5Action);
+//					enableActions();
+//				}}))
+//			.play();
+//	}};
 }

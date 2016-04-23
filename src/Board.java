@@ -1,14 +1,25 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.Graphics;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+
+import aurelienribon.tweenengine.Tween;
+import aurelienribon.tweenengine.TweenManager;
+import slidinglayout.SLAnimator;
 
 public class Board extends JPanel implements ActionListener, KeyListener{
 	
@@ -21,6 +32,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
     public Color bgcolor;
     public Color ccolor;
     public double fps;
+    public int gameSpd=1;
     
     //Players
     public int player_num=2;
@@ -34,6 +46,9 @@ public class Board extends JPanel implements ActionListener, KeyListener{
     public int[] playerScores;
     public int[] playerLives;
     
+    //Controls
+    public int[] keys;
+        
     //KeyPresses
     public boolean upPressed = false;
     public boolean downPressed = false;
@@ -46,19 +61,34 @@ public class Board extends JPanel implements ActionListener, KeyListener{
     
     public Board(){
     	
+    	
     	this.Xdim=1000;
     	this.Ydim=1000;
     	this.bgcolor=Color.black;
     	this.ccolor=Color.white;
     	this.fps=60;
     	this.state="Start";
+    	this.keys=new int[] {KeyEvent.VK_Q,KeyEvent.VK_A,KeyEvent.VK_UP,KeyEvent.VK_DOWN,KeyEvent.VK_C,KeyEvent.VK_V,KeyEvent.VK_O,KeyEvent.VK_P};;
 
-        setFocusable(true);
+        this.setFocusable(true);
+        this.requestFocusInWindow();
+        this.grabFocus();
+        
         addKeyListener(this);        
         setBackground(this.bgcolor);        
         Timer timer = new Timer((int) (1000/this.fps), this);
         timer.start();
         
+        this.addComponentListener( new ComponentAdapter() {
+            public void componentShown( ComponentEvent e ) {
+                Board.this.requestFocusInWindow();
+            }
+        });
+        
+    }
+    
+    public boolean isFoc(){
+    	return this.hasFocus();
     }
     
     @Override
@@ -71,9 +101,9 @@ public class Board extends JPanel implements ActionListener, KeyListener{
     	if(this.state.equals("Playing")){
             
     		Paddle P1=this.players.get(0);
-    		P1.set_cYvel(20);
+    		P1.set_cYvel(20*gameSpd);
     		Paddle P2=this.players.get(1);
-    		P2.set_cYvel(20);
+    		P2.set_cYvel(20*gameSpd);
     		//move player 1
             if (qPressed) {
                 if (P1.cYpos-P1.cYvel > P1.Ydim/2 ) {
@@ -101,7 +131,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
             if (this.players.size()>2){
             	
             	Paddle P3=this.players.get(2);
-        		P3.set_cXvel(20);
+        		P3.set_cXvel(20*gameSpd);
         		            	
             	//move player 3
                 if (cPressed) {
@@ -118,7 +148,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
                 if (this.players.size()>3){
                 	
                 	Paddle P4=this.players.get(3);
-            		P4.set_cXvel(20);
+            		P4.set_cXvel(20*gameSpd);
                 	
                 	//move plaXer 4
                     if (oPressed) {
@@ -474,19 +504,19 @@ public class Board extends JPanel implements ActionListener, KeyListener{
 				break;
 				
 			case "Mode Select":
-				this.balls.add(new Ball(this.getWidth()/2, this.getHeight()/2, -4, 8,1));
+				this.balls.add(new Ball(this.getWidth()/2, this.getHeight()/2, -4*gameSpd, 8*gameSpd,1));
 				if (e.getKeyCode() == KeyEvent.VK_1) {
 					this.state="Playing";
 	            }
 				else if (e.getKeyCode() == KeyEvent.VK_2) {
 					this.ball_num=2;
-					this.balls.add(new Ball(this.getHeight()/2, getWidth()/2, 6, 12,0));
+					this.balls.add(new Ball(this.getHeight()/2, getWidth()/2, 6*gameSpd, 12*gameSpd,0));
 					this.state="Playing";
 	            }
 				else if (e.getKeyCode() == KeyEvent.VK_3) {
 					this.ball_num=3;
-					this.balls.add(new Ball(this.getHeight()/2, getWidth()/2, 6, 12,0));
-					this.balls.add(new Ball(this.getHeight()/2, getWidth()/2, 12, 6,3));
+					this.balls.add(new Ball(this.getHeight()/2, getWidth()/2, 6*gameSpd, 12*gameSpd,0));
+					this.balls.add(new Ball(this.getHeight()/2, getWidth()/2, 12*gameSpd, 6*gameSpd,3));
 					this.state="Playing";
 	            }
 				if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
@@ -504,28 +534,28 @@ public class Board extends JPanel implements ActionListener, KeyListener{
 				break;
 				
 			case "Playing":				
-				if (e.getKeyCode() == KeyEvent.VK_UP) {
-	                upPressed = true;
-	            }
-	            if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-	                downPressed = true;
-	            }
-	            if (e.getKeyCode() == KeyEvent.VK_Q) {
+				if (e.getKeyCode() == keys[0]) {
 	                qPressed = true;
 	            }
-	            if (e.getKeyCode() == KeyEvent.VK_A) {
+	            if (e.getKeyCode() == keys[1]) {
 	                aPressed = true;
 	            }
-	            if (e.getKeyCode() == KeyEvent.VK_C) {
+	            if (e.getKeyCode() == keys[2]) {
+	                upPressed = true;
+	            }
+	            if (e.getKeyCode() == keys[3]) {
+	                downPressed = true;
+	            }
+	            if (e.getKeyCode() == keys[4]) {
 	                cPressed = true;
 	            }
-	            if (e.getKeyCode() == KeyEvent.VK_V) {
+	            if (e.getKeyCode() == keys[5]) {
 	                vPressed = true;
 	            }
-	            if (e.getKeyCode() == KeyEvent.VK_O) {
+	            if (e.getKeyCode() == keys[6]) {
 	                oPressed = true;
 	            }
-	            if (e.getKeyCode() == KeyEvent.VK_P) {
+	            if (e.getKeyCode() == keys[7]) {
 	                pPressed = true;
 	            }
 	            if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
@@ -549,29 +579,29 @@ public class Board extends JPanel implements ActionListener, KeyListener{
 	}
 	
 	public void keyReleased(KeyEvent e) {
-		if (state.equals("Playing")) {
-            if (e.getKeyCode() == KeyEvent.VK_UP) {
-                upPressed = false;
-            }
-            else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-                downPressed = false;
-            }
-            else if (e.getKeyCode() == KeyEvent.VK_Q) {
+		if (state.equals("Playing")) {            
+            if (e.getKeyCode() == keys[0]) {
                 qPressed = false;
             }
-            else if (e.getKeyCode() == KeyEvent.VK_A) {
+            else if (e.getKeyCode() == keys[1]) {
                 aPressed = false;
             }
-            else if (e.getKeyCode() == KeyEvent.VK_C) {
+            else if (e.getKeyCode() == keys[2]) {
+                upPressed = false;
+            }
+            else if (e.getKeyCode() == keys[3]) {
+                downPressed = false;
+            }
+            else if (e.getKeyCode() == keys[4]) {
                 cPressed = false;
             }
-            else if (e.getKeyCode() == KeyEvent.VK_V) {
+            else if (e.getKeyCode() == keys[5]) {
                 vPressed = false;
             }
-            else if (e.getKeyCode() == KeyEvent.VK_O) {
+            else if (e.getKeyCode() == keys[6]) {
                 oPressed = false;
             }
-            else if (e.getKeyCode() == KeyEvent.VK_P) {
+            else if (e.getKeyCode() == keys[7]) {
                 pPressed = false;
             }
         }
@@ -586,5 +616,6 @@ public class Board extends JPanel implements ActionListener, KeyListener{
     		}
     	}
     	return cnt==z;
-    }
+    }   
+    
 }

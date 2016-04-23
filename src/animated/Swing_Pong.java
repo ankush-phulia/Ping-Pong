@@ -8,7 +8,7 @@ public class Swing_Pong {
 		SLAnimator.start();
 
 		PongFrame frame = new PongFrame();
-		frame.setSize(800, 600);
+		frame.setSize(1000, 1000);
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
