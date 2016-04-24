@@ -19,10 +19,8 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JSeparator;
 import java.awt.BorderLayout;
-import java.awt.CardLayout;
 import javax.swing.SwingConstants;
 import javax.swing.BoxLayout;
-import java.awt.GridLayout;
 
 public class Instructions extends JPanel {
 

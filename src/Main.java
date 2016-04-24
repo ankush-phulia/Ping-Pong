@@ -1,7 +1,3 @@
-import java.awt.BorderLayout;
-
-import javax.swing.JFrame;
-
 import aurelienribon.tweenengine.Tween;
 import slidinglayout.SLAnimator;
 
@@ -15,7 +11,7 @@ public class Main {
 		Board board = new Board();
 		frame.add(board);*/
 		frame.setResizable(false);
-		frame.setSize(1015, 1060);		
+		frame.setSize(1015, 760);
 		frame.setVisible(true);
 	}
 }

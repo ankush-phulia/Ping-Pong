@@ -13,6 +13,9 @@ import aurelienribon.tweenengine.Tween;
 import aurelienribon.tweenengine.TweenManager;
 import slidinglayout.SLAnimator;
 import java.awt.FlowLayout;
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.ServerSocket;
 
 public class Multi_Player extends JPanel {
 
@@ -27,9 +30,11 @@ public class Multi_Player extends JPanel {
 	private int borderThickness = 1;
 	protected boolean expanded=false;
 
+
 	public Multi_Player() {
 		
 		populate_layout();
+
 
 		
 		addMouseListener(new MouseAdapter() {
@@ -60,6 +65,7 @@ public class Multi_Player extends JPanel {
 		JLabel lblMultiPlayer = new JLabel("Multi Player");
 		add(lblMultiPlayer);
 	}
+
 	
 	public void setAction(Runnable action) {this.action = action;}
 	public void enableAction() {actionEnabled = true; if (hover) showBorder();}
