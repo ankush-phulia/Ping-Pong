@@ -6,6 +6,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketAddress;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -15,7 +16,7 @@ public class LocalServer {
     ServerSocket myServer;
     List<Socket> clientSocket = new ArrayList<>();
     List<DataOutputStream> writingStreamClient = new ArrayList<>();
-    List<SocketAddress> ip_address = new ArrayList<>();
+    HashMap<SocketAddress, Integer> ip_address = new HashMap<>();
     List<ReadData> inputStreamClient = new ArrayList<>();
 
     // Creates a new server with port no. 'port'
@@ -32,7 +33,8 @@ public class LocalServer {
         Socket waitingForClient = myServer.accept();
         clientSocket.add(waitingForClient);
         writingStreamClient.add(new DataOutputStream(waitingForClient.getOutputStream()));
-        ip_address.add(waitingForClient.getRemoteSocketAddress());
+        int position = clientSocket.indexOf(waitingForClient);
+        ip_address.put(waitingForClient.getRemoteSocketAddress(), position);
         ReadData readFromClient = new ReadData(waitingForClient);
         inputStreamClient.add(readFromClient);
         Thread readThread = new Thread(readFromClient);
@@ -46,7 +48,7 @@ public class LocalServer {
     // writes 'writeData' to client with Socket Address 'ip_addr'
     // returns false if client is disconnected else true
     public boolean writeToClient (SocketAddress ip_addr, String writeData) {
-        int position = ip_address.indexOf(ip_addr);
+        int position = ip_address.get(ip_addr);
         DataOutputStream out = writingStreamClient.get(position);
         Socket client = clientSocket.get(position);
 
@@ -72,14 +74,16 @@ public class LocalServer {
     // reads data from client with Socket Address 'ip_addr'
     // returns null if no data is available
     public String readFromClient (SocketAddress ip_addr) {
-        int position = ip_address.indexOf(ip_addr);
+        int position = ip_address.get(ip_addr);
         ReadData rd = inputStreamClient.get(position);
         return  rd.readFromBuffer();
     }
 
 
-    // Display a message, preceded by
-    // the name of the current thread
+    /* For debugging purpose only.
+     * Display a message, preceded by
+     * the name of the current thread
+     */
     private static void threadMessage(String message) {
         String threadName = Thread.currentThread().getName();
         System.out.format("%s: %s%n", threadName, message);
