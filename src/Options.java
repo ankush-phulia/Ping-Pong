@@ -4,8 +4,7 @@ import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.awt.image.BufferedImage;
 
 import javax.swing.JLabel;
@@ -13,7 +12,6 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
-import com.sun.glass.events.KeyEvent;
 
 import aurelienribon.tweenengine.Tween;
 import aurelienribon.tweenengine.TweenManager;
@@ -23,8 +21,6 @@ import javax.swing.BoxLayout;
 import java.awt.GridLayout;
 import java.awt.GridBagLayout;
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import java.awt.GridBagConstraints;
 import javax.swing.JSeparator;
 import java.awt.Insets;
@@ -219,7 +215,7 @@ public class Options extends JPanel {
 		gbc_separator_15.gridy = 8;
 		panel_1.add(separator_15, gbc_separator_15);
 		
-		JComboBox<String> up1 = new JComboBox<String>(Keys1);
+		final JComboBox<String> up1 = new JComboBox<String>(Keys1);
 		up1.setFont(new Font("Tahoma", Font.PLAIN, 32));
 		if (getWindowAncestor().keys[0]==26){
 			up1.setSelectedItem("UP");
@@ -316,7 +312,7 @@ public class Options extends JPanel {
 		gbc_separator_38.gridy = 11;
 		panel_1.add(separator_38, gbc_separator_38);
 		
-		JComboBox<String> down1 = new JComboBox<String>(Keys2);
+		final JComboBox<String> down1 = new JComboBox<String>(Keys2);
 		down1.setFont(new Font("Tahoma", Font.PLAIN, 32));
 		if (getWindowAncestor().keys[1]==26){
 			down1.setSelectedItem("UP");
@@ -549,7 +545,7 @@ public class Options extends JPanel {
 		gbc_lblUpMovement1.gridy = 26;
 		panel_1.add(lblUpMovement1, gbc_lblUpMovement1);
 		
-		JComboBox<String> up2 = new JComboBox<String>(Keys4);
+		final JComboBox<String> up2 = new JComboBox<String>(Keys4);
 		up2.setFont(new Font("Tahoma", Font.PLAIN, 32));
 		if (getWindowAncestor().keys[2]==26){
 			up2.setSelectedItem("UP");
@@ -589,7 +585,7 @@ public class Options extends JPanel {
 		gbc_lblDownMovement1.gridy = 29;
 		panel_1.add(lblDownMovement1, gbc_lblDownMovement1);
 		
-		JComboBox<String> down2 = new JComboBox<String>(Keys5);
+		final JComboBox<String> down2 = new JComboBox<String>(Keys5);
 		down2.setFont(new Font("Tahoma", Font.PLAIN, 32));
 		if (getWindowAncestor().keys[3]==26){
 			down2.setSelectedItem("UP");
