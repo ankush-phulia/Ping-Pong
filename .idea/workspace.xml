@@ -1,26 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="64f55a98-e9ef-4b62-a820-0c6ba508b302" name="Default" comment="Changed the API for accepting new client,">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/network/NewClient.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/Multi_Player$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/Multi_Player$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/Multi_Player$4.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/Board.class" afterPath="$PROJECT_DIR$/bin/Board.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/Instructions$Accessor.class" afterPath="$PROJECT_DIR$/bin/Instructions$Accessor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/Instructions.class" afterPath="$PROJECT_DIR$/bin/Instructions.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/Main.class" afterPath="$PROJECT_DIR$/bin/Main.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/Main_Frame.class" afterPath="$PROJECT_DIR$/bin/Main_Frame.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/Multi_Player$1.class" afterPath="$PROJECT_DIR$/bin/Multi_Player$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/Multi_Player$Accessor.class" afterPath="$PROJECT_DIR$/bin/Multi_Player$Accessor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/Multi_Player.class" afterPath="$PROJECT_DIR$/bin/Multi_Player.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/Single_Player.class" afterPath="$PROJECT_DIR$/bin/Single_Player.class" />
+    <list default="true" id="64f55a98-e9ef-4b62-a820-0c6ba508b302" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main.java" afterPath="$PROJECT_DIR$/src/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Options.java" afterPath="$PROJECT_DIR$/src/Options.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Single_Player.java" afterPath="$PROJECT_DIR$/src/Single_Player.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/network/ConnectionToServer.java" afterPath="$PROJECT_DIR$/src/network/ConnectionToServer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/network/LocalServer.java" afterPath="$PROJECT_DIR$/src/network/LocalServer.java" />
     </list>
     <ignored path="Assignment 3.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -768,12 +750,20 @@
       <workItem from="1461507251295" duration="39000" />
       <workItem from="1461574504562" duration="69000" />
       <workItem from="1461578517301" duration="857000" />
-      <workItem from="1461579449166" duration="6391000" />
+      <workItem from="1461579449166" duration="6496000" />
     </task>
+    <task id="LOCAL-00001" summary="Changed the API for accepting new client, set timeout for connections, added the API for enumerating all IPs">
+      <created>1461585896685</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1461585896685</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30224000" />
+    <option name="totallyTimeSpent" value="30329000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="1368" height="743" extended-state="6" />
@@ -819,7 +809,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Made the APIs for establishing Server Connection." />
-    <option name="LAST_COMMIT_MESSAGE" value="Made the APIs for establishing Server Connection." />
+    <MESSAGE value="Changed the API for accepting new client, set timeout for connections, added the API for enumerating all IPs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed the API for accepting new client, set timeout for connections, added the API for enumerating all IPs" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
