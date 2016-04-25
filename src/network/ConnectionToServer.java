@@ -3,7 +3,6 @@ package network;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
-import java.net.SocketAddress;
 
 /**
  * Created by nitin on 24/4/16.
@@ -15,6 +14,7 @@ public class ConnectionToServer {
 
 
     // Connect to a client with IP Address/Name 'inetAddr' & port no. 'port'
+    // Throws IOException if unsuccessful
     public ConnectionToServer(String inetAddr, int port) throws IOException {
         clientSocket = new Socket(inetAddr, port);
         threadMessage("Connection established with " + clientSocket.getRemoteSocketAddress() +
