@@ -51,7 +51,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
     public boolean cPressed = false;
     public boolean vPressed = false;
     
-    public Board(){
+    public Board() {
     	
     	
     	this.Xdim=1000;

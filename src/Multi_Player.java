@@ -1,21 +1,21 @@
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.SocketAddress;
 
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 import aurelienribon.tweenengine.Tween;
 import aurelienribon.tweenengine.TweenManager;
+import com.sun.org.apache.xalan.internal.xsltc.dom.MultipleNodeCounter;
+import com.sun.org.apache.xpath.internal.operations.Mult;
+import network.ConnectionToServer;
+import network.LocalServer;
 import slidinglayout.SLAnimator;
-import java.awt.FlowLayout;
-import java.io.IOException;
-import java.net.InetAddress;
-import java.net.ServerSocket;
 
 public class Multi_Player extends JPanel {
 
