@@ -37,7 +37,7 @@ import java.beans.PropertyChangeEvent;
 import javax.swing.JCheckBox;
 
 
-public class Single_Player extends JPanel implements ActionListener{
+public class Multi_New extends JPanel implements ActionListener{
 
 	boolean expanded=false;
 	private static final Color FG_COLOR = new Color(0xFFFFFF);
@@ -53,48 +53,12 @@ public class Single_Player extends JPanel implements ActionListener{
 	private SpinnerModel sm2 = new SpinnerNumberModel(0, 0, 31, 1);
 	private SpinnerModel sm3 = new SpinnerNumberModel(0, 0, 31, 1);
 	
-	public Single_Player() {
+	public Multi_New() {
 
-		show_small();
-		//populate_layout();		
-
-		addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				hover = true;
-				if (actionEnabled) showBorder();
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				hover = false;
-				hideBorder();
-			}
-
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				if (action != null && actionEnabled && !expanded)action.run();
-				if (!expanded){
-					removeAll();
-					populate_layout();
-				}
-				else{
-					//removeAll();
-					//show_small();
-				}
-			}
-		});
-		
+		populate_layout();		
+	
 		Timer timer = new Timer((int) (1000/60), this);
 		timer.start();
-	}
-	
-	private void show_small(){
-		setLayout(new BorderLayout(0, 0));		
-		JLabel lblSinglePlayer = new JLabel("Single player");
-		lblSinglePlayer.setFont(new Font("Tahoma", Font.PLAIN, 34));
-		lblSinglePlayer.setHorizontalAlignment(SwingConstants.CENTER);
-		add(lblSinglePlayer, BorderLayout.CENTER);
 	}
 
 	private void populate_layout() {
@@ -109,11 +73,11 @@ public class Single_Player extends JPanel implements ActionListener{
 
 		add(MenuPanel, "MenuPanel");		
 
-		cdl.show(Single_Player.this, "MenuPanel");
+		cdl.show(Multi_New.this, "MenuPanel");
 		
 //		Board game=new Board();
 //		add(game,"Game");
-//		cdl.show(Single_Player.this,"Game");
+//		cdl.show(Multi_New.this,"Game");
 				
 		JPanel SelectionPanel = new JPanel();	
 		MenuPanel.add(SelectionPanel);
@@ -124,7 +88,7 @@ public class Single_Player extends JPanel implements ActionListener{
 		gbl_SelectionPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		SelectionPanel.setLayout(gbl_SelectionPanel);
 		
-		JLabel label = new JLabel("Single Player");
+		JLabel label = new JLabel("Multi Player");
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setFont(new Font("Tahoma", Font.PLAIN, 38));
 		GridBagConstraints gbc_label = new GridBagConstraints();
@@ -761,13 +725,12 @@ public class Single_Player extends JPanel implements ActionListener{
 		
 		JPanel ButtonPanel = new JPanel();
 		MenuPanel.add(ButtonPanel);		
-		JButton button = new JButton("Back to Main Menu");
+		JButton button = new JButton("Back to Multiplayer Menu");
 		button.setFont(new Font("Tahoma", Font.PLAIN, 34));
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				removeAll();
-				show_small();
-				action.run();
+				RXCardLayout cdl=(RXCardLayout) getParent().getLayout();
+				cdl.show(getParent(), "Multiplayer");
 			}
 		});
 		ButtonPanel.add(button);
@@ -782,9 +745,9 @@ public class Single_Player extends JPanel implements ActionListener{
 						(String)Difficulty3.getSelectedItem(),(Integer)Lives3.getValue(),(String)Position3.getSelectedItem(),getWindowAncestor().keys);
 				//Board game = new Board();
 				add(game,"Game");
-				cdl.show(Single_Player.this, "Game");
+				cdl.show(Multi_New.this, "Game");
 				game.requestFocusInWindow();
-				//cdl.last(Single_Player.this);
+				//cdl.last(Multi_New.this);
 				//requestFocusInWindow();
 			}
 		});
@@ -797,24 +760,6 @@ public class Single_Player extends JPanel implements ActionListener{
 	public Main_Frame getWindowAncestor(){		
 		Main_Frame topFrame = (Main_Frame) SwingUtilities.getWindowAncestor(this);
 		return topFrame;
-	}
-
-	public void setAction(Runnable action) {this.action = action;}
-	public void enableAction() {actionEnabled = true; if (hover) showBorder();}
-	public void disableAction() {actionEnabled = false;}
-
-	private void showBorder() {
-		tweenManager.killTarget(borderThickness);
-		Tween.to(this, Accessor.BORDER_THICKNESS, 0.4f)
-			.target(10)
-			.start(tweenManager);
-	}
-
-	private void hideBorder() {
-		tweenManager.killTarget(borderThickness);
-		Tween.to(this, Accessor.BORDER_THICKNESS, 0.4f)
-			.target(2)
-			.start(tweenManager);
 	}
 
 	@Override
@@ -847,41 +792,6 @@ public class Single_Player extends JPanel implements ActionListener{
 		gg.fillRect(0, 0, w-1, t);
 		gg.fillRect(0, h-1-t, w-1, t);
 		gg.fillRect(w-1-t, 0, t, h-1);
-	}
-
-	// -------------------------------------------------------------------------
-	// Tween Accessor
-	// -------------------------------------------------------------------------
-
-	public static class Accessor extends SLAnimator.ComponentAccessor {
-		public static final int BORDER_THICKNESS = 100;
-
-		@Override
-		public int getValues(Component target, int tweenType, float[] returnValues) {
-			Single_Player tp = (Single_Player) target;
-
-			int ret = super.getValues(target, tweenType, returnValues);
-			if (ret >= 0) return ret;
-
-			switch (tweenType) {
-				case BORDER_THICKNESS: returnValues[0] = tp.borderThickness; return 1;
-				default: return -1;
-			}
-		}
-
-		@Override
-		public void setValues(Component target, int tweenType, float[] newValues) {
-			Single_Player tp = (Single_Player) target;
-
-			super.setValues(target, tweenType, newValues);
-
-			switch (tweenType) {
-				case BORDER_THICKNESS:
-					tp.borderThickness = Math.round(newValues[0]);
-					tp.repaint();
-					break;
-			}
-		}
 	}
 
 	@Override

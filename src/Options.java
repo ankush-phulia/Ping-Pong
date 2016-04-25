@@ -13,8 +13,6 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
-import com.sun.glass.events.KeyEvent;
-
 import aurelienribon.tweenengine.Tween;
 import aurelienribon.tweenengine.TweenManager;
 import slidinglayout.SLAnimator;
@@ -24,6 +22,7 @@ import java.awt.GridLayout;
 import java.awt.GridBagLayout;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 import java.awt.GridBagConstraints;
 import javax.swing.JSeparator;
@@ -230,7 +229,7 @@ public class Options extends JPanel {
 		else{
 			up1.setSelectedItem(String.valueOf(((char)(getWindowAncestor().keys[0]))));
 		}		
-		System.out.println((char) getWindowAncestor().keys[0]);
+		//System.out.println((char) getWindowAncestor().keys[0]);
 		GridBagConstraints gbc_up1 = new GridBagConstraints();
 		gbc_up1.fill = GridBagConstraints.HORIZONTAL;
 		gbc_up1.insets = new Insets(0, 0, 5, 5);

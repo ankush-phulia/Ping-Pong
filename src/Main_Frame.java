@@ -130,7 +130,7 @@ public class Main_Frame extends JFrame {
 				.setEndSide(SLSide.BOTTOM, opt)
 				.setCallback(new SLKeyframe.Callback() {@Override public void done() {
 					mpp.setAction(mppBackAction);
-					mpp.expanded=false;
+					mpp.expanded=true;
 					mpp.enableAction();
 				}}))
 			.play();

@@ -11,7 +11,7 @@ public class Main {
 		Board board = new Board();
 		frame.add(board);*/
 		frame.setResizable(false);
-		frame.setSize(1015, 760);
+		frame.setSize(1015, 1080);
 		frame.setVisible(true);
 	}
 }
