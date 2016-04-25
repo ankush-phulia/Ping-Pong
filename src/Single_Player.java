@@ -198,7 +198,7 @@ public class Single_Player extends JPanel implements ActionListener{
 		gbc_label_1.gridy = 7;
 		SelectionPanel.add(label_1, gbc_label_1);
 		
-		JComboBox<String> ownPosition = new JComboBox<String>();
+		final JComboBox<String> ownPosition = new JComboBox<String>();
 		ownPosition.setFont(new Font("Tahoma", Font.PLAIN, 34));
 		ownPosition.addItem("Left");
 		ownPosition.addItem("Right");
@@ -233,7 +233,7 @@ public class Single_Player extends JPanel implements ActionListener{
 		gbc_label_2.gridy = 10;
 		SelectionPanel.add(label_2, gbc_label_2);
 		
-		JSlider ownLives = new JSlider(SwingConstants.HORIZONTAL, 1, 25, 5);
+		final JSlider ownLives = new JSlider(SwingConstants.HORIZONTAL, 1, 25, 5);
 		ownLives.setPaintTicks(true);
 		ownLives.setPaintLabels(true);
 		ownLives.setMinorTickSpacing(1);
@@ -259,7 +259,7 @@ public class Single_Player extends JPanel implements ActionListener{
 		gbc_separator_7.gridx = 4;
 		gbc_separator_7.gridy = 12;
 		SelectionPanel.add(separator_7, gbc_separator_7);
-		
+
 		JLabel lblGameMode = new JLabel("Game Mode");
 		lblGameMode.setFont(new Font("Tahoma", Font.PLAIN, 34));
 		GridBagConstraints gbc_lblGameMode = new GridBagConstraints();
@@ -268,7 +268,7 @@ public class Single_Player extends JPanel implements ActionListener{
 		gbc_lblGameMode.gridy = 13;
 		SelectionPanel.add(lblGameMode, gbc_lblGameMode);
 		
-		JComboBox<String> GameMode = new JComboBox<String>();
+		final JComboBox<String> GameMode = new JComboBox<String>();
 		GameMode.setFont(new Font("Tahoma", Font.PLAIN, 34));
 		GameMode.addItem("Classic");
 		GameMode.addItem("Arcade");
@@ -310,7 +310,7 @@ public class Single_Player extends JPanel implements ActionListener{
 		gbc_lblNumberOfBalls.gridy = 17;
 		SelectionPanel.add(lblNumberOfBalls, gbc_lblNumberOfBalls);
 		
-		JSlider ball_Num = new JSlider(SwingConstants.HORIZONTAL, 1, 3, 1);
+		final JSlider ball_Num = new JSlider(SwingConstants.HORIZONTAL, 1, 3, 1);
 		ball_Num.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		ball_Num.setPaintTicks(true);
 		ball_Num.setPaintLabels(true);
@@ -359,7 +359,7 @@ public class Single_Player extends JPanel implements ActionListener{
 		gbc_lblGameSpeed.gridy = 22;
 		SelectionPanel.add(lblGameSpeed, gbc_lblGameSpeed);
 		
-		JSlider spd = new JSlider(SwingConstants.HORIZONTAL, 1, 3, 1);
+		final JSlider spd = new JSlider(SwingConstants.HORIZONTAL, 1, 3, 1);
 		spd.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		spd.setPaintTicks(true);
 		spd.setPaintLabels(true);
@@ -393,8 +393,8 @@ public class Single_Player extends JPanel implements ActionListener{
 		gbc_lblPowerupsEnabled.gridx = 4;
 		gbc_lblPowerupsEnabled.gridy = 25;
 		SelectionPanel.add(lblPowerupsEnabled, gbc_lblPowerupsEnabled);
-		
-		JCheckBox powerups = new JCheckBox("");
+
+		final JCheckBox powerups = new JCheckBox("");
 		powerups.setFont(new Font("Tahoma", Font.PLAIN, 34));
 		GridBagConstraints gbc_powerups = new GridBagConstraints();
 		gbc_powerups.insets = new Insets(0, 0, 5, 5);
@@ -493,7 +493,7 @@ public class Single_Player extends JPanel implements ActionListener{
 		gbc_one.gridy = 35;
 		SelectionPanel.add(one, gbc_one);
 		
-		JComboBox<String> Difficulty1 = new JComboBox<String>();
+		final JComboBox<String> Difficulty1 = new JComboBox<String>();
 		Difficulty1.setFont(new Font("Tahoma", Font.PLAIN, 34));
 		Difficulty1.setVisible(true);
 		Difficulty1.addItem("");
@@ -509,7 +509,7 @@ public class Single_Player extends JPanel implements ActionListener{
 		gbc_Difficulty1.gridy = 35;
 		SelectionPanel.add(Difficulty1, gbc_Difficulty1);
 		
-		JSpinner Lives1 = new JSpinner(sm);
+		final JSpinner Lives1 = new JSpinner(sm);
 		Lives1.setFont(new Font("Tahoma", Font.PLAIN, 34));
 		Lives1.setVisible(true);
 		DefaultEditor edit=new JSpinner.DefaultEditor(Lives1);
@@ -522,7 +522,7 @@ public class Single_Player extends JPanel implements ActionListener{
 		gbc_Lives1.gridy = 35;
 		SelectionPanel.add(Lives1, gbc_Lives1);
 		
-		JComboBox<String> Position1 = new JComboBox<String>();
+		final JComboBox<String> Position1 = new JComboBox<String>();
 		Position1.setFont(new Font("Tahoma", Font.PLAIN, 34));		
 		Position1.setVisible(true);
 		Position1.addItem("");	
@@ -574,8 +574,8 @@ public class Single_Player extends JPanel implements ActionListener{
 		gbc_separator_18.gridx = 3;
 		gbc_separator_18.gridy = 37;
 		SelectionPanel.add(separator_18, gbc_separator_18);
-		
-		JComboBox<String> Difficulty2 = new JComboBox<String>();
+
+		final JComboBox<String> Difficulty2 = new JComboBox<String>();
 		Difficulty2.setFont(new Font("Tahoma", Font.PLAIN, 34));
 		Difficulty2.setVisible(true);
 		Difficulty2.addItem("");
@@ -597,8 +597,8 @@ public class Single_Player extends JPanel implements ActionListener{
 		gbc_separator_21.gridx = 6;
 		gbc_separator_21.gridy = 37;
 		SelectionPanel.add(separator_21, gbc_separator_21);
-		
-		JSpinner Lives2 = new JSpinner(sm2);
+
+		final JSpinner Lives2 = new JSpinner(sm2);
 		Lives2.setFont(new Font("Tahoma", Font.PLAIN, 34));
 		Lives2.setVisible(true);
 		DefaultEditor edit2=new JSpinner.DefaultEditor(Lives2);
@@ -610,8 +610,8 @@ public class Single_Player extends JPanel implements ActionListener{
 		gbc_Lives2.gridx = 7;
 		gbc_Lives2.gridy = 37;
 		SelectionPanel.add(Lives2, gbc_Lives2);
-		
-		JComboBox<String> Position2 = new JComboBox<String>();
+
+		final JComboBox<String> Position2 = new JComboBox<String>();
 		Position2.setFont(new Font("Tahoma", Font.PLAIN, 34));
 		Position2.setVisible(true);
 		Position2.addItem("");
@@ -642,8 +642,8 @@ public class Single_Player extends JPanel implements ActionListener{
 		gbc_three.gridx = 0;
 		gbc_three.gridy = 39;
 		SelectionPanel.add(three, gbc_three);
-		
-		JComboBox<String> Difficulty3 = new JComboBox<String>();
+
+		final JComboBox<String> Difficulty3 = new JComboBox<String>();
 		Difficulty3.setFont(new Font("Tahoma", Font.PLAIN, 34));
 		Difficulty3.setVisible(true);
 		Difficulty3.addItem("");
@@ -665,8 +665,8 @@ public class Single_Player extends JPanel implements ActionListener{
 		gbc_separator_20.gridx = 5;
 		gbc_separator_20.gridy = 39;
 		SelectionPanel.add(separator_20, gbc_separator_20);
-		
-		JSpinner Lives3 = new JSpinner(sm3);
+
+		final JSpinner Lives3 = new JSpinner(sm3);
 		Lives3.setFont(new Font("Tahoma", Font.PLAIN, 34));
 		Lives3.setVisible(true);
 		DefaultEditor edit3=new JSpinner.DefaultEditor(Lives3);
@@ -678,8 +678,8 @@ public class Single_Player extends JPanel implements ActionListener{
 		gbc_Lives3.gridx = 7;
 		gbc_Lives3.gridy = 39;
 		SelectionPanel.add(Lives3, gbc_Lives3);
-		
-		JComboBox<String> Position3 = new JComboBox<String>();
+
+		final JComboBox<String> Position3 = new JComboBox<String>();
 		Position3.setFont(new Font("Tahoma", Font.PLAIN, 34));
 		Position3.setVisible(true);
 		Position3.addItem("");		

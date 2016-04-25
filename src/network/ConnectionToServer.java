@@ -2,6 +2,7 @@ package network;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.net.InetSocketAddress;
 import java.net.Socket;
 
 /**
@@ -13,10 +14,13 @@ public class ConnectionToServer {
     ReadData readingStream;
 
 
-    // Connect to a client with IP Address/Name 'inetAddr' & port no. 'port'
-    // Throws IOException if unsuccessful
+    /* Connect to a client with IP Address/Name 'inetAddr' & port no. 'port'
+     *  Throws IOException if unsuccessful
+     *  Timeout of 10 seconds is set
+     */
     public ConnectionToServer(String inetAddr, int port) throws IOException {
-        clientSocket = new Socket(inetAddr, port);
+        clientSocket = new Socket();
+        clientSocket.connect(new InetSocketAddress(inetAddr, port), 10000);
         threadMessage("Connection established with " + clientSocket.getRemoteSocketAddress() +
                 " on port " + clientSocket.getLocalPort());
 
