@@ -24,7 +24,6 @@ import javax.swing.JSpinner.DefaultEditor;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 
 import java.awt.Font;
 import javax.swing.JButton;
@@ -35,6 +34,7 @@ import java.awt.CardLayout;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeEvent;
 import javax.swing.JCheckBox;
+
 
 public class Single_Player extends JPanel implements ActionListener{
 
@@ -99,13 +99,15 @@ public class Single_Player extends JPanel implements ActionListener{
 	private void populate_layout() {
 		
 		this.setAutoscrolls(true);
-		RXCardLayout cdl=new RXCardLayout(0, 0);
+		final RXCardLayout cdl=new RXCardLayout(0, 0);
 		cdl.setRequestFocusOnCard(true);
 		setLayout(cdl);
 		
 		JPanel MenuPanel = new JPanel();		
 		MenuPanel.setLayout(new BoxLayout(MenuPanel, BoxLayout.Y_AXIS));
+
 		add(MenuPanel, "MenuPanel");		
+
 		cdl.show(Single_Player.this, "MenuPanel");
 				
 		JPanel SelectionPanel = new JPanel();	
