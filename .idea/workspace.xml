@@ -750,7 +750,7 @@
       <workItem from="1461507251295" duration="39000" />
       <workItem from="1461574504562" duration="69000" />
       <workItem from="1461578517301" duration="857000" />
-      <workItem from="1461579449166" duration="6496000" />
+      <workItem from="1461579449166" duration="6502000" />
     </task>
     <task id="LOCAL-00001" summary="Changed the API for accepting new client, set timeout for connections, added the API for enumerating all IPs">
       <created>1461585896685</created>
@@ -759,11 +759,18 @@
       <option name="project" value="LOCAL" />
       <updated>1461585896685</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Changed the API for accepting new client, set timeout for connections, added the API for enumerating all IPs">
+      <created>1461585949129</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1461585949129</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30329000" />
+    <option name="totallyTimeSpent" value="30335000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="1368" height="743" extended-state="6" />
