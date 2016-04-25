@@ -95,51 +95,86 @@ public class Instructions extends JPanel {
 		JPanel panel_1 = new JPanel();
 		add(panel_1);
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
-		gbl_panel_1.columnWidths = new int[]{0, 0, 0};
+		gbl_panel_1.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0};
 		gbl_panel_1.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0};
-		gbl_panel_1.columnWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel_1.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_panel_1.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel_1.setLayout(gbl_panel_1);
 		
 		JSeparator separator = new JSeparator();
 		GridBagConstraints gbc_separator = new GridBagConstraints();
 		gbc_separator.insets = new Insets(0, 0, 5, 0);
-		gbc_separator.gridx = 1;
+		gbc_separator.gridx = 5;
 		gbc_separator.gridy = 0;
 		panel_1.add(separator, gbc_separator);
 		
 		JSeparator separator_1 = new JSeparator();
 		GridBagConstraints gbc_separator_1 = new GridBagConstraints();
 		gbc_separator_1.insets = new Insets(0, 0, 5, 0);
-		gbc_separator_1.gridx = 1;
+		gbc_separator_1.gridx = 5;
 		gbc_separator_1.gridy = 1;
 		panel_1.add(separator_1, gbc_separator_1);
 		
 		JSeparator separator_2 = new JSeparator();
 		GridBagConstraints gbc_separator_2 = new GridBagConstraints();
 		gbc_separator_2.insets = new Insets(0, 0, 5, 0);
-		gbc_separator_2.gridx = 1;
+		gbc_separator_2.gridx = 5;
 		gbc_separator_2.gridy = 2;
 		panel_1.add(separator_2, gbc_separator_2);
 		
 		JSeparator separator_4 = new JSeparator();
 		GridBagConstraints gbc_separator_4 = new GridBagConstraints();
 		gbc_separator_4.insets = new Insets(0, 0, 5, 0);
-		gbc_separator_4.gridx = 1;
+		gbc_separator_4.gridx = 5;
 		gbc_separator_4.gridy = 3;
 		panel_1.add(separator_4, gbc_separator_4);
 		
 		JSeparator separator_3 = new JSeparator();
 		GridBagConstraints gbc_separator_3 = new GridBagConstraints();
 		gbc_separator_3.insets = new Insets(0, 0, 5, 0);
-		gbc_separator_3.gridx = 1;
+		gbc_separator_3.gridx = 5;
 		gbc_separator_3.gridy = 4;
 		panel_1.add(separator_3, gbc_separator_3);
+		
+		JSeparator separator_7 = new JSeparator();
+		GridBagConstraints gbc_separator_7 = new GridBagConstraints();
+		gbc_separator_7.insets = new Insets(0, 0, 0, 5);
+		gbc_separator_7.gridx = 0;
+		gbc_separator_7.gridy = 5;
+		panel_1.add(separator_7, gbc_separator_7);
+		
+		JSeparator separator_5 = new JSeparator();
+		GridBagConstraints gbc_separator_5 = new GridBagConstraints();
+		gbc_separator_5.insets = new Insets(0, 0, 0, 5);
+		gbc_separator_5.gridx = 1;
+		gbc_separator_5.gridy = 5;
+		panel_1.add(separator_5, gbc_separator_5);
+		
+		JSeparator separator_9 = new JSeparator();
+		GridBagConstraints gbc_separator_9 = new GridBagConstraints();
+		gbc_separator_9.insets = new Insets(0, 0, 0, 5);
+		gbc_separator_9.gridx = 2;
+		gbc_separator_9.gridy = 5;
+		panel_1.add(separator_9, gbc_separator_9);
+		
+		JSeparator separator_8 = new JSeparator();
+		GridBagConstraints gbc_separator_8 = new GridBagConstraints();
+		gbc_separator_8.insets = new Insets(0, 0, 0, 5);
+		gbc_separator_8.gridx = 3;
+		gbc_separator_8.gridy = 5;
+		panel_1.add(separator_8, gbc_separator_8);
+		
+		JSeparator separator_6 = new JSeparator();
+		GridBagConstraints gbc_separator_6 = new GridBagConstraints();
+		gbc_separator_6.insets = new Insets(0, 0, 0, 5);
+		gbc_separator_6.gridx = 4;
+		gbc_separator_6.gridy = 5;
+		panel_1.add(separator_6, gbc_separator_6);
 		
 		JLabel lblRandomBs = new JLabel("Random BS");
 		lblRandomBs.setFont(new Font("Tahoma", Font.PLAIN, 34));
 		GridBagConstraints gbc_lblRandomBs = new GridBagConstraints();
-		gbc_lblRandomBs.gridx = 1;
+		gbc_lblRandomBs.gridx = 5;
 		gbc_lblRandomBs.gridy = 5;
 		panel_1.add(lblRandomBs, gbc_lblRandomBs);
 	}

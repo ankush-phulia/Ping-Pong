@@ -11,6 +11,9 @@ import java.awt.image.BufferedImage;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
+
+import com.sun.glass.events.KeyEvent;
 
 import aurelienribon.tweenengine.Tween;
 import aurelienribon.tweenengine.TweenManager;
@@ -40,6 +43,18 @@ public class Options extends JPanel {
 	private boolean actionEnabled = true;
 	private boolean hover = false;
 	private int borderThickness = 1;
+	private String[] Keys1=new String[] {"Q","A","Z","W","S","X","E","D","C","R","F","V",
+			"T","G","B","Y","H","N","U","J","M","UP","DOWN"};
+	private String[] Keys2=new String[] {"A","Z","W","S","X","E","D","C","R","F","V",
+			"T","G","B","Y","H","N","U","J","M","UP","DOWN","Q"};
+	private String[] Keys3=new String[] {"Z","W","S","X","E","D","C","R","F","V",
+			"T","G","B","Y","H","N","U","J","M","UP","DOWN","Q","A"};
+	private String[] Keys4=new String[] {"UP","DOWN","Q","A","Z","W","S","X","E","D","C","R","F","V",
+			"T","G","B","Y","H","N","U","J","M",};
+	private String[] Keys5=new String[] {"DOWN","Q","A","Z","W","S","X","E","D","C","R","F","V",
+			"T","G","B","Y","H","N","U","J","M","UP"};
+	private String[] Keys6=new String[] {"M","UP","DOWN","Q","A","Z","W","S","X","E","D","C","R","F","V",
+			"T","G","B","Y","H","N","U","J"};
 	
 	public Options() {
 		
@@ -204,14 +219,24 @@ public class Options extends JPanel {
 		gbc_separator_15.gridy = 8;
 		panel_1.add(separator_15, gbc_separator_15);
 		
-		JComboBox ltTop = new JComboBox();
-		ltTop.setFont(new Font("Tahoma", Font.PLAIN, 32));
-		GridBagConstraints gbc_ltTop = new GridBagConstraints();
-		gbc_ltTop.fill = GridBagConstraints.HORIZONTAL;
-		gbc_ltTop.insets = new Insets(0, 0, 5, 5);
-		gbc_ltTop.gridx = 29;
-		gbc_ltTop.gridy = 8;
-		panel_1.add(ltTop, gbc_ltTop);
+		JComboBox<String> up1 = new JComboBox<String>(Keys1);
+		up1.setFont(new Font("Tahoma", Font.PLAIN, 32));
+		if (getWindowAncestor().keys[0]==26){
+			up1.setSelectedItem("UP");
+		}
+		else if (getWindowAncestor().keys[0]==28){
+			up1.setSelectedItem("DOWN");
+		}
+		else{
+			up1.setSelectedItem(String.valueOf(((char)(getWindowAncestor().keys[0]))));
+		}		
+		System.out.println((char) getWindowAncestor().keys[0]);
+		GridBagConstraints gbc_up1 = new GridBagConstraints();
+		gbc_up1.fill = GridBagConstraints.HORIZONTAL;
+		gbc_up1.insets = new Insets(0, 0, 5, 5);
+		gbc_up1.gridx = 29;
+		gbc_up1.gridy = 8;
+		panel_1.add(up1, gbc_up1);
 		
 		JSeparator separator_7 = new JSeparator();
 		GridBagConstraints gbc_separator_7 = new GridBagConstraints();
@@ -291,14 +316,23 @@ public class Options extends JPanel {
 		gbc_separator_38.gridy = 11;
 		panel_1.add(separator_38, gbc_separator_38);
 		
-		JComboBox rtTop = new JComboBox();
-		rtTop.setFont(new Font("Tahoma", Font.PLAIN, 32));
-		GridBagConstraints gbc_rtTop = new GridBagConstraints();
-		gbc_rtTop.insets = new Insets(0, 0, 5, 5);
-		gbc_rtTop.fill = GridBagConstraints.HORIZONTAL;
-		gbc_rtTop.gridx = 29;
-		gbc_rtTop.gridy = 11;
-		panel_1.add(rtTop, gbc_rtTop);
+		JComboBox<String> down1 = new JComboBox<String>(Keys2);
+		down1.setFont(new Font("Tahoma", Font.PLAIN, 32));
+		if (getWindowAncestor().keys[1]==26){
+			down1.setSelectedItem("UP");
+		}
+		else if (getWindowAncestor().keys[1]==28){
+			down1.setSelectedItem("DOWN");
+		}
+		else{
+			down1.setSelectedItem(String.valueOf(((char)(getWindowAncestor().keys[1]))));
+		}
+		GridBagConstraints gbc_down1 = new GridBagConstraints();
+		gbc_down1.insets = new Insets(0, 0, 5, 5);
+		gbc_down1.fill = GridBagConstraints.HORIZONTAL;
+		gbc_down1.gridx = 29;
+		gbc_down1.gridy = 11;
+		panel_1.add(down1, gbc_down1);
 		
 		JSeparator separator_9 = new JSeparator();
 		GridBagConstraints gbc_separator_9 = new GridBagConstraints();
@@ -420,14 +454,14 @@ public class Options extends JPanel {
 		gbc_separator_33.gridy = 14;
 		panel_1.add(separator_33, gbc_separator_33);
 		
-		JComboBox actTop = new JComboBox();
-		actTop.setFont(new Font("Tahoma", Font.PLAIN, 32));
-		GridBagConstraints gbc_actTop = new GridBagConstraints();
-		gbc_actTop.insets = new Insets(0, 0, 5, 5);
-		gbc_actTop.fill = GridBagConstraints.HORIZONTAL;
-		gbc_actTop.gridx = 29;
-		gbc_actTop.gridy = 14;
-		panel_1.add(actTop, gbc_actTop);
+		JComboBox<String> act1 = new JComboBox<String>(Keys3);
+		act1.setFont(new Font("Tahoma", Font.PLAIN, 32));
+		GridBagConstraints gbc_act1 = new GridBagConstraints();
+		gbc_act1.insets = new Insets(0, 0, 5, 5);
+		gbc_act1.fill = GridBagConstraints.HORIZONTAL;
+		gbc_act1.gridx = 29;
+		gbc_act1.gridy = 14;
+		panel_1.add(act1, gbc_act1);
 		
 		JSeparator separator_49 = new JSeparator();
 		GridBagConstraints gbc_separator_49 = new GridBagConstraints();
@@ -515,14 +549,23 @@ public class Options extends JPanel {
 		gbc_lblUpMovement1.gridy = 26;
 		panel_1.add(lblUpMovement1, gbc_lblUpMovement1);
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setFont(new Font("Tahoma", Font.PLAIN, 32));
-		GridBagConstraints gbc_comboBox_1 = new GridBagConstraints();
-		gbc_comboBox_1.insets = new Insets(0, 0, 5, 5);
-		gbc_comboBox_1.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboBox_1.gridx = 29;
-		gbc_comboBox_1.gridy = 26;
-		panel_1.add(comboBox_1, gbc_comboBox_1);
+		JComboBox<String> up2 = new JComboBox<String>(Keys4);
+		up2.setFont(new Font("Tahoma", Font.PLAIN, 32));
+		if (getWindowAncestor().keys[2]==26){
+			up2.setSelectedItem("UP");
+		}
+		else if (getWindowAncestor().keys[2]==28){
+			up2.setSelectedItem("DOWN");
+		}
+		else{
+			up2.setSelectedItem(String.valueOf(((char)(getWindowAncestor().keys[2]))));
+		}
+		GridBagConstraints gbc_up2 = new GridBagConstraints();
+		gbc_up2.insets = new Insets(0, 0, 5, 5);
+		gbc_up2.fill = GridBagConstraints.HORIZONTAL;
+		gbc_up2.gridx = 29;
+		gbc_up2.gridy = 26;
+		panel_1.add(up2, gbc_up2);
 		
 		JSeparator separator_45 = new JSeparator();
 		GridBagConstraints gbc_separator_45 = new GridBagConstraints();
@@ -546,14 +589,22 @@ public class Options extends JPanel {
 		gbc_lblDownMovement1.gridy = 29;
 		panel_1.add(lblDownMovement1, gbc_lblDownMovement1);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 32));
-		GridBagConstraints gbc_comboBox = new GridBagConstraints();
-		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
-		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboBox.gridx = 29;
-		gbc_comboBox.gridy = 29;
-		panel_1.add(comboBox, gbc_comboBox);
+		JComboBox<String> down2 = new JComboBox<String>(Keys5);
+		down2.setFont(new Font("Tahoma", Font.PLAIN, 32));
+		if (getWindowAncestor().keys[3]==26){
+			down2.setSelectedItem("UP");
+		}
+		else if (getWindowAncestor().keys[3]==28){
+			down2.setSelectedItem("DOWN");
+		}
+		else{
+			down2.setSelectedItem(String.valueOf(((char)(getWindowAncestor().keys[3]))));
+		}GridBagConstraints gbc_down2 = new GridBagConstraints();
+		gbc_down2.insets = new Insets(0, 0, 5, 5);
+		gbc_down2.fill = GridBagConstraints.HORIZONTAL;
+		gbc_down2.gridx = 29;
+		gbc_down2.gridy = 29;
+		panel_1.add(down2, gbc_down2);
 		
 		JSeparator separator_47 = new JSeparator();
 		GridBagConstraints gbc_separator_47 = new GridBagConstraints();
@@ -577,14 +628,14 @@ public class Options extends JPanel {
 		gbc_lblActivate1.gridy = 32;
 		panel_1.add(lblActivate1, gbc_lblActivate1);
 		
-		JComboBox comboBox_2 = new JComboBox();
-		comboBox_2.setFont(new Font("Tahoma", Font.PLAIN, 32));
-		GridBagConstraints gbc_comboBox_2 = new GridBagConstraints();
-		gbc_comboBox_2.insets = new Insets(0, 0, 0, 5);
-		gbc_comboBox_2.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboBox_2.gridx = 29;
-		gbc_comboBox_2.gridy = 32;
-		panel_1.add(comboBox_2, gbc_comboBox_2);
+		JComboBox<String> act2 = new JComboBox<String>(Keys6);
+		act2.setFont(new Font("Tahoma", Font.PLAIN, 32));
+		GridBagConstraints gbc_act2 = new GridBagConstraints();
+		gbc_act2.insets = new Insets(0, 0, 0, 5);
+		gbc_act2.fill = GridBagConstraints.HORIZONTAL;
+		gbc_act2.gridx = 29;
+		gbc_act2.gridy = 32;
+		panel_1.add(act2, gbc_act2);
 		
 		JPanel panel_2 = new JPanel();
 		add(panel_2);
@@ -605,12 +656,35 @@ public class Options extends JPanel {
 		btnSaveChanges.setFont(new Font("Tahoma", Font.PLAIN, 34));
 		btnSaveChanges.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				getWindowAncestor().keys[0]=convert((String)up1.getSelectedItem());
+				getWindowAncestor().keys[1]=convert((String)down1.getSelectedItem());
+				getWindowAncestor().keys[2]=convert((String)up2.getSelectedItem());
+				getWindowAncestor().keys[3]=convert((String)down2.getSelectedItem());
 				removeAll();
 				show_small();
 				action.run();
 			}
 		});
 		panel_2.add(btnSaveChanges);
+	}
+	
+	public Main_Frame getWindowAncestor(){		
+		Main_Frame topFrame = (Main_Frame) SwingUtilities.getWindowAncestor(this);
+		return topFrame;
+	}
+	
+	public int convert(String s){
+		if (s.equals("UP")){
+			return KeyEvent.VK_UP;
+		}
+		else if (s.equals("DOWN")){
+				return KeyEvent.VK_DOWN;
+		}
+		else{
+			Character c=s.toCharArray()[0];
+			return Character.getNumericValue(c)+55;
+		}
+		
 	}
 
 	public void setAction(Runnable action) {this.action = action;}

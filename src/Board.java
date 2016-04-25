@@ -25,6 +25,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
 	
 	//game screens
 	public String state;
+	//public boolean route2=false;
     
     //AESTHETICS
 	public double Xdim;
@@ -43,8 +44,8 @@ public class Board extends JPanel implements ActionListener, KeyListener{
     public ArrayList<Ball> balls ;
     
     //Scores/Lives
-    public int[] playerScores;
-    public int[] playerLives;
+    public int[] playerScores,playerScores2;
+    public int[] playerLives,playerLives2;
     
     //Controls
     public int[] keys;
@@ -59,8 +60,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
     public boolean cPressed = false;
     public boolean vPressed = false;
     
-    public Board(){
-    	
+    public Board(){    	
     	
     	this.Xdim=1000;
     	this.Ydim=1000;
@@ -84,6 +84,71 @@ public class Board extends JPanel implements ActionListener, KeyListener{
                 Board.this.requestFocusInWindow();
             }
         });
+        
+    }
+    
+    public Board (String ownPosition,int ownLives,
+			String GameMode,int ball_Num,int spd,boolean powerups,
+			String Difficulty1,int Lives1,String Position1,
+			String Difficulty2,int Lives2,String Position2,
+			String Difficulty3,int Lives3,String Position3, int[] keys){    	
+    	
+    	//appearance
+    	this.Xdim=1000;
+    	this.Ydim=1000;
+    	this.bgcolor=Color.black;
+    	this.ccolor=Color.white;
+    	this.fps=60;
+    	
+    	//balls
+    	this.ball_num=ball_Num;
+    	this.gameSpd=spd;
+    	this.balls=new ArrayList<Ball>();
+    	this.balls.add(new Ball(this.Xdim/2, this.Ydim/2, -4*gameSpd, 8*gameSpd,1));
+    	if (ball_Num>1){
+    		this.balls.add(new Ball(this.Ydim/2, Xdim/2, 6*gameSpd, 12*gameSpd,0));
+    		if (ball_Num>2){    			
+				this.balls.add(new Ball(this.Ydim/2, Xdim/2, 12*gameSpd, 6*gameSpd,3));
+        	}
+    	}
+    	//paddles
+    	this.players=new ArrayList<Paddle>();
+    	this.players.add(new Paddle(Xdim/100, Ydim/5, 5+Xdim/100, this.Ydim/2));
+	
+    	if (!Difficulty1.equals("")){
+    		this.players.add(new Paddle(Xdim/100, Ydim/5, Xdim-(5+Xdim/100), this.Ydim/2));
+		}
+    	if (!Difficulty2.equals("")){
+    		this.players.add(new Paddle(Xdim/5, Ydim/100, Xdim/2, 5+this.Ydim/100));
+		}
+		if (!Difficulty3.equals("")){
+			this.players.add(new Paddle(Xdim/5, Ydim/100, Xdim/2, this.Ydim-(5+this.Ydim/100)));
+		}
+		
+    	this.playerLives=new int[] {ownLives,Lives1,Lives2,Lives3};
+    	this.playerLives2=this.playerLives;
+    	this.playerScores=new int[] {0,0,0,0};
+    	this.playerScores2=playerScores;
+    	
+    	//focused window
+        this.setFocusable(true);
+        this.requestFocusInWindow();
+        this.grabFocus();
+        
+        //controls
+        this.keys=keys;
+        addKeyListener(this);        
+        setBackground(this.bgcolor);        
+        Timer timer = new Timer((int) (1000/this.fps), this);
+        timer.start();
+        
+        this.addComponentListener( new ComponentAdapter() {
+            public void componentShown( ComponentEvent e ) {
+                Board.this.requestFocusInWindow();
+            }
+        });
+        
+        this.state="Playing";
         
     }
     
@@ -345,7 +410,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
                     this.playerLives[0]--;
 
                     if (playerLives[0] == 0) {
-                        this.state="Done";
+                        //this.state="Done";
                     }
                 }
                 b.Xvel *=-1;
@@ -359,7 +424,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
                     this.playerLives[1]--;
 
                     if (playerLives[1] == 0) {
-                        this.state="Done";
+                        //this.state="Done";
                     }
                 }
                 b.Xvel *= -1;
@@ -379,17 +444,17 @@ public class Board extends JPanel implements ActionListener, KeyListener{
         switch(state){
         	case "Start":
         		g.setFont(new Font(Font.DIALOG, Font.BOLD, 24));
-                g.drawString("Press 'SPACE' to play", (int)getWidth()/2, (int)this.getHeight()/2);        		
+                g.drawString("Press 'SPACE' to play", (int)getWidth()/2-150, (int)this.getHeight()/2);        		
         		break;
         		
         	case "Player Select":
         		g.setFont(new Font(Font.DIALOG, Font.BOLD, 24));
-                g.drawString("Select number of human players 2-4", (int)getWidth()/2, (int)this.getHeight()/2);
+                g.drawString("Select number of human players 2-4", (int)getWidth()/2-150, (int)this.getHeight()/2);
         		break;
         		
         	case "Mode Select":
         		g.setFont(new Font(Font.DIALOG, Font.BOLD, 24));
-                g.drawString("Select number of balls 1-3", (int)getWidth()/2, (int)this.getHeight()/2);
+                g.drawString("Select number of balls 1-3", (int)getWidth()/2-150, (int)this.getHeight()/2);
         		break;
         		
 			case "Playing":
@@ -474,7 +539,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
 				break;
 				
 			case "Player Select":
-				this.players.add(new Paddle(getWidth()/100, getHeight()/5, 5+getWidth()/100, this.getHeight()/2));
+				this.players.add(new Paddle(getWidth()/100, getHeight()/5, 5+getWidth()/100, this.Ydim/2));
 				this.players.add(new Paddle(getWidth()/100, getHeight()/5, getWidth()-(5+getWidth()/100), this.getHeight()/2));
 				if (e.getKeyCode() == KeyEvent.VK_2) {					
 					this.player_num=2;

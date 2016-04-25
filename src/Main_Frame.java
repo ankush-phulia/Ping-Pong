@@ -20,12 +20,13 @@ public class Main_Frame extends JFrame {
 	private final Instructions ins = new Instructions();
 	private final Options opt = new Options();
 	private final SLConfig mainCfg, sppCfg, mppCfg, insCfg, optCfg;
-	public int[] keys;
+	public int[] keys=new int[] {KeyEvent.VK_Q,KeyEvent.VK_A,KeyEvent.VK_UP,KeyEvent.VK_DOWN,KeyEvent.VK_C,KeyEvent.VK_V,KeyEvent.VK_O,KeyEvent.VK_P};;
+;
 
 	public Main_Frame(int x,int y) {
 		
 		//default controls
-		this.keys=new int[] {KeyEvent.VK_Q,KeyEvent.VK_A,KeyEvent.VK_UP,KeyEvent.VK_DOWN,KeyEvent.VK_C,KeyEvent.VK_V,KeyEvent.VK_O,KeyEvent.VK_P};;
+		//this.keys=new int[] {KeyEvent.VK_Q,KeyEvent.VK_A,KeyEvent.VK_UP,KeyEvent.VK_DOWN,KeyEvent.VK_C,KeyEvent.VK_V,KeyEvent.VK_O,KeyEvent.VK_P};;
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Swing Pong");
