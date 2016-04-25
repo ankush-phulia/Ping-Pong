@@ -49,7 +49,7 @@ public class LocalServer {
     // Throws IOException if unsuccessful
     public LocalServer(int port) throws IOException {
         myServer = new ServerSocket(port, 3);
-        myServer.setSoTimeout(2000);
+        //myServer.setSoTimeout(2000);
         threadMessage("Server created on port " + myServer.getLocalPort());
     }
 
@@ -62,7 +62,7 @@ public class LocalServer {
 
 
     // Establish connection with a new client
-    void acceptClient() {
+    public void acceptClient() {
         NewClient cl = new NewClient(this);
         Thread clientThread = new Thread(cl);
         clientThread.start();

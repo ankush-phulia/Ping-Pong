@@ -1,14 +1,13 @@
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
+import java.net.SocketAddress;
+
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import aurelienribon.tweenengine.Tween;
 import aurelienribon.tweenengine.TweenManager;
+import network.LocalServer;
 import slidinglayout.SLAnimator;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
@@ -28,17 +27,13 @@ import javax.swing.JComboBox;
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyListener;
 import java.awt.event.ActionEvent;
-import java.awt.BorderLayout;
-import java.awt.CardLayout;
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeEvent;
 import javax.swing.JCheckBox;
 
 
 public class Multi_New extends JPanel implements ActionListener{
 
+	LocalServer gameServer;	
 	boolean expanded=false;
 	private static final Color FG_COLOR = new Color(0xFFFFFF);
 	private static final Color BG_COLOR = new Color(0x3B5998);
@@ -53,12 +48,19 @@ public class Multi_New extends JPanel implements ActionListener{
 	private SpinnerModel sm2 = new SpinnerNumberModel(0, 0, 31, 1);
 	private SpinnerModel sm3 = new SpinnerNumberModel(0, 0, 31, 1);
 	
-	public Multi_New() {
+	public Multi_New(LocalServer gs) {
 
+		this.gameServer=gs;
+		gs.acceptClient();
+		gs.acceptClient();
+		gs.acceptClient();
+		
+		
 		populate_layout();		
 	
 		Timer timer = new Timer((int) (1000/60), this);
 		timer.start();
+		
 	}
 
 	private void populate_layout() {
@@ -738,7 +740,12 @@ public class Multi_New extends JPanel implements ActionListener{
 		JButton button_1 = new JButton("Start a New Game");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Board game = new Board((String)ownPosition.getSelectedItem(),ownLives.getValue(),
+				SocketAddress firstClient = gameServer.getAllClients().get(0);
+				gameServer.writeToClient(firstClient, "Yo Bitch Client!");
+				String resp = gameServer.readFromClient(firstClient);
+				System.out.println(resp);
+				
+				/*Board game = new Board((String)ownPosition.getSelectedItem(),ownLives.getValue(),
 						(String)GameMode.getSelectedItem(),ball_Num.getValue(),spd.getValue(),powerups.isSelected(),
 						(String)Difficulty1.getSelectedItem(),(Integer)Lives1.getValue(),(String)Position1.getSelectedItem(),
 						(String)Difficulty2.getSelectedItem(),(Integer)Lives2.getValue(),(String)Position2.getSelectedItem(),
@@ -748,7 +755,7 @@ public class Multi_New extends JPanel implements ActionListener{
 				cdl.show(Multi_New.this, "Game");
 				game.requestFocusInWindow();
 				//cdl.last(Multi_New.this);
-				//requestFocusInWindow();
+				//requestFocusInWindow();*/
 			}
 		});
 		button_1.setFont(new Font("Tahoma", Font.PLAIN, 34));
@@ -797,6 +804,8 @@ public class Multi_New extends JPanel implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		
+		
 		repaint();
 	}
 }

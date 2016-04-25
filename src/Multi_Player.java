@@ -6,6 +6,7 @@ import java.awt.Graphics2D;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.text.ParseException;
 
 import javax.swing.JLabel;
@@ -28,6 +29,8 @@ import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import network.ConnectionToServer;
+import network.LocalServer;
 
 public class Multi_Player extends JPanel {
 
@@ -65,7 +68,12 @@ public class Multi_Player extends JPanel {
 				if (action != null && actionEnabled)action.run();
 				if (!expanded){
 					removeAll();
-					populate_layout();
+					try {
+						populate_layout();
+					} catch (ParseException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
 				else{
 					removeAll();
@@ -85,7 +93,7 @@ public class Multi_Player extends JPanel {
 		add(lblMultiPlayer, BorderLayout.CENTER);
 	}
 
-	private void populate_layout() {
+	private void populate_layout() throws ParseException {
 		this.setAutoscrolls(true);
 		setLayout(new RXCardLayout(0, 0));
 		
@@ -264,13 +272,20 @@ public class Multi_Player extends JPanel {
 		gbc_separator_34.gridy = 12;
 		panel_1.add(separator_34, gbc_separator_34);
 		
-		JButton btnStartNewGame = new JButton("Start New Game");
+		JButton btnStartNewGame = new JButton("Host a New Game");
 		btnStartNewGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				RXCardLayout cdl=(RXCardLayout) getLayout();
-				Multi_New mn=new Multi_New();
-				add(mn,"new game");
-				cdl.show(Multi_Player.this, "new game");
+				
+				try {
+					LocalServer gameServer=new LocalServer(8080);
+					RXCardLayout cdl=(RXCardLayout) getLayout();
+					Multi_New mn=new Multi_New(gameServer);
+					add(mn,"new game");
+					cdl.show(Multi_Player.this, "new game");
+				} catch (IOException e1) {
+					
+					e1.printStackTrace();
+				}			
 			}
 		});
 		btnStartNewGame.setFont(new Font("Tahoma", Font.PLAIN, 34));
@@ -362,22 +377,16 @@ public class Multi_Player extends JPanel {
 		panel_1.add(separator_19, gbc_separator_19);
 		
 		MaskFormatter mf;
-		try {
-			mf = new MaskFormatter("###.###.###.###");
-			JFormattedTextField formattedTextField = new JFormattedTextField(mf);
-			formattedTextField.setHorizontalAlignment(SwingConstants.CENTER);
-			formattedTextField.setFont(new Font("Tahoma", Font.PLAIN, 34));
-			GridBagConstraints gbc_formattedTextField = new GridBagConstraints();
-			gbc_formattedTextField.fill = GridBagConstraints.HORIZONTAL;
-			gbc_formattedTextField.insets = new Insets(0, 0, 5, 5);
-			gbc_formattedTextField.gridx = 40;
-			gbc_formattedTextField.gridy = 24;
-			panel_1.add(formattedTextField, gbc_formattedTextField);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		mf = new MaskFormatter("###.###.###.###");
+		JFormattedTextField ipAddress = new JFormattedTextField(mf);
+		ipAddress.setHorizontalAlignment(SwingConstants.CENTER);
+		ipAddress.setFont(new Font("Tahoma", Font.PLAIN, 34));
+		GridBagConstraints gbc_ipAddress = new GridBagConstraints();
+		gbc_ipAddress.fill = GridBagConstraints.HORIZONTAL;
+		gbc_ipAddress.insets = new Insets(0, 0, 5, 5);
+		gbc_ipAddress.gridx = 40;
+		gbc_ipAddress.gridy = 24;
+		panel_1.add(ipAddress, gbc_ipAddress);
 		
 		JSeparator separator_15 = new JSeparator();
 		GridBagConstraints gbc_separator_15 = new GridBagConstraints();
@@ -606,6 +615,16 @@ public class Multi_Player extends JPanel {
 		JButton btnJoinExistingOne = new JButton("Join Existing One");
 		btnJoinExistingOne.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
+					ConnectionToServer cs = new ConnectionToServer(ipAddress.getText(), 8080);
+					String resp = cs.readFromClient();
+					System.out.println(resp);
+					cs.writeToServer("Fuck you!");
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
 			}
 		});
 		btnJoinExistingOne.setFont(new Font("Tahoma", Font.PLAIN, 34));
