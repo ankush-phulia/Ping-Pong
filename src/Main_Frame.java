@@ -18,13 +18,13 @@ public class Main_Frame extends JFrame {
 	private final Single_Player spp = new Single_Player();
 	private final Multi_Player mpp = new Multi_Player();
 	private final Instructions ins = new Instructions();
+	
 	private final Options opt = new Options();
 	private final SLConfig mainCfg, sppCfg, mppCfg, insCfg, optCfg;
-	public int[] keys=new int[] {KeyEvent.VK_Q,KeyEvent.VK_A,KeyEvent.VK_UP,KeyEvent.VK_DOWN,KeyEvent.VK_C,KeyEvent.VK_V,KeyEvent.VK_O,KeyEvent.VK_P};;
-;
+	public int[] keys=new int[] {KeyEvent.VK_Q,KeyEvent.VK_A,KeyEvent.VK_Z,KeyEvent.VK_U,KeyEvent.VK_J,KeyEvent.VK_M};
 
 	public Main_Frame(int x,int y) {
-		
+
 		//default controls
 		//this.keys=new int[] {KeyEvent.VK_Q,KeyEvent.VK_A,KeyEvent.VK_UP,KeyEvent.VK_DOWN,KeyEvent.VK_C,KeyEvent.VK_V,KeyEvent.VK_O,KeyEvent.VK_P};;
 

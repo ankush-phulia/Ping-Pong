@@ -16,7 +16,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 
 
-public class Board extends JPanel implements ActionListener, KeyListener{
+public class BoardMulti extends JPanel implements ActionListener, KeyListener{
 	
 	//game screens
 	public String state;
@@ -52,7 +52,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
    // public boolean paused=false;
     public boolean[] pressed=new boolean[] {false,false,false,false,false,false};
 
-    public Board() {
+    public BoardMulti() {
 
     	
     	this.Xdim=1000;
@@ -75,13 +75,13 @@ public class Board extends JPanel implements ActionListener, KeyListener{
                 
         this.addComponentListener( new ComponentAdapter() {
             public void componentShown( ComponentEvent e ) {
-                Board.this.requestFocusInWindow();
+            	BoardMulti.this.requestFocusInWindow();
             }
         });
         
     }
     
-    public Board (String ownPosition,int ownLives,
+    public BoardMulti (String ownPosition,int ownLives,
 			String GameMode,int ball_Num,int spd,boolean powerups,
 			String Difficulty1,int Lives1,String Position1,
 			String Difficulty2,int Lives2,String Position2,
@@ -118,15 +118,12 @@ public class Board extends JPanel implements ActionListener, KeyListener{
     	if (!Difficulty1.equals("")){
     		this.players.add(new Paddle(Xdim/100, Ydim/5, Xdim-(5+Xdim/100), this.Ydim/2));
     		this.players2.add(new Paddle(Xdim/100, Ydim/5, Xdim-(5+Xdim/100), this.Ydim/2));
-    		
 			if (!Difficulty2.equals("")){
 	    		this.players.add(new Paddle(Xdim/5, Ydim/100, Xdim/2, 5+this.Ydim/100));
 	    		this.players2.add(new Paddle(Xdim/5, Ydim/100, Xdim/2, 5+this.Ydim/100));
-
 				if (!Difficulty3.equals("")){
 					this.players.add(new Paddle(Xdim/5, Ydim/100, Xdim/2, this.Ydim-(5+this.Ydim/100)));
 					this.players2.add(new Paddle(Xdim/5, Ydim/100, Xdim/2, this.Ydim-(5+this.Ydim/100)));
-
 				}
 			}
 		}
@@ -134,8 +131,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
     	{
     		//System.out.println("No Players");
     	}
-		
-		
+				
     	this.playerLives=new int[] {ownLives,Lives1,Lives2,Lives3};
     	this.playerLives2=new int[] {ownLives,Lives1,Lives2,Lives3};
     	this.playerScores=new int[] {0,0,0,0};
@@ -154,7 +150,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
         
         this.addComponentListener( new ComponentAdapter() {
             public void componentShown( ComponentEvent e ) {
-                Board.this.requestFocusInWindow();
+            	BoardMulti.this.requestFocusInWindow();
             }
         });
         
@@ -188,25 +184,21 @@ public class Board extends JPanel implements ActionListener, KeyListener{
             }
 
             //move player 2
-//            if (pressed[3]) {
-//            	if (P2.cYpos-P2.cYvel > P2.Ydim/2 ) {
-//                    P2.set_Ypos(P2.cYpos-P2.cYvel);
-//                }
-//            }
-//            if (pressed[4]) {
-//            	if (P2.cYpos+P2.cYvel+P2.Ydim/2< this.Ydim ) {
-//                	P2.set_Ypos(P2.cYpos+P2.cYvel);
-//                }
-//            }
-            AIplayer ai1 = new AIplayer() ;
-    		ai1.moveAIplayer1(players.get(1), balls, this, 50);
+            if (pressed[3]) {
+            	if (P2.cYpos-P2.cYvel > P2.Ydim/2 ) {
+                    P2.set_Ypos(P2.cYpos-P2.cYvel);
+                }
+            }
+            if (pressed[4]) {
+            	if (P2.cYpos+P2.cYvel+P2.Ydim/2< this.Ydim ) {
+                	P2.set_Ypos(P2.cYpos+P2.cYvel);
+                }
+            }
             
             if (this.players.size()>2){
             	
             	Paddle P3=this.players.get(2);
         		P3.set_cXvel(20*gameSpd);
-	    		AIplayer ai2 = new AIplayer() ;
-	    		ai2.moveAIplayer1(players.get(2), balls, this, 50);
         		            	
             	//move player 3
 //                if (cPressed) {
@@ -224,8 +216,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
                 	
                 	Paddle P4=this.players.get(3);
             		P4.set_cXvel(20*gameSpd);
-					AIplayer ai3 = new AIplayer() ;
-		    		ai3.moveAIplayer1(players.get(3), balls, this, 50);
+                	
                 	//move plaXer 4
 //                    if (oPressed) {
 //                    	if (P4.cXpos-P4.cXvel > P4.Xdim/2) {
@@ -442,74 +433,8 @@ public class Board extends JPanel implements ActionListener, KeyListener{
             }
     	}
     	//move the ball            	
-        /*b.Xpos += b.Xvel;
-        b.Ypos += b.Yvel;*/
-    	
-    	//checking for collison condition between the balls 
-        boolean collisionball = false ;
-        Ball temp1 = b;
-        Ball temp2 = null ; 
-       	double res = 0  ;
-        for(int j=0;j<balls.size();j++){
-        		temp2 = balls.get(j) ;
-        		res = Math.sqrt(Math.pow((temp1.Xpos-temp2.Xpos),2)+Math.pow((temp1.Ypos-temp2.Ypos),2));
-        		
-        		if (res < ((temp1.dia)/2+(temp2.dia)/2) && res >0 ){
-        			
-        			collisionball = true ; 
-        			break ;
-        		}
-        }
-        
-        
-        //handling collision
-        	
-        if(collisionball && b.type==0) {
-        	if (b.colid == 1 && temp2.colid == 1 ){
-        		if (res <= b.colparam){
-        			b.Xpos += b.Xvel;
-                    b.Ypos += b.Yvel;
-        		}
-        		else {
-        			b.colid = 0 ;
-        			temp2.colid = 0 ;
-        			handlecollision(balls,b) ;
-        		}
-        	}
-        	
-        	
-        	handlecollision(balls,b) ;
-        }
-        else {
-        	//if (b.type== -1) {b.type = 0 ;}
-        	b.Xpos += b.Xvel;
-            b.Ypos += b.Yvel;
-        	
-        }
-    }
-    public void handlecollision(ArrayList<Ball> b,Ball b1){
-    	Ball temp2 = null ;  
-    	Ball temp1 = b1 ;
-    	for(int j=0;j<balls.size();j++){
-        		temp2 = balls.get(j) ;
-        		double res = Math.sqrt(Math.pow((temp1.Xpos-temp2.Xpos),2)+Math.pow((temp1.Ypos-temp2.Ypos),2));
-        		if (res < ((temp1.dia)/2+(temp2.dia)/2) && res > 0){
-        			Ball.ballcollison(temp1,temp2);
-        			b1.Xpos +=(temp1.Xvel);
-        			b1.Ypos +=(temp1.Yvel);
-        			b1.colparam = res ;
-        			//b1.ballcollision = true ;
-        			temp2.type = -1 ;
-        			b1.colid = 1 ;
-        			temp2.colid = 1 ;
-        			temp2.colparam = res ;
-        			 //b1.type = -1 ;
-        			//temp2.Xpos += (temp2.Xvel);
-        			//temp2.Ypos += (temp2.Yvel);
-        			break;
-        		}
-    	}
-    	
+        b.Xpos += b.Xvel;
+        b.Ypos += b.Yvel;
     }
     
   //paint the game screen
