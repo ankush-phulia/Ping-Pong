@@ -8,6 +8,9 @@ public class Paddle {
     public double cXvel;
     public double cYvel;
     public double type;
+    public int pos;
+    public int lives;
+    public int score;
     
 //    public Paddle(double typ,double Xstart,double Ystart){
 //    	if (typ==0){
@@ -22,16 +25,17 @@ public class Paddle {
 //    	this.cYpos=Ystart;
 //    }
     
-    public Paddle(double d,double Xstart,double Ystart){
+    public Paddle(double d,double Xstart,double Ystart,int pos){
     	this.type=1;
     	this.dia=d;
     	this.cXpos=Xstart;
     	this.cYpos=Ystart;
     	this.cXvel=0;
     	this.cYvel=0;
+    	this.pos=pos;
     }
     
-    public Paddle(double x,double y,double Xstart,double Ystart){
+    public Paddle(double x,double y,double Xstart,double Ystart, int pos, int lives){
     	this.type=0;
     	this.Xdim=x;
     	this.Ydim=y;
@@ -39,6 +43,9 @@ public class Paddle {
     	this.cYpos=Ystart;
     	this.cXvel=0;
     	this.cYvel=0;
+    	this.pos=pos;
+    	this.lives=lives;
+    	this.score=0;
     }
     
     public void set_type(int t){
@@ -73,6 +80,8 @@ public class Paddle {
     	this.cYvel=vy;
     }
     
-    
+    public void set_lives(int l){
+    	this.lives=l;
+    }
 
 }

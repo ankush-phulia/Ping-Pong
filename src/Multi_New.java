@@ -3,13 +3,10 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.net.InetAddress;
-import java.net.SocketAddress;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import aurelienribon.tweenengine.TweenManager;
 import network.LocalServer;
-import slidinglayout.SLAnimator;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
@@ -319,6 +316,7 @@ public class Multi_New extends JPanel implements ActionListener{
 		gbc_PCpl.gridy = 17;
 		SelectionPanel.add(PCpl, gbc_PCpl);
 
+
 		JPanel ButtonPanel = new JPanel();
 		MenuPanel.add(ButtonPanel);		
 		JButton button = new JButton("Back to Multiplayer Menu");
@@ -368,7 +366,6 @@ public class Multi_New extends JPanel implements ActionListener{
 				add(game,"Game");
 				cdl.show(Multi_New.this, "Game");
 				game.requestFocusInWindow();*/
-
 			}
 		});
 		button_1.setFont(new Font("Tahoma", Font.PLAIN, 34));
