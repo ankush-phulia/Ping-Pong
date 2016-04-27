@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.text.ParseException;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import aurelienribon.tweenengine.Tween;
@@ -24,7 +25,6 @@ import java.awt.BorderLayout;
 import javax.swing.SwingConstants;
 import javax.swing.text.MaskFormatter;
 import javax.swing.BoxLayout;
-import java.awt.CardLayout;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import java.awt.event.ActionListener;
@@ -113,9 +113,9 @@ public class Multi_Player extends JPanel {
 		panel_2.add(panel_1);
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
 		gbl_panel_1.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_panel_1.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_panel_1.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gbl_panel_1.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_panel_1.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel_1.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel_1.setLayout(gbl_panel_1);
 		
 		JSeparator separator_6 = new JSeparator();
@@ -142,14 +142,16 @@ public class Multi_Player extends JPanel {
 					Multi_New mn=new Multi_New(gameServer);
 					add(mn,"new game");
 					cdl.show(Multi_Player.this, "new game");
+					//System.out.println(getParent().getParent().getParent().getParent().getParent().getClass());
 				} catch (IOException e1) {
-					
-					e1.printStackTrace();
+					JOptionPane.showMessageDialog(getParent().getParent().getParent().getParent().getParent(),"Error Establishing Host");
+					//e1.printStackTrace();
 				}			
 			}
 		});
 		btnStartNewGame.setFont(new Font("Tahoma", Font.PLAIN, 34));
 		GridBagConstraints gbc_btnStartNewGame = new GridBagConstraints();
+		gbc_btnStartNewGame.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnStartNewGame.insets = new Insets(0, 0, 5, 5);
 		gbc_btnStartNewGame.gridx = 3;
 		gbc_btnStartNewGame.gridy = 2;
@@ -168,14 +170,14 @@ public class Multi_Player extends JPanel {
 		GridBagConstraints gbc_lblOr = new GridBagConstraints();
 		gbc_lblOr.insets = new Insets(0, 0, 5, 5);
 		gbc_lblOr.gridx = 3;
-		gbc_lblOr.gridy = 6;
+		gbc_lblOr.gridy = 4;
 		panel_1.add(lblOr, gbc_lblOr);		
 		
 		JSeparator separator_24 = new JSeparator();
 		GridBagConstraints gbc_separator_24 = new GridBagConstraints();
 		gbc_separator_24.insets = new Insets(0, 0, 15, 15);
 		gbc_separator_24.gridx = 3;
-		gbc_separator_24.gridy = 7;
+		gbc_separator_24.gridy = 5;
 		panel_1.add(separator_24, gbc_separator_24);
 		
 		JLabel lblEnterIpAddress = new JLabel("Enter IP Address");
@@ -184,14 +186,14 @@ public class Multi_Player extends JPanel {
 		GridBagConstraints gbc_lblEnterIpAddress = new GridBagConstraints();
 		gbc_lblEnterIpAddress.insets = new Insets(0, 0, 5, 5);
 		gbc_lblEnterIpAddress.gridx = 3;
-		gbc_lblEnterIpAddress.gridy = 10;
+		gbc_lblEnterIpAddress.gridy = 6;
 		panel_1.add(lblEnterIpAddress, gbc_lblEnterIpAddress);
 		
 		JSeparator separator_20 = new JSeparator();
 		GridBagConstraints gbc_separator_20 = new GridBagConstraints();
 		gbc_separator_20.insets = new Insets(0, 0, 15, 15);
 		gbc_separator_20.gridx = 3;
-		gbc_separator_20.gridy = 11;
+		gbc_separator_20.gridy = 7;
 		panel_1.add(separator_20, gbc_separator_20);
 
 		MaskFormatter mf;
@@ -203,21 +205,14 @@ public class Multi_Player extends JPanel {
 		gbc_ipAddress.fill = GridBagConstraints.HORIZONTAL;
 		gbc_ipAddress.insets = new Insets(0, 0, 5, 5);
 		gbc_ipAddress.gridx = 3;
-		gbc_ipAddress.gridy = 14;
+		gbc_ipAddress.gridy = 8;
 		panel_1.add(ipAddress, gbc_ipAddress);
-		
-		JSeparator separator_15 = new JSeparator();
-		GridBagConstraints gbc_separator_15 = new GridBagConstraints();
-		gbc_separator_15.insets = new Insets(0, 0, 25, 25);
-		gbc_separator_15.gridx = 3;
-		gbc_separator_15.gridy = 15;
-		panel_1.add(separator_15, gbc_separator_15);
 		
 		JSeparator separator_45 = new JSeparator();
 		GridBagConstraints gbc_separator_45 = new GridBagConstraints();
 		gbc_separator_45.insets = new Insets(0, 0, 55, 55);
 		gbc_separator_45.gridx = 1;
-		gbc_separator_45.gridy = 16;
+		gbc_separator_45.gridy = 9;
 		panel_1.add(separator_45, gbc_separator_45);
 		
 		JButton btnJoinExistingOne = new JButton("Join Existing One");
@@ -225,9 +220,7 @@ public class Multi_Player extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					ConnectionToServer cs = new ConnectionToServer(ipAddress.getText(), 8080);
-					String resp = cs.readFromClient();
-					System.out.println(resp);
-					cs.writeToServer("Fuck you!");
+
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -237,16 +230,17 @@ public class Multi_Player extends JPanel {
 		});
 		btnJoinExistingOne.setFont(new Font("Tahoma", Font.PLAIN, 34));
 		GridBagConstraints gbc_btnJoinExistingOne = new GridBagConstraints();
+		gbc_btnJoinExistingOne.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnJoinExistingOne.insets = new Insets(0, 0, 5, 5);
 		gbc_btnJoinExistingOne.gridx = 3;
-		gbc_btnJoinExistingOne.gridy = 17;
+		gbc_btnJoinExistingOne.gridy = 10;
 		panel_1.add(btnJoinExistingOne, gbc_btnJoinExistingOne);
 		
 		JSeparator separator_52 = new JSeparator();
 		GridBagConstraints gbc_separator_52 = new GridBagConstraints();
 		gbc_separator_52.insets = new Insets(0, 0, 0, 5);
 		gbc_separator_52.gridx = 2;
-		gbc_separator_52.gridy = 18;
+		gbc_separator_52.gridy = 11;
 		panel_1.add(separator_52, gbc_separator_52);
 	}
 	

@@ -322,72 +322,7 @@ public class Multi_New extends JPanel implements ActionListener{
 		gbc_PCpl.gridx = 7;
 		gbc_PCpl.gridy = 17;
 		SelectionPanel.add(PCpl, gbc_PCpl);
-		
-//		JSlider PCpl = new JSlider(SwingConstants.HORIZONTAL, 1, 3, 1);
-//		PCpl.addPropertyChangeListener(new PropertyChangeListener() {
-//			public void propertyChange(PropertyChangeEvent evt) {
-//				switch(PCpl.getValue()){
-//				case 1:
-//					one.setVisible(true);
-//					Position1.setVisible(true);
-//					Lives1.setVisible(true);
-//					Difficulty1.setVisible(true);
-//					two.setVisible(true);
-//					Position2.setVisible(true);
-//					Lives2.setVisible(true);
-//					Difficulty2.setVisible(true);
-//					three.setVisible(true);
-//					Position3.setVisible(true);
-//					Lives3.setVisible(true);
-//					Difficulty3.setVisible(true);
-//					//repaint();
-//					break;
-//				case 2:
-//					one.setVisible(true);
-//					Position1.setVisible(true);
-//					Lives1.setVisible(true);
-//					Difficulty1.setVisible(true);
-//					two.setVisible(true);
-//					Position2.setVisible(true);
-//					Lives2.setVisible(true);
-//					Difficulty2.setVisible(true);
-//					three.setVisible(true);
-//					Position3.setVisible(true);
-//					Lives3.setVisible(true);
-//					Difficulty3.setVisible(true);
-//					//repaint();
-//					break;
-//				case 3:
-//					one.setVisible(true);
-//					Position1.setVisible(true);
-//					Lives1.setVisible(true);
-//					Difficulty1.setVisible(true);
-//					two.setVisible(true);
-//					Position2.setVisible(true);
-//					Lives2.setVisible(true);
-//					Difficulty2.setVisible(true);
-//					three.setVisible(true);
-//					Position3.setVisible(true);
-//					Lives3.setVisible(true);
-//					Difficulty3.setVisible(true);
-//					//repaint();
-//					break;
-//				}
-//				repaint();
-//			}
-//		});
-//		PCpl.setPaintTicks(true);
-//		PCpl.setPaintLabels(true);
-//		PCpl.setMinorTickSpacing(1);
-//		PCpl.setMajorTickSpacing(1);
-//		PCpl.setFont(new Font("Tahoma", Font.PLAIN, 14));
-//		GridBagConstraints gbc_PCpl = new GridBagConstraints();
-//		gbc_PCpl.fill = GridBagConstraints.HORIZONTAL;
-//		gbc_PCpl.insets = new Insets(0, 0, 5, 5);
-//		gbc_PCpl.gridx = 10;
-//		gbc_PCpl.gridy = 20;
-//		SelectionPanel.add(PCpl, gbc_PCpl);
-		
+			
 		JPanel ButtonPanel = new JPanel();
 		MenuPanel.add(ButtonPanel);		
 		JButton button = new JButton("Back to Multiplayer Menu");
@@ -410,15 +345,13 @@ public class Multi_New extends JPanel implements ActionListener{
 				
 				/*Board game = new Board((String)ownPosition.getSelectedItem(),ownLives.getValue(),
 						(String)GameMode.getSelectedItem(),ball_Num.getValue(),spd.getValue(),powerups.isSelected(),Player2.isSelected(),
-						(String)Difficulty1.getSelectedItem(),(Integer)Lives1.getValue(),(String)Position1.getSelectedItem(),
-						(String)Difficulty2.getSelectedItem(),(Integer)Lives2.getValue(),(String)Position2.getSelectedItem(),
-						(String)Difficulty3.getSelectedItem(),(Integer)Lives3.getValue(),(String)Position3.getSelectedItem(),getWindowAncestor().keys);
-				//Board game = new Board();
+						,getWindowAncestor().keys);
+				Board game = new Board();
 				add(game,"Game");
 				cdl.show(Multi_New.this, "Game");
 				game.requestFocusInWindow();
-				//cdl.last(Multi_New.this);
-				//requestFocusInWindow();*/
+				cdl.last(Multi_New.this);
+				requestFocusInWindow();*/
 			}
 		});
 		button_1.setFont(new Font("Tahoma", Font.PLAIN, 34));
@@ -465,8 +398,7 @@ public class Multi_New extends JPanel implements ActionListener{
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub		
+	public void actionPerformed(ActionEvent e) {		
 		repaint();
 	}
 }

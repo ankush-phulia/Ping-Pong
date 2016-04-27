@@ -5,6 +5,7 @@ import slidinglayout.SLPanel;
 import slidinglayout.SLSide;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.KeyEvent;
 
 import javax.swing.JFrame;
@@ -78,6 +79,8 @@ public class Main_Frame extends JFrame {
 
 		panel.setTweenManager(SLAnimator.createTweenManager());
 		panel.initialize(mainCfg);
+		
+		javax.swing.UIManager.put("OptionPane.font", new Font("Tahoma", Font.PLAIN, 34));
 	}
 
 	private void disableActions() {

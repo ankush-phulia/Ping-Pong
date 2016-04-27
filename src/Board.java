@@ -32,9 +32,8 @@ public class Board extends JPanel implements ActionListener, KeyListener{
     public int gameSpd=1;
     
     //Players
-    public int player_num=2;
+    public String position;
     public ArrayList<Paddle> players;
-    public ArrayList<Paddle> players2;
     
     //Balls
     public int ball_num=1;
@@ -42,8 +41,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
     public ArrayList<Ball> balls2 ;
     
     //Scores/Lives
-    public int[] playerScores,playerScores2;
-    public int[] playerLives,playerLives2;
+    public int[] playerScores;
     
     //Controls
     public int[] keys;
@@ -83,9 +81,8 @@ public class Board extends JPanel implements ActionListener, KeyListener{
     
     public Board (int x, int y, String ownPosition,int ownLives,
 			String GameMode,int ball_Num,int spd,boolean powerups,
-			String Difficulty1,int Lives1,String Position1,
-			String Difficulty2,int Lives2,String Position2,
-			String Difficulty3,int Lives3,String Position3, int[] keys){    	
+			String Difficulty1,int Lives1,String Difficulty2,int Lives2,
+			String Difficulty3,int Lives3, int[] keys){    	
     	
     	//appearance
     	this.Xdim=x;
@@ -99,45 +96,37 @@ public class Board extends JPanel implements ActionListener, KeyListener{
     	this.gameSpd=spd;
     	this.balls=new ArrayList<Ball>();
     	this.balls2=new ArrayList<Ball>();
-    	this.balls.add(new Ball(this.Xdim/2, this.Ydim/2, -4*gameSpd, 8*gameSpd,1));
-    	this.balls2.add(new Ball(this.Xdim/2, this.Ydim/2, -4*gameSpd, 8*gameSpd,1));
+    	this.balls.add(new Ball(this.Xdim/2, this.Ydim/2, -4*gameSpd, 8*gameSpd,2));
     	if (ball_Num>1){
-    		this.balls.add(new Ball(this.Ydim/2, Xdim/2, 6*gameSpd, 12*gameSpd,0));
-    		this.balls2.add(new Ball(this.Ydim/2, Xdim/2, 6*gameSpd, 12*gameSpd,0));
+    		this.balls.add(new Ball(this.Ydim/2, Xdim/2, 6*gameSpd, 12*gameSpd,1));
     		if (ball_Num>2){    			
-				this.balls.add(new Ball(this.Ydim/2, Xdim/2, 12*gameSpd, 6*gameSpd,3));
-				this.balls2.add(new Ball(this.Ydim/2, Xdim/2, 12*gameSpd, 6*gameSpd,3));
+				this.balls.add(new Ball(this.Ydim/2, Xdim/2, 12*gameSpd, 6*gameSpd,4));
         	}
     	}
     	//paddles
+    	this.position=ownPosition;
     	this.players=new ArrayList<Paddle>();
-    	this.players2=new ArrayList<Paddle>();
-    	this.players.add(new Paddle(Xdim/100, Ydim/5, 5+Xdim/100, this.Ydim/2));
-    	this.players2.add(new Paddle(Xdim/100, Ydim/5, 5+Xdim/100, this.Ydim/2));
+
+    	int k=get_pos(this.position);
+    	Paddle P1=this.create_paddle(k+1,ownLives);
+    	this.players.add(P1);
 	
     	if (!Difficulty1.equals("")){
-    		this.players.add(new Paddle(Xdim/100, Ydim/5, Xdim-(5+Xdim/100), this.Ydim/2));
-    		this.players2.add(new Paddle(Xdim/100, Ydim/5, Xdim-(5+Xdim/100), this.Ydim/2));
-    		
-			if (!Difficulty2.equals("")){
-	    		this.players.add(new Paddle(Xdim/5, Ydim/100, Xdim/2, 5+this.Ydim/100));
-	    		this.players2.add(new Paddle(Xdim/5, Ydim/100, Xdim/2, 5+this.Ydim/100));
-
-				if (!Difficulty3.equals("")){
-					this.players.add(new Paddle(Xdim/5, Ydim/100, Xdim/2, this.Ydim-(5+this.Ydim/100)));
-					this.players2.add(new Paddle(Xdim/5, Ydim/100, Xdim/2, this.Ydim-(5+this.Ydim/100)));
-
-				}
-			}
-		}
-    	else
-    	{
-    		//System.out.println("No Players");
+    		Paddle P2=this.create_paddle((k+1)%4+1,Lives1);
+        	this.players.add(P2);
+        }
+    	if (!Difficulty2.equals("")){
+    		Paddle P3=this.create_paddle((k+2)%4+1,Lives2);
+        	this.players.add(P3);
+        }
+    	if (!Difficulty3.equals("")){
+    		Paddle P4=this.create_paddle((k+3)%4+1,Lives3);
+        	this.players.add(P4);
     	}
 		
 		
-    	this.playerLives=new int[] {ownLives,Lives1,Lives2,Lives3};
-    	this.playerLives2=new int[] {ownLives,Lives1,Lives2,Lives3};
+    	//this.playerLives=new int[] {ownLives,Lives1,Lives2,Lives3};
+    	//this.playerLives2=new int[] {ownLives,Lives1,Lives2,Lives3};
     	this.playerScores=new int[] {0,0,0,0};
     	
     	//focused window
@@ -162,7 +151,21 @@ public class Board extends JPanel implements ActionListener, KeyListener{
         
     }
     
-    @Override
+    private int get_pos(String position) {
+		switch (position){
+			case "Left":
+				return 0;
+		    case "Right":
+				return 1;
+			case "Top":
+				return 2;
+			case "Bottom":
+				return 3;
+			}
+		return 0;
+	}
+
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		step();	
 	}
@@ -170,76 +173,133 @@ public class Board extends JPanel implements ActionListener, KeyListener{
     public void step(){
     	
     	if(this.state.equals("Playing")){
-    		Paddle P1=this.players.get(0);
-    		P1.set_cYvel(20*gameSpd);
-    		Paddle P2=this.players.get(1);
-    		P2.set_cYvel(20*gameSpd);
-    		//move player 1
-            if (pressed[0]) {
-                if (P1.cYpos-P1.cYvel > P1.Ydim/2 ) {
-                    P1.set_Ypos(P1.cYpos-P1.cYvel);
-                }
-            }
-            if (pressed[1]) {
-                if (P1.cYpos+P1.cYvel+P1.Ydim/2< this.Ydim) {
-                	P1.set_Ypos(P1.cYpos+P1.cYvel);
-                }
-            }
-
-            //move player 2
-//            if (pressed[3]) {
-//            	if (P2.cYpos-P2.cYvel > P2.Ydim/2 ) {
-//                    P2.set_Ypos(P2.cYpos-P2.cYvel);
+    		
+//    		Paddle P1=this.players.get(0);
+//    		P1.set_cYvel(20*gameSpd);
+//    		//move player 1
+//            if (pressed[0]) {
+//                if (P1.cYpos-P1.cYvel > P1.Ydim/2 ) {
+//                    P1.set_Ypos(P1.cYpos-P1.cYvel);
 //                }
 //            }
-//            if (pressed[4]) {
-//            	if (P2.cYpos+P2.cYvel+P2.Ydim/2< this.Ydim ) {
-//                	P2.set_Ypos(P2.cYpos+P2.cYvel);
+//            if (pressed[1]) {
+//                if (P1.cYpos+P1.cYvel+P1.Ydim/2< this.Ydim) {
+//                	P1.set_Ypos(P1.cYpos+P1.cYvel);
 //                }
 //            }
-            AIplayer ai1 = new AIplayer() ;
-    		ai1.moveAIplayer(players.get(1), balls, this, 20*gameSpd);
+//            
+//            Paddle P2=fetch(2,players);
+//            if (P2!=null){
+//            	AIplayer ai1 = new AIplayer() ;
+//            	ai1.moveAIplayer(P2, balls, this, 20*gameSpd);
+//            }
+//            
+//            Paddle P3=fetch(3,players);
+//            if (P3!=null){
+//            	AIplayer ai1 = new AIplayer() ;
+//            	ai1.moveAIplayer4(P3, balls, this, 20*gameSpd);
+//            }    
+//            
+//            Paddle P4=fetch(4,players);
+//            if (P4!=null){
+//                AIplayer ai1 = new AIplayer() ;
+//                ai1.moveAIplayer3(P4, balls, this, 20*gameSpd);
+//            } 
+    		
+    		Paddle P1=fetch(1,players);
+            if (P1!=null){
+            	if (this.position.equals("Left")){
+            		P1.set_cYvel(20*gameSpd);
+            		if (pressed[0]) {
+                        if (P1.cYpos-P1.cYvel > P1.Ydim/2 ) {
+                            P1.set_Ypos(P1.cYpos-P1.cYvel);
+                        }
+                    }
+                    if (pressed[1]) {
+                        if (P1.cYpos+P1.cYvel+P1.Ydim/2< this.Ydim) {
+                        	P1.set_Ypos(P1.cYpos+P1.cYvel);
+                        }
+                    }
+            	}
+            	else if (!this.position.equals("Left")){
+            			AIplayer ai1 = new AIplayer() ;
+            			ai1.moveAIplayer1(P1, balls, this, 20*gameSpd);
+            	}
+            	else{
+            		
+            	}
+            }
             
-            if (this.players.size()>2){
-            	
-            	Paddle P3=this.players.get(2);
-        		P3.set_cXvel(20*gameSpd);
-	    		AIplayer ai2 = new AIplayer() ;
-	    		ai2.moveAIplayer4(players.get(2), balls, this, 20*gameSpd);
-        		            	
-            	//move player 3
-//                if (cPressed) {
-//                	if (P3.cXpos-P3.cXvel > P3.Xdim/2) {
-//                        P3.set_Xpos(P3.cXpos-P3.cXvel);
-//                    }
-//                }
-//                if (vPressed) {
-//                	if (P3.cXpos+P3.cXvel < Xdim - P3.Xdim/2) {
-//                    	P3.set_Xpos(P3.cXpos+P3.cXvel);
-//                    }
-//                }
-                
-                if (this.players.size()>3){
-                	
-                	Paddle P4=this.players.get(3);
+            Paddle P2=fetch(2,players);
+            if (P2!=null){
+            	if (this.position.equals("Right")){
+            		P2.set_cYvel(20*gameSpd);
+            		if (pressed[0]) {
+                        if (P2.cYpos-P2.cYvel > P2.Ydim/2 ) {
+                            P2.set_Ypos(P2.cYpos-P2.cYvel);
+                        }
+                    }
+                    if (pressed[1]) {
+                        if (P2.cYpos+P2.cYvel+P2.Ydim/2< this.Ydim) {
+                        	P2.set_Ypos(P2.cYpos+P2.cYvel);
+                        }
+                    }
+            	}            	
+            	else if (!this.position.equals("Right")){
+            			AIplayer ai1 = new AIplayer() ;
+            			ai1.moveAIplayer(P2, balls, this, 20*gameSpd);
+            	}
+            	else{
+            		
+            	}
+            }
+            
+            Paddle P3=fetch(3,players);
+            if (P3!=null){
+            	if (this.position.equals("Top")){
+            		P3.set_cXvel(20*gameSpd);
+            		if (pressed[0]) {
+                        if (P3.cXpos-P3.cXvel > P3.Xdim/2 ) {
+                            P3.set_Xpos(P3.cXpos-P3.cXvel);
+                        }
+                    }
+                    if (pressed[1]) {
+                        if (P3.cXpos+P3.cXvel+P3.Xdim/2< this.Xdim) {
+                        	P3.set_Xpos(P3.cXpos+P3.cXvel);
+                        }
+                    }
+            	}            	
+            	else if (!this.position.equals("Top")){
+            		AIplayer ai1 = new AIplayer() ;
+            		ai1.moveAIplayer4(P3, balls, this, 20*gameSpd);
+            	}
+            	else{
+            		
+            	}
+            }
+               
+            Paddle P4=fetch(4,players);
+            if (P4!=null){
+            	if (this.position.equals("Bottom")){
             		P4.set_cXvel(20*gameSpd);
-					AIplayer ai3 = new AIplayer() ;
-		    		ai3.moveAIplayer3(players.get(3), balls, this, 20*gameSpd);
-                	//move plaXer 4
-//                    if (oPressed) {
-//                    	if (P4.cXpos-P4.cXvel > P4.Xdim/2) {
-//                            P4.set_Xpos(P4.cXpos-P4.cXvel);
-//                        }
-//                    }
-//                    if (pPressed) {
-//                    	if (P4.cXpos+P4.cXvel < Xdim - P4.Xdim/2) {
-//                        	P4.set_Xpos(P4.cXpos+P4.cXvel);
-//                        }
-//                    }  	
-                } 
-                else{
-                	
-                }
+            		if (pressed[0]) {
+                        if (P4.cXpos-P4.cXvel > P4.Xdim/2 ) {
+                            P4.set_Xpos(P4.cXpos-P4.cXvel);
+                        }
+                    }
+                    if (pressed[1]) {
+                        if (P4.cXpos+P4.cXvel+P4.Xdim/2< this.Xdim) {
+                        	P4.set_Xpos(P4.cXpos+P4.cXvel);
+                        }
+                    }
+            	}            	
+            	else if (!this.position.equals("Bottom")){
+            		AIplayer ai1 = new AIplayer() ;
+            		ai1.moveAIplayer3(P4, balls, this, 20*gameSpd);
+            	}
+            	else{
+            		
+            	}
             }
             
             for (int i=0;i<this.balls.size();i++){
@@ -259,190 +319,148 @@ public class Board extends JPanel implements ActionListener, KeyListener{
     	double nextBottomPos = b.Ypos + b.dia;
     	
     	//positions of the players
-    	Paddle P1=this.players.get(0);
-    	double playerOneRight = P1.cXpos - P1.Xdim;
-    	double playerOneTop = P1.cYpos-(P1.Ydim/2);
-    	double playerOneBottom = playerOneTop+(P1.Ydim);
+    	double playerOneRight = 0;
+    	double playerOneTop = 0;
+    	double playerOneBottom = 0;
     	
-    	Paddle P2=this.players.get(1);
-    	double playerTwoLeft = P2.cXpos + P2.Xdim;
-    	double playerTwoTop = P2.cYpos - (P2.Ydim/2);
-    	double playerTwoBottom = playerTwoTop + (P2.Ydim);
+    	Paddle P1=this.fetch(1, players);
+    	if (P1!=null){
+    		playerOneRight = P1.cXpos - P1.Xdim;
+    		playerOneTop = P1.cYpos-(P1.Ydim/2);
+    		playerOneBottom = playerOneTop+(P1.Ydim);
+    	}    	
     	
-    	if (this.players.size()>2){
-    		
-    		Paddle P3=this.players.get(2);
-        	double playerThreeRight = P3.cXpos+(P3.Xdim/2);
-        	double playerThreeLeft = P3.cXpos-(P3.Xdim/2);
-        	double playerThreeBottom = P3.cYpos - P3.Ydim;
-        	
-        	if (this.players.size()>3){
-        		
-        		Paddle P4=this.players.get(3);
-            	double playerFourRight = P4.cXpos+(P4.Xdim/2);
-            	double playerFourLeft = P4.cXpos-(P4.Xdim/2);
-            	double playerFourTop = P4.cYpos + P4.Ydim;
+    	double playerTwoLeft = 0;
+    	double playerTwoTop = 0;
+    	double playerTwoBottom = 0;
+    	
+    	Paddle P2=this.fetch(2, players);
+    	if (P2!=null){
+    		playerTwoLeft = P2.cXpos + P2.Xdim;
+        	playerTwoTop = P2.cYpos - (P2.Ydim/2);
+        	playerTwoBottom = playerTwoTop + (P2.Ydim);
+    	}
+    	
+    	double playerThreeRight = 0;
+		double playerThreeLeft = 0;
+		double playerThreeBottom = 0;
+		
+		Paddle P3=this.fetch(3, players);
+		//System.out.println(P3==null);
+		if (P3!=null){
+			playerThreeRight = P3.cXpos+(P3.Xdim/2);
+			playerThreeLeft = P3.cXpos-(P3.Xdim/2);
+			playerThreeBottom = P3.cYpos - P3.Ydim;
+		}
+		
+		double playerFourRight = 0;
+    	double playerFourLeft = 0;
+    	double playerFourTop = 0;
+    	
+    	Paddle P4=this.fetch(4, players);
+		if (P4!=null){
+			playerFourRight = P4.cXpos+(P4.Xdim/2);
+			playerFourLeft = P4.cXpos-(P4.Xdim/2);
+			playerFourTop = P4.cYpos + P4.Ydim;
+		}
+    	
+		//will the ball go off the left side?
+		if (P1!=null && nextLeftPos < playerOneRight) { 
+            //is it going to miss the paddle?
+            if (b.Ypos < playerOneTop || b.Ypos > playerOneBottom) {
             	
-        		//will the ball go off the left side?
-            	if (nextLeftPos < playerOneRight) { 
-                    //is it going to miss the paddle?
-                    if (b.Ypos < playerOneTop || b.Ypos > playerOneBottom) {
-                    	
-                    	if (this.playerLives[0]>0){
-                    		if (this.playerLives[b.origin]>0){
-                            	this.playerScores[b.origin]++;
-                            }
-                            this.playerLives[0]--;
-                    	}                    	
-
+            	if (P1.lives>0){
+            		Paddle tmp=fetch(b.origin,players);
+            		if (tmp!=null && tmp.lives>0){
+                    	this.playerScores[tmp.pos-1]++;
                     }
-                    b.origin=0;
-                    b.Xvel *=-1;
-                }
-                //will the ball go off the right side?
-            	if (nextRightPos > playerTwoLeft) {
-                    //is it going to miss the paddle?
-                	if (b.Ypos < playerTwoTop || b.Ypos > playerTwoBottom) {
-
-                		if (this.playerLives[1]>0){
-                			if (this.playerLives[b.origin]>0){
-                            	this.playerScores[b.origin]++;
-                            }
-                            this.playerLives[1]--;
-                    	}
-                    }
-                	b.origin=1;
-                    b.Xvel *= -1;
-                }
-              //will the ball go off the top?
-                if (nextTopPos < playerThreeBottom) {
-                    //is it going to miss the paddle?
-                	if (b.Xpos > playerThreeRight || b.Xpos < playerThreeLeft) {
-
-                		if (this.playerLives[2]>0){
-                			if (this.playerLives[b.origin]>0){
-                            	this.playerScores[b.origin]++;
-                            }
-                            this.playerLives[2]--;
-                    	}
-                    }
-                	b.origin=2;
-                    b.Yvel *= -1;
-                }
-              //will the ball go off the bottom?
-                if (nextBottomPos > playerFourTop) {
-                    //is it going to miss the paddle?
-                	if (b.Xpos > playerFourRight || b.Xpos < playerFourLeft) {
-
-                		if (this.playerLives[3]>0){
-                			if (this.playerLives[b.origin]>0){
-                            	this.playerScores[b.origin]++;
-                            }
-                            this.playerLives[3]--;
-                    	}
-                    }
-                	b.origin=3;
-                    b.Yvel *= -1;
-                }        	
-                if (zeros(this.playerLives,3)){
-            		this.state="Done";
+                    P1.lives--;
             	}
-        	}
+            }
+            else{
+            	b.origin=1;
+            }            
+            b.Xvel *=-1;
+        }
+		else if (nextLeftPos < 0){
+			//b.origin=1;
+            b.Xvel *= -1;
+		}
+        //will the ball go off the right side?
+		if (P2!=null && nextRightPos > playerTwoLeft) {
+            //is it going to miss the paddle?
+        	if (b.Ypos < playerTwoTop || b.Ypos > playerTwoBottom) {
+
+        		if (P2.lives>0){
+        			Paddle tmp=fetch(b.origin,players);
+        			if (tmp!=null && tmp.lives>0){
+                    	this.playerScores[tmp.pos-1]++;
+                    }
+        			P2.lives--;
+            	}
+            }
         	else{
-        		//bounce off the bottom
-        		if (nextBottomPos > this.Ydim) {
-        			b.origin=3;
-                    b.Yvel *=-1;               
-                }
-        		//will the ball go off the left side?
-        		if (nextLeftPos < playerOneRight) { 
-                    //is it going to miss the paddle?
-                    if (b.Ypos < playerOneTop || b.Ypos > playerOneBottom) {
-                    	
-                    	if (this.playerLives[0]>0){
-                    		if (this.playerLives[b.origin]>0){
-                            	this.playerScores[b.origin]++;
-                            }
-                            this.playerLives[0]--;
-                    	}
-                    }
-                    b.origin=0;
-                    b.Xvel *=-1;
-                }
-                //will the ball go off the right side?
-        		if (nextRightPos > playerTwoLeft) {
-                    //is it going to miss the paddle?
-                	if (b.Ypos < playerTwoTop || b.Ypos > playerTwoBottom) {
-
-                		if (this.playerLives[1]>0){
-                			if (this.playerLives[b.origin]>0){
-                            	this.playerScores[b.origin]++;
-                            }
-                            this.playerLives[1]--;
-                    	}
-                    }
-                	b.origin=1;
-                    b.Xvel *= -1;
-                }
-              //will the ball go off the top?
-                if (nextTopPos < playerThreeBottom) {
-                    //is it going to miss the paddle?
-                	if (b.Xpos > playerThreeRight || b.Xpos < playerThreeLeft) {
-                    	
-                		if (this.playerLives[2]>0){
-                            this.playerLives[2]--;
-                            if (this.playerLives[b.origin]>0){
-                            	this.playerScores[b.origin]++;
-                            }                            
-                    	}
-                    }
-                	b.origin=2;
-                    b.Yvel *= -1;
-                }
-                
+        		b.origin=2;
         	}
-        	if (zeros(this.playerLives,3)){
-        		this.state="Done";
+        	
+            b.Xvel *= -1;
+        }
+		else if (nextRightPos > this.Xdim){
+			//b.origin=2;
+            b.Xvel *= -1;
+		}
+      //will the ball go off the top?
+        if (P3!=null && nextTopPos < playerThreeBottom) {
+            //is it going to miss the paddle?
+        	if (b.Xpos > playerThreeRight || b.Xpos < playerThreeLeft) {
+            	
+        		if (P3.lives>0){   
+        			
+        			Paddle tmp=fetch(b.origin,players);
+            		if (tmp!=null && tmp.lives>0){
+                    	this.playerScores[tmp.pos-1]++;
+                    }
+                    P3.lives--;
+            	}
+            }
+        	else{
+        		b.origin=3;
         	}
-    		
-    	}
-    	else{
-    		//bounce off the top and bottom
-    		if (nextTopPos < 0 || nextBottomPos > this.Ydim) {
-                b.Yvel *=-1;               
-            }
-    		//will the ball go off the left side?
-            if (nextLeftPos < playerOneRight) { 
-                //is it going to miss the paddle?
-                if (b.Ypos < playerOneTop || b.Ypos > playerOneBottom) {
-            		          	
-                	this.playerScores[1]++;
-                    this.playerLives[0]--;
+        	
+            b.Yvel *= -1;
+        }
+        else if (nextTopPos < 0 ) {
+        	//b.origin=3;
+            b.Yvel *=-1;               
+        }
+      //will the ball go off the bottom?
+        if (P4!= null && nextBottomPos > playerFourTop) {
+            //is it going to miss the paddle?
+        	if (b.Xpos > playerFourRight || b.Xpos < playerFourLeft) {
 
-                    if (playerLives[0] == 0) {
-                        this.state="Done";
+        		if (P4.lives>0){
+        			Paddle tmp=fetch(b.origin,players);
+        			if (tmp!=null && tmp.lives>0){
+                    	this.playerScores[tmp.pos-1]++;
                     }
-                }
-                b.Xvel *=-1;
+        			P4.lives--;
+            	}
             }
-            //will the ball go off the right side?
-            if (nextRightPos > playerTwoLeft) {
-                //is it going to miss the paddle?
-            	if (b.Ypos < playerTwoTop || b.Ypos > playerTwoBottom) {
-                	
-            		this.playerScores[0]++;
-                    this.playerLives[1]--;
-
-                    if (playerLives[1] == 0) {
-                        this.state="Done";
-                    }
-                }
-                b.Xvel *= -1;
-            }
-    	}
-    	//move the ball            	
-        /*b.Xpos += b.Xvel;
-        b.Ypos += b.Yvel;*/
+        	else{
+        		b.origin=4;
+        	}
+        	
+            b.Yvel *= -1;
+        }
+		//bounce off the bottom
+        else if (nextBottomPos > this.Ydim) {
+			//b.origin=4;
+            b.Yvel *=-1;               
+        }
+        
+        if (zeros(this.players,players.size()-1)){
+        	this.state="Done";
+        }
     	
     	//checking for collison condition between the balls 
         boolean collisionball = false ;
@@ -450,16 +468,15 @@ public class Board extends JPanel implements ActionListener, KeyListener{
         Ball temp2 = null ; 
        	double res = 0  ;
         for(int j=0;j<balls.size();j++){
-        		temp2 = balls.get(j) ;
-        		res = Math.sqrt(Math.pow((temp1.Xpos-temp2.Xpos),2)+Math.pow((temp1.Ypos-temp2.Ypos),2));
+        	temp2 = balls.get(j) ;
+        	res = Math.sqrt(Math.pow((temp1.Xpos-temp2.Xpos),2)+Math.pow((temp1.Ypos-temp2.Ypos),2));
         		
-        		if (res < ((temp1.dia)/2+(temp2.dia)/2) && res >0 ){
+        	if (res < ((temp1.dia)/2+(temp2.dia)/2) && res >0 ){
         			
-        			collisionball = true ; 
-        			break ;
-        		}
-        }
-        
+        		collisionball = true ; 
+        		break ;
+        	}
+        }        
         
         //handling collision
         	
@@ -483,7 +500,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
         	//if (b.type== -1) {b.type = 0 ;}
         	b.Xpos += b.Xvel;
             b.Ypos += b.Yvel;
-        	
+        	//System.out.println(b.Xvel+","+b.Yvel);
         }
     }
     public void handlecollision(ArrayList<Ball> b,Ball b1){
@@ -524,16 +541,6 @@ public class Board extends JPanel implements ActionListener, KeyListener{
                 g.drawString("Press 'SPACE' to play", (int)Xdim/2-150, (int)this.Ydim/2);        		
         		break;
         		
-//        	case "Player Select":
-//        		g.setFont(new Font(Font.DIALOG, Font.BOLD, 24));
-//                g.drawString("Select number of human players 2-4", (int)Xdim/2-150, (int)this.Ydim/2);
-//        		break;
-//        		
-//        	case "Mode Select":
-//        		g.setFont(new Font(Font.DIALOG, Font.BOLD, 24));
-//                g.drawString("Select number of balls 1-3", (int)Xdim/2-150, (int)this.Ydim/2);
-//        		break;
-        		
 			case "Playing":
 				
 				//draw "goal lines" on each side
@@ -543,9 +550,11 @@ public class Board extends JPanel implements ActionListener, KeyListener{
 				g.drawLine(0, (int)(this.Ydim-(5+this.Ydim/100)), (int) (Xdim), (int)(this.Ydim-(5+this.Ydim/100)));
 				
 				//draw paddles
+				
 				for (int i=0;i<this.players.size();i++){
-					if (this.playerLives[i]>0) {
-						Paddle b=this.players.get(i);
+					Paddle b=this.players.get(i);
+					if (b.lives>0) {
+						//System.out.println(b.pos);
 						g.fillRect((int)(b.cXpos-b.Xdim/2),(int)(b.cYpos-b.Ydim/2),(int) (b.Xdim), (int) (b.Ydim));
 					}
 				}
@@ -558,26 +567,29 @@ public class Board extends JPanel implements ActionListener, KeyListener{
 				
 				//draw the scores
 	            g.setFont(new Font(Font.DIALOG, Font.BOLD, 36));
-	            g.drawString(String.valueOf(this.playerScores[0]), (int)(this.Ydim/2-200), (int) (Xdim/2-100));
-	            g.drawString(String.valueOf(this.playerLives[0]), (int)(this.Ydim/2-200), (int) (Xdim/2+100));
-	            g.drawString(String.valueOf(this.playerScores[1]), (int)(this.Ydim/2+200), (int) (Xdim/2-100));
-	            g.drawString(String.valueOf(this.playerLives[1]), (int)(this.Ydim/2+200), (int) (Xdim/2+100));
+	            Paddle P1=fetch(1,players);
+	            if (P1!=null){
+	            	g.drawString(String.valueOf(this.playerScores[0]), (int)(this.Ydim/2-200), (int) (Xdim/2-100));
+	 	            g.drawString(String.valueOf(P1.lives), (int)(this.Ydim/2-200), (int) (Xdim/2+100));
+	 	        }
 	            
-	            if (this.players.size()>2){
+	            Paddle P2=fetch(2,players);
+	            if (P2!=null){
+	            	g.drawString(String.valueOf(this.playerScores[1]), (int)(this.Ydim/2+200), (int) (Xdim/2-100));
+	            	g.drawString(String.valueOf(P2.lives), (int)(this.Ydim/2+200), (int) (Xdim/2+100));
+	            }
+	            
+	            Paddle P3=fetch(3,players);
+	            if (P3!=null){
 	            	g.drawString(String.valueOf(this.playerScores[2]), (int)(this.Ydim/2-100), (int) (Xdim/2-200));
-		            g.drawString(String.valueOf(this.playerLives[2]), (int)(this.Ydim/2+100), (int) (Xdim/2-200));
-		            if (this.players.size()>3){
-		            	g.drawString(String.valueOf(this.playerScores[3]), (int)(this.Ydim/2-100), (int) (Xdim/2+200));
-			            g.drawString(String.valueOf(this.playerLives[3]), (int)(this.Ydim/2+100), (int) (Xdim/2+200));
-			            
-		            }
-		            else{
-		            	this.playerLives[3]=0;
-		            }
-	            }
-	            else{
-		            this.playerLives[2]=0;
-	            }
+			        g.drawString(String.valueOf(P3.lives), (int)(this.Ydim/2+100), (int) (Xdim/2-200));
+			    }
+	            
+	            Paddle P4=fetch(4,players);
+	            if (P4!=null){
+	            	g.drawString(String.valueOf(this.playerScores[3]), (int)(this.Ydim/2-100), (int) (Xdim/2+200));
+				    g.drawString(String.valueOf(P4.lives), (int)(this.Ydim/2+100), (int) (Xdim/2+200));
+		        }
 	            
 				break;
 				
@@ -585,16 +597,15 @@ public class Board extends JPanel implements ActionListener, KeyListener{
 				g.setFont(new Font(Font.DIALOG, Font.BOLD, 24));
 				
 				int winner=0;
-				int maxscore=0;
-				for (int i=1;i<3;i++){
-					int sc=this.playerLives[i];
-					if (sc>maxscore){
-						winner=i;
-						maxscore=sc;
+				
+				for (int i=0;i<players.size();i++){
+					Paddle sc=this.players.get(i);
+					if (sc.lives>0){
+						winner=sc.pos;
 					}
 				}				
-				g.drawString("Player "+(winner+1)+" won!", (int)Xdim/2, (int)this.Ydim/2-200);
-                g.drawString("Press 'SPACE' to play again", (int)Xdim/2, (int)this.Ydim/2);
+				g.drawString("Player "+(winner)+" won!", (int)Xdim/2-90, (int)this.Ydim/2-200);
+                g.drawString("Press 'Backspace' to play again", (int)Xdim/2-160, (int)this.Ydim/2);
 				break;
         }
         
@@ -614,66 +625,6 @@ public class Board extends JPanel implements ActionListener, KeyListener{
 					repaint();
 	            }
 				break;
-				
-//			case "Player Select":
-//				this.players.add(new Paddle(Xdim/100, Ydim/5, 5+Xdim/100, this.Ydim/2));
-//				this.players.add(new Paddle(Xdim/100, Ydim/5, Xdim-(5+Xdim/100), this.Ydim/2));
-//				if (e.getKeyCode() == KeyEvent.VK_2) {					
-//					this.player_num=2;
-//					this.state="Mode Select";
-//	            }
-//				else if (e.getKeyCode() == KeyEvent.VK_3) {					
-//					this.player_num=3;
-//					this.players.add(new Paddle(Xdim/5, Ydim/100, Xdim/2, 5+this.Ydim/100));
-//					this.state="Mode Select";
-//	            }
-//				else if (e.getKeyCode() == KeyEvent.VK_4) {					
-//					this.player_num=4;
-//					this.players.add(new Paddle(Xdim/5, Ydim/100, Xdim/2, 5+this.Ydim/100));
-//					this.players.add(new Paddle(Xdim/5, Ydim/100, Xdim/2, this.Ydim-(5+this.Ydim/100)));
-//					this.state="Mode Select";
-//	            }
-//				if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-//	            	this.ball_num=1;
-//					this.player_num=2;
-//					this.state="Start";
-//	            }
-//				else {
-//					this.player_num=2;
-//					this.state="Mode Select";					
-//	            }
-//				repaint();
-//				break;
-//				
-//			case "Mode Select":
-//				this.balls.add(new Ball(this.Xdim/2, this.Ydim/2, -4*gameSpd, 8*gameSpd,1));
-//				if (e.getKeyCode() == KeyEvent.VK_1) {
-//					this.state="Playing";
-//	            }
-//				else if (e.getKeyCode() == KeyEvent.VK_2) {
-//					this.ball_num=2;
-//					this.balls.add(new Ball(this.Ydim/2, Xdim/2, 6*gameSpd, 12*gameSpd,0));
-//					this.state="Playing";
-//	            }
-//				else if (e.getKeyCode() == KeyEvent.VK_3) {
-//					this.ball_num=3;
-//					this.balls.add(new Ball(this.Ydim/2, Xdim/2, 6*gameSpd, 12*gameSpd,0));
-//					this.balls.add(new Ball(this.Ydim/2, Xdim/2, 12*gameSpd, 6*gameSpd,3));
-//					this.state="Playing";
-//	            }
-//				if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-//	            	this.state="Start";
-//	            	this.ball_num=1;
-//					this.player_num=2;
-//	            }
-//				else {
-//					this.state="Playing";
-//	            }
-//				int lives=5*ball_num;
-//				this.playerLives=new int[] {lives,lives,lives,lives};
-//				this.playerScores=new int[] {0,0,0,0};
-//				repaint();
-//				break;
 				
 			case "Playing":				
 				if (e.getKeyCode() == keys[0]) {
@@ -702,7 +653,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
 				break;
 				
 			case "Done":
-				if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+				/*if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 					this.state="Playing";
 					this.playerScores=new int[] {0,0,0,0};
 					for (int i=0;i<4;i++){
@@ -718,10 +669,10 @@ public class Board extends JPanel implements ActionListener, KeyListener{
 					this.players=new ArrayList<Paddle>();
 					for (int i=0;i<this.players2.size();i++){
 						Paddle b=this.players2.get(i);
-						Paddle bb=new Paddle(b.Xdim, b.Ydim, b.cXpos, b.cYpos);
+						Paddle bb=new Paddle(b.Xdim, b.Ydim, b.cXpos, b.cYpos,b.pos,b.lives);
 						this.players.add(bb);
 					}
-	            }
+	            }*/
 				if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
 	            	RXCardLayout cdl=(RXCardLayout) getParent().getLayout();
 	            	cdl.show(getParent(), "MenuPanel");
@@ -756,14 +707,38 @@ public class Board extends JPanel implements ActionListener, KeyListener{
 		
 	}
 	
-    public boolean zeros(int[] arr, int z){
+    public boolean zeros(ArrayList<Paddle> arr, int z){
     	int cnt = 0;
-    	for (int i=0;i<arr.length;i++){
-    		if (arr[i]==0){
+    	for (int i=0;i<arr.size();i++){
+    		if (arr.get(i).lives==0){
     			cnt++;
     		}
     	}
     	return cnt==z;
     }   
+    
+    public Paddle fetch(int i,ArrayList<Paddle> players){
+    	for (int j=0;j<players.size();j++){
+    		Paddle p=players.get(j);
+    		if (p.pos==i){
+    			return p;
+    		}
+    	}
+    	return null;
+    }
+    
+    public Paddle create_paddle (int k, int j){
+    	switch (k){
+    		case 1:
+    			return new Paddle(Xdim/100, Ydim/5, 5+Xdim/100, this.Ydim/2,1,j);
+    		case 2:
+    			return new Paddle(Xdim/100, Ydim/5, Xdim-(5+Xdim/100), this.Ydim/2,2,j);
+    		case 3:
+    			return new Paddle(Xdim/5, Ydim/100, Xdim/2, 5+this.Ydim/100,3,j);
+    		case 4:
+    			return new Paddle(Xdim/5, Ydim/100, Xdim/2, this.Ydim-(5+this.Ydim/100),4,j);
+    	}
+    	return null;
+    }
     
 }

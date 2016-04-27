@@ -22,35 +22,7 @@ public  class AIplayer {
 		double predictedordinate = (balltobefollowed.Yvel/balltobefollowed.Xvel)*1000+(balltobefollowed.Ypos-(balltobefollowed.Yvel/balltobefollowed.Xvel)*balltobefollowed.Xpos) ; 
 		
 		p.set_cYvel(initialvelocity);
-		
-		/*double epsilon = 5 ;
-		double movement = p.cYpos-p.cYvel ;
-		double movdown = p.cYpos+p.cYvel ;
-		if (p.cYpos - predictedordinate > epsilon){
-			if (movement > p.Ydim/2) {
-                if ((movement-predictedordinate)>((-1)*epsilon)){
-                	p.set_Ypos(movement);
-                }
-                else {
-                if(predictedordinate > 0 && predictedordinate+p.Ydim/2 < b.getHeight()){
-                	p.set_Ypos(predictedordinate);
-                }
-                	
-                }
-            }
-		}
-		else {
-			if (movement+p.Ydim/2< b.getHeight() && (p.cYpos-predictedordinate < (-1*epsilon))) {
-				if ((movement-predictedordinate)<((1)*epsilon)){
-                	p.set_Ypos(movement);
-                }
-                else {
-                	if(predictedordinate > 0 && predictedordinate+p.Ydim/2< b.getHeight()){
-                    	p.set_Ypos(predictedordinate);
-                    }
-                }
-            }
-		}*/
+
 		double epsilon = initialvelocity/2+1 ;
 		
 		if (p.cYpos - predictedordinate > epsilon){
@@ -123,34 +95,6 @@ public  class AIplayer {
 		
 		p.set_cXvel(initialvelocity);
 		
-		/*double epsilon = 5 ;
-		double movement = p.cXpos-p.cXvel ;
-		double movdown = p.cXpos+p.cXvel ;
-		if (p.cXpos - predictedordinate > epsilon){
-			if (movement > p.Xdim/2) {
-                if ((movement-predictedordinate)>((-1)*epsilon)){
-                	p.set_Xpos(movement);
-                }
-                else {
-                if(predictedordinate > 0 && predictedordinate+p.Xdim/2 < b.getWidth()){
-                	p.set_Xpos(predictedordinate);
-                }
-                	
-                }
-            }
-		}
-		else {
-			if (movement+p.Xdim/2< b.getWidth() && (p.cXpos-predictedordinate < (-1*epsilon))) {
-				if ((movement-predictedordinate)<((1)*epsilon)){
-                	p.set_Xpos(movement);
-                }
-                else {
-                	if(predictedordinate > 0 && predictedordinate+p.Xdim/2< b.getWidth()){
-                    	p.set_Xpos(predictedordinate);
-                    }
-                }
-            }
-		}*/
 		double epsilon = initialvelocity/2+1 ;
 		
 		if (p.cXpos - predictedordinate > epsilon){

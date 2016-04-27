@@ -457,17 +457,9 @@ public class Single_Player extends JPanel implements ActionListener{
 		label_5.setFont(new Font("Tahoma", Font.PLAIN, 34));
 		GridBagConstraints gbc_label_5 = new GridBagConstraints();
 		gbc_label_5.insets = new Insets(0, 0, 5, 5);
-		gbc_label_5.gridx = 7;
+		gbc_label_5.gridx = 10;
 		gbc_label_5.gridy = 32;
 		SelectionPanel.add(label_5, gbc_label_5);
-		
-		JLabel label_6 = new JLabel("Position");
-		label_6.setFont(new Font("Tahoma", Font.PLAIN, 34));
-		GridBagConstraints gbc_label_6 = new GridBagConstraints();
-		gbc_label_6.insets = new Insets(0, 0, 5, 5);
-		gbc_label_6.gridx = 10;
-		gbc_label_6.gridy = 32;
-		SelectionPanel.add(label_6, gbc_label_6);
 		
 		JSeparator separator_12 = new JSeparator();
 		GridBagConstraints gbc_separator_12 = new GridBagConstraints();
@@ -518,24 +510,9 @@ public class Single_Player extends JPanel implements ActionListener{
 		GridBagConstraints gbc_Lives1 = new GridBagConstraints();
 		gbc_Lives1.fill = GridBagConstraints.HORIZONTAL;
 		gbc_Lives1.insets = new Insets(0, 0, 5, 5);
-		gbc_Lives1.gridx = 7;
+		gbc_Lives1.gridx = 10;
 		gbc_Lives1.gridy = 35;
 		SelectionPanel.add(Lives1, gbc_Lives1);
-		
-		final JComboBox<String> Position1 = new JComboBox<String>();
-		Position1.setFont(new Font("Tahoma", Font.PLAIN, 34));		
-		Position1.setVisible(true);
-		Position1.addItem("");	
-		Position1.addItem("Right");		
-		Position1.addItem("Top");
-		Position1.addItem("Bottom");
-		Position1.addItem("Left");	
-		GridBagConstraints gbc_Position1 = new GridBagConstraints();
-		gbc_Position1.fill = GridBagConstraints.HORIZONTAL;
-		gbc_Position1.insets = new Insets(0, 0, 5, 5);
-		gbc_Position1.gridx = 10;
-		gbc_Position1.gridy = 35;
-		SelectionPanel.add(Position1, gbc_Position1);
 		
 		JSeparator separator_15 = new JSeparator();
 		GridBagConstraints gbc_separator_15 = new GridBagConstraints();
@@ -597,34 +574,19 @@ public class Single_Player extends JPanel implements ActionListener{
 		gbc_separator_21.gridx = 6;
 		gbc_separator_21.gridy = 37;
 		SelectionPanel.add(separator_21, gbc_separator_21);
-
-		final JSpinner Lives2 = new JSpinner(sm2);
-		Lives2.setFont(new Font("Tahoma", Font.PLAIN, 34));
-		Lives2.setVisible(true);
-		DefaultEditor edit2=new JSpinner.DefaultEditor(Lives2);
-		edit2.setAlignmentX(RIGHT_ALIGNMENT);
-		Lives2.setEditor(edit2);
-		GridBagConstraints gbc_Lives2 = new GridBagConstraints();
-		gbc_Lives2.fill = GridBagConstraints.HORIZONTAL;
-		gbc_Lives2.insets = new Insets(0, 0, 5, 5);
-		gbc_Lives2.gridx = 7;
-		gbc_Lives2.gridy = 37;
-		SelectionPanel.add(Lives2, gbc_Lives2);
-
-		final JComboBox<String> Position2 = new JComboBox<String>();
-		Position2.setFont(new Font("Tahoma", Font.PLAIN, 34));
-		Position2.setVisible(true);
-		Position2.addItem("");
-		Position2.addItem("Top");
-		Position2.addItem("Bottom");
-		Position2.addItem("Left");
-		Position2.addItem("Right");
-		GridBagConstraints gbc_Position2 = new GridBagConstraints();
-		gbc_Position2.fill = GridBagConstraints.HORIZONTAL;
-		gbc_Position2.insets = new Insets(0, 0, 5, 5);
-		gbc_Position2.gridx = 10;
-		gbc_Position2.gridy = 37;
-		SelectionPanel.add(Position2, gbc_Position2);
+		
+				final JSpinner Lives2 = new JSpinner(sm2);
+				Lives2.setFont(new Font("Tahoma", Font.PLAIN, 34));
+				Lives2.setVisible(true);
+				DefaultEditor edit2=new JSpinner.DefaultEditor(Lives2);
+				edit2.setAlignmentX(RIGHT_ALIGNMENT);
+				Lives2.setEditor(edit2);
+				GridBagConstraints gbc_Lives2 = new GridBagConstraints();
+				gbc_Lives2.fill = GridBagConstraints.HORIZONTAL;
+				gbc_Lives2.insets = new Insets(0, 0, 5, 5);
+				gbc_Lives2.gridx = 10;
+				gbc_Lives2.gridy = 37;
+				SelectionPanel.add(Lives2, gbc_Lives2);
 		
 		JSeparator separator_19 = new JSeparator();
 		GridBagConstraints gbc_separator_19 = new GridBagConstraints();
@@ -665,34 +627,19 @@ public class Single_Player extends JPanel implements ActionListener{
 		gbc_separator_20.gridx = 5;
 		gbc_separator_20.gridy = 39;
 		SelectionPanel.add(separator_20, gbc_separator_20);
-
-		final JSpinner Lives3 = new JSpinner(sm3);
-		Lives3.setFont(new Font("Tahoma", Font.PLAIN, 34));
-		Lives3.setVisible(true);
-		DefaultEditor edit3=new JSpinner.DefaultEditor(Lives3);
-		edit3.setAlignmentX(RIGHT_ALIGNMENT);
-		Lives3.setEditor(edit3);
-		GridBagConstraints gbc_Lives3 = new GridBagConstraints();
-		gbc_Lives3.fill = GridBagConstraints.HORIZONTAL;
-		gbc_Lives3.insets = new Insets(0, 0, 0, 5);
-		gbc_Lives3.gridx = 7;
-		gbc_Lives3.gridy = 39;
-		SelectionPanel.add(Lives3, gbc_Lives3);
-
-		final JComboBox<String> Position3 = new JComboBox<String>();
-		Position3.setFont(new Font("Tahoma", Font.PLAIN, 34));
-		Position3.setVisible(true);
-		Position3.addItem("");		
-		Position3.addItem("Bottom");
-		Position3.addItem("Left");
-		Position3.addItem("Right");
-		Position3.addItem("Top");
-		GridBagConstraints gbc_Position3 = new GridBagConstraints();
-		gbc_Position3.fill = GridBagConstraints.HORIZONTAL;
-		gbc_Position3.insets = new Insets(0, 0, 0, 5);
-		gbc_Position3.gridx = 10;
-		gbc_Position3.gridy = 39;
-		SelectionPanel.add(Position3, gbc_Position3);
+		
+				final JSpinner Lives3 = new JSpinner(sm3);
+				Lives3.setFont(new Font("Tahoma", Font.PLAIN, 34));
+				Lives3.setVisible(true);
+				DefaultEditor edit3=new JSpinner.DefaultEditor(Lives3);
+				edit3.setAlignmentX(RIGHT_ALIGNMENT);
+				Lives3.setEditor(edit3);
+				GridBagConstraints gbc_Lives3 = new GridBagConstraints();
+				gbc_Lives3.fill = GridBagConstraints.HORIZONTAL;
+				gbc_Lives3.insets = new Insets(0, 0, 0, 5);
+				gbc_Lives3.gridx = 10;
+				gbc_Lives3.gridy = 39;
+				SelectionPanel.add(Lives3, gbc_Lives3);
 		
 //		JSlider PCpl = new JSlider(SwingConstants.HORIZONTAL, 1, 3, 1);
 //		PCpl.addPropertyChangeListener(new PropertyChangeListener() {
@@ -777,9 +724,9 @@ public class Single_Player extends JPanel implements ActionListener{
 			public void actionPerformed(ActionEvent e) {
 				Board game = new Board(getWidth(),getHeight(),(String)ownPosition.getSelectedItem(),ownLives.getValue(),
 						(String)GameMode.getSelectedItem(),ball_Num.getValue(),spd.getValue(),powerups.isSelected(),
-						(String)Difficulty1.getSelectedItem(),(Integer)Lives1.getValue(),(String)Position1.getSelectedItem(),
-						(String)Difficulty2.getSelectedItem(),(Integer)Lives2.getValue(),(String)Position2.getSelectedItem(),
-						(String)Difficulty3.getSelectedItem(),(Integer)Lives3.getValue(),(String)Position3.getSelectedItem(),getWindowAncestor().keys);
+						(String)Difficulty1.getSelectedItem(),(Integer)Lives1.getValue(),
+						(String)Difficulty2.getSelectedItem(),(Integer)Lives2.getValue(),
+						(String)Difficulty3.getSelectedItem(),(Integer)Lives3.getValue(),getWindowAncestor().keys);
 				//Board game = new Board();
 				add(game,"Game");
 				cdl.show(Single_Player.this, "Game");
