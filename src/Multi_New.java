@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.net.InetAddress;
 import java.net.SocketAddress;
 
 import javax.swing.JLabel;
@@ -18,23 +19,22 @@ import javax.swing.BoxLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-import javax.swing.JSpinner;
-import javax.swing.JSpinner.DefaultEditor;
-import javax.swing.SpinnerModel;
-import javax.swing.SpinnerNumberModel;
 import javax.swing.JComboBox;
 
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JCheckBox;
-import javax.swing.JList;
 
 
 public class Multi_New extends JPanel implements ActionListener{
 
-	LocalServer gameServer;	
+	LocalServer gameServer;
+	List<Thread> clientsThread = new ArrayList<>();
+
 	boolean expanded=false;
 	private static final Color FG_COLOR = new Color(0xFFFFFF);
 	private static final Color BG_COLOR = new Color(0x3B5998);
@@ -44,22 +44,21 @@ public class Multi_New extends JPanel implements ActionListener{
 
 	public Multi_New(LocalServer gs) {
 
-		this.gameServer=gs;		
+		this.gameServer = gs;
 		takeEntry();
 		
 		populate_layout();		
 	
 		Timer timer = new Timer((int) (1000/60), this);
 		timer.start();
-		
-		
+
 	}
 
 	private void takeEntry() {
 		
-		this.gameServer.acceptClient();
-		this.gameServer.acceptClient();
-		this.gameServer.acceptClient();
+		clientsThread.add(gameServer.acceptClient());
+		clientsThread.add(gameServer.acceptClient());
+		clientsThread.add(gameServer.acceptClient());
 		
 		System.out.println(LocalServer.getAllAvailableIP());
 	}
@@ -67,7 +66,7 @@ public class Multi_New extends JPanel implements ActionListener{
 	private void populate_layout() {
 		
 		this.setAutoscrolls(true);
-		final RXCardLayout cdl=new RXCardLayout(0, 0);
+		final RXCardLayout cdl = new RXCardLayout(0, 0);
 		cdl.setRequestFocusOnCard(true);
 		setLayout(cdl);
 		
@@ -77,10 +76,7 @@ public class Multi_New extends JPanel implements ActionListener{
 		add(MenuPanel, "MenuPanel");		
 
 		cdl.show(Multi_New.this, "MenuPanel");
-		
-//		Board game=new Board();
-//		add(game,"Game");
-//		cdl.show(Multi_New.this,"Game");
+
 				
 		JPanel SelectionPanel = new JPanel();	
 		MenuPanel.add(SelectionPanel);
@@ -123,7 +119,7 @@ public class Multi_New extends JPanel implements ActionListener{
 		gbc_label_1.gridy = 2;
 		SelectionPanel.add(label_1, gbc_label_1);
 		
-		JComboBox<String> ownPosition = new JComboBox<String>();
+		final JComboBox<String> ownPosition = new JComboBox<String>();
 		ownPosition.setFont(new Font("Tahoma", Font.PLAIN, 34));
 		ownPosition.addItem("Left");
 		ownPosition.addItem("Right");
@@ -151,7 +147,7 @@ public class Multi_New extends JPanel implements ActionListener{
 		gbc_label_2.gridy = 4;
 		SelectionPanel.add(label_2, gbc_label_2);
 		
-		JSlider ownLives = new JSlider(SwingConstants.HORIZONTAL, 1, 25, 5);
+		final JSlider ownLives = new JSlider(SwingConstants.HORIZONTAL, 1, 25, 5);
 		ownLives.setPaintTicks(true);
 		ownLives.setPaintLabels(true);
 		ownLives.setMinorTickSpacing(1);
@@ -186,7 +182,7 @@ public class Multi_New extends JPanel implements ActionListener{
 		gbc_lblGameMode.gridy = 7;
 		SelectionPanel.add(lblGameMode, gbc_lblGameMode);
 		
-		JComboBox<String> GameMode = new JComboBox<String>();
+		final JComboBox<String> GameMode = new JComboBox<String>();
 		GameMode.setFont(new Font("Tahoma", Font.PLAIN, 34));
 		GameMode.addItem("Classic");
 		GameMode.addItem("Arcade");
@@ -214,7 +210,7 @@ public class Multi_New extends JPanel implements ActionListener{
 		gbc_lblNumberOfBalls.gridy = 9;
 		SelectionPanel.add(lblNumberOfBalls, gbc_lblNumberOfBalls);
 		
-		JSlider ball_Num = new JSlider(SwingConstants.HORIZONTAL, 1, 3, 1);
+		final JSlider ball_Num = new JSlider(SwingConstants.HORIZONTAL, 1, 3, 1);
 		ball_Num.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		ball_Num.setPaintTicks(true);
 		ball_Num.setPaintLabels(true);
@@ -242,7 +238,7 @@ public class Multi_New extends JPanel implements ActionListener{
 		gbc_lblGameSpeed.gridy = 11;
 		SelectionPanel.add(lblGameSpeed, gbc_lblGameSpeed);
 		
-		JSlider spd = new JSlider(SwingConstants.HORIZONTAL, 1, 3, 1);
+		final JSlider spd = new JSlider(SwingConstants.HORIZONTAL, 1, 3, 1);
 		spd.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		spd.setPaintTicks(true);
 		spd.setPaintLabels(true);
@@ -270,7 +266,7 @@ public class Multi_New extends JPanel implements ActionListener{
 		gbc_lblPowerupsEnabled.gridy = 13;
 		SelectionPanel.add(lblPowerupsEnabled, gbc_lblPowerupsEnabled);
 		
-		JCheckBox powerups = new JCheckBox("");
+		final JCheckBox powerups = new JCheckBox("");
 		powerups.setFont(new Font("Tahoma", Font.PLAIN, 34));
 		GridBagConstraints gbc_powerups = new GridBagConstraints();
 		gbc_powerups.insets = new Insets(0, 0, 5, 5);
@@ -293,7 +289,7 @@ public class Multi_New extends JPanel implements ActionListener{
 		gbc_lblPlayer.gridy = 15;
 		SelectionPanel.add(lblPlayer, gbc_lblPlayer);
 		
-		JCheckBox Player2 = new JCheckBox("");
+		final JCheckBox Player2 = new JCheckBox("");
 		Player2.setFont(new Font("Tahoma", Font.PLAIN, 34));
 		GridBagConstraints gbc_Player2 = new GridBagConstraints();
 		gbc_Player2.insets = new Insets(0, 0, 5, 5);
@@ -322,80 +318,29 @@ public class Multi_New extends JPanel implements ActionListener{
 		gbc_PCpl.gridx = 7;
 		gbc_PCpl.gridy = 17;
 		SelectionPanel.add(PCpl, gbc_PCpl);
-		
-//		JSlider PCpl = new JSlider(SwingConstants.HORIZONTAL, 1, 3, 1);
-//		PCpl.addPropertyChangeListener(new PropertyChangeListener() {
-//			public void propertyChange(PropertyChangeEvent evt) {
-//				switch(PCpl.getValue()){
-//				case 1:
-//					one.setVisible(true);
-//					Position1.setVisible(true);
-//					Lives1.setVisible(true);
-//					Difficulty1.setVisible(true);
-//					two.setVisible(true);
-//					Position2.setVisible(true);
-//					Lives2.setVisible(true);
-//					Difficulty2.setVisible(true);
-//					three.setVisible(true);
-//					Position3.setVisible(true);
-//					Lives3.setVisible(true);
-//					Difficulty3.setVisible(true);
-//					//repaint();
-//					break;
-//				case 2:
-//					one.setVisible(true);
-//					Position1.setVisible(true);
-//					Lives1.setVisible(true);
-//					Difficulty1.setVisible(true);
-//					two.setVisible(true);
-//					Position2.setVisible(true);
-//					Lives2.setVisible(true);
-//					Difficulty2.setVisible(true);
-//					three.setVisible(true);
-//					Position3.setVisible(true);
-//					Lives3.setVisible(true);
-//					Difficulty3.setVisible(true);
-//					//repaint();
-//					break;
-//				case 3:
-//					one.setVisible(true);
-//					Position1.setVisible(true);
-//					Lives1.setVisible(true);
-//					Difficulty1.setVisible(true);
-//					two.setVisible(true);
-//					Position2.setVisible(true);
-//					Lives2.setVisible(true);
-//					Difficulty2.setVisible(true);
-//					three.setVisible(true);
-//					Position3.setVisible(true);
-//					Lives3.setVisible(true);
-//					Difficulty3.setVisible(true);
-//					//repaint();
-//					break;
-//				}
-//				repaint();
-//			}
-//		});
-//		PCpl.setPaintTicks(true);
-//		PCpl.setPaintLabels(true);
-//		PCpl.setMinorTickSpacing(1);
-//		PCpl.setMajorTickSpacing(1);
-//		PCpl.setFont(new Font("Tahoma", Font.PLAIN, 14));
-//		GridBagConstraints gbc_PCpl = new GridBagConstraints();
-//		gbc_PCpl.fill = GridBagConstraints.HORIZONTAL;
-//		gbc_PCpl.insets = new Insets(0, 0, 5, 5);
-//		gbc_PCpl.gridx = 10;
-//		gbc_PCpl.gridy = 20;
-//		SelectionPanel.add(PCpl, gbc_PCpl);
-		
+
 		JPanel ButtonPanel = new JPanel();
 		MenuPanel.add(ButtonPanel);		
 		JButton button = new JButton("Back to Multiplayer Menu");
 		button.setFont(new Font("Tahoma", Font.PLAIN, 34));
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				RXCardLayout cdl=(RXCardLayout) getParent().getLayout();
-				cdl.show(getParent(), "Multiplayer");
+
+				RXCardLayout cdl = (RXCardLayout) getParent().getLayout();
+
+				if (gameServer != null) {
+					gameServer.disconnect();
+
+					if (!gameServer.alive()) {
+						removeAll();
+						cdl.show(getParent(), "Multiplayer");
+					}
+				}
+				else {
+					removeAll();
+					cdl.show(getParent(), "Multiplayer");
+				}
+
 			}
 		});
 		ButtonPanel.add(button);
@@ -403,22 +348,27 @@ public class Multi_New extends JPanel implements ActionListener{
 		JButton button_1 = new JButton("Start a New Game");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				SocketAddress firstClient = gameServer.getAllClients().get(0);
-				gameServer.writeToClient(firstClient, "Yo Bitch Client!");
-				String resp = gameServer.readFromClient(firstClient);
-				System.out.println(resp);
+
+				while (!clientsThread.isEmpty()) {
+					clientsThread.get(0).stop();
+					clientsThread.remove(0);
+				}
+
+				String startData = "START:...";
+				gameServer.writeToAllClients(startData);
+
+				System.out.println(gameServer.getAllClients());
 				
 				/*Board game = new Board((String)ownPosition.getSelectedItem(),ownLives.getValue(),
 						(String)GameMode.getSelectedItem(),ball_Num.getValue(),spd.getValue(),powerups.isSelected(),Player2.isSelected(),
 						(String)Difficulty1.getSelectedItem(),(Integer)Lives1.getValue(),(String)Position1.getSelectedItem(),
 						(String)Difficulty2.getSelectedItem(),(Integer)Lives2.getValue(),(String)Position2.getSelectedItem(),
 						(String)Difficulty3.getSelectedItem(),(Integer)Lives3.getValue(),(String)Position3.getSelectedItem(),getWindowAncestor().keys);
-				//Board game = new Board();
+
 				add(game,"Game");
 				cdl.show(Multi_New.this, "Game");
-				game.requestFocusInWindow();
-				//cdl.last(Multi_New.this);
-				//requestFocusInWindow();*/
+				game.requestFocusInWindow();*/
+
 			}
 		});
 		button_1.setFont(new Font("Tahoma", Font.PLAIN, 34));
@@ -466,7 +416,28 @@ public class Multi_New extends JPanel implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub		
+		List<InetAddress> otherConnectedPlayers = gameServer.getAllClients();
+		for (InetAddress ip : otherConnectedPlayers) {
+			String resp = gameServer.readFromClient(ip);
+			parseResponse(resp);
+		}
+
 		repaint();
+	}
+
+
+	private void parseResponse (String response) {
+		if (response == null)
+			return;
+
+		String[] tokens = response.split(":");
+		switch (tokens[0]) {
+			/*case "MYIP":
+				String ipOfClient = tokens[1];
+				gameServer.writeToAllClients("CONNECTTOIP:" + ipOfClient);
+				break;*/
+			default:
+
+		}
 	}
 }

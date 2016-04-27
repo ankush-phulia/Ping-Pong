@@ -24,7 +24,6 @@ import java.awt.BorderLayout;
 import javax.swing.SwingConstants;
 import javax.swing.text.MaskFormatter;
 import javax.swing.BoxLayout;
-import java.awt.CardLayout;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import java.awt.event.ActionListener;
@@ -34,7 +33,9 @@ import network.LocalServer;
 
 public class Multi_Player extends JPanel {
 
-	boolean expanded=false;
+	LocalServer gameServer;
+
+	boolean expanded = false;
 	private static final Color FG_COLOR = new Color(0xFFFFFF);
 	private static final Color BG_COLOR = new Color(0x3B5998);
 	private static final Color BORDER_COLOR = new Color(0x000000);
@@ -71,11 +72,10 @@ public class Multi_Player extends JPanel {
 					try {
 						populate_layout();
 					} catch (ParseException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				}
-				else{
+				else {
 					removeAll();
 					show_small();
 				}
@@ -137,9 +137,9 @@ public class Multi_Player extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				
 				try {
-					LocalServer gameServer=new LocalServer(8080);
-					RXCardLayout cdl=(RXCardLayout) getLayout();
-					Multi_New mn=new Multi_New(gameServer);
+					gameServer = new LocalServer(8080);
+					RXCardLayout cdl = (RXCardLayout) getLayout();
+					Multi_New mn = new Multi_New(gameServer);
 					add(mn,"new game");
 					cdl.show(Multi_Player.this, "new game");
 				} catch (IOException e1) {
@@ -223,16 +223,24 @@ public class Multi_Player extends JPanel {
 		JButton btnJoinExistingOne = new JButton("Join Existing One");
 		btnJoinExistingOne.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					ConnectionToServer cs = new ConnectionToServer(ipAddress.getText(), 8080);
-					String resp = cs.readFromClient();
-					System.out.println(resp);
-					cs.writeToServer("Fuck you!");
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+
+				ConnectionToServer cs = new ConnectionToServer(ipAddress.getText(), 8080);
+				if (cs.connectionEstablished()) {
+					// cs.writeToServer("MYIP:" + cs.getIPAddress());
+
+					String resp, type;
+					do {
+						resp = cs.readFromServer();
+						type = parseResponse(resp);
+					} while (!type.equalsIgnoreCase("START"));
+
+					// start the game here
+
 				}
-				
+				else {
+					// do something here if connection could not be established
+
+				}
 			}
 		});
 		btnJoinExistingOne.setFont(new Font("Tahoma", Font.PLAIN, 34));
@@ -299,6 +307,28 @@ public class Multi_Player extends JPanel {
 		gg.fillRect(0, h-1-t, w-1, t);
 		gg.fillRect(w-1-t, 0, t, h-1);
 	}
+
+
+	private String parseResponse (String response) {
+		if (response == null)
+			return null;
+
+		String[] tokens = response.split(":");
+		switch (tokens[0]) {
+			/*case "MYIP":
+				String ipOfClient = tokens[1];
+				gameServer.writeToAllClients("CONNECTTOIP:" + ipOfClient);
+				break;
+			case "CONNECTTOIP":
+				String ipOfOtherClient = tokens[1];
+
+				break;*/
+			default:
+
+		}
+		return tokens[0];
+	}
+
 
 	// -------------------------------------------------------------------------
 	// Tween Accessor

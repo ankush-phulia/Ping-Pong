@@ -28,7 +28,7 @@ public class NewClient implements Runnable {
                 readThread.start();
 
                 localServer.addElements(waitingForClient, new DataOutputStream(waitingForClient.getOutputStream()),
-                        waitingForClient.getRemoteSocketAddress(), readFromClient);
+                        waitingForClient.getInetAddress(), readFromClient);
 
                 threadMessage("Just connected to " + waitingForClient.getRemoteSocketAddress());
             }

@@ -2,6 +2,7 @@ package network;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 
@@ -18,17 +19,49 @@ public class ConnectionToServer {
      *  Throws IOException if unsuccessful
      *  Timeout of 10 seconds is set
      */
-    public ConnectionToServer(String inetAddr, int port) throws IOException {
-        clientSocket = new Socket();
-        clientSocket.connect(new InetSocketAddress(inetAddr, port), 10000);
-        threadMessage("Connection established with " + clientSocket.getRemoteSocketAddress() +
-                " on port " + clientSocket.getLocalPort());
+    public ConnectionToServer(String inetAddr, int port) {
+        try {
+            clientSocket = new Socket();
+            try {
+                clientSocket.connect(new InetSocketAddress(inetAddr, port), 10000);
+            } catch (IOException e) {
+                threadMessage("Unable to connect to a given IP address.");
+                clientSocket = null;
+                return;
+            }
 
-        writingStream = new DataOutputStream(clientSocket.getOutputStream());
-        readingStream = new ReadData(clientSocket);
-        Thread readThread = new Thread(readingStream);
-        readThread.start();
+            threadMessage("Connection established with " + clientSocket.getRemoteSocketAddress() +
+                    " on port " + clientSocket.getLocalPort());
+
+            writingStream = new DataOutputStream(clientSocket.getOutputStream());
+            readingStream = new ReadData(clientSocket);
+            Thread readThread = new Thread(readingStream);
+            readThread.start();
+        }
+        catch (IOException e) {
+            threadMessage("Error occurred while obtaining output stream of server.");
+            clientSocket = null;
+        }
     }
+
+
+    // checks whether connection is alive or not
+    public boolean connectionEstablished () { return clientSocket == null; }
+
+
+    // closes the socket
+    public boolean disconnect () {
+        try {
+            clientSocket.close();
+            return true;
+        } catch (IOException ioe) {
+            return false;
+        }
+    }
+
+
+    // returns IP address of client
+    public InetAddress getIPAddress () { return clientSocket.getLocalAddress(); }
 
 
     // writes 'writeData' to server
@@ -43,7 +76,7 @@ public class ConnectionToServer {
             if (!clientSocket.isConnected()) {
                 threadMessage("Server is disconnected...");
                 // Server is disconnected. Take necessary steps here
-
+                clientSocket = null;
                 return false;
             }
         }
@@ -53,7 +86,7 @@ public class ConnectionToServer {
 
     // reads data from server
     // returns null if no data is available
-    public String readFromClient () {
+    public String readFromServer () {
         return  readingStream.readFromBuffer();
     }
 

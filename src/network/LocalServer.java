@@ -14,7 +14,7 @@ public class LocalServer {
     ServerSocket myServer;
     List<Socket> clientSocket = new ArrayList<>();
     List<DataOutputStream> writingStreamClient = new ArrayList<>();
-    List<SocketAddress> ip_address = new ArrayList<>();
+    List<InetAddress> ip_address = new ArrayList<>();
     List<ReadData> inputStreamClient = new ArrayList<>();
 
 
@@ -54,24 +54,44 @@ public class LocalServer {
     }
 
 
-    // returns list of Socket Address of all clients
+    // returns list of IP Address of all clients
     // (useful for keeping track of all clients)
-    public synchronized List<SocketAddress> getAllClients () {
+    public synchronized List<InetAddress> getAllClients () {
         return new ArrayList<>(ip_address);
     }
 
 
-    // Establish connection with a new client
-    public void acceptClient() {
+    // Tries to establish connection with a new client
+    // returns the corresponding thread
+    public Thread acceptClient() {
         NewClient cl = new NewClient(this);
         Thread clientThread = new Thread(cl);
         clientThread.start();
+        return clientThread;
     }
 
 
-    // writes 'writeData' to client with Socket Address 'ip_addr'
+    // closes the server socket
+    // returns true if closed successfully
+    public boolean disconnect () {
+        try {
+            myServer.close();
+            return true;
+        } catch (IOException e) {
+            return false;
+        }
+    }
+
+
+    // returns true if myServer is alive
+    public boolean alive () {
+        return myServer != null && !myServer.isClosed();
+    }
+
+
+    // writes 'writeData' to client with IP Address 'ip_addr'
     // returns false if client is disconnected else true
-    public synchronized boolean writeToClient (SocketAddress ip_addr, String writeData) {
+    public synchronized boolean writeToClient (InetAddress ip_addr, String writeData) {
         int position = ip_address.indexOf(ip_addr);
         DataOutputStream out = writingStreamClient.get(position);
         Socket client = clientSocket.get(position);
@@ -126,9 +146,9 @@ public class LocalServer {
     }
 
 
-    // reads data from client with Socket Address 'ip_addr'
+    // reads data from client with IP Address 'ip_addr'
     // returns null if no data is available
-    public synchronized String readFromClient (SocketAddress ip_addr) {
+    public synchronized String readFromClient (InetAddress ip_addr) {
         int position = ip_address.indexOf(ip_addr);
         ReadData rd = inputStreamClient.get(position);
         return  rd.readFromBuffer();
@@ -137,7 +157,7 @@ public class LocalServer {
 
     // helper function 'NewClient' class
     // NOT for outside use
-    synchronized void addElements (Socket s, DataOutputStream dos, SocketAddress sa, ReadData rd) {
+    synchronized void addElements (Socket s, DataOutputStream dos, InetAddress sa, ReadData rd) {
         clientSocket.add(s);
         writingStreamClient.add(dos);
         ip_address.add(sa);
