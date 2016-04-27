@@ -81,15 +81,15 @@ public class Board extends JPanel implements ActionListener, KeyListener{
         
     }
     
-    public Board (String ownPosition,int ownLives,
+    public Board (int x, int y, String ownPosition,int ownLives,
 			String GameMode,int ball_Num,int spd,boolean powerups,
 			String Difficulty1,int Lives1,String Position1,
 			String Difficulty2,int Lives2,String Position2,
 			String Difficulty3,int Lives3,String Position3, int[] keys){    	
     	
     	//appearance
-    	this.Xdim=1000;
-    	this.Ydim=1000;
+    	this.Xdim=x;
+    	this.Ydim=y;
     	this.bgcolor=Color.black;
     	this.ccolor=Color.white;
     	this.fps=60;
@@ -170,7 +170,6 @@ public class Board extends JPanel implements ActionListener, KeyListener{
     public void step(){
     	
     	if(this.state.equals("Playing")){
-            
     		Paddle P1=this.players.get(0);
     		P1.set_cYvel(20*gameSpd);
     		Paddle P2=this.players.get(1);
@@ -199,14 +198,14 @@ public class Board extends JPanel implements ActionListener, KeyListener{
 //                }
 //            }
             AIplayer ai1 = new AIplayer() ;
-    		ai1.moveAIplayer1(players.get(1), balls, this, 50);
+    		ai1.moveAIplayer(players.get(1), balls, this, 20*gameSpd);
             
             if (this.players.size()>2){
             	
             	Paddle P3=this.players.get(2);
         		P3.set_cXvel(20*gameSpd);
 	    		AIplayer ai2 = new AIplayer() ;
-	    		ai2.moveAIplayer1(players.get(2), balls, this, 50);
+	    		ai2.moveAIplayer4(players.get(2), balls, this, 20*gameSpd);
         		            	
             	//move player 3
 //                if (cPressed) {
@@ -225,7 +224,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
                 	Paddle P4=this.players.get(3);
             		P4.set_cXvel(20*gameSpd);
 					AIplayer ai3 = new AIplayer() ;
-		    		ai3.moveAIplayer1(players.get(3), balls, this, 50);
+		    		ai3.moveAIplayer3(players.get(3), balls, this, 20*gameSpd);
                 	//move plaXer 4
 //                    if (oPressed) {
 //                    	if (P4.cXpos-P4.cXvel > P4.Xdim/2) {

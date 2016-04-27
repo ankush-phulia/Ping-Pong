@@ -28,7 +28,7 @@ public class Game extends JPanel {
 		
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		
-		Board board=new Board (ownPosition,ownLives,
+		Board board=new Board (1000,1000,ownPosition,ownLives,
 				GameMode,ball_Num,spd,powerups,
 				Difficulty1,Lives1,Position1,
 				Difficulty2,Lives2,Position2,

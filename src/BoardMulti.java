@@ -33,6 +33,7 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
     
     //Players
     public int player_num=2;
+    public boolean player2=true;
     public ArrayList<Paddle> players;
     public ArrayList<Paddle> players2;
     
@@ -53,7 +54,6 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
     public boolean[] pressed=new boolean[] {false,false,false,false,false,false};
 
     public BoardMulti() {
-
     	
     	this.Xdim=1000;
     	this.Ydim=1000;
@@ -82,7 +82,7 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
     }
     
     public BoardMulti (String ownPosition,int ownLives,
-			String GameMode,int ball_Num,int spd,boolean powerups,
+			String GameMode,int ball_Num,int spd,boolean powerups,boolean player2,
 			String Difficulty1,int Lives1,String Position1,
 			String Difficulty2,int Lives2,String Position2,
 			String Difficulty3,int Lives3,String Position3, int[] keys){    	
@@ -183,17 +183,22 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
                 }
             }
 
-            //move player 2
-            if (pressed[3]) {
-            	if (P2.cYpos-P2.cYvel > P2.Ydim/2 ) {
-                    P2.set_Ypos(P2.cYpos-P2.cYvel);
-                }
+            if (this.player2){
+            	//move player 2
+	            if (pressed[3]) {
+	            	if (P2.cYpos-P2.cYvel > P2.Ydim/2 ) {
+	                    P2.set_Ypos(P2.cYpos-P2.cYvel);
+	                }
+	            }
+	            if (pressed[4]) {
+	            	if (P2.cYpos+P2.cYvel+P2.Ydim/2< this.Ydim ) {
+	                	P2.set_Ypos(P2.cYpos+P2.cYvel);
+	                }
+	            }
             }
-            if (pressed[4]) {
-            	if (P2.cYpos+P2.cYvel+P2.Ydim/2< this.Ydim ) {
-                	P2.set_Ypos(P2.cYpos+P2.cYvel);
-                }
-            }
+            else{
+            	
+            }            
             
             if (this.players.size()>2){
             	
