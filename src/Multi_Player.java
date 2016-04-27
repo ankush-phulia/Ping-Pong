@@ -196,7 +196,7 @@ public class Multi_Player extends JPanel {
 
 		MaskFormatter mf;
 		mf = new MaskFormatter("###.###.###.###");
-		JFormattedTextField ipAddress = new JFormattedTextField(mf);
+		final JFormattedTextField ipAddress = new JFormattedTextField(mf);
 		ipAddress.setHorizontalAlignment(SwingConstants.CENTER);
 		ipAddress.setFont(new Font("Tahoma", Font.PLAIN, 34));
 		GridBagConstraints gbc_ipAddress = new GridBagConstraints();

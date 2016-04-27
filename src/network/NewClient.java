@@ -17,16 +17,21 @@ public class NewClient implements Runnable {
     @Override
     public void run() {
         try {
-            Socket waitingForClient = localServer.myServer.accept();
+            while (true) {
+                Socket waitingForClient;
+                try {
+                    waitingForClient = localServer.myServer.accept();
+                } catch (IOException e) { continue; }
 
-            ReadData readFromClient = new ReadData(waitingForClient);
-            Thread readThread = new Thread(readFromClient);
-            readThread.start();
+                ReadData readFromClient = new ReadData(waitingForClient);
+                Thread readThread = new Thread(readFromClient);
+                readThread.start();
 
-            localServer.addElements (waitingForClient, new DataOutputStream(waitingForClient.getOutputStream()),
-                                        waitingForClient.getRemoteSocketAddress(), readFromClient);
+                localServer.addElements(waitingForClient, new DataOutputStream(waitingForClient.getOutputStream()),
+                        waitingForClient.getRemoteSocketAddress(), readFromClient);
 
-            threadMessage("Just connected to " + waitingForClient.getRemoteSocketAddress());
+                threadMessage("Just connected to " + waitingForClient.getRemoteSocketAddress());
+            }
         }
         catch (IOException e) {
             threadMessage("Problem occurred while accepting new client. :(");

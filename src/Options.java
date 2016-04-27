@@ -235,7 +235,7 @@ public class Options extends JPanel {
 		gbc_separator_32.gridy = 14;
 		panel_1.add(separator_32, gbc_separator_32);
 		
-		JComboBox<String> act1 = new JComboBox<String>(Keys3);
+		final JComboBox<String> act1 = new JComboBox<String>(Keys3);
 		if (getWindowAncestor().keys[2]==26){
 			act1.setSelectedItem("UP");
 		}
@@ -351,7 +351,7 @@ public class Options extends JPanel {
 		gbc_lblActivate1.gridy = 32;
 		panel_1.add(lblActivate1, gbc_lblActivate1);
 		
-		JComboBox<String> act2 = new JComboBox<String>(Keys6);
+		final JComboBox<String> act2 = new JComboBox<String>(Keys6);
 		act2.setFont(new Font("Tahoma", Font.PLAIN, 32));
 		if (getWindowAncestor().keys[5]==26){
 			act2.setSelectedItem("UP");
