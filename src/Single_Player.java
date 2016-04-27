@@ -775,7 +775,7 @@ public class Single_Player extends JPanel implements ActionListener{
 		JButton button_1 = new JButton("Start a New Game");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Board game = new Board((String)ownPosition.getSelectedItem(),ownLives.getValue(),
+				Board game = new Board(getWidth(),getHeight(),(String)ownPosition.getSelectedItem(),ownLives.getValue(),
 						(String)GameMode.getSelectedItem(),ball_Num.getValue(),spd.getValue(),powerups.isSelected(),
 						(String)Difficulty1.getSelectedItem(),(Integer)Lives1.getValue(),(String)Position1.getSelectedItem(),
 						(String)Difficulty2.getSelectedItem(),(Integer)Lives2.getValue(),(String)Position2.getSelectedItem(),
