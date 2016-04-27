@@ -351,27 +351,65 @@ public class Multi_New extends JPanel implements ActionListener{
 					clientsThread.get(0).stop();
 					clientsThread.remove(0);
 				}
+				
+				List<InetAddress> l = gameServer.getAllClients();
 
-				String startData = "START:...";
+				String startData = "START:"+(String)ownPosition.getSelectedItem()+":"+
+						((Integer)ownLives.getValue())+":"+(String)GameMode.getSelectedItem()+":"+
+						((Integer)ball_Num.getValue())+":"+((Integer)spd.getValue())+":"+
+						((Boolean)powerups.isSelected()+":"+((Boolean)PCpl.isSelected()));
+				
+				int k=get_pos((String)ownPosition.getSelectedItem());
+				
+				boolean[] isPC = new boolean[4];
+				isPC[k]=false;				
+				
+				startData += ":"+l.size();
+				for (int i=0; i< l.size(); i++){
+					InetAddress ip = l.get(i);
+					startData += ":"+ip+","+((Integer)((k+i+1)%4));
+					isPC[(k+i+1)%4]=false;
+				}
+				
+				for (int i=0; i<4;i++){
+					if (isPC[i]!=false){
+						isPC[i]=PCpl.isSelected();
+					}
+					startData += ":"+(Boolean)isPC[i];
+				}
+				
+				System.out.println(startData);
 				gameServer.writeToAllClients(startData);
 
 				System.out.println(gameServer.getAllClients());
 				
-				/*Board game = new Board((String)ownPosition.getSelectedItem(),ownLives.getValue(),
-						(String)GameMode.getSelectedItem(),ball_Num.getValue(),spd.getValue(),powerups.isSelected(),Player2.isSelected(),
-						(String)Difficulty1.getSelectedItem(),(Integer)Lives1.getValue(),(String)Position1.getSelectedItem(),
-						(String)Difficulty2.getSelectedItem(),(Integer)Lives2.getValue(),(String)Position2.getSelectedItem(),
-						(String)Difficulty3.getSelectedItem(),(Integer)Lives3.getValue(),(String)Position3.getSelectedItem(),getWindowAncestor().keys);
+				BoardMulti game = new BoardMulti(getWidth(),getHeight(),(String)ownPosition.getSelectedItem(),ownLives.getValue(),
+						(String)GameMode.getSelectedItem(),ball_Num.getValue(),spd.getValue(),powerups.isSelected(),Player2.isSelected()
+						,getWindowAncestor().keys,isPC,PCpl.isSelected(),(ArrayList<InetAddress>) gameServer.getAllClients());
 
 				add(game,"Game");
 				cdl.show(Multi_New.this, "Game");
-				game.requestFocusInWindow();*/
+				game.requestFocusInWindow();
 			}
 		});
 		button_1.setFont(new Font("Tahoma", Font.PLAIN, 34));
 		ButtonPanel.add(button_1);
 			
 		
+	}
+	
+	private int get_pos(String position) {
+		switch (position){
+			case "Left":
+				return 0;
+		    case "Right":
+				return 1;
+			case "Top":
+				return 2;
+			case "Bottom":
+				return 3;
+			}
+		return 0;
 	}
 	
 	public Main_Frame getWindowAncestor(){		

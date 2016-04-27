@@ -641,71 +641,6 @@ public class Single_Player extends JPanel implements ActionListener{
 				gbc_Lives3.gridy = 39;
 				SelectionPanel.add(Lives3, gbc_Lives3);
 		
-//		JSlider PCpl = new JSlider(SwingConstants.HORIZONTAL, 1, 3, 1);
-//		PCpl.addPropertyChangeListener(new PropertyChangeListener() {
-//			public void propertyChange(PropertyChangeEvent evt) {
-//				switch(PCpl.getValue()){
-//				case 1:
-//					one.setVisible(true);
-//					Position1.setVisible(true);
-//					Lives1.setVisible(true);
-//					Difficulty1.setVisible(true);
-//					two.setVisible(true);
-//					Position2.setVisible(true);
-//					Lives2.setVisible(true);
-//					Difficulty2.setVisible(true);
-//					three.setVisible(true);
-//					Position3.setVisible(true);
-//					Lives3.setVisible(true);
-//					Difficulty3.setVisible(true);
-//					//repaint();
-//					break;
-//				case 2:
-//					one.setVisible(true);
-//					Position1.setVisible(true);
-//					Lives1.setVisible(true);
-//					Difficulty1.setVisible(true);
-//					two.setVisible(true);
-//					Position2.setVisible(true);
-//					Lives2.setVisible(true);
-//					Difficulty2.setVisible(true);
-//					three.setVisible(true);
-//					Position3.setVisible(true);
-//					Lives3.setVisible(true);
-//					Difficulty3.setVisible(true);
-//					//repaint();
-//					break;
-//				case 3:
-//					one.setVisible(true);
-//					Position1.setVisible(true);
-//					Lives1.setVisible(true);
-//					Difficulty1.setVisible(true);
-//					two.setVisible(true);
-//					Position2.setVisible(true);
-//					Lives2.setVisible(true);
-//					Difficulty2.setVisible(true);
-//					three.setVisible(true);
-//					Position3.setVisible(true);
-//					Lives3.setVisible(true);
-//					Difficulty3.setVisible(true);
-//					//repaint();
-//					break;
-//				}
-//				repaint();
-//			}
-//		});
-//		PCpl.setPaintTicks(true);
-//		PCpl.setPaintLabels(true);
-//		PCpl.setMinorTickSpacing(1);
-//		PCpl.setMajorTickSpacing(1);
-//		PCpl.setFont(new Font("Tahoma", Font.PLAIN, 14));
-//		GridBagConstraints gbc_PCpl = new GridBagConstraints();
-//		gbc_PCpl.fill = GridBagConstraints.HORIZONTAL;
-//		gbc_PCpl.insets = new Insets(0, 0, 5, 5);
-//		gbc_PCpl.gridx = 10;
-//		gbc_PCpl.gridy = 20;
-//		SelectionPanel.add(PCpl, gbc_PCpl);
-		
 		JPanel ButtonPanel = new JPanel();
 		MenuPanel.add(ButtonPanel);		
 		JButton button = new JButton("Back to Main Menu");
@@ -727,12 +662,9 @@ public class Single_Player extends JPanel implements ActionListener{
 						(String)Difficulty1.getSelectedItem(),(Integer)Lives1.getValue(),
 						(String)Difficulty2.getSelectedItem(),(Integer)Lives2.getValue(),
 						(String)Difficulty3.getSelectedItem(),(Integer)Lives3.getValue(),getWindowAncestor().keys);
-				//Board game = new Board();
 				add(game,"Game");
 				cdl.show(Single_Player.this, "Game");
 				game.requestFocusInWindow();
-				//cdl.last(Single_Player.this);
-				//requestFocusInWindow();
 			}
 		});
 		button_1.setFont(new Font("Tahoma", Font.PLAIN, 34));

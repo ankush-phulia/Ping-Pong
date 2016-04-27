@@ -7,7 +7,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.text.ParseException;
+import java.util.ArrayList;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -23,6 +26,7 @@ import java.awt.Insets;
 import javax.swing.JSeparator;
 import java.awt.BorderLayout;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.text.MaskFormatter;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -32,11 +36,12 @@ import java.awt.event.ActionEvent;
 import network.ConnectionToServer;
 import network.LocalServer;
 
+@SuppressWarnings("serial")
 public class Multi_Player extends JPanel {
 
 	LocalServer gameServer;
 
-	boolean expanded = false;
+	int State=0;
 	private static final Color FG_COLOR = new Color(0xFFFFFF);
 	private static final Color BG_COLOR = new Color(0x3B5998);
 	private static final Color BORDER_COLOR = new Color(0x000000);
@@ -67,8 +72,8 @@ public class Multi_Player extends JPanel {
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				if (action != null && actionEnabled)action.run();
-				if (!expanded){
+				if (action != null && actionEnabled && State!=2)action.run();
+				if (State==0){
 					removeAll();
 					try {
 						populate_layout();
@@ -76,13 +81,15 @@ public class Multi_Player extends JPanel {
 						e1.printStackTrace();
 					}
 				}
-				else {
+				else if (State==1) {
 					removeAll();
 					show_small();
 				}
+				else{
+					
+				}
 			}
-		});
-		
+		});		
 		
 	}
 	
@@ -221,16 +228,52 @@ public class Multi_Player extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 
 				ConnectionToServer cs = new ConnectionToServer(ipAddress.getText(), 8080);
+				System.out.println(cs.connectionEstablished());
 				if (cs.connectionEstablished()) {
 					// cs.writeToServer("MYIP:" + cs.getIPAddress());
 
 					String resp, type;
+					
 					do {
 						resp = cs.readFromServer();
-						type = parseResponse(resp);
+						System.out.println(resp);
+						type=parseResponse(resp);
+						
 					} while (!type.equalsIgnoreCase("START"));
 
+					
 					// start the game here
+					RXCardLayout cdl=(RXCardLayout) getLayout();
+					
+					String[] tokens = resp.split(":");
+					boolean[] isPC = new boolean[] {Boolean.parseBoolean(tokens[tokens.length-4]),Boolean.parseBoolean(tokens[tokens.length-3]),Boolean.parseBoolean(tokens[tokens.length-2]),Boolean.parseBoolean(tokens[tokens.length-1])};
+					ArrayList<InetAddress> IPs= new ArrayList<InetAddress>();
+					int ipsnum=Integer.parseInt(tokens[8]);
+					String mypos="Left";
+					
+					for (int i=0;i<ipsnum;i++){
+						String[] pair=tokens[9+i].split(",");
+						
+						if (cs.getIPAddress().toString().equals(pair[0])){
+							mypos=get_rev_pos(Integer.parseInt(pair[1]));
+						}
+						try {
+							IPs.add(InetAddress.getByName(pair[0]));
+						} catch (UnknownHostException e1) {
+							e1.printStackTrace();
+						}
+					}					
+					
+					System.out.println(mypos);
+					
+					BoardMulti game = new BoardMulti(getWidth(),getHeight(),mypos,Integer.parseInt(tokens[2]),
+							tokens[3],Integer.parseInt(tokens[4]),Integer.parseInt(tokens[5]),Boolean.parseBoolean(tokens[6]),false
+							,getWindowAncestor().keys,isPC,Boolean.parseBoolean(tokens[7]), IPs);
+
+					add(game,"Game");
+					cdl.show(Multi_Player.this, "Game");
+					State=2;
+					game.requestFocusInWindow();
 
 				}
 				else {
@@ -253,6 +296,25 @@ public class Multi_Player extends JPanel {
 		gbc_separator_52.gridx = 2;
 		gbc_separator_52.gridy = 11;
 		panel_1.add(separator_52, gbc_separator_52);
+	}
+	
+	public Main_Frame getWindowAncestor(){		
+		Main_Frame topFrame = (Main_Frame) SwingUtilities.getWindowAncestor(this);
+		return topFrame;
+	}
+	
+	public String get_rev_pos(int i){
+		switch(i){
+			case 0:
+				return "Left";
+			case 1:
+				return "Right";
+			case 2:
+				return "Top";
+			case 3:
+				return "Bottom";
+		}
+		return "Left";
 	}
 	
 	public void setAction(Runnable action) {this.action = action;}
@@ -305,10 +367,9 @@ public class Multi_Player extends JPanel {
 		gg.fillRect(w-1-t, 0, t, h-1);
 	}
 
-
 	private String parseResponse (String response) {
 		if (response == null)
-			return null;
+			return "";
 
 		String[] tokens = response.split(":");
 		switch (tokens[0]) {

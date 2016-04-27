@@ -46,7 +46,7 @@ public class ConnectionToServer {
 
 
     // checks whether connection is alive or not
-    public boolean connectionEstablished () { return clientSocket == null; }
+    public boolean connectionEstablished () { return clientSocket != null; }
 
 
     // closes the socket

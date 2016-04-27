@@ -133,7 +133,7 @@ public class Main_Frame extends JFrame {
 				.setEndSide(SLSide.BOTTOM, opt)
 				.setCallback(new SLKeyframe.Callback() {@Override public void done() {
 					mpp.setAction(mppBackAction);
-					mpp.expanded=true;
+					mpp.State=1;
 					mpp.enableAction();
 				}}))
 			.play();
@@ -147,7 +147,7 @@ public class Main_Frame extends JFrame {
 				.setStartSide(SLSide.BOTTOM, opt)
 				.setCallback(new SLKeyframe.Callback() {@Override public void done() {
 					mpp.setAction(mppAction);
-					mpp.expanded=false;
+					mpp.State=0;
 					enableActions();
 				}}))
 			.play();

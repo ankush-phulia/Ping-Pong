@@ -536,10 +536,6 @@ public class Board extends JPanel implements ActionListener, KeyListener{
         g.setColor(ccolor);
 
         switch(state){
-        	case "Start":
-        		g.setFont(new Font(Font.DIALOG, Font.BOLD, 24));
-                g.drawString("Press 'SPACE' to play", (int)Xdim/2-150, (int)this.Ydim/2);        		
-        		break;
         		
 			case "Playing":
 				
@@ -604,7 +600,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
 						winner=sc.pos;
 					}
 				}				
-				g.drawString("Player "+(winner)+" won!", (int)Xdim/2-90, (int)this.Ydim/2-200);
+				g.drawString("Player "+(winner)+" won!", (int)Xdim/2-100, (int)this.Ydim/2-200);
                 g.drawString("Press 'Backspace' to play again", (int)Xdim/2-160, (int)this.Ydim/2);
 				break;
         }

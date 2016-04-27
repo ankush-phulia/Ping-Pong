@@ -4,14 +4,17 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.net.InetAddress;
 import java.util.ArrayList;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+
+import javax.swing.JPanel;
 import javax.swing.Timer;
 
 
-public class BoardMulti extends Board implements ActionListener, KeyListener{
+public class BoardMulti extends JPanel implements ActionListener, KeyListener{
 	
 	//game screens
 	public String state;
@@ -29,7 +32,7 @@ public class BoardMulti extends Board implements ActionListener, KeyListener{
     //Players
     public String position="Left";
     public ArrayList<Paddle> players;
-    public boolean player2;
+    public boolean player2=false;
     public boolean PCplayers;
     public boolean[] isPC;
     
@@ -78,7 +81,8 @@ public class BoardMulti extends Board implements ActionListener, KeyListener{
     
     public BoardMulti (int x, int y, String ownPosition,int ownLives,
 			String GameMode,int ball_Num,int spd,boolean powerups,
-			 int[] keys, boolean[] isPC, boolean PCplayers){    	
+			boolean player2, int[] keys, boolean[] isPC, boolean PCplayers,
+			ArrayList<InetAddress> IPs){    	
     	
     	//appearance
     	this.Xdim=x;
@@ -98,14 +102,16 @@ public class BoardMulti extends Board implements ActionListener, KeyListener{
 				this.balls.add(new Ball(this.Ydim/2, Xdim/2, 12*gameSpd, 6*gameSpd,4));
         	}
     	}
+    	
     	//paddles
     	this.position=ownPosition;
     	this.PCplayers=PCplayers;
     	this.isPC=isPC;
+    	System.out.println(isPC[0]);
 
     	//players
     	this.players=new ArrayList<Paddle>();
-    	
+    	this.player2=player2;    	
     	int k=get_pos(this.position);
     	Paddle P1=this.create_paddle(k+1,ownLives);
     	this.players.add(P1);
@@ -185,8 +191,21 @@ public class BoardMulti extends Board implements ActionListener, KeyListener{
                         }
                     }
             	}
+            	else if (player2 && this.position.equals("Right")){
+            		P1.set_cYvel(20*gameSpd);
+            		if (pressed[3]) {
+                        if (P1.cYpos-P1.cYvel > P1.Ydim/2 ) {
+                            P1.set_Ypos(P1.cYpos-P1.cYvel);
+                        }
+                    }
+                    if (pressed[4]) {
+                        if (P1.cYpos+P1.cYvel+P1.Ydim/2< this.Ydim) {
+                        	P1.set_Ypos(P1.cYpos+P1.cYvel);
+                        }
+                    }
+            	}
             	else if (PCplayers && isPC[P1.pos-1]){
-            			AIplayer ai1 = new AIplayer() ;
+            			AIplayer2 ai1 = new AIplayer2() ;
             			ai1.moveAIplayer1(P1, balls, this, 20*gameSpd);
             	}
             	else{
@@ -208,9 +227,22 @@ public class BoardMulti extends Board implements ActionListener, KeyListener{
                         	P2.set_Ypos(P2.cYpos+P2.cYvel);
                         }
                     }
-            	}            	
+            	}  
+            	else if (player2 && this.position.equals("Left")){
+            		P2.set_cYvel(20*gameSpd);
+            		if (pressed[3]) {
+                        if (P2.cYpos-P2.cYvel > P2.Ydim/2 ) {
+                            P2.set_Ypos(P2.cYpos-P2.cYvel);
+                        }
+                    }
+                    if (pressed[4]) {
+                        if (P2.cYpos+P2.cYvel+P2.Ydim/2< this.Ydim) {
+                        	P2.set_Ypos(P2.cYpos+P2.cYvel);
+                        }
+                    }
+            	} 
             	else if (PCplayers && isPC[P2.pos-1]){
-            			AIplayer ai1 = new AIplayer() ;
+            			AIplayer2 ai1 = new AIplayer2() ;
             			ai1.moveAIplayer(P2, balls, this, 20*gameSpd);
             	}
             	else{
@@ -232,9 +264,22 @@ public class BoardMulti extends Board implements ActionListener, KeyListener{
                         	P3.set_Xpos(P3.cXpos+P3.cXvel);
                         }
                     }
-            	}            	
+            	} 
+            	else if (player2 && this.position.equals("Bottom")){
+            		P3.set_cXvel(20*gameSpd);
+            		if (pressed[3]) {
+                        if (P3.cXpos-P3.cXvel > P3.Xdim/2 ) {
+                            P3.set_Xpos(P3.cXpos-P3.cXvel);
+                        }
+                    }
+                    if (pressed[4]) {
+                        if (P3.cXpos+P3.cXvel+P3.Xdim/2< this.Xdim) {
+                        	P3.set_Xpos(P3.cXpos+P3.cXvel);
+                        }
+                    }
+            	} 
             	else if (PCplayers && isPC[P3.pos-1]){
-            		AIplayer ai1 = new AIplayer() ;
+            		AIplayer2 ai1 = new AIplayer2() ;
             		ai1.moveAIplayer4(P3, balls, this, 20*gameSpd);
             	}
             	else{
@@ -256,9 +301,22 @@ public class BoardMulti extends Board implements ActionListener, KeyListener{
                         	P4.set_Xpos(P4.cXpos+P4.cXvel);
                         }
                     }
-            	}            	
+            	} 
+            	else if (player2 && this.position.equals("Top")){
+            		P4.set_cXvel(20*gameSpd);
+            		if (pressed[3]) {
+                        if (P4.cXpos-P4.cXvel > P4.Xdim/2 ) {
+                            P4.set_Xpos(P4.cXpos-P4.cXvel);
+                        }
+                    }
+                    if (pressed[4]) {
+                        if (P4.cXpos+P4.cXvel+P4.Xdim/2< this.Xdim) {
+                        	P4.set_Xpos(P4.cXpos+P4.cXvel);
+                        }
+                    }
+            	}  
             	else if (PCplayers && isPC[P4.pos-1]){
-            		AIplayer ai1 = new AIplayer() ;
+            		AIplayer2 ai1 = new AIplayer2() ;
             		ai1.moveAIplayer3(P4, balls, this, 20*gameSpd);
             	}
             	else{
@@ -500,10 +558,6 @@ public class BoardMulti extends Board implements ActionListener, KeyListener{
         g.setColor(ccolor);
 
         switch(state){
-        	case "Start":
-        		g.setFont(new Font(Font.DIALOG, Font.BOLD, 24));
-                g.drawString("Press 'SPACE' to play", (int)Xdim/2-150, (int)this.Ydim/2);        		
-        		break;
         		
 			case "Playing":
 				
@@ -568,7 +622,7 @@ public class BoardMulti extends Board implements ActionListener, KeyListener{
 						winner=sc.pos;
 					}
 				}				
-				g.drawString("Player "+(winner)+" won!", (int)Xdim/2-90, (int)this.Ydim/2-200);
+				g.drawString("Player "+(winner)+" won!", (int)Xdim/2-100, (int)this.Ydim/2-200);
                 g.drawString("Press 'Backspace' to play again", (int)Xdim/2-160, (int)this.Ydim/2);
 				break;
         }
@@ -581,14 +635,6 @@ public class BoardMulti extends Board implements ActionListener, KeyListener{
 	
 	public void keyPressed(KeyEvent e) {
 		switch(state){
-			case "Start":
-				if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-					this.players=new ArrayList<Paddle>();
-					this.balls=new ArrayList<Ball>();
-					this.state="Player Select";
-					repaint();
-	            }
-				break;
 				
 			case "Playing":				
 				if (e.getKeyCode() == keys[0]) {
@@ -609,10 +655,10 @@ public class BoardMulti extends Board implements ActionListener, KeyListener{
 	            else if (e.getKeyCode() == keys[5]) {
 	                pressed[5] = true;
 	            }
-	            if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+	            /*if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
 	            	RXCardLayout cdl=(RXCardLayout) getParent().getLayout();
 	            	cdl.show(getParent(), "MenuPanel");
-	            }
+	            }*/
 	            repaint();
 				break;
 				
