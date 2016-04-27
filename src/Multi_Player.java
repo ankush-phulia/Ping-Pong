@@ -258,15 +258,15 @@ public class Multi_Player extends JPanel {
 							mypos=get_rev_pos(Integer.parseInt(pair[1]));
 						}
 						try {
-							IPs.add(InetAddress.getByName(pair[0]));
+							IPs.add(InetAddress.getByName(pair[0].substring(1)));
 						} catch (UnknownHostException e1) {
 							e1.printStackTrace();
 						}
 					}					
 					
-					System.out.println(mypos);
+					//System.out.println(mypos);
 					
-					BoardMulti game = new BoardMulti(getWidth(),getHeight(),mypos,Integer.parseInt(tokens[2]),
+					BoardMulti game = new BoardMulti(cs,getWidth(),getHeight(),mypos,Integer.parseInt(tokens[2]),
 							tokens[3],Integer.parseInt(tokens[4]),Integer.parseInt(tokens[5]),Boolean.parseBoolean(tokens[6]),false
 							,getWindowAncestor().keys,isPC,Boolean.parseBoolean(tokens[7]), IPs);
 

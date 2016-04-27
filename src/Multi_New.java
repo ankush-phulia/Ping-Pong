@@ -361,7 +361,7 @@ public class Multi_New extends JPanel implements ActionListener{
 				
 				int k=get_pos((String)ownPosition.getSelectedItem());
 				
-				boolean[] isPC = new boolean[4];
+				boolean[] isPC = new boolean[] {true,true,true,true};
 				isPC[k]=false;				
 				
 				startData += ":"+l.size();
@@ -371,22 +371,25 @@ public class Multi_New extends JPanel implements ActionListener{
 					isPC[(k+i+1)%4]=false;
 				}
 				
+				//System.out.println(PCpl.isSelected());
+				
 				for (int i=0; i<4;i++){
-					if (isPC[i]!=false){
-						isPC[i]=PCpl.isSelected();
+					if (isPC[i]){
+						isPC[i]=(PCpl.isSelected());
+						
 					}
 					startData += ":"+(Boolean)isPC[i];
 				}
 				
-				System.out.println(startData);
+				//System.out.println(startData);
 				gameServer.writeToAllClients(startData);
 
-				System.out.println(gameServer.getAllClients());
+				//System.out.println(gameServer.getAllClients());
 				
-				BoardMulti game = new BoardMulti(getWidth(),getHeight(),(String)ownPosition.getSelectedItem(),ownLives.getValue(),
+				BoardMulti game = new BoardMulti(gameServer,getWidth(),getHeight(),(String)ownPosition.getSelectedItem(),ownLives.getValue(),
 						(String)GameMode.getSelectedItem(),ball_Num.getValue(),spd.getValue(),powerups.isSelected(),Player2.isSelected()
 						,getWindowAncestor().keys,isPC,PCpl.isSelected(),(ArrayList<InetAddress>) gameServer.getAllClients());
-
+				//System.out.println(isPC);
 				add(game,"Game");
 				cdl.show(Multi_New.this, "Game");
 				game.requestFocusInWindow();
