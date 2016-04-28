@@ -18,8 +18,19 @@ public class LocalServer {
     List<ReadData> inputStreamClient = new ArrayList<>();
 
 
+    // reads data from client with IP Address 'ip_addr'
+    // returns null if no data is available
+    public ReadData getReadThread (InetAddress ip_addr) {
+        int position = ip_address.indexOf(ip_addr);
+        ReadData rd = inputStreamClient.get(position);
+        return  rd;
+    }
+
+
+
+
     // Returns a list of all available IPs (over different network interfaces)
-    public synchronized static List<InetAddress> getAllAvailableIP () {
+    public static List<InetAddress> getAllAvailableIP () {
         List<InetAddress> IPs = new ArrayList<>();
         try {
             Enumeration e = NetworkInterface.getNetworkInterfaces();
@@ -56,7 +67,7 @@ public class LocalServer {
 
     // returns list of IP Address of all clients
     // (useful for keeping track of all clients)
-    public synchronized List<InetAddress> getAllClients () {
+    public List<InetAddress> getAllClients () {
         return new ArrayList<>(ip_address);
     }
 
@@ -91,7 +102,7 @@ public class LocalServer {
 
     // writes 'writeData' to client with IP Address 'ip_addr'
     // returns false if client is disconnected else true
-    public synchronized boolean writeToClient (InetAddress ip_addr, String writeData) {
+    public boolean writeToClient (InetAddress ip_addr, String writeData) {
         int position = ip_address.indexOf(ip_addr);
         DataOutputStream out = writingStreamClient.get(position);
         Socket client = clientSocket.get(position);
@@ -117,7 +128,7 @@ public class LocalServer {
 
     // writes 'writeData' to all clients
     // returns false if any client is disconnected else true
-    public synchronized boolean writeToAllClients (String writeData) {
+    public boolean writeToAllClients (String writeData) {
         boolean success = true;
         for (int position = 0; position < clientSocket.size(); position++) {
             DataOutputStream out = writingStreamClient.get(position);
@@ -148,7 +159,7 @@ public class LocalServer {
 
     // reads data from client with IP Address 'ip_addr'
     // returns null if no data is available
-    public synchronized String readFromClient (InetAddress ip_addr) {
+    public String readFromClient (InetAddress ip_addr) {
         int position = ip_address.indexOf(ip_addr);
         ReadData rd = inputStreamClient.get(position);
         return  rd.readFromBuffer();

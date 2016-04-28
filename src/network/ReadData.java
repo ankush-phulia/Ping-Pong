@@ -1,6 +1,7 @@
 package network;
 
-import java.io.BufferedInputStream;
+import play.BoardMulti;
+
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.net.Socket;
@@ -32,6 +33,7 @@ public class ReadData implements Runnable {
             String lineRead;
             while (connection.isConnected()) {
                 lineRead = in.readUTF();
+                BoardMulti.parse_packet(lineRead);
                 buffer.add(lineRead);
             }
         }
