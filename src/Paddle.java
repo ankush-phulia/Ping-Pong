@@ -10,7 +10,6 @@ public class Paddle {
     public double type;
     public int pos;
     public int lives;
-    public int score;
     
 //    public Paddle(double typ,double Xstart,double Ystart){
 //    	if (typ==0){
@@ -45,7 +44,6 @@ public class Paddle {
     	this.cYvel=0;
     	this.pos=pos;
     	this.lives=lives;
-    	this.score=0;
     }
     
     public void set_type(int t){

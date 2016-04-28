@@ -372,10 +372,10 @@ public class Multi_New extends JPanel implements ActionListener{
 				}
 				
 				for (int i=0; i<4;i++){
-					if (isPC[i]){
+/*					if (isPC[i]){
 						isPC[i]=(PCpl.isSelected());
 						
-					}
+					}*/
 					startData += ":"+(Boolean)isPC[i];
 				}
 
