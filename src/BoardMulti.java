@@ -443,20 +443,22 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
 	            }
 	            gameServer.writeToAllClients(ballinfo);
             }
-            repaint();
+            if (isHost) {
+        		List<InetAddress> clients = gameServer.getAllClients();
+        		for (InetAddress ip : clients) {
+        			parse_packet(gameServer.readFromClient(ip));
+        			parse_packet(gameServer.readFromClient(ip));
+        		}
+        	}
+        	else {
+    			parse_packet(cs.readFromServer());
+    			parse_packet(cs.readFromServer());
+    			
+        	}
+        	repaint();
     	} 
     	
-    	if (isHost) {
-    		List<InetAddress> clients = gameServer.getAllClients();
-    		for (InetAddress ip : clients) {
-    			parse_packet(gameServer.readFromClient(ip));
-    			parse_packet(gameServer.readFromClient(ip));
-    		}
-    	}
-    	else {
-			parse_packet(cs.readFromServer());
-			parse_packet(cs.readFromServer());
-    	}
+    	
     }
     
     public void analyse(Ball b){
@@ -888,6 +890,7 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
     }
     
     public void parse_packet(String response){
+    	System.out.println(response);
     	if (response == null)
     		return;
     	
@@ -895,17 +898,19 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
     	switch(tokens[0]){
     		case "Pos":
     			Paddle p = fetch(Integer.parseInt(tokens[1]), players);
-    			if (tokens[2] == "X")
-    				p.cXpos = Integer.parseInt(tokens[3]);
-    			else if (tokens[2] == "Y")
-    				p.cYpos = Integer.parseInt(tokens[3]);
-    			gameServer.writeToAllClients(response);
+    			if (tokens[2].equals("X"))
+    				p.cXpos = Double.parseDouble(tokens[3]);
+    			else if (tokens[2].equals("Y"))
+    				p.cYpos = Double.parseDouble(tokens[3]);
+    			if (isHost){
+    				gameServer.writeToAllClients(response);
+    			}    			
     			break;
     		case "Ball":
     			for (int i=0; i<balls.size(); i++) {
     				Ball b = balls.get(i);
-    				b.Xpos = Double.parseDouble(tokens[2*i]);
-    				b.Ypos = Double.parseDouble(tokens[2*i+1]);
+    				b.Xpos = Double.parseDouble(tokens[2*i+1]);
+    				b.Ypos = Double.parseDouble(tokens[2*i+2]);
     			}
     			break;
     		default:

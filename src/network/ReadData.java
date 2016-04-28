@@ -43,7 +43,9 @@ public class ReadData implements Runnable {
     public String readFromBuffer () {
         if (buffer.isEmpty())
             return null;
-        return buffer.get(0);
+        String answer = buffer.get(0);
+        buffer.remove(0);
+        return answer;
     }
 
 
