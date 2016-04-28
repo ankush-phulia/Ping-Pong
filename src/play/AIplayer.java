@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public  class AIplayer {
 	
-	public void moveAIplayer(Paddle p,ArrayList<Ball> balls,Board b,double initialvelocity){
+	public static void moveAIplayer(Paddle p,ArrayList<Ball> balls,Board b,double initialvelocity){
 		Ball balltobefollowed = null  ;
 		Ball temp  ; 
 		double farthestballfromleft = 0;
@@ -39,7 +39,7 @@ public  class AIplayer {
 		}
 	}
 	
-	public void moveAIplayer1(Paddle p,ArrayList<Ball> balls,Board b,double initialvelocity){
+	public static void moveAIplayer1(Paddle p,ArrayList<Ball> balls,Board b,double initialvelocity){
 		
 		Ball balltobefollowed = null  ;
 		Ball temp  ; 		
@@ -76,7 +76,7 @@ public  class AIplayer {
 		}
 	}
 	
-	public void moveAIplayer3(Paddle p,ArrayList<Ball> balls,Board b,double initialvelocity){
+	public static void moveAIplayer3(Paddle p,ArrayList<Ball> balls,Board b,double initialvelocity){
 		Ball balltobefollowed = null  ;
 		Ball temp  ; 
 		double farthestballfromleft = 0;
@@ -111,7 +111,7 @@ public  class AIplayer {
 		}
 	}
 	
-	public void moveAIplayer4(Paddle p,ArrayList<Ball> balls,Board b,double initialvelocity){
+	public static void moveAIplayer4(Paddle p,ArrayList<Ball> balls,Board b,double initialvelocity){
 		
 		Ball balltobefollowed = null  ;
 		Ball temp  ; 		

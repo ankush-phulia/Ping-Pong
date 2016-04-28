@@ -204,8 +204,7 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
                     }
             	}
             	else if (PCplayers && isPC[P1.pos-1]){
-            		AIplayer2 ai1 = new AIplayer2() ;
-            		ai1.moveAIplayer1(P1, balls, this, 20*gameSpd);
+            		AIplayer2.moveAIplayer1(P1, balls, this, 20*gameSpd);
             	}
             	else{
 
@@ -245,8 +244,7 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
                     }
             	} 
             	else if (PCplayers && isPC[P2.pos-1]){
-            			AIplayer2 ai1 = new AIplayer2() ;
-            			ai1.moveAIplayer(P2, balls, this, 20*gameSpd);
+            		AIplayer2.moveAIplayer(P2, balls, this, 20*gameSpd);
             	}
             	else{
 
@@ -285,8 +283,7 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
                     }
             	} 
             	else if (PCplayers && isPC[P3.pos-1]){
-            		AIplayer2 ai1 = new AIplayer2() ;
-            		ai1.moveAIplayer4(P3, balls, this, 20*gameSpd);
+            		AIplayer2.moveAIplayer4(P3, balls, this, 20*gameSpd);
             	}
             	else{
 
@@ -325,8 +322,7 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
                     }
             	}  
             	else if (PCplayers && isPC[P4.pos-1]){
-            		AIplayer2 ai1 = new AIplayer2() ;
-            		ai1.moveAIplayer3(P4, balls, this, 20*gameSpd);
+            		AIplayer2.moveAIplayer3(P4, balls, this, 20*gameSpd);
             	}
             	else{
             		
@@ -411,10 +407,15 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
             		Paddle tmp=fetch(b.origin,players);
             		if (tmp!=null && tmp.lives>0){
                     	BoardMulti.playerScores[tmp.pos-1]++;
-                    	gameServer.writeToAllClients("Score:"+((Integer)tmp.pos-1));
+                    	if (isHost){
+                    		gameServer.writeToAllClients("Score:"+((Integer)tmp.pos-1));
+                    	}
+                    	
                     }
                     P1.lives--;
-                    gameServer.writeToAllClients("Lives:1");
+                    if (isHost){
+                    	gameServer.writeToAllClients("Lives:1");
+                    }                    
             	}
             }
             else{
@@ -422,8 +423,8 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
             }            
             b.Xvel *=-1;
         }
-		else if (nextLeftPos < 0){
-			//b.origin=1;
+		else if (nextLeftPos < 0 && P1.lives==0){
+			b.origin=1;
             b.Xvel *= -1;
 		}
         //will the ball go off the right side?
@@ -435,10 +436,16 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
         			Paddle tmp=fetch(b.origin,players);
         			if (tmp!=null && tmp.lives>0){
                     	BoardMulti.playerScores[tmp.pos-1]++;
-                    	gameServer.writeToAllClients("Score:"+((Integer)tmp.pos-1));
+                    	if (isHost){
+                    		gameServer.writeToAllClients("Score:"+((Integer)tmp.pos-1));
+                    	}
+                    	
                     }
         			P2.lives--;
-        			gameServer.writeToAllClients("Lives:2");
+        			if (isHost){
+        				gameServer.writeToAllClients("Lives:2");
+        			}
+        			
             	}
             }
         	else{
@@ -447,8 +454,8 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
         	
             b.Xvel *= -1;
         }
-		else if (nextRightPos > this.Xdim){
-			//b.origin=2;
+		else if (nextRightPos > this.Xdim && P2.lives==0){
+			b.origin=2;
             b.Xvel *= -1;
 		}
       //will the ball go off the top?
@@ -461,10 +468,16 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
         			Paddle tmp=fetch(b.origin,players);
             		if (tmp!=null && tmp.lives>0){
                     	BoardMulti.playerScores[tmp.pos-1]++;
-                    	gameServer.writeToAllClients("Score:"+((Integer)tmp.pos-1));
+                    	if (isHost){
+                    		gameServer.writeToAllClients("Score:"+((Integer)tmp.pos-1));
+                    	}
+                    	
                     }
                     P3.lives--;
-                    gameServer.writeToAllClients("Lives:3");
+                    if (isHost){
+                    	gameServer.writeToAllClients("Lives:3");
+                    }
+                    
             	}
             }
         	else{
@@ -473,8 +486,8 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
         	
             b.Yvel *= -1;
         }
-        else if (nextTopPos < 0 ) {
-        	//b.origin=3;
+        else if (nextTopPos < 0 && P3.lives==0) {
+        	b.origin=3;
             b.Yvel *=-1;               
         }
       //will the ball go off the bottom?
@@ -486,10 +499,16 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
         			Paddle tmp=fetch(b.origin,players);
         			if (tmp!=null && tmp.lives>0){
                     	BoardMulti.playerScores[tmp.pos-1]++;
-                    	gameServer.writeToAllClients("Score:"+((Integer)tmp.pos-1));
+                    	if (isHost){
+                    		gameServer.writeToAllClients("Score:"+((Integer)tmp.pos-1));
+                    	}
+                    	
                     }
         			P4.lives--;
-        			gameServer.writeToAllClients("Lives:4");
+        			if (isHost){
+        				gameServer.writeToAllClients("Lives:4");
+        			}
+        			
             	}
             }
         	else{
@@ -499,17 +518,19 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
             b.Yvel *= -1;
         }
 		//bounce off the bottom
-        else if (nextBottomPos > this.Ydim) {
-			//b.origin=4;
+        else if (nextBottomPos > this.Ydim && P4.lives==0) {
+        	b.origin=4;
             b.Yvel *=-1;               
         }
         
         if (zeros(BoardMulti.players,players.size()-1)){
         	BoardMulti.state = "Done";
-        	gameServer.writeToAllClients("Done");
+        	if (isHost){
+        		gameServer.writeToAllClients("Done");
+        	}        	
         }
     	
-    	//checking for collison condition between the balls 
+    	//checking for collision condition between the balls 
         boolean collisionball = false ;
         Ball temp1 = b;
         Ball temp2 = null ; 

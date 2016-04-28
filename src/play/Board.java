@@ -190,8 +190,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
                     }
             	}
             	else if (!this.position.equals("Left")){
-            			AIplayer ai1 = new AIplayer() ;
-            			ai1.moveAIplayer1(P1, balls, this, 20*gameSpd);
+            		AIplayer.moveAIplayer1(P1, balls, this, 20*gameSpd);
             	}
             	else{
             		
@@ -214,8 +213,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
                     }
             	}            	
             	else if (!this.position.equals("Right")){
-            			AIplayer ai1 = new AIplayer() ;
-            			ai1.moveAIplayer(P2, balls, this, 20*gameSpd);
+            		AIplayer.moveAIplayer(P2, balls, this, 20*gameSpd);
             	}
             	else{
             		
@@ -238,8 +236,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
                     }
             	}            	
             	else if (!this.position.equals("Top")){
-            		AIplayer ai1 = new AIplayer() ;
-            		ai1.moveAIplayer4(P3, balls, this, 20*gameSpd);
+            		AIplayer.moveAIplayer4(P3, balls, this, 20*gameSpd);
             	}
             	else{
             		
@@ -262,8 +259,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
                     }
             	}            	
             	else if (!this.position.equals("Bottom")){
-            		AIplayer ai1 = new AIplayer() ;
-            		ai1.moveAIplayer3(P4, balls, this, 20*gameSpd);
+            		AIplayer.moveAIplayer3(P4, balls, this, 20*gameSpd);
             	}
             	else{
             		
