@@ -575,18 +575,18 @@ public class Single_Player extends JPanel implements ActionListener{
 		gbc_separator_21.gridy = 37;
 		SelectionPanel.add(separator_21, gbc_separator_21);
 		
-				final JSpinner Lives2 = new JSpinner(sm2);
-				Lives2.setFont(new Font("Tahoma", Font.PLAIN, 34));
-				Lives2.setVisible(true);
-				DefaultEditor edit2=new JSpinner.DefaultEditor(Lives2);
-				edit2.setAlignmentX(RIGHT_ALIGNMENT);
-				Lives2.setEditor(edit2);
-				GridBagConstraints gbc_Lives2 = new GridBagConstraints();
-				gbc_Lives2.fill = GridBagConstraints.HORIZONTAL;
-				gbc_Lives2.insets = new Insets(0, 0, 5, 5);
-				gbc_Lives2.gridx = 10;
-				gbc_Lives2.gridy = 37;
-				SelectionPanel.add(Lives2, gbc_Lives2);
+		final JSpinner Lives2 = new JSpinner(sm2);
+		Lives2.setFont(new Font("Tahoma", Font.PLAIN, 34));
+		Lives2.setVisible(true);
+		DefaultEditor edit2=new JSpinner.DefaultEditor(Lives2);
+		edit2.setAlignmentX(RIGHT_ALIGNMENT);
+		Lives2.setEditor(edit2);
+		GridBagConstraints gbc_Lives2 = new GridBagConstraints();
+		gbc_Lives2.fill = GridBagConstraints.HORIZONTAL;
+		gbc_Lives2.insets = new Insets(0, 0, 5, 5);
+		gbc_Lives2.gridx = 10;
+		gbc_Lives2.gridy = 37;
+		SelectionPanel.add(Lives2, gbc_Lives2);
 		
 		JSeparator separator_19 = new JSeparator();
 		GridBagConstraints gbc_separator_19 = new GridBagConstraints();
@@ -628,18 +628,18 @@ public class Single_Player extends JPanel implements ActionListener{
 		gbc_separator_20.gridy = 39;
 		SelectionPanel.add(separator_20, gbc_separator_20);
 		
-				final JSpinner Lives3 = new JSpinner(sm3);
-				Lives3.setFont(new Font("Tahoma", Font.PLAIN, 34));
-				Lives3.setVisible(true);
-				DefaultEditor edit3=new JSpinner.DefaultEditor(Lives3);
-				edit3.setAlignmentX(RIGHT_ALIGNMENT);
-				Lives3.setEditor(edit3);
-				GridBagConstraints gbc_Lives3 = new GridBagConstraints();
-				gbc_Lives3.fill = GridBagConstraints.HORIZONTAL;
-				gbc_Lives3.insets = new Insets(0, 0, 0, 5);
-				gbc_Lives3.gridx = 10;
-				gbc_Lives3.gridy = 39;
-				SelectionPanel.add(Lives3, gbc_Lives3);
+		final JSpinner Lives3 = new JSpinner(sm3);
+		Lives3.setFont(new Font("Tahoma", Font.PLAIN, 34));
+		Lives3.setVisible(true);
+		DefaultEditor edit3=new JSpinner.DefaultEditor(Lives3);
+		edit3.setAlignmentX(RIGHT_ALIGNMENT);
+		Lives3.setEditor(edit3);
+		GridBagConstraints gbc_Lives3 = new GridBagConstraints();
+		gbc_Lives3.fill = GridBagConstraints.HORIZONTAL;
+		gbc_Lives3.insets = new Insets(0, 0, 0, 5);
+		gbc_Lives3.gridx = 10;
+		gbc_Lives3.gridy = 39;
+		SelectionPanel.add(Lives3, gbc_Lives3);
 		
 		JPanel ButtonPanel = new JPanel();
 		MenuPanel.add(ButtonPanel);		

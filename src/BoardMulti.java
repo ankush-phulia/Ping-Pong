@@ -192,7 +192,6 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
     	this.position=ownPosition;
     	this.PCplayers=PCplayers;
     	this.isPC=isPC;
-    	//System.out.println(isPC[3]);
 
     	//players
     	this.players=new ArrayList<Paddle>();
@@ -455,8 +454,7 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
 			}
 
 			repaint();
-    	} 
-    	
+    	}
 
     }
     

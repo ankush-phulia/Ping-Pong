@@ -124,7 +124,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
         	this.players.add(P4);
     	}
 		
-		
+
     	this.playerScores=new int[] {0,0,0,0};
     	
     	//focused window
