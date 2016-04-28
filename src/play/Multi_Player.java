@@ -250,9 +250,12 @@ public class Multi_Player extends JPanel {
 					int ipsnum=Integer.parseInt(tokens[8]);
 					String mypos="Left";
 					
+					ArrayList<Integer> positions=new ArrayList<Integer>();
+					positions.add(Multi_New.get_pos(tokens[0]));
+					
 					for (int i=0;i<ipsnum;i++){
 						String[] pair=tokens[9+i].split(",");
-						
+						positions.add(Integer.parseInt(tokens[1]));
 						if (cs.getIPAddress().toString().equals(pair[0])){
 							mypos=get_rev_pos(Integer.parseInt(pair[1]));
 						}
@@ -265,7 +268,7 @@ public class Multi_Player extends JPanel {
 					
 					BoardMulti game = new BoardMulti(cs,getWidth(),getHeight(),mypos,Integer.parseInt(tokens[2]),
 							tokens[3],Integer.parseInt(tokens[4]),Integer.parseInt(tokens[5]),Boolean.parseBoolean(tokens[6]),false
-							,getWindowAncestor().keys,isPC,Boolean.parseBoolean(tokens[7]), IPs);
+							,getWindowAncestor().keys,isPC,Boolean.parseBoolean(tokens[7]), IPs,positions);
 
 					add(game,"Game");
 					cdl.show(Multi_Player.this, "Game");

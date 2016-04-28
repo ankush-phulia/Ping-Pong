@@ -366,11 +366,14 @@ public class Multi_New extends JPanel implements ActionListener{
 				boolean[] isPC = new boolean[] {true,true,true,true};
 				isPC[k]=false;				
 				
+				ArrayList<Integer>positions=new ArrayList<Integer>();
+						
 				startData += ":"+l.size();
 				for (int i=0; i< l.size(); i++){
 					InetAddress ip = l.get(i);
 					startData += ":"+ip+","+((k+i+1)%4);
 					isPC[(k+i+1)%4]=false;
+					positions.add((k+i+1)%4);
 				}
 				
 				for (int i=0; i<4;i++){
@@ -385,7 +388,7 @@ public class Multi_New extends JPanel implements ActionListener{
 				
 				BoardMulti game = new BoardMulti(gameServer,getWidth(),getHeight(),(String)ownPosition.getSelectedItem(),ownLives.getValue(),
 						(String)GameMode.getSelectedItem(),ball_Num.getValue(),spd.getValue(),powerups.isSelected(),Player2.isSelected()
-						,getWindowAncestor().keys,isPC,PCpl.isSelected(),(ArrayList<InetAddress>) gameServer.getAllClients());
+						,getWindowAncestor().keys,isPC,PCpl.isSelected(),(ArrayList<InetAddress>) gameServer.getAllClients(),positions);
 
 				add(game,"Game");
 				cdl.show(Multi_New.this, "Game");
@@ -398,7 +401,7 @@ public class Multi_New extends JPanel implements ActionListener{
 		
 	}
 	
-	private int get_pos(String position) {
+	public static int get_pos(String position) {
 		switch (position){
 			case "Left":
 				return 0;
