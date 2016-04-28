@@ -247,6 +247,7 @@ public class Multi_Player extends JPanel {
 					
 					do {
 						resp = cs.readFromServer();
+						System.out.println(resp);
 						type = parseResponse(resp);
 						
 					} while (!type.equalsIgnoreCase("START"));
@@ -272,11 +273,11 @@ public class Multi_Player extends JPanel {
 					String mypos="Left";
 					
 					ArrayList<Integer> positions=new ArrayList<Integer>();
-					positions.add(Multi_New.get_pos(tokens[0]));
+					positions.add(Multi_New.get_pos(tokens[1]));
 					
 					for (int i=0;i<ipsnum;i++){
 						String[] pair=tokens[9+i].split(",");
-						positions.add(Integer.parseInt(tokens[1]));
+						positions.add(Integer.parseInt(pair[1]));
 						if (cs.getIPAddress().toString().equals(pair[0])){
 							mypos=get_rev_pos(Integer.parseInt(pair[1]));
 						}
@@ -287,10 +288,13 @@ public class Multi_Player extends JPanel {
 						}
 					}
 					
-					BoardMulti game = new BoardMulti(gameServer,getWidth(),getHeight(),mypos,Integer.parseInt(tokens[2]),
+					BoardMulti game = new BoardMulti(false,gameServer,getWidth(),getHeight(),mypos,Integer.parseInt(tokens[2]),
 							tokens[3],Integer.parseInt(tokens[4]),Integer.parseInt(tokens[5]),Boolean.parseBoolean(tokens[6]),false
 							,getWindowAncestor().keys,isPC,Boolean.parseBoolean(tokens[7]), IPs,positions);
 
+					//System.out.println(IPs.toString()+","+positions.toString());
+					
+					//System.out.println(IPs.toString()+","+positions.toString());
 					add(game,"Game");
 					cdl.show(Multi_Player.this, "Game");
 					State=2;

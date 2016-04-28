@@ -25,6 +25,7 @@ public class ConnectionToServer {
             try {
                 clientSocket.connect(new InetSocketAddress(inetAddr, port), 5000);
             } catch (IOException e) {
+            	e.printStackTrace();
                 threadMessage("Unable to connect to a given IP address.");
                 clientSocket = null;
                 return;

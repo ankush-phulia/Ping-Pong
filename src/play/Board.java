@@ -48,35 +48,6 @@ public class Board extends JPanel implements ActionListener, KeyListener{
     //KeyPresses
    // public boolean paused=false;
     public boolean[] pressed=new boolean[] {false,false,false,false,false,false};
-
-    public Board() {
-
-    	
-    	this.Xdim=1000;
-    	this.Ydim=1000;
-    	this.bgcolor=Color.black;
-    	this.ccolor=Color.white;
-    	this.fps=60;
-    	this.state="Start";
-    	this.keys=new int[] {KeyEvent.VK_Q,KeyEvent.VK_A,KeyEvent.VK_UP,KeyEvent.VK_DOWN,KeyEvent.VK_C,KeyEvent.VK_V,KeyEvent.VK_O,KeyEvent.VK_P};;
-
-        this.setFocusable(true);
-        this.requestFocusInWindow();
-        this.grabFocus();
-        
-        addKeyListener(this);        
-        setBackground(this.bgcolor);        
-        timer = new Timer((int) (1000/this.fps), this);
-        
-        timer.start();
-                
-        this.addComponentListener( new ComponentAdapter() {
-            public void componentShown( ComponentEvent e ) {
-                Board.this.requestFocusInWindow();
-            }
-        });
-        
-    }
     
     public Board (int x, int y, String ownPosition,int ownLives,
 			String GameMode,int ball_Num,int spd,boolean powerups,

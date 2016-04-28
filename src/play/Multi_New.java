@@ -364,9 +364,12 @@ public class Multi_New extends JPanel implements ActionListener{
 				List<InetAddress> l = gameServer.getAllClients();
 
 				for (InetAddress IP : l) {
+					//System.out.println(IP.toString());
 					ConnectionToServer cs = new ConnectionToServer(IP.toString().substring(1), 8080);
 					connections.add(cs);
-				}
+					cs.readingStream.isStateBoardMulti=true;
+					//System.out.println(cs.connectionEstablished());
+				}				
 
 				String startData = "START:"+(String)ownPosition.getSelectedItem()+":"+
 						((Integer)ownLives.getValue())+":"+(String)GameMode.getSelectedItem()+":"+
@@ -394,10 +397,12 @@ public class Multi_New extends JPanel implements ActionListener{
 
 				gameServer.writeToAllClients(startData);
 				
-				BoardMulti game = new BoardMulti(gameServer,getWidth(),getHeight(),(String)ownPosition.getSelectedItem(),ownLives.getValue(),
+				BoardMulti game = new BoardMulti(true,gameServer,getWidth(),getHeight(),(String)ownPosition.getSelectedItem(),ownLives.getValue(),
 						(String)GameMode.getSelectedItem(),ball_Num.getValue(),spd.getValue(),powerups.isSelected(),Player2.isSelected()
 						,getWindowAncestor().keys,isPC,PCpl.isSelected(),(ArrayList<InetAddress>) gameServer.getAllClients(),positions);
 
+				//System.out.println(positions.toString());
+				
 				add(game,"Game");
 				cdl.show(Multi_New.this, "Game");
 				game.requestFocusInWindow();

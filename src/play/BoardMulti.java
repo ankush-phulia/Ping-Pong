@@ -44,6 +44,10 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
     public boolean PCplayers;
     public boolean[] isPC;
     
+    //networks
+    public ArrayList<InetAddress> IPs;
+    public ArrayList<Integer> positions;
+    
     //Balls
     public int ball_num = 1;
     static ArrayList<Ball> balls ;
@@ -57,42 +61,18 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
     //KeyPresses
    // public boolean paused=false;
     public boolean[] pressed=new boolean[] {false,false,false,false,false,false};
-
-    public BoardMulti() {
-    	
-    	this.Xdim=1000;
-    	this.Ydim=1000;
-    	this.bgcolor=Color.black;
-    	this.ccolor=Color.white;
-    	this.fps=60;
-    	BoardMulti.state="Start";
-    	this.keys=new int[] {KeyEvent.VK_Q,KeyEvent.VK_A,KeyEvent.VK_UP,KeyEvent.VK_DOWN,KeyEvent.VK_C,KeyEvent.VK_V,KeyEvent.VK_O,KeyEvent.VK_P};;
-
-        this.setFocusable(true);
-        this.requestFocusInWindow();
-        this.grabFocus();
-        
-        addKeyListener(this);        
-        setBackground(this.bgcolor);        
-        timer = new Timer((int) (1000/this.fps), this);
-        
-        timer.start();
-                
-        this.addComponentListener( new ComponentAdapter() {
-            public void componentShown( ComponentEvent e ) {
-                BoardMulti.this.requestFocusInWindow();
-            }
-        });
-        
-    }
-    
-    public BoardMulti (LocalServer gs, int x, int y, String ownPosition,int ownLives,
+  
+    public BoardMulti (boolean isHost,LocalServer gs, int x, int y, String ownPosition,int ownLives,
 			String GameMode,int ball_Num,int spd,boolean powerups,
 			boolean player2, int[] keys, boolean[] isPC, boolean PCplayers,
 			ArrayList<InetAddress> IPs, ArrayList<Integer> positions){    	
     	
-    	BoardMulti.isHost=true;
+    	//network
+    	BoardMulti.isHost=isHost;
     	BoardMulti.gameServer=gs;
+    	//System.out.println(gs.getAllClients());
+    	this.IPs=IPs;
+    	this.positions=positions;
     	
     	//appearance
     	this.Xdim=x;
@@ -168,7 +148,7 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
     }
 
     
-    private static int get_pos(String position) {
+    public static int get_pos(String position) {
 		switch (position){
 			case "Left":
 				return 0;
@@ -207,7 +187,6 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
                         	P1.set_Ypos(P1.cYpos+P1.cYvel);
                         }
                     }
-
 					gameServer.writeToAllClients("Pos:1:Y:"+P1.cYpos);
 
             	}
@@ -247,8 +226,9 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
                         	P2.set_Ypos(P2.cYpos+P2.cYvel);
                         }
                     }
-
+                    
 					gameServer.writeToAllClients("Pos:2:Y:"+P2.cYpos);
+					System.out.println("Pos:2:Y:"+P2.cYpos);
 
             	}  
             	else if (player2 && BoardMulti.position.equals("Left")){
