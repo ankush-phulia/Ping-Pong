@@ -1,5 +1,6 @@
 package network;
 
+import java.io.BufferedInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.net.Socket;
@@ -43,7 +44,9 @@ public class ReadData implements Runnable {
     public String readFromBuffer () {
         if (buffer.isEmpty())
             return null;
-        return buffer.get(0);
+        String token = buffer.get(0);
+        buffer.remove(0);
+        return token;
     }
 
 

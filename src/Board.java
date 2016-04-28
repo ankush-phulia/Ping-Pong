@@ -87,8 +87,8 @@ public class Board extends JPanel implements ActionListener, KeyListener{
     	//appearance
     	this.Xdim=x;
     	this.Ydim=y;
-    	this.bgcolor=Color.black;
-    	this.ccolor=Color.white;
+    	this.bgcolor=Color.CYAN;
+    	this.ccolor=Color.blue;
     	this.fps=60;
     	
     	//balls
@@ -125,8 +125,6 @@ public class Board extends JPanel implements ActionListener, KeyListener{
     	}
 		
 		
-    	//this.playerLives=new int[] {ownLives,Lives1,Lives2,Lives3};
-    	//this.playerLives2=new int[] {ownLives,Lives1,Lives2,Lives3};
     	this.playerScores=new int[] {0,0,0,0};
     	
     	//focused window
@@ -503,6 +501,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
         	//System.out.println(b.Xvel+","+b.Yvel);
         }
     }
+
     public void handlecollision(ArrayList<Ball> b,Ball b1){
     	Ball temp2 = null ;  
     	Ball temp1 = b1 ;

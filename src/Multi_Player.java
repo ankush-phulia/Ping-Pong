@@ -150,10 +150,8 @@ public class Multi_Player extends JPanel {
 					Multi_New mn = new Multi_New(gameServer);
 					add(mn,"new game");
 					cdl.show(Multi_Player.this, "new game");
-					//System.out.println(getParent().getParent().getParent().getParent().getParent().getClass());
 				} catch (IOException e1) {
 					JOptionPane.showMessageDialog(getParent().getParent().getParent().getParent().getParent(),"Error Establishing Host");
-					//e1.printStackTrace();
 				}			
 			}
 		});
@@ -230,7 +228,6 @@ public class Multi_Player extends JPanel {
 				ConnectionToServer cs = new ConnectionToServer(ipAddress.getText(), 8080);
 				System.out.println(cs.connectionEstablished());
 				if (cs.connectionEstablished()) {
-					// cs.writeToServer("MYIP:" + cs.getIPAddress());
 
 					String resp, type;
 					
@@ -262,9 +259,7 @@ public class Multi_Player extends JPanel {
 						} catch (UnknownHostException e1) {
 							e1.printStackTrace();
 						}
-					}					
-					
-					//System.out.println(mypos);
+					}
 					
 					BoardMulti game = new BoardMulti(cs,getWidth(),getHeight(),mypos,Integer.parseInt(tokens[2]),
 							tokens[3],Integer.parseInt(tokens[4]),Integer.parseInt(tokens[5]),Boolean.parseBoolean(tokens[6]),false

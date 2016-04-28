@@ -309,7 +309,7 @@ public class Multi_New extends JPanel implements ActionListener{
 		gbc_lblPlayerTwo.gridy = 17;
 		SelectionPanel.add(lblPlayerTwo, gbc_lblPlayerTwo);
 		
-		JCheckBox PCpl = new JCheckBox("");
+		final JCheckBox PCpl = new JCheckBox("");
 		GridBagConstraints gbc_PCpl = new GridBagConstraints();
 		gbc_PCpl.insets = new Insets(0, 0, 5, 5);
 		gbc_PCpl.gridx = 7;
@@ -367,11 +367,9 @@ public class Multi_New extends JPanel implements ActionListener{
 				startData += ":"+l.size();
 				for (int i=0; i< l.size(); i++){
 					InetAddress ip = l.get(i);
-					startData += ":"+ip+","+((Integer)((k+i+1)%4));
+					startData += ":"+ip+","+((k+i+1)%4);
 					isPC[(k+i+1)%4]=false;
 				}
-				
-				//System.out.println(PCpl.isSelected());
 				
 				for (int i=0; i<4;i++){
 					if (isPC[i]){
@@ -380,16 +378,13 @@ public class Multi_New extends JPanel implements ActionListener{
 					}
 					startData += ":"+(Boolean)isPC[i];
 				}
-				
-				//System.out.println(startData);
-				gameServer.writeToAllClients(startData);
 
-				//System.out.println(gameServer.getAllClients());
+				gameServer.writeToAllClients(startData);
 				
 				BoardMulti game = new BoardMulti(gameServer,getWidth(),getHeight(),(String)ownPosition.getSelectedItem(),ownLives.getValue(),
 						(String)GameMode.getSelectedItem(),ball_Num.getValue(),spd.getValue(),powerups.isSelected(),Player2.isSelected()
 						,getWindowAncestor().keys,isPC,PCpl.isSelected(),(ArrayList<InetAddress>) gameServer.getAllClients());
-				//System.out.println(isPC);
+
 				add(game,"Game");
 				cdl.show(Multi_New.this, "Game");
 				game.requestFocusInWindow();

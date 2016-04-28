@@ -26,7 +26,6 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
 	public boolean isHost;
 	LocalServer gameServer;
 	ConnectionToServer cs;
-	//public boolean route2=false;
     
     //AESTHETICS
 	public double Xdim;
@@ -44,9 +43,8 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
     public boolean[] isPC;
     
     //Balls
-    public int ball_num=1;
+    public int ball_num = 1;
     public ArrayList<Ball> balls ;
-    public ArrayList<Ball> balls2 ;
     
     //Scores/Lives
     public int[] playerScores;
@@ -97,7 +95,7 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
     	//appearance
     	this.Xdim=x;
     	this.Ydim=y;
-    	this.bgcolor=Color.black;
+    	this.bgcolor=Color.DARK_GRAY;
     	this.ccolor=Color.white;
     	this.fps=60;
     	
@@ -435,28 +433,31 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
             	}
             }
             if (isHost){
-            	String ballinfo="Ball";
+            	String ballInfo="Ball";
 	            for (int i=0;i<this.balls.size();i++){
 	            	Ball b=this.balls.get(i);
 	            	analyse(b);
-	            	ballinfo += ":"+b.Xpos+":"+b.Ypos ;
+	            	ballInfo += ":"+b.Xpos+":"+b.Ypos ;
 	            }
-	            gameServer.writeToAllClients(ballinfo);
+	            gameServer.writeToAllClients(ballInfo);
             }
-            repaint();
+
+			if (isHost) {
+				List<InetAddress> clients = gameServer.getAllClients();
+				for (InetAddress ip : clients) {
+					parse_packet(gameServer.readFromClient(ip));
+					parse_packet(gameServer.readFromClient(ip));
+				}
+			}
+			else {
+				parse_packet(cs.readFromServer());
+				parse_packet(cs.readFromServer());
+			}
+
+			repaint();
     	} 
     	
-    	if (isHost) {
-    		List<InetAddress> clients = gameServer.getAllClients();
-    		for (InetAddress ip : clients) {
-    			parse_packet(gameServer.readFromClient(ip));
-    			parse_packet(gameServer.readFromClient(ip));
-    		}
-    	}
-    	else {
-			parse_packet(cs.readFromServer());
-			parse_packet(cs.readFromServer());
-    	}
+
     }
     
     public void analyse(Ball b){
@@ -616,7 +617,7 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
         }
         
         if (zeros(this.players,players.size()-1)){
-        	this.state="Done";
+        	this.state = "Done";
         	gameServer.writeToAllClients("Done");
         }
     	
@@ -625,7 +626,7 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
         Ball temp1 = b;
         Ball temp2 = null ; 
        	double res = 0  ;
-        for(int j=0;j<balls.size();j++){
+        for(int j=0; j < balls.size(); j++){
         	temp2 = balls.get(j) ;
         	res = Math.sqrt(Math.pow((temp1.Xpos-temp2.Xpos),2)+Math.pow((temp1.Ypos-temp2.Ypos),2));
         		
@@ -888,26 +889,45 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
     }
     
     public void parse_packet(String response){
+		// System.out.println(response);
     	if (response == null)
     		return;
     	
     	String[] tokens= response.split(":");
+		Paddle p;
     	switch(tokens[0]){
     		case "Pos":
-    			Paddle p = fetch(Integer.parseInt(tokens[1]), players);
-    			if (tokens[2] == "X")
-    				p.cXpos = Integer.parseInt(tokens[3]);
-    			else if (tokens[2] == "Y")
-    				p.cYpos = Integer.parseInt(tokens[3]);
-    			gameServer.writeToAllClients(response);
+    			p = fetch(Integer.parseInt(tokens[1]), players);
+    			if (tokens[2].equalsIgnoreCase("X"))
+    				p.cXpos = Double.parseDouble(tokens[3]);
+    			else if (tokens[2].equalsIgnoreCase("Y"))
+    				p.cYpos = Double.parseDouble(tokens[3]);
+				if (isHost)
+    				gameServer.writeToAllClients(response);
     			break;
+
     		case "Ball":
     			for (int i=0; i<balls.size(); i++) {
     				Ball b = balls.get(i);
-    				b.Xpos = Double.parseDouble(tokens[2*i]);
-    				b.Ypos = Double.parseDouble(tokens[2*i+1]);
+    				b.Xpos = Double.parseDouble(tokens[2*i+1]);
+    				b.Ypos = Double.parseDouble(tokens[2*i+2]);
     			}
     			break;
+
+			case "Score":
+				p = fetch(Integer.parseInt(tokens[1]), players);
+				p.score++;
+				break;
+
+			case "Lives":
+				p = fetch(Integer.parseInt(tokens[1]), players);
+				p.lives--;
+				break;
+
+			case "Done":
+
+				break;
+
     		default:
     				
     	}
