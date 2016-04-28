@@ -18,15 +18,7 @@ public class LocalServer {
     List<ReadData> inputStreamClient = new ArrayList<>();
 
 
-    // reads data from client with IP Address 'ip_addr'
-    // returns null if no data is available
-    public ReadData getReadThread (InetAddress ip_addr) {
-        int position = ip_address.indexOf(ip_addr);
-        ReadData rd = inputStreamClient.get(position);
-        return  rd;
-    }
-
-
+    public InetAddress getMyIP () { return myServer.getInetAddress(); }
 
 
     // Returns a list of all available IPs (over different network interfaces)

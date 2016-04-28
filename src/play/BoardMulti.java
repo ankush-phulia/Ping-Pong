@@ -26,9 +26,8 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
 	static String state;
 	Timer timer;
 	int cnt;
-	private static boolean isHost;
+	public static boolean isHost;
 	static LocalServer gameServer;
-	ConnectionToServer cs;
     
     //AESTHETICS
 	public double Xdim;
@@ -167,99 +166,7 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
         BoardMulti.state="Playing";
         
     }
-    
-    public BoardMulti (ConnectionToServer cs, int x, int y, String ownPosition,int ownLives,
-			String GameMode,int ball_Num,int spd,boolean powerups,
-			boolean player2, int[] keys, boolean[] isPC, boolean PCplayers,
-			ArrayList<InetAddress> IPs, ArrayList<Integer> positions){    	
-    	
-    	BoardMulti.isHost=false;
-    	this.cs=cs;
-    	
-    	//appearance
-    	this.Xdim=x;
-    	this.Ydim=y;
-    	this.bgcolor=Color.black;
-    	this.ccolor=Color.white;
-    	this.fps=60;
-    	
-    	//balls
-    	this.ball_num=ball_Num;
-    	this.gameSpd=spd;
-    	BoardMulti.balls=new ArrayList<Ball>();
-    	BoardMulti.balls.add(new Ball(this.Xdim/2, this.Ydim/2, -4*gameSpd, 8*gameSpd,2));
-    	if (ball_Num>1){
-    		BoardMulti.balls.add(new Ball(this.Ydim/2, Xdim/2, 6*gameSpd, 12*gameSpd,1));
-    		if (ball_Num>2){    			
-				BoardMulti.balls.add(new Ball(this.Ydim/2, Xdim/2, 12*gameSpd, 6*gameSpd,4));
-        	}
-    	}
-    	
-    	//paddles
-    	BoardMulti.position=ownPosition;
-    	this.PCplayers=PCplayers;
-    	this.isPC=isPC;
 
-    	//players
-    	BoardMulti.players=new ArrayList<Paddle>();
-    	this.player2=player2;    	
-    	int k=get_pos(BoardMulti.position);
-	
-    	if (isPC[k] && !PCplayers){
-    		
-    	}
-    	else{
-    		Paddle P1=this.create_paddle(k+1,ownLives);
-    		BoardMulti.players.add(P1);
-    	}    	
-	
-    	if (isPC[(k+1)%4] && !PCplayers){
-    		
-        }
-    	else{
-    		Paddle P2=this.create_paddle((k+1)%4+1,ownLives);
-        	BoardMulti.players.add(P2);
-    	}
-    	
-    	if (isPC[(k+2)%4] && !PCplayers){
-    		
-        }
-    	else{
-    		Paddle P3=this.create_paddle((k+2)%4+1,ownLives);
-        	BoardMulti.players.add(P3);
-    	}
-    	
-    	if (isPC[(k+3)%4] && !PCplayers){
-    		
-    	}
-    	else{
-    		Paddle P4=this.create_paddle((k+3)%4+1,ownLives);
-        	BoardMulti.players.add(P4);
-    	}
-		
-    	BoardMulti.playerScores=new int[] {0,0,0,0};
-    	
-    	//focused window
-        this.setFocusable(true);
-        this.requestFocusInWindow();
-        this.grabFocus();
-        
-        //controls
-        this.keys=keys;
-        addKeyListener(this);        
-        setBackground(this.bgcolor);        
-        timer = new Timer((int) (1000/this.fps), this);
-        timer.start();
-        
-        this.addComponentListener( new ComponentAdapter() {
-            public void componentShown( ComponentEvent e ) {
-                BoardMulti.this.requestFocusInWindow();
-            }
-        });
-        
-        BoardMulti.state="Playing";
-        
-    }
     
     private static int get_pos(String position) {
 		switch (position){
@@ -300,12 +207,9 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
                         	P1.set_Ypos(P1.cYpos+P1.cYvel);
                         }
                     }
-                    if (!isHost){
-                    	cs.writeToServer("Pos:1:Y:"+P1.cYpos);
-                    }
-                    else{
-                    	gameServer.writeToAllClients("Pos:1:Y:"+P1.cYpos);
-                    }
+
+					gameServer.writeToAllClients("Pos:1:Y:"+P1.cYpos);
+
             	}
             	else if (player2 && BoardMulti.position.equals("Right")){
             		P1.set_cYvel(20*gameSpd);
@@ -325,7 +229,7 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
             		ai1.moveAIplayer1(P1, balls, this, 20*gameSpd);
             	}
             	else{
-            		//parseMessage();
+
             	}
             }
             
@@ -343,12 +247,9 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
                         	P2.set_Ypos(P2.cYpos+P2.cYvel);
                         }
                     }
-                    if (!isHost){
-                    	cs.writeToServer("Pos:2:Y:"+P2.cYpos);
-                    }
-                    else{
-                    	gameServer.writeToAllClients("Pos:2:Y:"+P2.cYpos);
-                    }
+
+					gameServer.writeToAllClients("Pos:2:Y:"+P2.cYpos);
+
             	}  
             	else if (player2 && BoardMulti.position.equals("Left")){
             		P2.set_cYvel(20*gameSpd);
@@ -368,7 +269,7 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
             			ai1.moveAIplayer(P2, balls, this, 20*gameSpd);
             	}
             	else{
-            		//parseMessage();
+
             	}
             }
             
@@ -386,12 +287,9 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
                         	P3.set_Xpos(P3.cXpos+P3.cXvel);
                         }
                     }
-                    if (!isHost){
-                    	cs.writeToServer("Pos:3:X:"+P3.cXpos);
-                    }
-                    else{
-                    	gameServer.writeToAllClients("Pos:3:X:"+P3.cXpos);
-                    }
+
+					gameServer.writeToAllClients("Pos:3:X:"+P3.cXpos);
+
             	} 
             	else if (player2 && BoardMulti.position.equals("Bottom")){
             		P3.set_cXvel(20*gameSpd);
@@ -411,7 +309,7 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
             		ai1.moveAIplayer4(P3, balls, this, 20*gameSpd);
             	}
             	else{
-            		//parseMessage();
+
             	}
             }
                
@@ -429,12 +327,9 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
                         	P4.set_Xpos(P4.cXpos+P4.cXvel);
                         }
                     }
-                    if (!isHost){
-                    	cs.writeToServer("Pos:4:X:"+P4.cXpos);
-                    }
-                    else{
-                    	gameServer.writeToAllClients("Pos:4:X:"+P4.cXpos);
-                    }
+
+					gameServer.writeToAllClients("Pos:4:X:"+P4.cXpos);
+
             	} 
             	else if (player2 && BoardMulti.position.equals("Top")){
             		P4.set_cXvel(20*gameSpd);
@@ -457,7 +352,7 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
             		
             	}
             }
-            // parseMessage();
+
             if (isHost){
             	String ballInfo="play.Ball";
 	            for (int i=0;i<BoardMulti.balls.size();i++){
@@ -915,8 +810,6 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
     				p.cXpos = Double.parseDouble(tokens[3]);
     			else if (tokens[2].equalsIgnoreCase("Y") && get_pos(position)+1!=Integer.parseInt(tokens[1]))
     				p.cYpos = Double.parseDouble(tokens[3]);
-				if (isHost)
-    				gameServer.writeToAllClients(response);
     			break;
 
     		case "play.Ball":
@@ -928,8 +821,6 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
     			break;
 
 			case "Score":
-				//p = fetch(Integer.parseInt(tokens[1])+1, players);
-				//System.out.println(Integer.parseInt(tokens[1]));
 				playerScores[Integer.parseInt(tokens[1])]++;
 				break;
 
@@ -942,6 +833,7 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
 			case "Done":
 				state = "Done";
 				break;
+
     				
     	}
     	return true;

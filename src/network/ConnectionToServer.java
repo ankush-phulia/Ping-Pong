@@ -12,18 +12,18 @@ import java.net.Socket;
 public class ConnectionToServer {
     Socket clientSocket;
     DataOutputStream writingStream;
-    ReadData readingStream;
+    public ReadData readingStream;
 
 
     /* Connect to a client with IP Address/Name 'inetAddr' & port no. 'port'
      *  Throws IOException if unsuccessful
-     *  Timeout of 10 seconds is set
+     *  Timeout of 5 seconds is set
      */
     public ConnectionToServer(String inetAddr, int port) {
         try {
             clientSocket = new Socket();
             try {
-                clientSocket.connect(new InetSocketAddress(inetAddr, port), 10000);
+                clientSocket.connect(new InetSocketAddress(inetAddr, port), 5000);
             } catch (IOException e) {
                 threadMessage("Unable to connect to a given IP address.");
                 clientSocket = null;

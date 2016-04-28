@@ -8,6 +8,8 @@ import java.net.InetAddress;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import network.ConnectionToServer;
 import network.LocalServer;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
@@ -33,6 +35,7 @@ public class Multi_New extends JPanel implements ActionListener{
 
 	LocalServer gameServer;
 	List<Thread> clientsThread = new ArrayList<>();
+	List<ConnectionToServer> connections = new ArrayList<>();
 
 	boolean expanded=false;
 	private static final Color FG_COLOR = new Color(0xFFFFFF);
@@ -331,6 +334,10 @@ public class Multi_New extends JPanel implements ActionListener{
 				if (gameServer != null) {
 					gameServer.disconnect();
 
+					for (ConnectionToServer cs : connections) {
+						cs.disconnect();
+					}
+
 					if (!gameServer.alive()) {
 						removeAll();
 						cdl.show(getParent(), "Multiplayer");
@@ -356,31 +363,32 @@ public class Multi_New extends JPanel implements ActionListener{
 				
 				List<InetAddress> l = gameServer.getAllClients();
 
+				for (InetAddress IP : l) {
+					ConnectionToServer cs = new ConnectionToServer(IP.toString().substring(1), 8080);
+					connections.add(cs);
+				}
+
 				String startData = "START:"+(String)ownPosition.getSelectedItem()+":"+
 						((Integer)ownLives.getValue())+":"+(String)GameMode.getSelectedItem()+":"+
 						((Integer)ball_Num.getValue())+":"+((Integer)spd.getValue())+":"+
 						((Boolean)powerups.isSelected()+":"+((Boolean)PCpl.isSelected()));
 				
-				int k=get_pos((String)ownPosition.getSelectedItem());
+				int k = get_pos((String)ownPosition.getSelectedItem());
 				
 				boolean[] isPC = new boolean[] {true,true,true,true};
-				isPC[k]=false;				
+				isPC[k] = false;
 				
-				ArrayList<Integer>positions=new ArrayList<Integer>();
+				ArrayList<Integer> positions = new ArrayList<Integer>();
 						
 				startData += ":"+l.size();
 				for (int i=0; i< l.size(); i++){
 					InetAddress ip = l.get(i);
-					startData += ":"+ip+","+((k+i+1)%4);
-					isPC[(k+i+1)%4]=false;
+					startData += ":" + ip + "," + ((k+i+1)%4);
+					isPC[(k+i+1)%4] = false;
 					positions.add((k+i+1)%4);
 				}
 				
 				for (int i=0; i<4;i++){
-/*					if (isPC[i]){
-						isPC[i]=(PCpl.isSelected());
-						
-					}*/
 					startData += ":"+(Boolean)isPC[i];
 				}
 

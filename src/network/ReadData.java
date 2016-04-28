@@ -1,5 +1,6 @@
 package network;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import play.BoardMulti;
 
 import java.io.DataInputStream;
@@ -15,6 +16,7 @@ public class ReadData implements Runnable {
     Socket connection;
     DataInputStream in;
     List<String> buffer;
+    public Boolean isStateBoardMulti = false;
 
     public ReadData(Socket connection) {
         this.connection = connection;
@@ -33,8 +35,10 @@ public class ReadData implements Runnable {
             String lineRead;
             while (connection.isConnected()) {
                 lineRead = in.readUTF();
-                BoardMulti.parse_packet(lineRead);
-                buffer.add(lineRead);
+                if (isStateBoardMulti)
+                    BoardMulti.parse_packet(lineRead);
+                else
+                    buffer.add(lineRead);
             }
         }
         catch (IOException e) {

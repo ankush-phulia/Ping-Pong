@@ -5,8 +5,7 @@ import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.InetAddress;
@@ -33,8 +32,8 @@ import javax.swing.text.MaskFormatter;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import java.util.List;
+
 import network.ConnectionToServer;
 import network.LocalServer;
 
@@ -42,6 +41,8 @@ import network.LocalServer;
 public class Multi_Player extends JPanel {
 
 	LocalServer gameServer;
+	List<Thread> clientsThread = new ArrayList<>();
+	List<ConnectionToServer> otherConnections = new ArrayList<>();
 
 	int State=0;
 	private static final Color FG_COLOR = new Color(0xFFFFFF);
@@ -228,17 +229,37 @@ public class Multi_Player extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 
 				ConnectionToServer cs = new ConnectionToServer(ipAddress.getText(), 8080);
-				System.out.println(cs.connectionEstablished());
+
 				if (cs.connectionEstablished()) {
+					try {
+						gameServer = new LocalServer(8080);
+					}
+					catch (IOException ioe) {
+						cs.disconnect();
+						return;
+					}
+
+					clientsThread.add(gameServer.acceptClient());
+					clientsThread.add(gameServer.acceptClient());
+					clientsThread.add(gameServer.acceptClient());
 
 					String resp, type;
 					
 					do {
 						resp = cs.readFromServer();
-						System.out.println(resp);
-						type=parseResponse(resp);
+						type = parseResponse(resp);
 						
 					} while (!type.equalsIgnoreCase("START"));
+
+					cs.readingStream.isStateBoardMulti = true;
+					for (ConnectionToServer conn : otherConnections) {
+						conn.readingStream.isStateBoardMulti = true;
+					}
+
+					while (!clientsThread.isEmpty()) {
+						clientsThread.get(0).stop();
+						clientsThread.remove(0);
+					}
 
 					
 					// start the game here
@@ -266,7 +287,7 @@ public class Multi_Player extends JPanel {
 						}
 					}
 					
-					BoardMulti game = new BoardMulti(cs,getWidth(),getHeight(),mypos,Integer.parseInt(tokens[2]),
+					BoardMulti game = new BoardMulti(gameServer,getWidth(),getHeight(),mypos,Integer.parseInt(tokens[2]),
 							tokens[3],Integer.parseInt(tokens[4]),Integer.parseInt(tokens[5]),Boolean.parseBoolean(tokens[6]),false
 							,getWindowAncestor().keys,isPC,Boolean.parseBoolean(tokens[7]), IPs,positions);
 
@@ -373,14 +394,35 @@ public class Multi_Player extends JPanel {
 
 		String[] tokens = response.split(":");
 		switch (tokens[0]) {
-			/*case "MYIP":
+			case "MyIP":
 				String ipOfClient = tokens[1];
-				gameServer.writeToAllClients("CONNECTTOIP:" + ipOfClient);
+				gameServer.writeToAllClients("ConnectToIP:" + ipOfClient);
 				break;
-			case "CONNECTTOIP":
-				String ipOfOtherClient = tokens[1];
 
-				break;*/
+			case "ConnectToIP":
+				InetAddress ipOfOtherClient;
+				try {
+					ipOfOtherClient = InetAddress.getByName(tokens[1].substring(1));
+				} catch (UnknownHostException uhe) {
+					// do something if unable to connect
+					uhe.printStackTrace();
+					break;
+				}
+
+				List<InetAddress> myIPs = LocalServer.getAllAvailableIP();
+				boolean isMe = false;
+				for (InetAddress ia : myIPs) {
+					if (!ia.isLoopbackAddress() && ia.equals(ipOfOtherClient)) {
+						isMe = true;
+					}
+				}
+				if (!isMe) {
+					ConnectionToServer cs = new ConnectionToServer(ipOfOtherClient.toString().substring(1), 8080);
+					otherConnections.add(cs);
+				}
+
+				break;
+
 			default:
 
 		}
