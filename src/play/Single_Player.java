@@ -108,10 +108,6 @@ public class Single_Player extends JPanel implements ActionListener{
 		add(MenuPanel, "MenuPanel");		
 
 		cdl.show(Single_Player.this, "MenuPanel");
-		
-//		play.Board game=new play.Board();
-//		add(game,"Game");
-//		cdl.show(play.Single_Player.this,"Game");
 				
 		JPanel SelectionPanel = new JPanel();	
 		MenuPanel.add(SelectionPanel);

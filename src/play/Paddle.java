@@ -12,6 +12,8 @@ public class Paddle {
     public double type;
     public int pos;
     public int lives;
+    public int flag = 0 ; 
+    public int difficulty= 1 ;
     
 //    public play.Paddle(double typ,double Xstart,double Ystart){
 //    	if (typ==0){

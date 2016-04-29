@@ -83,14 +83,17 @@ public class Board extends JPanel implements ActionListener, KeyListener{
 	
     	if (!Difficulty1.equals("")){
     		Paddle P2=this.create_paddle((k+1)%4+1,Lives1);
+    		P2.difficulty=get_diff(Difficulty1);
         	this.players.add(P2);
         }
     	if (!Difficulty2.equals("")){
     		Paddle P3=this.create_paddle((k+2)%4+1,Lives2);
+    		P3.difficulty=get_diff(Difficulty2);
         	this.players.add(P3);
         }
     	if (!Difficulty3.equals("")){
     		Paddle P4=this.create_paddle((k+3)%4+1,Lives3);
+    		P4.difficulty=get_diff(Difficulty3);
         	this.players.add(P4);
     	}
 		
@@ -737,6 +740,22 @@ public class Board extends JPanel implements ActionListener, KeyListener{
     			return new Paddle(Xdim/5, Ydim/100, Xdim/2, this.Ydim-(5+this.Ydim/100),4,j);
     	}
     	return null;
+    }
+    
+    public int get_diff (String s){
+    	switch(s){
+    		case "Easy":
+    			return 0;
+    		case "Medium":
+    			return 1;
+    		case "Difficulty":
+    			return 2;
+    		case "Ridiculous":
+    			return 3;
+    		case "WTF??!!":
+    			return 4;
+    	}
+    	return 1;
     }
     
 }

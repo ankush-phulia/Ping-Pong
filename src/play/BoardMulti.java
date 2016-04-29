@@ -710,7 +710,7 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
 						winner=sc.pos;
 					}
 				}				
-				g.drawString("Player "+(winner)+" won!", (int)Xdim/2-100, (int)this.Ydim/2-200);
+				g.drawString("Player "+(winner)+" won!", (int)Xdim/2-60, (int)this.Ydim/2-200);
                 g.drawString("Press 'Backspace' to play again", (int)Xdim/2-160, (int)this.Ydim/2);
 				break;
         }
@@ -751,26 +751,6 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
 				break;
 				
 			case "Done":
-				/*if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-					this.state="Playing";
-					this.playerScores=new int[] {0,0,0,0};
-					for (int i=0;i<4;i++){
-						int x=this.playerLives2[i];
-						this.playerLives[i]=x;
-					}
-					this.balls=new ArrayList<play.Ball>();
-					for (int i=0;i<this.balls2.size();i++){
-						play.Ball b=this.balls2.get(i);
-						play.Ball bb=new play.Ball(b.Xpos, b.Ypos, b.Xvel, b.Yvel, b.origin);
-						this.balls.add(bb);
-					}
-					this.players=new ArrayList<play.Paddle>();
-					for (int i=0;i<this.players2.size();i++){
-						play.Paddle b=this.players2.get(i);
-						play.Paddle bb=new play.Paddle(b.Xdim, b.Ydim, b.cXpos, b.cYpos,b.pos,b.lives);
-						this.players.add(bb);
-					}
-	            }*/
 				if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
 	            	RXCardLayout cdl=(RXCardLayout) getParent().getLayout();
 	            	cdl.show(getParent(), "MenuPanel");
