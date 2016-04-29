@@ -445,6 +445,7 @@ public class Multi_Player extends JPanel {
 				for (ConnectionToServer cs : otherConnections) {
 					cs.disconnect();
 				}
+				System.out.println("Game server disconnected!");
 				return "DISCONNECT";
 
 			default:
