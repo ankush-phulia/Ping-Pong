@@ -22,6 +22,8 @@ import java.awt.Font;
 import javax.swing.BoxLayout;
 import java.awt.GridBagLayout;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
+
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
@@ -106,16 +108,16 @@ public class Options extends JPanel {
 		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JLabel lblOptions_1 = new JLabel("Options");
-		lblOptions_1.setFont(new Font("Tahoma", Font.PLAIN, 38));
+		lblOptions_1.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		panel.add(lblOptions_1);
 		
 		JPanel panel_1 = new JPanel();
 		add(panel_1);
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
 		gbl_panel_1.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 165, 181, 0};
-		gbl_panel_1.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_panel_1.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 164};
 		gbl_panel_1.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
-		gbl_panel_1.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel_1.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel_1.setLayout(gbl_panel_1);
 		
 		JSeparator separator = new JSeparator();
@@ -147,7 +149,7 @@ public class Options extends JPanel {
 		panel_1.add(separator_2, gbc_separator_2);
 		
 		JLabel lblTopControls = new JLabel("Player Controls");
-		lblTopControls.setFont(new Font("Tahoma", Font.PLAIN, 34));
+		lblTopControls.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblTopControls = new GridBagConstraints();
 		gbc_lblTopControls.insets = new Insets(0, 0, 5, 5);
 		gbc_lblTopControls.gridx = 14;
@@ -183,7 +185,7 @@ public class Options extends JPanel {
 		panel_1.add(separator_36, gbc_separator_36);
 		
 		JLabel lblUpMovement = new JLabel("Up Movement");
-		lblUpMovement.setFont(new Font("Tahoma", Font.PLAIN, 32));
+		lblUpMovement.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		GridBagConstraints gbc_lblUpMovement = new GridBagConstraints();
 		gbc_lblUpMovement.insets = new Insets(0, 0, 5, 5);
 		gbc_lblUpMovement.gridx = 14;
@@ -219,7 +221,7 @@ public class Options extends JPanel {
 		panel_1.add(separator_15, gbc_separator_15);
 		
 		final JComboBox<String> up1 = new JComboBox<String>(Keys1);
-		up1.setFont(new Font("Tahoma", Font.PLAIN, 32));
+		up1.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		if (getWindowAncestor().keys[0]==26){
 			up1.setSelectedItem("UP");
 		}
@@ -266,7 +268,7 @@ public class Options extends JPanel {
 		panel_1.add(separator_37, gbc_separator_37);
 		
 		JLabel lblDownMovement = new JLabel("Down Movement");
-		lblDownMovement.setFont(new Font("Tahoma", Font.PLAIN, 32));
+		lblDownMovement.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		GridBagConstraints gbc_lblDownMovement = new GridBagConstraints();
 		gbc_lblDownMovement.insets = new Insets(0, 0, 5, 5);
 		gbc_lblDownMovement.gridx = 14;
@@ -316,7 +318,7 @@ public class Options extends JPanel {
 		panel_1.add(separator_38, gbc_separator_38);
 		
 		final JComboBox<String> down1 = new JComboBox<String>(Keys2);
-		down1.setFont(new Font("Tahoma", Font.PLAIN, 32));
+		down1.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		if (getWindowAncestor().keys[1]==26){
 			down1.setSelectedItem("UP");
 		}
@@ -425,7 +427,7 @@ public class Options extends JPanel {
 		panel_1.add(separator_24, gbc_separator_24);
 		
 		JLabel lblActivate = new JLabel("Activate");
-		lblActivate.setFont(new Font("Tahoma", Font.PLAIN, 32));
+		lblActivate.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		GridBagConstraints gbc_lblActivate = new GridBagConstraints();
 		gbc_lblActivate.insets = new Insets(0, 0, 5, 5);
 		gbc_lblActivate.gridx = 14;
@@ -463,7 +465,7 @@ public class Options extends JPanel {
 		else{
 			act1.setSelectedItem(String.valueOf(((char)(getWindowAncestor().keys[2]))));
 		}
-		act1.setFont(new Font("Tahoma", Font.PLAIN, 32));
+		act1.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		GridBagConstraints gbc_act1 = new GridBagConstraints();
 		gbc_act1.insets = new Insets(0, 0, 5, 5);
 		gbc_act1.fill = GridBagConstraints.HORIZONTAL;
@@ -521,7 +523,7 @@ public class Options extends JPanel {
 		panel_1.add(separator_13, gbc_separator_13);
 		
 		JLabel lblPlayerControls = new JLabel("Player 2 Controls");
-		lblPlayerControls.setFont(new Font("Tahoma", Font.PLAIN, 34));
+		lblPlayerControls.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblPlayerControls = new GridBagConstraints();
 		gbc_lblPlayerControls.insets = new Insets(0, 0, 5, 5);
 		gbc_lblPlayerControls.gridx = 14;
@@ -550,7 +552,7 @@ public class Options extends JPanel {
 		panel_1.add(separator_44, gbc_separator_44);
 		
 		JLabel lblUpMovement1 = new JLabel("Up Movement");
-		lblUpMovement1.setFont(new Font("Tahoma", Font.PLAIN, 32));
+		lblUpMovement1.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		GridBagConstraints gbc_lblUpMovement1 = new GridBagConstraints();
 		gbc_lblUpMovement1.insets = new Insets(0, 0, 5, 5);
 		gbc_lblUpMovement1.gridx = 14;
@@ -558,7 +560,7 @@ public class Options extends JPanel {
 		panel_1.add(lblUpMovement1, gbc_lblUpMovement1);
 		
 		final JComboBox<String> up2 = new JComboBox<String>(Keys4);
-		up2.setFont(new Font("Tahoma", Font.PLAIN, 32));
+		up2.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		if (getWindowAncestor().keys[3]==26){
 			up2.setSelectedItem("UP");
 		}
@@ -590,7 +592,7 @@ public class Options extends JPanel {
 		panel_1.add(separator_46, gbc_separator_46);
 		
 		JLabel lblDownMovement1 = new JLabel("Down Movement");
-		lblDownMovement1.setFont(new Font("Tahoma", Font.PLAIN, 32));
+		lblDownMovement1.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		GridBagConstraints gbc_lblDownMovement1 = new GridBagConstraints();
 		gbc_lblDownMovement1.insets = new Insets(0, 0, 5, 5);
 		gbc_lblDownMovement1.gridx = 14;
@@ -598,7 +600,7 @@ public class Options extends JPanel {
 		panel_1.add(lblDownMovement1, gbc_lblDownMovement1);
 		
 		final JComboBox<String> down2 = new JComboBox<String>(Keys5);
-		down2.setFont(new Font("Tahoma", Font.PLAIN, 32));
+		down2.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		if (getWindowAncestor().keys[4]==26){
 			down2.setSelectedItem("UP");
 		}
@@ -629,15 +631,15 @@ public class Options extends JPanel {
 		panel_1.add(separator_48, gbc_separator_48);
 		
 		JLabel lblActivate1 = new JLabel("Activate");
-		lblActivate1.setFont(new Font("Tahoma", Font.PLAIN, 32));
+		lblActivate1.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		GridBagConstraints gbc_lblActivate1 = new GridBagConstraints();
-		gbc_lblActivate1.insets = new Insets(0, 0, 0, 5);
+		gbc_lblActivate1.insets = new Insets(0, 0, 5, 5);
 		gbc_lblActivate1.gridx = 14;
 		gbc_lblActivate1.gridy = 32;
 		panel_1.add(lblActivate1, gbc_lblActivate1);
 		
 		final JComboBox<String> act2 = new JComboBox<String>(Keys6);
-		act2.setFont(new Font("Tahoma", Font.PLAIN, 32));
+		act2.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		if (getWindowAncestor().keys[5]==26){
 			act2.setSelectedItem("UP");
 		}
@@ -654,12 +656,36 @@ public class Options extends JPanel {
 		gbc_act2.gridy = 32;
 		panel_1.add(act2, gbc_act2);
 		
+		JSeparator separator_52 = new JSeparator();
+		GridBagConstraints gbc_separator_52 = new GridBagConstraints();
+		gbc_separator_52.insets = new Insets(0, 0, 5, 5);
+		gbc_separator_52.gridx = 14;
+		gbc_separator_52.gridy = 33;
+		panel_1.add(separator_52, gbc_separator_52);
+		
+		JLabel lblSounds = new JLabel("Sounds");
+		lblSounds.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		GridBagConstraints gbc_lblSounds = new GridBagConstraints();
+		gbc_lblSounds.insets = new Insets(0, 0, 0, 5);
+		gbc_lblSounds.gridx = 14;
+		gbc_lblSounds.gridy = 34;
+		panel_1.add(lblSounds, gbc_lblSounds);
+		
+		final JCheckBox sounds = new JCheckBox("");
+		sounds.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		sounds.setSelected(getWindowAncestor().sounds);
+		GridBagConstraints gbc_sounds = new GridBagConstraints();
+		gbc_sounds.insets = new Insets(0, 0, 0, 5);
+		gbc_sounds.gridx = 29;
+		gbc_sounds.gridy = 34;
+		panel_1.add(sounds, gbc_sounds);
+		
 		JPanel panel_2 = new JPanel();
 		add(panel_2);
 		panel_2.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JButton btnBackToMain = new JButton("Back to Main Menu");
-		btnBackToMain.setFont(new Font("Tahoma", Font.PLAIN, 34));
+		btnBackToMain.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		btnBackToMain.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				removeAll();
@@ -670,7 +696,7 @@ public class Options extends JPanel {
 		panel_2.add(btnBackToMain);
 		
 		JButton btnSaveChanges = new JButton("Save Current Settings");
-		btnSaveChanges.setFont(new Font("Tahoma", Font.PLAIN, 34));
+		btnSaveChanges.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		btnSaveChanges.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				getWindowAncestor().keys[0]=convert((String)up1.getSelectedItem());
@@ -679,6 +705,7 @@ public class Options extends JPanel {
 				getWindowAncestor().keys[3]=convert((String)up2.getSelectedItem());
 				getWindowAncestor().keys[4]=convert((String)down2.getSelectedItem());
 				getWindowAncestor().keys[5]=convert((String)act2.getSelectedItem());
+				getWindowAncestor().sounds=sounds.isSelected();
 				removeAll();
 				show_small();
 				action.run();

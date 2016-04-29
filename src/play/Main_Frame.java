@@ -5,12 +5,26 @@ import slidinglayout.SLConfig;
 import slidinglayout.SLKeyframe;
 import slidinglayout.SLPanel;
 import slidinglayout.SLSide;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.DataLine;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.SourceDataLine;
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
 
 /**
  * @author Aurelien Ribon | http://www.aurelienribon.com/
@@ -19,12 +33,13 @@ public class Main_Frame extends JFrame {
 	private final SLPanel panel = new SLPanel();
 	private final Single_Player spp = new Single_Player();
 	private final Multi_Player mpp = new Multi_Player();
-	private final Instructions ins = new Instructions();
-	
+	private final Instructions ins = new Instructions();	
 	private final Options opt = new Options();
+	
 	private final SLConfig mainCfg, sppCfg, mppCfg, insCfg, optCfg;
 	public int[] keys=new int[] {KeyEvent.VK_Q,KeyEvent.VK_A,KeyEvent.VK_Z,KeyEvent.VK_U,KeyEvent.VK_J,KeyEvent.VK_M};
-
+	public boolean sounds=false;
+	
 	public Main_Frame(int x,int y) {
 
 		//default controls
@@ -33,6 +48,12 @@ public class Main_Frame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Swing Pong");
 		getContentPane().setBackground(Color.WHITE);
+		
+		/*JScrollPane scrollPane = new JScrollPane(panel);
+		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
+        scrollPane.setBounds(50, 30, 300, 50);*/
+        
 		getContentPane().add(panel, BorderLayout.CENTER);
 
 		spp.setAction(sppAction);
@@ -82,6 +103,7 @@ public class Main_Frame extends JFrame {
 		panel.initialize(mainCfg);
 		
 		javax.swing.UIManager.put("OptionPane.font", new Font("Tahoma", Font.PLAIN, 34));
+	
 	}
 
 	private void disableActions() {
@@ -209,5 +231,6 @@ public class Main_Frame extends JFrame {
 				}}))
 			.play();
 	}};
-
+	
+	
 }

@@ -85,7 +85,7 @@ public class Multi_Player extends JPanel {
 					}
 				}
 				else if (State==1) {
-					if (gameServer.alive()) {
+					if (gameServer!=null && gameServer.alive()) {
 						gameServer.disconnect();
 					}
 					for (ConnectionToServer cs : otherConnections) {
@@ -123,15 +123,15 @@ public class Multi_Player extends JPanel {
 		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JLabel label = new JLabel("Multi player");
-		label.setFont(new Font("Tahoma", Font.PLAIN, 38));
+		label.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		panel.add(label);
 		
 		JPanel panel_1 = new JPanel();
 		panel_2.add(panel_1);
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
-		gbl_panel_1.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_panel_1.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0};
 		gbl_panel_1.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_panel_1.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel_1.columnWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_panel_1.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel_1.setLayout(gbl_panel_1);
 		
@@ -144,8 +144,8 @@ public class Multi_Player extends JPanel {
 		
 		JSeparator separator_28 = new JSeparator();
 		GridBagConstraints gbc_separator_28 = new GridBagConstraints();
-		gbc_separator_28.insets = new Insets(0, 0, 50, 350);
-		gbc_separator_28.gridx = 3;
+		gbc_separator_28.insets = new Insets(0, 0, 50, 200);
+		gbc_separator_28.gridx = 2;
 		gbc_separator_28.gridy = 1;
 		panel_1.add(separator_28, gbc_separator_28);
 		
@@ -164,50 +164,50 @@ public class Multi_Player extends JPanel {
 				}			
 			}
 		});
-		btnStartNewGame.setFont(new Font("Tahoma", Font.PLAIN, 34));
+		btnStartNewGame.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		GridBagConstraints gbc_btnStartNewGame = new GridBagConstraints();
 		gbc_btnStartNewGame.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnStartNewGame.insets = new Insets(0, 0, 5, 5);
-		gbc_btnStartNewGame.gridx = 3;
+		gbc_btnStartNewGame.gridx = 2;
 		gbc_btnStartNewGame.gridy = 2;
 		panel_1.add(btnStartNewGame, gbc_btnStartNewGame);
 		
 		JSeparator separator_26 = new JSeparator();
 		GridBagConstraints gbc_separator_26 = new GridBagConstraints();
 		gbc_separator_26.insets = new Insets(0, 0, 15, 15);
-		gbc_separator_26.gridx = 3;
+		gbc_separator_26.gridx = 2;
 		gbc_separator_26.gridy = 3;
 		panel_1.add(separator_26, gbc_separator_26);
 		
 		JLabel lblOr = new JLabel("OR");
 		lblOr.setHorizontalAlignment(SwingConstants.CENTER);
-		lblOr.setFont(new Font("Tahoma", Font.PLAIN, 34));
+		lblOr.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblOr = new GridBagConstraints();
 		gbc_lblOr.insets = new Insets(0, 0, 5, 5);
-		gbc_lblOr.gridx = 3;
+		gbc_lblOr.gridx = 2;
 		gbc_lblOr.gridy = 4;
 		panel_1.add(lblOr, gbc_lblOr);		
 		
 		JSeparator separator_24 = new JSeparator();
 		GridBagConstraints gbc_separator_24 = new GridBagConstraints();
 		gbc_separator_24.insets = new Insets(0, 0, 15, 15);
-		gbc_separator_24.gridx = 3;
+		gbc_separator_24.gridx = 2;
 		gbc_separator_24.gridy = 5;
 		panel_1.add(separator_24, gbc_separator_24);
 		
 		JLabel lblEnterIpAddress = new JLabel("Enter IP Address");
 		lblEnterIpAddress.setHorizontalAlignment(SwingConstants.CENTER);
-		lblEnterIpAddress.setFont(new Font("Tahoma", Font.PLAIN, 34));
+		lblEnterIpAddress.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblEnterIpAddress = new GridBagConstraints();
 		gbc_lblEnterIpAddress.insets = new Insets(0, 0, 5, 5);
-		gbc_lblEnterIpAddress.gridx = 3;
+		gbc_lblEnterIpAddress.gridx = 2;
 		gbc_lblEnterIpAddress.gridy = 6;
 		panel_1.add(lblEnterIpAddress, gbc_lblEnterIpAddress);
 		
 		JSeparator separator_20 = new JSeparator();
 		GridBagConstraints gbc_separator_20 = new GridBagConstraints();
 		gbc_separator_20.insets = new Insets(0, 0, 15, 15);
-		gbc_separator_20.gridx = 3;
+		gbc_separator_20.gridx = 2;
 		gbc_separator_20.gridy = 7;
 		panel_1.add(separator_20, gbc_separator_20);
 
@@ -215,20 +215,13 @@ public class Multi_Player extends JPanel {
 		mf = new MaskFormatter("###.###.###.###");
 		final JFormattedTextField ipAddress = new JFormattedTextField(mf);
 		ipAddress.setHorizontalAlignment(SwingConstants.CENTER);
-		ipAddress.setFont(new Font("Tahoma", Font.PLAIN, 34));
+		ipAddress.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		GridBagConstraints gbc_ipAddress = new GridBagConstraints();
 		gbc_ipAddress.fill = GridBagConstraints.HORIZONTAL;
 		gbc_ipAddress.insets = new Insets(0, 0, 5, 5);
-		gbc_ipAddress.gridx = 3;
+		gbc_ipAddress.gridx = 2;
 		gbc_ipAddress.gridy = 8;
 		panel_1.add(ipAddress, gbc_ipAddress);
-		
-		JSeparator separator_45 = new JSeparator();
-		GridBagConstraints gbc_separator_45 = new GridBagConstraints();
-		gbc_separator_45.insets = new Insets(0, 0, 55, 55);
-		gbc_separator_45.gridx = 1;
-		gbc_separator_45.gridy = 9;
-		panel_1.add(separator_45, gbc_separator_45);
 		
 		JButton btnJoinExistingOne = new JButton("Join Existing One");
 		btnJoinExistingOne.addActionListener(new ActionListener() {
@@ -302,7 +295,8 @@ public class Multi_Player extends JPanel {
 					
 					BoardMulti game = new BoardMulti(false,gameServer,getWidth(),getHeight(),mypos,Integer.parseInt(tokens[2]),
 							tokens[3],Integer.parseInt(tokens[4]),Integer.parseInt(tokens[5]),Boolean.parseBoolean(tokens[6]),false
-							,getWindowAncestor().keys,isPC,Boolean.parseBoolean(tokens[7]), ipOfHost, IPs,positions);
+							,getWindowAncestor().keys,isPC,Boolean.parseBoolean(tokens[7]), ipOfHost, IPs,positions,
+							getWindowAncestor().sounds);
 
 					System.out.println("Starting new game...");
 
@@ -319,18 +313,18 @@ public class Multi_Player extends JPanel {
 				}
 			}
 		});
-		btnJoinExistingOne.setFont(new Font("Tahoma", Font.PLAIN, 34));
+		btnJoinExistingOne.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		GridBagConstraints gbc_btnJoinExistingOne = new GridBagConstraints();
 		gbc_btnJoinExistingOne.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnJoinExistingOne.insets = new Insets(0, 0, 5, 5);
-		gbc_btnJoinExistingOne.gridx = 3;
+		gbc_btnJoinExistingOne.gridx = 2;
 		gbc_btnJoinExistingOne.gridy = 10;
 		panel_1.add(btnJoinExistingOne, gbc_btnJoinExistingOne);
 		
 		JSeparator separator_52 = new JSeparator();
 		GridBagConstraints gbc_separator_52 = new GridBagConstraints();
 		gbc_separator_52.insets = new Insets(0, 0, 0, 5);
-		gbc_separator_52.gridx = 2;
+		gbc_separator_52.gridx = 1;
 		gbc_separator_52.gridy = 11;
 		panel_1.add(separator_52, gbc_separator_52);
 	}

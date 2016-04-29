@@ -6,13 +6,20 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Random;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
+
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
 
 
 public class Board extends JPanel implements ActionListener, KeyListener{
@@ -29,6 +36,8 @@ public class Board extends JPanel implements ActionListener, KeyListener{
     public Color ccolor;
     public double fps;
     public int gameSpd=1;
+    InputStream in;
+    AudioStream audioStream;
     
     //Players
     public String position;
@@ -44,6 +53,18 @@ public class Board extends JPanel implements ActionListener, KeyListener{
     
     //Controls
     public int[] keys;
+    
+    //powerups
+    public boolean power_en;
+    double poweruptime = 0 ; 
+    public double currenttime = 0 ; 
+    public boolean powerup = false ; 
+    double puXpos = 0 ; 
+    double puYpos = 0  ; 
+    Random pupos =  new Random() ;
+    double initialdim  ;
+    int player = -1;  
+    int powertype = -1 ;
         
     //KeyPresses
    // public boolean paused=false;
@@ -52,25 +73,27 @@ public class Board extends JPanel implements ActionListener, KeyListener{
     public Board (int x, int y, String ownPosition,int ownLives,
 			String GameMode,int ball_Num,int spd,boolean powerups,
 			String Difficulty1,int Lives1,String Difficulty2,int Lives2,
-			String Difficulty3,int Lives3, int[] keys){    	
+			String Difficulty3,int Lives3, int[] keys,boolean sounds){    	
     	
     	//appearance
     	this.Xdim=x;
     	this.Ydim=y;
     	this.bgcolor=Color.CYAN;
     	this.ccolor=Color.blue;
-    	this.fps=60;
+    	this.fps=100;
+    	this.power_en=powerups;
     	
     	//balls
     	this.ball_num=ball_Num;
     	this.gameSpd=spd;
     	this.balls=new ArrayList<Ball>();
     	this.balls2=new ArrayList<Ball>();
-    	this.balls.add(new Ball(this.Xdim/2, this.Ydim/2, -4*gameSpd, 8*gameSpd,2));
+
+    	this.balls.add(new Ball(this.Xdim/2-10, this.Ydim/2-10, gen_vel()*gameSpd, gen_vel()*gameSpd,2));
     	if (ball_Num>1){
-    		this.balls.add(new Ball(this.Ydim/2, Xdim/2, 6*gameSpd, 12*gameSpd,1));
+    		this.balls.add(new Ball(this.Xdim/2, this.Ydim/2, gen_vel()*gameSpd, gen_vel()*gameSpd,1));
     		if (ball_Num>2){    			
-				this.balls.add(new Ball(this.Ydim/2, Xdim/2, 12*gameSpd, 6*gameSpd,4));
+				this.balls.add(new Ball(this.Xdim/2+10, this.Ydim/2-10, gen_vel()*gameSpd, gen_vel()*gameSpd,4));
         	}
     	}
     	//paddles
@@ -120,6 +143,20 @@ public class Board extends JPanel implements ActionListener, KeyListener{
         
         this.state="Playing";
         
+        if (sounds){
+         // create an audiostream from the inputstream
+			try {
+			    in = new FileInputStream("bgm.wav");
+				audioStream = new AudioStream(in);
+				// play the audio clip with the audioplayer class
+			    AudioPlayer.player.start(audioStream);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
+        }
+	   
+        
     }
     
     private int get_pos(String position) {
@@ -145,42 +182,10 @@ public class Board extends JPanel implements ActionListener, KeyListener{
     	
     	if(this.state.equals("Playing")){
     		
-//    		play.Paddle P1=this.players.get(0);
-//    		P1.set_cYvel(20*gameSpd);
-//    		//move player 1
-//            if (pressed[0]) {
-//                if (P1.cYpos-P1.cYvel > P1.Ydim/2 ) {
-//                    P1.set_Ypos(P1.cYpos-P1.cYvel);
-//                }
-//            }
-//            if (pressed[1]) {
-//                if (P1.cYpos+P1.cYvel+P1.Ydim/2< this.Ydim) {
-//                	P1.set_Ypos(P1.cYpos+P1.cYvel);
-//                }
-//            }
-//            
-//            play.Paddle P2=fetch(2,players);
-//            if (P2!=null){
-//            	play.AIplayer ai1 = new play.AIplayer() ;
-//            	ai1.moveAIplayer(P2, balls, this, 20*gameSpd);
-//            }
-//            
-//            play.Paddle P3=fetch(3,players);
-//            if (P3!=null){
-//            	play.AIplayer ai1 = new play.AIplayer() ;
-//            	ai1.moveAIplayer4(P3, balls, this, 20*gameSpd);
-//            }    
-//            
-//            play.Paddle P4=fetch(4,players);
-//            if (P4!=null){
-//                play.AIplayer ai1 = new play.AIplayer() ;
-//                ai1.moveAIplayer3(P4, balls, this, 20*gameSpd);
-//            } 
-    		
     		Paddle P1=fetch(1,players);
             if (P1!=null){
             	if (this.position.equals("Left")){
-            		P1.set_cYvel(20*gameSpd);
+            		P1.set_cYvel(15*gameSpd);
             		if (pressed[0]) {
                         if (P1.cYpos-P1.cYvel > P1.Ydim/2 ) {
                             P1.set_Ypos(P1.cYpos-P1.cYvel);
@@ -193,7 +198,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
                     }
             	}
             	else if (!this.position.equals("Left")){
-            		AIplayer.moveAIplayer1(P1, balls, this, 20*gameSpd);
+            		AIplayer.moveAIplayer1(P1, balls, this, 15*gameSpd);
             	}
             	else{
             		
@@ -203,7 +208,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
             Paddle P2=fetch(2,players);
             if (P2!=null){
             	if (this.position.equals("Right")){
-            		P2.set_cYvel(20*gameSpd);
+            		P2.set_cYvel(15*gameSpd);
             		if (pressed[0]) {
                         if (P2.cYpos-P2.cYvel > P2.Ydim/2 ) {
                             P2.set_Ypos(P2.cYpos-P2.cYvel);
@@ -216,7 +221,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
                     }
             	}            	
             	else if (!this.position.equals("Right")){
-            		AIplayer.moveAIplayer(P2, balls, this, 20*gameSpd);
+            		AIplayer.moveAIplayer(P2, balls, this, 15*gameSpd);
             	}
             	else{
             		
@@ -226,7 +231,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
             Paddle P3=fetch(3,players);
             if (P3!=null){
             	if (this.position.equals("Top")){
-            		P3.set_cXvel(20*gameSpd);
+            		P3.set_cXvel(15*gameSpd);
             		if (pressed[0]) {
                         if (P3.cXpos-P3.cXvel > P3.Xdim/2 ) {
                             P3.set_Xpos(P3.cXpos-P3.cXvel);
@@ -239,7 +244,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
                     }
             	}            	
             	else if (!this.position.equals("Top")){
-            		AIplayer.moveAIplayer4(P3, balls, this, 20*gameSpd);
+            		AIplayer.moveAIplayer4(P3, balls, this, 15*gameSpd);
             	}
             	else{
             		
@@ -249,7 +254,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
             Paddle P4=fetch(4,players);
             if (P4!=null){
             	if (this.position.equals("Bottom")){
-            		P4.set_cXvel(20*gameSpd);
+            		P4.set_cXvel(15*gameSpd);
             		if (pressed[0]) {
                         if (P4.cXpos-P4.cXvel > P4.Xdim/2 ) {
                             P4.set_Xpos(P4.cXpos-P4.cXvel);
@@ -262,7 +267,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
                     }
             	}            	
             	else if (!this.position.equals("Bottom")){
-            		AIplayer.moveAIplayer3(P4, balls, this, 20*gameSpd);
+            		AIplayer.moveAIplayer3(P4, balls, this, 15*gameSpd);
             	}
             	else{
             		
@@ -273,6 +278,27 @@ public class Board extends JPanel implements ActionListener, KeyListener{
             	Ball b=this.balls.get(i);
             	analyse(b);
             }
+            
+            if (power_en){
+            	Random pu = new Random() ;
+            	if (!powerup){
+            		if (pu.nextInt(1201) > 1199){
+            			powerup = true ;
+            			poweruptime = currenttime ;
+            			powertype = pupos.nextInt(2) ; 
+            			puXpos = (pupos.nextDouble()/2 + 0.25)*Xdim ; 
+            			puYpos = (pupos.nextDouble()/2 + 0.25)*Ydim ;
+            		}
+            	}
+            	else
+            	{
+            		if (currenttime  >  15+poweruptime){
+            			powerup = false  ; 
+            		}
+            	}
+            	currenttime += 1.0/60.0 ;
+            }
+            
             repaint();
     	} 
     }
@@ -292,7 +318,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
     	
     	Paddle P1=this.fetch(1, players);
     	if (P1!=null){
-    		playerOneRight = P1.cXpos - P1.Xdim;
+    		playerOneRight = P1.cXpos - 2* P1.Xdim;
     		playerOneTop = P1.cYpos-(P1.Ydim/2);
     		playerOneBottom = playerOneTop+(P1.Ydim);
     	}    	
@@ -303,7 +329,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
     	
     	Paddle P2=this.fetch(2, players);
     	if (P2!=null){
-    		playerTwoLeft = P2.cXpos + P2.Xdim;
+    		playerTwoLeft = P2.cXpos + 2* P2.Xdim;
         	playerTwoTop = P2.cYpos - (P2.Ydim/2);
         	playerTwoBottom = playerTwoTop + (P2.Ydim);
     	}
@@ -347,10 +373,28 @@ public class Board extends JPanel implements ActionListener, KeyListener{
                     }
             	}
             }
-            else{
+            else{            	
             	b.origin=1;
-            }            
+            	//add """"spin""""
+                if (get_pos(this.position)+1==1 && this.pressed[0] && !this.pressed[1]){
+                	if (b.Yvel>0){
+                		b.Yvel *= 0.7;
+                	}
+                	else{
+                		b.Yvel *= 1.2;
+                	}   
+                }
+                else if (get_pos(this.position)+1==1 && this.pressed[1] && !this.pressed[0]){
+                	if (b.Yvel>0){
+                		b.Yvel *= 1.2;
+                	}
+                	else{
+                		b.Yvel *= 0.7;
+                	} 
+                }
+            }
             b.Xvel *=-1;
+            
         }
 		else if (nextLeftPos < 0){
 			//b.origin=1;
@@ -374,9 +418,25 @@ public class Board extends JPanel implements ActionListener, KeyListener{
             }
         	else{
         		b.origin=2;
+        		//add """"spin""""
+                if (get_pos(this.position)+1==2 && this.pressed[0] && !this.pressed[1]){
+                	if (b.Yvel>0){
+                		b.Yvel *= 0.7;
+                	}
+                	else{
+                		b.Yvel *= 1.2;
+                	}   
+                }
+                else if (get_pos(this.position)+1==2 && this.pressed[1] && !this.pressed[0]){
+                	if (b.Yvel>0){
+                		b.Yvel *= 1.2;
+                	}
+                	else{
+                		b.Yvel *= 0.7;
+                	} 
+                }
         	}
-        	
-            b.Xvel *= -1;
+            b.Xvel *=-1;
         }
 		else if (nextRightPos > this.Xdim){
 			//b.origin=2;
@@ -401,9 +461,25 @@ public class Board extends JPanel implements ActionListener, KeyListener{
             }
         	else{
         		b.origin=3;
+        		//add """"spin""""
+                if (get_pos(this.position)+1==3 && this.pressed[0] && !this.pressed[1]){
+                	if (b.Xvel>0){
+                		b.Xvel *= 0.7;
+                	}
+                	else{
+                		b.Xvel *= 1.2;
+                	}
+                }
+                else if (get_pos(this.position)+1==3 && this.pressed[1] && !this.pressed[0]){
+                	if (b.Xvel>0){
+                		b.Xvel *= 1.2;
+                	}
+                	else{
+                		b.Xvel *= 0.7;
+                	}
+                }
         	}
-        	
-            b.Yvel *= -1;
+            b.Yvel *=-1;
         }
         else if (nextTopPos < 0 ) {
         	//b.origin=3;
@@ -427,9 +503,25 @@ public class Board extends JPanel implements ActionListener, KeyListener{
             }
         	else{
         		b.origin=4;
+        		//add """"spin""""
+                if (get_pos(this.position)+1==4 && this.pressed[0] && !this.pressed[1]){
+                	if (b.Xvel>0){
+                		b.Xvel *= 0.7;
+                	}
+                	else{
+                		b.Xvel *= 1.2;
+                	}
+                }
+                else if (get_pos(this.position)+1==4 && this.pressed[1] && !this.pressed[0]){
+                	if (b.Xvel>0){
+                		b.Xvel *= 1.2;
+                	}
+                	else{
+                		b.Xvel *= 0.7;
+                	}
+                }
         	}
-        	
-            b.Yvel *= -1;
+            b.Yvel *=-1;
         }
 		//bounce off the bottom
         else if (nextBottomPos > this.Ydim) {
@@ -439,6 +531,83 @@ public class Board extends JPanel implements ActionListener, KeyListener{
         
         if (zeros(this.players,players.size()-1)){
         	this.state="Done";
+        }
+        
+        //checking for power up
+        if (powerup){
+        	if (Math.sqrt(Math.pow((b.Xpos-puXpos),2)+Math.pow((b.Ypos-puYpos),2)) < ((b.dia)/2+(40)/2)){
+        		powerup = false ; 
+        		System.out.println("mila") ;
+        		System.out.println(b.origin) ;
+        		switch (b.origin){
+        		case 1  :
+        				initialdim = players.get(0).Ydim ; 
+        				if (powertype == 0){
+        					players.get(0).Ydim = 2*(this.Ydim)/5 ; 
+        				}else{
+        					players.get(0).Ydim = (this.Ydim)/10  ; 
+        				}
+        				poweruptime = currenttime ; 
+        				player = 1 ;
+        				break ;
+        		case 2 :
+        			initialdim = players.get(1).Ydim ; 
+    				//players.get(1).Ydim = 3*(this.Ydim)/4 ; 
+    				if (powertype == 0){
+    					players.get(1).Ydim = 2*(this.Ydim)/5 ; 
+    				}else{
+    					players.get(1).Ydim = (this.Ydim)/10  ; 
+    				}
+    				poweruptime = currenttime ; 
+    				player = 2 ;
+    				break ;
+        		case 3 : 
+        			initialdim = players.get(2).Xdim ; 
+    				//players.get(2).Xdim = 3*(this.Xdim)/4 ; 
+        			if (powertype == 0){
+    					players.get(2).Xdim = 2*(this.Xdim)/5 ; 
+    				}else{
+    					players.get(2).Xdim = (this.Xdim)/10  ; 
+    				}
+        			poweruptime = currenttime ; 
+    				player = 3 ;
+    				break ;
+        		case 4 :
+        			initialdim = players.get(3).Xdim ; 
+    				//players.get(3).Xdim = 3*(this.Xdim)/4 ; 
+    				if (powertype == 0){
+    					players.get(3).Xdim = 2*(this.Xdim)/5 ; 
+    				}else{
+    					players.get(3).Xdim = (this.Xdim)/10  ; 
+    				}
+    				poweruptime = currenttime ; 
+    				player = 4 ;
+    				break ;
+        		}
+        	}
+        }
+        else {
+        	if (currenttime > 5+poweruptime){
+        		switch (player){
+            	case 1 :
+            		players.get(0).Ydim = initialdim ; 
+            		player = -1 ; 
+            		break ;
+            	case 2 :
+            		players.get(1).Ydim = initialdim ; 
+            		player = -1 ; 
+            		break ;
+            	case 3 :
+            		players.get(2).Xdim = initialdim ; 
+            		player = -1 ; 
+            		break ;
+            	case 4 :
+            		players.get(3).Xdim = initialdim ; 
+            		player = -1 ; 
+            		break ;	
+            	}
+        	}
+        	
         }
     	
     	//checking for collison condition between the balls 
@@ -546,6 +715,11 @@ public class Board extends JPanel implements ActionListener, KeyListener{
 					Ball b=this.balls.get(i);
 					g.setColor(Color.WHITE);
 					g.fillOval((int)(b.Xpos-b.dia/2),(int)(b.Ypos-b.dia/2),(int) (b.dia), (int) (b.dia));
+				}
+				
+				g.setColor(Color.darkGray);
+				if (powerup){					
+					g.fillRect((int)puXpos, (int)puYpos,40,40 );
 				}
 				
 				//draw the scores
@@ -660,6 +834,8 @@ public class Board extends JPanel implements ActionListener, KeyListener{
 	                pressed[5] = true;
 	            }
 	            if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+	            	AudioPlayer.player.suspend();
+					AudioPlayer.player.stop(audioStream);
 	            	RXCardLayout cdl=(RXCardLayout) getParent().getLayout();
 	            	cdl.show(getParent(), "MenuPanel");
 	            }
@@ -668,6 +844,8 @@ public class Board extends JPanel implements ActionListener, KeyListener{
 				
 			case "Done":
 				if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+					//AudioPlayer.player.suspend();
+					AudioPlayer.player.stop(audioStream);
 	            	RXCardLayout cdl=(RXCardLayout) getParent().getLayout();
 	            	cdl.show(getParent(), "MenuPanel");
 	            }
@@ -675,6 +853,8 @@ public class Board extends JPanel implements ActionListener, KeyListener{
 				break;
 			case "Done2":
 				if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+					//AudioPlayer.player.suspend();
+					AudioPlayer.player.stop(audioStream);
 	            	RXCardLayout cdl=(RXCardLayout) getParent().getLayout();
 	            	cdl.show(getParent(), "MenuPanel");
 	            }
@@ -751,11 +931,24 @@ public class Board extends JPanel implements ActionListener, KeyListener{
     		case "Difficulty":
     			return 2;
     		case "Ridiculous":
-    			return 3;
-    		case "WTF??!!":
     			return 4;
+    		case "WTF??!!":
+    			return 8;
     	}
     	return 1;
+    }
+    
+    public int gen_vel(){
+    	Random vel=new Random();
+    	int s=vel.nextInt(4)+5;
+    	int s2=-(vel.nextInt(4)+5);
+    	int choose=vel.nextInt(2);
+    	if (choose==0){
+    		return s;
+    	}
+    	else{
+    		return s2;
+    	}
     }
     
 }
