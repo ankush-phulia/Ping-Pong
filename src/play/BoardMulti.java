@@ -103,18 +103,15 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
     	this.Ydim = y;
     	this.bgcolor=Color.CYAN;
     	this.ccolor = Color.white;
-    	this.fps = 60;
+    	this.fps = 100;
     	this.power_en=powerups;
     	
     	//balls
-    	this.ball_num = ball_Num;
-    	this.gameSpd = spd;
-    	BoardMulti.balls = new ArrayList<>();
-    	BoardMulti.balls.add(new Ball(this.Xdim/2, this.Ydim/2, -4*gameSpd, 8*gameSpd,2));
-    	if (ball_Num > 1){
-    		BoardMulti.balls.add(new Ball(this.Ydim/2, Xdim/2, 6*gameSpd, 12*gameSpd,1));
-    		if (ball_Num > 2){
-				BoardMulti.balls.add(new Ball(this.Ydim/2, Xdim/2, 12*gameSpd, 6*gameSpd,4));
+    	BoardMulti.balls.add(new Ball(this.Xdim/2-10, this.Ydim/2-10, gen_vel()*gameSpd, gen_vel()*gameSpd,2));
+    	if (ball_Num>1){
+    		BoardMulti.balls.add(new Ball(this.Xdim/2, this.Ydim/2, gen_vel()*gameSpd, gen_vel()*gameSpd,1));
+    		if (ball_Num>2){    			
+				BoardMulti.balls.add(new Ball(this.Xdim/2+10, this.Ydim/2-10, gen_vel()*gameSpd, gen_vel()*gameSpd,4));
         	}
     	}
     	
@@ -211,7 +208,7 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
     		Paddle P1 = fetch(1,players);
             if (P1!=null){
             	if (BoardMulti.position.equals("Left")){
-            		P1.set_cYvel(20*gameSpd);
+            		P1.set_cYvel(15*gameSpd);
             		if (pressed[0]) {
                         if (P1.cYpos-P1.cYvel > P1.Ydim/2 ) {
                             P1.set_Ypos(P1.cYpos-P1.cYvel);
@@ -228,7 +225,7 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
 
             	}
             	else if (player2 && BoardMulti.position.equals("Right")){
-            		P1.set_cYvel(20*gameSpd);
+            		P1.set_cYvel(15*gameSpd);
             		if (pressed[3]) {
                         if (P1.cYpos-P1.cYvel > P1.Ydim/2 ) {
                             P1.set_Ypos(P1.cYpos-P1.cYvel);
@@ -241,7 +238,7 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
                     }
             	}
             	else if (PCplayers && isPC[P1.pos-1]){
-            		AIplayer2.moveAIplayer1(P1, balls, this, 20*gameSpd);
+            		AIplayer2.moveAIplayer1(P1, balls, this, 15*gameSpd);
             	}
             	else{
 
@@ -251,7 +248,7 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
             Paddle P2 = fetch(2,players);
             if (P2!=null){
             	if (BoardMulti.position.equals("Right")){
-            		P2.set_cYvel(20*gameSpd);
+            		P2.set_cYvel(15*gameSpd);
             		if (pressed[0]) {
                         if (P2.cYpos-P2.cYvel > P2.Ydim/2 ) {
                             P2.set_Ypos(P2.cYpos-P2.cYvel);
@@ -268,7 +265,7 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
 
             	}  
             	else if (player2 && BoardMulti.position.equals("Left")){
-            		P2.set_cYvel(20*gameSpd);
+            		P2.set_cYvel(15*gameSpd);
             		if (pressed[3]) {
                         if (P2.cYpos-P2.cYvel > P2.Ydim/2 ) {
                             P2.set_Ypos(P2.cYpos-P2.cYvel);
@@ -281,7 +278,7 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
                     }
             	} 
             	else if (PCplayers && isPC[P2.pos-1]){
-            		AIplayer2.moveAIplayer(P2, balls, this, 20*gameSpd);
+            		AIplayer2.moveAIplayer(P2, balls, this, 15*gameSpd);
             	}
             	else{
 
@@ -291,7 +288,7 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
             Paddle P3 = fetch(3,players);
             if (P3!=null){
             	if (BoardMulti.position.equals("Top")){
-            		P3.set_cXvel(20*gameSpd);
+            		P3.set_cXvel(15*gameSpd);
             		if (pressed[0]) {
                         if (P3.cXpos-P3.cXvel > P3.Xdim/2 ) {
                             P3.set_Xpos(P3.cXpos-P3.cXvel);
@@ -308,7 +305,7 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
 
             	} 
             	else if (player2 && BoardMulti.position.equals("Bottom")){
-            		P3.set_cXvel(20*gameSpd);
+            		P3.set_cXvel(15*gameSpd);
             		if (pressed[3]) {
                         if (P3.cXpos-P3.cXvel > P3.Xdim/2 ) {
                             P3.set_Xpos(P3.cXpos-P3.cXvel);
@@ -321,7 +318,7 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
                     }
             	} 
             	else if (PCplayers && isPC[P3.pos-1]){
-            		AIplayer2.moveAIplayer4(P3, balls, this, 20*gameSpd);
+            		AIplayer2.moveAIplayer4(P3, balls, this, 15*gameSpd);
             	}
             	else{
 
@@ -331,7 +328,7 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
             Paddle P4 = fetch(4,players);
             if (P4!=null){
             	if (BoardMulti.position.equals("Bottom")){
-            		P4.set_cXvel(20*gameSpd);
+            		P4.set_cXvel(15*gameSpd);
             		if (pressed[0]) {
                         if (P4.cXpos-P4.cXvel > P4.Xdim/2 ) {
                             P4.set_Xpos(P4.cXpos-P4.cXvel);
@@ -348,7 +345,7 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
 
             	} 
             	else if (player2 && BoardMulti.position.equals("Top")){
-            		P4.set_cXvel(20*gameSpd);
+            		P4.set_cXvel(15*gameSpd);
             		if (pressed[3]) {
                         if (P4.cXpos-P4.cXvel > P4.Xdim/2 ) {
                             P4.set_Xpos(P4.cXpos-P4.cXvel);
@@ -361,7 +358,7 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
                     }
             	}  
             	else if (PCplayers && isPC[P4.pos-1]){
-            		AIplayer2.moveAIplayer3(P4, balls, this, 20*gameSpd);
+            		AIplayer2.moveAIplayer3(P4, balls, this, 15*gameSpd);
             	}
             	else {
             		
@@ -1108,6 +1105,18 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
 			isHost = true;
 		}
 		System.out.println("Current host position: " + hostPosition);
-	}
-    
+	}    
+	
+	public int gen_vel(){
+    	Random vel=new Random();
+    	int s=vel.nextInt(4)+5;
+    	int s2=-(vel.nextInt(4)+5);
+    	int choose=vel.nextInt(2);
+    	if (choose==0){
+    		return s;
+    	}
+    	else{
+    		return s2;
+    	}
+    }
 }

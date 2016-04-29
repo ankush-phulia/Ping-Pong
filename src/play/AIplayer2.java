@@ -9,6 +9,7 @@ public  class AIplayer2 {
 	
 	
 	public static void moveAIplayer(Paddle p,ArrayList<Ball> balls,BoardMulti b,double initialvelocity){
+		
 		Ball balltobefollowed = null  ;
 		Ball temp  ; 
 		double farthestballfromleft = 0;
@@ -34,7 +35,7 @@ public  class AIplayer2 {
 			balltobefollowed.flag = temp1 ; 
 			//System.out.println(balltobefollowed.flag) ;
 			
-			double predictedordinatetemp = (balltobefollowed.Yvel/balltobefollowed.Xvel)*1000+(balltobefollowed.Ypos-(balltobefollowed.Yvel/balltobefollowed.Xvel)*balltobefollowed.Xpos) ; 
+			double predictedordinatetemp = (balltobefollowed.Yvel/balltobefollowed.Xvel)*749+(balltobefollowed.Ypos-(balltobefollowed.Yvel/balltobefollowed.Xvel)*balltobefollowed.Xpos) ; 
 			//double error = 5  ; 
 			double predictedordinate = 5 ; 
 			p.set_cYvel(initialvelocity);
@@ -47,7 +48,7 @@ public  class AIplayer2 {
 				//System.out.println(counter++);
 				balltobefollowed.flag  =1 ; 
 				if (balltobefollowed.Xpos > 3*b.Xdim/4+100){
-					System.out.println("eroraya"); 
+					//System.out.println("eroraya"); 
 				}
 			}
 			
@@ -62,7 +63,7 @@ public  class AIplayer2 {
 					if (p.cYpos+p.cYvel+p.Ydim/2< b.getHeight() && (p.cYpos-predictedordinate < (-1*epsilon))) {
 		            	p.set_Ypos(p.cYpos+p.cYvel);
 		            }
-			}
+			}	
 		}
 	}
 	
@@ -106,7 +107,7 @@ public  class AIplayer2 {
 			
 			double predictedordinatetemp  = (balltobefollowed.Ypos-(balltobefollowed.Yvel/balltobefollowed.Xvel)*balltobefollowed.Xpos) ; 
 			
-			predictedordinate = predictedordinatetemp + p.Ydim*error/(10 + 20*p.difficulty) ;  
+			predictedordinate = predictedordinatetemp + p.Ydim*error/(5 + 20*p.difficulty) ;  
 			
 			
 			
@@ -169,9 +170,9 @@ public  class AIplayer2 {
 			}
 			
 			//double predictedordinatetemp  = (balltobefollowed.Ypos-(balltobefollowed.Yvel/balltobefollowed.Xvel)*balltobefollowed.Xpos) ; 
-			double predictedordinatetemp = (balltobefollowed.Xvel/balltobefollowed.Yvel)*1000+(balltobefollowed.Xpos-(balltobefollowed.Xvel/balltobefollowed.Yvel)*balltobefollowed.Ypos) ; 
+			double predictedordinatetemp = (balltobefollowed.Xvel/balltobefollowed.Yvel)*749+(balltobefollowed.Xpos-(balltobefollowed.Xvel/balltobefollowed.Yvel)*balltobefollowed.Ypos) ; 
 			
-			predictedordinate = predictedordinatetemp + p.Ydim*error/(10 + 20*p.difficulty) ; 
+			predictedordinate = predictedordinatetemp + p.Ydim*error/(5 + 20*p.difficulty) ; 
 			
 			
 			p.set_cXvel(initialvelocity);
@@ -190,8 +191,7 @@ public  class AIplayer2 {
 			}
 		}
 		//System.out.println(balls.size());
-		
-		
+				
 	}
 	
 	public static void moveAIplayer4(Paddle p,ArrayList<Ball> balls,BoardMulti b,double initialvelocity){
@@ -233,10 +233,10 @@ public  class AIplayer2 {
 			}
 			
 			//double predictedordinatetemp  = (balltobefollowed.Ypos-(balltobefollowed.Yvel/balltobefollowed.Xvel)*balltobefollowed.Xpos) ; 
-			//double predictedordinatetemp = (balltobefollowed.Xvel/balltobefollowed.Yvel)*1000+(balltobefollowed.Xpos-(balltobefollowed.Xvel/balltobefollowed.Yvel)*balltobefollowed.Ypos) ; 
+			//double predictedordinatetemp = (balltobefollowed.Xvel/balltobefollowed.Yvel)*749+(balltobefollowed.Xpos-(balltobefollowed.Xvel/balltobefollowed.Yvel)*balltobefollowed.Ypos) ; 
 			double predictedordinatetemp = (balltobefollowed.Xpos-(balltobefollowed.Xvel/balltobefollowed.Yvel)*balltobefollowed.Ypos) ; 
 			
-			predictedordinate = predictedordinatetemp + p.Ydim*error/(10 + 20*p.difficulty) ; 
+			predictedordinate = predictedordinatetemp + p.Ydim*error/(5 + 20*p.difficulty) ; 
 			
 			
 			p.set_cXvel(initialvelocity);

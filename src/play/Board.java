@@ -80,7 +80,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
     	this.Ydim=y;
     	this.bgcolor=Color.CYAN;
     	this.ccolor=Color.blue;
-    	this.fps=60;
+    	this.fps=100;
     	this.power_en=powerups;
     	
     	//balls
@@ -89,11 +89,11 @@ public class Board extends JPanel implements ActionListener, KeyListener{
     	this.balls=new ArrayList<Ball>();
     	this.balls2=new ArrayList<Ball>();
 
-    	this.balls.add(new Ball(this.Xdim/2-20, this.Ydim/2-20, gen_vel()*gameSpd, gen_vel()*gameSpd,2));
+    	this.balls.add(new Ball(this.Xdim/2-10, this.Ydim/2-10, gen_vel()*gameSpd, gen_vel()*gameSpd,2));
     	if (ball_Num>1){
     		this.balls.add(new Ball(this.Xdim/2, this.Ydim/2, gen_vel()*gameSpd, gen_vel()*gameSpd,1));
     		if (ball_Num>2){    			
-				this.balls.add(new Ball(this.Xdim/2+20, this.Ydim/2-20, gen_vel()*gameSpd, gen_vel()*gameSpd,4));
+				this.balls.add(new Ball(this.Xdim/2+10, this.Ydim/2-10, gen_vel()*gameSpd, gen_vel()*gameSpd,4));
         	}
     	}
     	//paddles
@@ -185,7 +185,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
     		Paddle P1=fetch(1,players);
             if (P1!=null){
             	if (this.position.equals("Left")){
-            		P1.set_cYvel(20*gameSpd);
+            		P1.set_cYvel(15*gameSpd);
             		if (pressed[0]) {
                         if (P1.cYpos-P1.cYvel > P1.Ydim/2 ) {
                             P1.set_Ypos(P1.cYpos-P1.cYvel);
@@ -198,7 +198,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
                     }
             	}
             	else if (!this.position.equals("Left")){
-            		AIplayer.moveAIplayer1(P1, balls, this, 20*gameSpd);
+            		AIplayer.moveAIplayer1(P1, balls, this, 15*gameSpd);
             	}
             	else{
             		
@@ -208,7 +208,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
             Paddle P2=fetch(2,players);
             if (P2!=null){
             	if (this.position.equals("Right")){
-            		P2.set_cYvel(20*gameSpd);
+            		P2.set_cYvel(15*gameSpd);
             		if (pressed[0]) {
                         if (P2.cYpos-P2.cYvel > P2.Ydim/2 ) {
                             P2.set_Ypos(P2.cYpos-P2.cYvel);
@@ -221,7 +221,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
                     }
             	}            	
             	else if (!this.position.equals("Right")){
-            		AIplayer.moveAIplayer(P2, balls, this, 20*gameSpd);
+            		AIplayer.moveAIplayer(P2, balls, this, 15*gameSpd);
             	}
             	else{
             		
@@ -231,7 +231,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
             Paddle P3=fetch(3,players);
             if (P3!=null){
             	if (this.position.equals("Top")){
-            		P3.set_cXvel(20*gameSpd);
+            		P3.set_cXvel(15*gameSpd);
             		if (pressed[0]) {
                         if (P3.cXpos-P3.cXvel > P3.Xdim/2 ) {
                             P3.set_Xpos(P3.cXpos-P3.cXvel);
@@ -244,7 +244,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
                     }
             	}            	
             	else if (!this.position.equals("Top")){
-            		AIplayer.moveAIplayer4(P3, balls, this, 20*gameSpd);
+            		AIplayer.moveAIplayer4(P3, balls, this, 15*gameSpd);
             	}
             	else{
             		
@@ -254,7 +254,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
             Paddle P4=fetch(4,players);
             if (P4!=null){
             	if (this.position.equals("Bottom")){
-            		P4.set_cXvel(20*gameSpd);
+            		P4.set_cXvel(15*gameSpd);
             		if (pressed[0]) {
                         if (P4.cXpos-P4.cXvel > P4.Xdim/2 ) {
                             P4.set_Xpos(P4.cXpos-P4.cXvel);
@@ -267,7 +267,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
                     }
             	}            	
             	else if (!this.position.equals("Bottom")){
-            		AIplayer.moveAIplayer3(P4, balls, this, 20*gameSpd);
+            		AIplayer.moveAIplayer3(P4, balls, this, 15*gameSpd);
             	}
             	else{
             		
@@ -318,7 +318,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
     	
     	Paddle P1=this.fetch(1, players);
     	if (P1!=null){
-    		playerOneRight = P1.cXpos - P1.Xdim;
+    		playerOneRight = P1.cXpos - 2* P1.Xdim;
     		playerOneTop = P1.cYpos-(P1.Ydim/2);
     		playerOneBottom = playerOneTop+(P1.Ydim);
     	}    	
@@ -329,7 +329,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
     	
     	Paddle P2=this.fetch(2, players);
     	if (P2!=null){
-    		playerTwoLeft = P2.cXpos + P2.Xdim;
+    		playerTwoLeft = P2.cXpos + 2* P2.Xdim;
         	playerTwoTop = P2.cYpos - (P2.Ydim/2);
         	playerTwoBottom = playerTwoTop + (P2.Ydim);
     	}
@@ -940,8 +940,8 @@ public class Board extends JPanel implements ActionListener, KeyListener{
     
     public int gen_vel(){
     	Random vel=new Random();
-    	int s=vel.nextInt(8)+5;
-    	int s2=-(vel.nextInt(8)+5);
+    	int s=vel.nextInt(4)+5;
+    	int s2=-(vel.nextInt(4)+5);
     	int choose=vel.nextInt(2);
     	if (choose==0){
     		return s;
