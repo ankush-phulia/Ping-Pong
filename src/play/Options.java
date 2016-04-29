@@ -22,6 +22,8 @@ import java.awt.Font;
 import javax.swing.BoxLayout;
 import java.awt.GridBagLayout;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
+
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
@@ -654,6 +656,23 @@ public class Options extends JPanel {
 		gbc_act2.gridy = 32;
 		panel_1.add(act2, gbc_act2);
 		
+		JLabel lblSounds = new JLabel("Sounds");
+		lblSounds.setFont(new Font("Tahoma", Font.PLAIN, 34));
+		GridBagConstraints gbc_lblSounds = new GridBagConstraints();
+		gbc_lblSounds.insets = new Insets(0, 0, 5, 5);
+		gbc_lblSounds.gridx = 14;
+		gbc_lblSounds.gridy = 33;
+		panel_1.add(lblSounds, gbc_lblSounds);
+		
+		final JCheckBox sounds = new JCheckBox("");
+		sounds.setFont(new Font("Tahoma", Font.PLAIN, 34));
+		sounds.setSelected(getWindowAncestor().sounds);
+		GridBagConstraints gbc_sounds = new GridBagConstraints();
+		gbc_sounds.insets = new Insets(0, 0, 5, 5);
+		gbc_sounds.gridx = 29;
+		gbc_sounds.gridy = 33;
+		panel_1.add(sounds, gbc_sounds);
+		
 		JPanel panel_2 = new JPanel();
 		add(panel_2);
 		panel_2.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
@@ -679,6 +698,7 @@ public class Options extends JPanel {
 				getWindowAncestor().keys[3]=convert((String)up2.getSelectedItem());
 				getWindowAncestor().keys[4]=convert((String)down2.getSelectedItem());
 				getWindowAncestor().keys[5]=convert((String)act2.getSelectedItem());
+				getWindowAncestor().sounds=sounds.isSelected();
 				removeAll();
 				show_small();
 				action.run();

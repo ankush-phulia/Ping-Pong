@@ -441,7 +441,8 @@ public class Multi_New extends JPanel implements ActionListener{
 				
 				BoardMulti game = new BoardMulti(true,gameServer,getWidth(),getHeight(),(String)ownPosition.getSelectedItem(),ownLives.getValue(),
 						(String)GameMode.getSelectedItem(),ball_Num.getValue(),spd.getValue(),powerups.isSelected(),Player2.isSelected()
-						,getWindowAncestor().keys,isPC,PCpl.isSelected(),ipOfHost,(ArrayList<InetAddress>) gameServer.getAllClients(),positions);
+						,getWindowAncestor().keys,isPC,PCpl.isSelected(),ipOfHost,(ArrayList<InetAddress>) gameServer.getAllClients(),positions,
+						getWindowAncestor().sounds);
 
 				System.out.println("Starting new game...");
 				

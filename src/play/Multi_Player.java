@@ -85,7 +85,7 @@ public class Multi_Player extends JPanel {
 					}
 				}
 				else if (State==1) {
-					if (gameServer.alive()) {
+					if (gameServer!=null && gameServer.alive()) {
 						gameServer.disconnect();
 					}
 					for (ConnectionToServer cs : otherConnections) {
@@ -302,7 +302,8 @@ public class Multi_Player extends JPanel {
 					
 					BoardMulti game = new BoardMulti(false,gameServer,getWidth(),getHeight(),mypos,Integer.parseInt(tokens[2]),
 							tokens[3],Integer.parseInt(tokens[4]),Integer.parseInt(tokens[5]),Boolean.parseBoolean(tokens[6]),false
-							,getWindowAncestor().keys,isPC,Boolean.parseBoolean(tokens[7]), ipOfHost, IPs,positions);
+							,getWindowAncestor().keys,isPC,Boolean.parseBoolean(tokens[7]), ipOfHost, IPs,positions,
+							getWindowAncestor().sounds);
 
 					System.out.println("Starting new game...");
 

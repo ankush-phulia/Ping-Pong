@@ -33,6 +33,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.BorderLayout;
 import javax.swing.JCheckBox;
+import javax.swing.JScrollBar;
 
 
 public class Single_Player extends JPanel implements ActionListener{
@@ -112,9 +113,9 @@ public class Single_Player extends JPanel implements ActionListener{
 		JPanel SelectionPanel = new JPanel();	
 		MenuPanel.add(SelectionPanel);
 		GridBagLayout gbl_SelectionPanel = new GridBagLayout();
-		gbl_SelectionPanel.columnWidths = new int[]{58, 0, 0, 0, 307, 0, 0, 249, 0, 0, 289, 81, 0, 0};
+		gbl_SelectionPanel.columnWidths = new int[]{58, 0, 0, 0, 307, 0, 0, 250, 0, 289, 81, 0, 0};
 		gbl_SelectionPanel.rowHeights = new int[]{33, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 56, -78, -7, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_SelectionPanel.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_SelectionPanel.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
 		gbl_SelectionPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		SelectionPanel.setLayout(gbl_SelectionPanel);
 		
@@ -134,13 +135,6 @@ public class Single_Player extends JPanel implements ActionListener{
 		gbc_separator_14.gridx = 8;
 		gbc_separator_14.gridy = 0;
 		SelectionPanel.add(separator_14, gbc_separator_14);
-		
-		JSeparator separator_22 = new JSeparator();
-		GridBagConstraints gbc_separator_22 = new GridBagConstraints();
-		gbc_separator_22.insets = new Insets(0, 0, 5, 5);
-		gbc_separator_22.gridx = 9;
-		gbc_separator_22.gridy = 0;
-		SelectionPanel.add(separator_22, gbc_separator_22);
 		
 		JSeparator separator = new JSeparator();
 		GridBagConstraints gbc_separator = new GridBagConstraints();
@@ -201,7 +195,7 @@ public class Single_Player extends JPanel implements ActionListener{
 		GridBagConstraints gbc_ownPosition = new GridBagConstraints();
 		gbc_ownPosition.fill = GridBagConstraints.HORIZONTAL;
 		gbc_ownPosition.insets = new Insets(0, 0, 5, 5);
-		gbc_ownPosition.gridx = 10;
+		gbc_ownPosition.gridx = 9;
 		gbc_ownPosition.gridy = 7;
 		SelectionPanel.add(ownPosition, gbc_ownPosition);
 		
@@ -236,7 +230,7 @@ public class Single_Player extends JPanel implements ActionListener{
 		GridBagConstraints gbc_ownLives = new GridBagConstraints();
 		gbc_ownLives.fill = GridBagConstraints.HORIZONTAL;
 		gbc_ownLives.insets = new Insets(0, 0, 5, 5);
-		gbc_ownLives.gridx = 10;
+		gbc_ownLives.gridx = 9;
 		gbc_ownLives.gridy = 10;
 		SelectionPanel.add(ownLives, gbc_ownLives);
 		
@@ -271,7 +265,7 @@ public class Single_Player extends JPanel implements ActionListener{
 		GridBagConstraints gbc_GameMode = new GridBagConstraints();
 		gbc_GameMode.insets = new Insets(0, 0, 5, 5);
 		gbc_GameMode.fill = GridBagConstraints.HORIZONTAL;
-		gbc_GameMode.gridx = 10;
+		gbc_GameMode.gridx = 9;
 		gbc_GameMode.gridy = 13;
 		SelectionPanel.add(GameMode, gbc_GameMode);
 		
@@ -313,7 +307,7 @@ public class Single_Player extends JPanel implements ActionListener{
 		GridBagConstraints gbc_ball_Num = new GridBagConstraints();
 		gbc_ball_Num.fill = GridBagConstraints.HORIZONTAL;
 		gbc_ball_Num.insets = new Insets(0, 0, 5, 5);
-		gbc_ball_Num.gridx = 10;
+		gbc_ball_Num.gridx = 9;
 		gbc_ball_Num.gridy = 17;
 		SelectionPanel.add(ball_Num, gbc_ball_Num);
 		
@@ -362,7 +356,7 @@ public class Single_Player extends JPanel implements ActionListener{
 		GridBagConstraints gbc_spd = new GridBagConstraints();
 		gbc_spd.fill = GridBagConstraints.HORIZONTAL;
 		gbc_spd.insets = new Insets(0, 0, 5, 5);
-		gbc_spd.gridx = 10;
+		gbc_spd.gridx = 9;
 		gbc_spd.gridy = 22;
 		SelectionPanel.add(spd, gbc_spd);
 		
@@ -392,7 +386,7 @@ public class Single_Player extends JPanel implements ActionListener{
 		powerups.setFont(new Font("Tahoma", Font.PLAIN, 34));
 		GridBagConstraints gbc_powerups = new GridBagConstraints();
 		gbc_powerups.insets = new Insets(0, 0, 5, 5);
-		gbc_powerups.gridx = 10;
+		gbc_powerups.gridx = 9;
 		gbc_powerups.gridy = 25;
 		SelectionPanel.add(powerups, gbc_powerups);
 		
@@ -451,7 +445,7 @@ public class Single_Player extends JPanel implements ActionListener{
 		label_5.setFont(new Font("Tahoma", Font.PLAIN, 34));
 		GridBagConstraints gbc_label_5 = new GridBagConstraints();
 		gbc_label_5.insets = new Insets(0, 0, 5, 5);
-		gbc_label_5.gridx = 10;
+		gbc_label_5.gridx = 9;
 		gbc_label_5.gridy = 32;
 		SelectionPanel.add(label_5, gbc_label_5);
 		
@@ -504,7 +498,7 @@ public class Single_Player extends JPanel implements ActionListener{
 		GridBagConstraints gbc_Lives1 = new GridBagConstraints();
 		gbc_Lives1.fill = GridBagConstraints.HORIZONTAL;
 		gbc_Lives1.insets = new Insets(0, 0, 5, 5);
-		gbc_Lives1.gridx = 10;
+		gbc_Lives1.gridx = 9;
 		gbc_Lives1.gridy = 35;
 		SelectionPanel.add(Lives1, gbc_Lives1);
 		
@@ -578,7 +572,7 @@ public class Single_Player extends JPanel implements ActionListener{
 		GridBagConstraints gbc_Lives2 = new GridBagConstraints();
 		gbc_Lives2.fill = GridBagConstraints.HORIZONTAL;
 		gbc_Lives2.insets = new Insets(0, 0, 5, 5);
-		gbc_Lives2.gridx = 10;
+		gbc_Lives2.gridx = 9;
 		gbc_Lives2.gridy = 37;
 		SelectionPanel.add(Lives2, gbc_Lives2);
 		
@@ -631,7 +625,7 @@ public class Single_Player extends JPanel implements ActionListener{
 		GridBagConstraints gbc_Lives3 = new GridBagConstraints();
 		gbc_Lives3.fill = GridBagConstraints.HORIZONTAL;
 		gbc_Lives3.insets = new Insets(0, 0, 0, 5);
-		gbc_Lives3.gridx = 10;
+		gbc_Lives3.gridx = 9;
 		gbc_Lives3.gridy = 39;
 		SelectionPanel.add(Lives3, gbc_Lives3);
 		
@@ -655,7 +649,7 @@ public class Single_Player extends JPanel implements ActionListener{
 						(String)GameMode.getSelectedItem(),ball_Num.getValue(),spd.getValue(),powerups.isSelected(),
 						(String)Difficulty1.getSelectedItem(),(Integer)Lives1.getValue(),
 						(String)Difficulty2.getSelectedItem(),(Integer)Lives2.getValue(),
-						(String)Difficulty3.getSelectedItem(),(Integer)Lives3.getValue(),getWindowAncestor().keys);
+						(String)Difficulty3.getSelectedItem(),(Integer)Lives3.getValue(),getWindowAncestor().keys,getWindowAncestor().sounds);
 				add(game,"Game");
 				cdl.show(Single_Player.this, "Game");
 				game.requestFocusInWindow();

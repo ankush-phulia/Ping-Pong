@@ -47,7 +47,7 @@ public  class AIplayer {
 				//System.out.println(counter++);
 				balltobefollowed.flag  =1 ; 
 				if (balltobefollowed.Xpos > 3*b.Xdim/4+100){
-					System.out.println("eroraya"); 
+					//System.out.println("eroraya"); 
 				}
 			}
 			

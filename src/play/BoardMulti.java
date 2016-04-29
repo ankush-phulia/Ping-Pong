@@ -6,9 +6,12 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.InetAddress;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Random;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -16,8 +19,9 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-import network.ConnectionToServer;
 import network.LocalServer;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
 
 
 public class BoardMulti extends JPanel implements ActionListener, KeyListener{
@@ -37,6 +41,8 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
     public Color ccolor;
     public double fps;
     public int gameSpd = 1;
+    InputStream in;
+    AudioStream audioStream;
     
     //Players
     public static String position = "Left";
@@ -56,6 +62,18 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
     //Scores/Lives
     public static int[] playerScores;
     
+    //powerups
+    public boolean power_en;
+    double poweruptime = 0 ; 
+    public double currenttime = 0 ; 
+    public boolean powerup = false ; 
+    double puXpos = 0 ; 
+    double puYpos = 0  ; 
+    Random pupos =  new Random() ;
+    double initialdim  ;
+    int player = -1;  
+    int powertype = -1 ;
+    
     //Controls
     public int[] keys;
         
@@ -65,7 +83,7 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
     public BoardMulti (boolean isHost,LocalServer gs, int x, int y, String ownPosition,int ownLives,
 			String GameMode,int ball_Num,int spd,boolean powerups,
 			boolean player2, int[] keys, boolean[] isPCList, boolean PCplayersEnabled, String ipOfHost,
-			ArrayList<InetAddress> IPsList, ArrayList<Integer> positionsList){
+			ArrayList<InetAddress> IPsList, ArrayList<Integer> positionsList,boolean sounds){
     	
     	//network
     	BoardMulti.isHost = isHost;
@@ -86,6 +104,7 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
     	this.bgcolor=Color.CYAN;
     	this.ccolor = Color.white;
     	this.fps = 60;
+    	this.power_en=powerups;
     	
     	//balls
     	this.ball_num = ball_Num;
@@ -149,6 +168,19 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
         });
         
         BoardMulti.state = "Playing";
+        
+        if (sounds){
+            // create an audiostream from the inputstream
+   			try {
+   			    in = new FileInputStream("bgm.wav");
+   				audioStream = new AudioStream(in);
+   				// play the audio clip with the audioplayer class
+   			    AudioPlayer.player.start(audioStream);
+   			} catch (IOException e) {
+   				// TODO Auto-generated catch block
+   				e.printStackTrace();
+   			}	
+       }
         
     }
 
@@ -336,7 +368,7 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
             	}
             }
 
-            if (isHost){
+            if (isHost && power_en){
             	String ballInfo = "play.Ball";
 	            for (int i=0; i<BoardMulti.balls.size(); i++){
 	            	Ball b = BoardMulti.balls.get(i);
@@ -347,9 +379,31 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
 				InetAddress lostIP = gameServer.writeToAllClients(ballInfo);
 				replacePlayerWithAI(lostIP);
 	            
+				
+				Random pu = new Random() ;
+            	if (!powerup){
+            		if (pu.nextInt(1201) > 1199){
+            			powerup = true ;
+            			poweruptime = currenttime ;
+            			powertype = pupos.nextInt(2) ; 
+            			puXpos = (pupos.nextDouble()/2 + 0.25)*Xdim ; 
+            			puYpos = (pupos.nextDouble()/2 + 0.25)*Ydim ;
+            		}
+            	}
+            	else
+            	{
+            		if (currenttime  >  15+poweruptime){
+            			powerup = false  ; 
+            		}
+            	}
+            	currenttime += 1.0/60.0 ;
             }
+            
+            
 			repaint();
     	}
+    	
+
 
     }
     
@@ -424,11 +478,32 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
                     P1.lives--;
                     if (isHost){
                     	gameServer.writeToAllClients("Lives:1");
-                    }                    
+                    } 
+/*                    if (get_pos(BoardMulti.position)+1==1 && P1.lives==0){
+                    	
+                    	BoardMulti.state="Done2";
+                    }*/
             	}
             }
             else{
             	b.origin=1;
+            	//add """"spin""""
+                if (get_pos(BoardMulti.position)+1==1 && this.pressed[0] && !this.pressed[1]){
+                	if (b.Yvel>0){
+                		b.Yvel *= 0.7;
+                	}
+                	else{
+                		b.Yvel *= 1.2;
+                	}   
+                }
+                else if (get_pos(BoardMulti.position)+1==1 && this.pressed[1] && !this.pressed[0]){
+                	if (b.Yvel>0){
+                		b.Yvel *= 1.2;
+                	}
+                	else{
+                		b.Yvel *= 0.7;
+                	} 
+                }
             }            
             b.Xvel *=-1;
         }
@@ -459,6 +534,23 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
             }
         	else{
         		b.origin=2;
+        		//add """"spin""""
+                if (get_pos(BoardMulti.position)+1==2 && this.pressed[0] && !this.pressed[1]){
+                	if (b.Yvel>0){
+                		b.Yvel *= 0.7;
+                	}
+                	else{
+                		b.Yvel *= 1.2;
+                	}   
+                }
+                else if (get_pos(BoardMulti.position)+1==2 && this.pressed[1] && !this.pressed[0]){
+                	if (b.Yvel>0){
+                		b.Yvel *= 1.2;
+                	}
+                	else{
+                		b.Yvel *= 0.7;
+                	} 
+                }
         	}
         	
             b.Xvel *= -1;
@@ -491,6 +583,23 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
             }
         	else{
         		b.origin=3;
+        		//add """"spin""""
+                if (get_pos(BoardMulti.position)+1==3 && this.pressed[0] && !this.pressed[1]){
+                	if (b.Xvel>0){
+                		b.Xvel *= 0.7;
+                	}
+                	else{
+                		b.Xvel *= 1.2;
+                	}
+                }
+                else if (get_pos(BoardMulti.position)+1==3 && this.pressed[1] && !this.pressed[0]){
+                	if (b.Xvel>0){
+                		b.Xvel *= 1.2;
+                	}
+                	else{
+                		b.Xvel *= 0.7;
+                	}
+                }
         	}
         	
             b.Yvel *= -1;
@@ -522,6 +631,22 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
             }
         	else{
         		b.origin=4;
+        		if (get_pos(BoardMulti.position)+1==4 && this.pressed[0] && !this.pressed[1]){
+                	if (b.Xvel>0){
+                		b.Xvel *= 0.7;
+                	}
+                	else{
+                		b.Xvel *= 1.2;
+                	}
+                }
+                else if (get_pos(BoardMulti.position)+1==4 && this.pressed[1] && !this.pressed[0]){
+                	if (b.Xvel>0){
+                		b.Xvel *= 1.2;
+                	}
+                	else{
+                		b.Xvel *= 0.7;
+                	}
+                }
         	}
         	
             b.Yvel *= -1;
@@ -537,6 +662,83 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
         	if (isHost){
         		gameServer.writeToAllClients("Done");
         	}        	
+        }
+        
+        //checking for power up
+        if (powerup && isHost){
+        	if (Math.sqrt(Math.pow((b.Xpos-puXpos),2)+Math.pow((b.Ypos-puYpos),2)) < ((b.dia)/2+(40)/2)){
+        		powerup = false ; 
+        		System.out.println("mila") ;
+        		System.out.println(b.origin) ;
+        		switch (b.origin){
+        		case 1  :
+        				initialdim = players.get(0).Ydim ; 
+        				if (powertype == 0){
+        					players.get(0).Ydim = 2*(this.Ydim)/5 ; 
+        				}else{
+        					players.get(0).Ydim = (this.Ydim)/10  ; 
+        				}
+        				poweruptime = currenttime ; 
+        				player = 1 ;
+        				break ;
+        		case 2 :
+        			initialdim = players.get(1).Ydim ; 
+    				//players.get(1).Ydim = 3*(this.Ydim)/4 ; 
+    				if (powertype == 0){
+    					players.get(1).Ydim = 2*(this.Ydim)/5 ; 
+    				}else{
+    					players.get(1).Ydim = (this.Ydim)/10  ; 
+    				}
+    				poweruptime = currenttime ; 
+    				player = 2 ;
+    				break ;
+        		case 3 : 
+        			initialdim = players.get(2).Xdim ; 
+    				//players.get(2).Xdim = 3*(this.Xdim)/4 ; 
+        			if (powertype == 0){
+    					players.get(2).Xdim = 2*(this.Xdim)/5 ; 
+    				}else{
+    					players.get(2).Xdim = (this.Xdim)/10  ; 
+    				}
+        			poweruptime = currenttime ; 
+    				player = 3 ;
+    				break ;
+        		case 4 :
+        			initialdim = players.get(3).Xdim ; 
+    				//players.get(3).Xdim = 3*(this.Xdim)/4 ; 
+    				if (powertype == 0){
+    					players.get(3).Xdim = 2*(this.Xdim)/5 ; 
+    				}else{
+    					players.get(3).Xdim = (this.Xdim)/10  ; 
+    				}
+    				poweruptime = currenttime ; 
+    				player = 4 ;
+    				break ;
+        		}
+        	}
+        }
+        else if (!powerup && isHost){
+        	if (currenttime > 5+poweruptime){
+        		switch (player){
+            	case 1 :
+            		players.get(0).Ydim = initialdim ; 
+            		player = -1 ; 
+            		break ;
+            	case 2 :
+            		players.get(1).Ydim = initialdim ; 
+            		player = -1 ; 
+            		break ;
+            	case 3 :
+            		players.get(2).Xdim = initialdim ; 
+            		player = -1 ; 
+            		break ;
+            	case 4 :
+            		players.get(3).Xdim = initialdim ; 
+            		player = -1 ; 
+            		break ;	
+            	}
+        	}
+        	
         }
     	
     	//checking for collision condition between the balls 
@@ -637,6 +839,11 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
 						}
 						g.fillRect((int)(b.cXpos-b.Xdim/2),(int)(b.cYpos-b.Ydim/2),(int) (b.Xdim), (int) (b.Ydim));
 					}
+				}
+				
+				g.setColor(Color.darkGray);
+				if (powerup){					
+					g.fillRect((int)puXpos, (int)puYpos,40,40 );
 				}
 				
 				//draw balls
@@ -752,8 +959,12 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
 				
 			case "Done":
 				if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-	            	RXCardLayout cdl=(RXCardLayout) getParent().getLayout();
-	            	cdl.show(getParent(), "MenuPanel");
+					if (isHost){
+						AudioPlayer.player.stop(audioStream);
+						RXCardLayout cdl=(RXCardLayout) getParent().getLayout();
+						cdl.show(getParent(), "MenuPanel");
+					}
+					
 	            }
 				repaint();
 				break;
