@@ -2,86 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="64f55a98-e9ef-4b62-a820-0c6ba508b302" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/Assignment_3_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/network/ConnectionToServer.class" afterPath="$PROJECT_DIR$/bin/network/ConnectionToServer.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/network/LocalServer.class" afterPath="$PROJECT_DIR$/bin/network/LocalServer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/network/NewClient.class" afterPath="$PROJECT_DIR$/bin/network/NewClient.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/network/ReadData.class" afterPath="$PROJECT_DIR$/bin/network/ReadData.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/AIplayer.class" afterPath="$PROJECT_DIR$/bin/play/AIplayer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/AIplayer2.class" afterPath="$PROJECT_DIR$/bin/play/AIplayer2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Ball.class" afterPath="$PROJECT_DIR$/bin/play/Ball.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Board$1.class" afterPath="$PROJECT_DIR$/bin/play/Board$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Board.class" afterPath="$PROJECT_DIR$/bin/play/Board.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/BoardMulti$1.class" afterPath="$PROJECT_DIR$/bin/play/BoardMulti$1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/BoardMulti.class" afterPath="$PROJECT_DIR$/bin/play/BoardMulti.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Instructions$1.class" afterPath="$PROJECT_DIR$/bin/play/Instructions$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Instructions$Accessor.class" afterPath="$PROJECT_DIR$/bin/play/Instructions$Accessor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Instructions.class" afterPath="$PROJECT_DIR$/bin/play/Instructions.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Main.class" afterPath="$PROJECT_DIR$/bin/play/Main.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Main_Frame$1$1.class" afterPath="$PROJECT_DIR$/bin/play/Main_Frame$1$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Main_Frame$1.class" afterPath="$PROJECT_DIR$/bin/play/Main_Frame$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Main_Frame$2$1.class" afterPath="$PROJECT_DIR$/bin/play/Main_Frame$2$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Main_Frame$2.class" afterPath="$PROJECT_DIR$/bin/play/Main_Frame$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Main_Frame$3$1.class" afterPath="$PROJECT_DIR$/bin/play/Main_Frame$3$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Main_Frame$3.class" afterPath="$PROJECT_DIR$/bin/play/Main_Frame$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Main_Frame$4$1.class" afterPath="$PROJECT_DIR$/bin/play/Main_Frame$4$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Main_Frame$4.class" afterPath="$PROJECT_DIR$/bin/play/Main_Frame$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Main_Frame$5$1.class" afterPath="$PROJECT_DIR$/bin/play/Main_Frame$5$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Main_Frame$5.class" afterPath="$PROJECT_DIR$/bin/play/Main_Frame$5.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Main_Frame$6$1.class" afterPath="$PROJECT_DIR$/bin/play/Main_Frame$6$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Main_Frame$6.class" afterPath="$PROJECT_DIR$/bin/play/Main_Frame$6.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Main_Frame$7$1.class" afterPath="$PROJECT_DIR$/bin/play/Main_Frame$7$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Main_Frame$7.class" afterPath="$PROJECT_DIR$/bin/play/Main_Frame$7.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Main_Frame$8$1.class" afterPath="$PROJECT_DIR$/bin/play/Main_Frame$8$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Main_Frame$8.class" afterPath="$PROJECT_DIR$/bin/play/Main_Frame$8.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Main_Frame.class" afterPath="$PROJECT_DIR$/bin/play/Main_Frame.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Multi_New$1.class" afterPath="$PROJECT_DIR$/bin/play/Multi_New$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Multi_New$2.class" afterPath="$PROJECT_DIR$/bin/play/Multi_New$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Multi_New.class" afterPath="$PROJECT_DIR$/bin/play/Multi_New.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Multi_Player$1.class" afterPath="$PROJECT_DIR$/bin/play/Multi_Player$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Multi_Player$2.class" afterPath="$PROJECT_DIR$/bin/play/Multi_Player$2.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Multi_Player$3.class" afterPath="$PROJECT_DIR$/bin/play/Multi_Player$3.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Multi_Player$Accessor.class" afterPath="$PROJECT_DIR$/bin/play/Multi_Player$Accessor.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Multi_Player.class" afterPath="$PROJECT_DIR$/bin/play/Multi_Player.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Options$1.class" afterPath="$PROJECT_DIR$/bin/play/Options$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Options$2.class" afterPath="$PROJECT_DIR$/bin/play/Options$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Options$3.class" afterPath="$PROJECT_DIR$/bin/play/Options$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Options$Accessor.class" afterPath="$PROJECT_DIR$/bin/play/Options$Accessor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Options.class" afterPath="$PROJECT_DIR$/bin/play/Options.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Paddle.class" afterPath="$PROJECT_DIR$/bin/play/Paddle.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/PingPanel$1.class" afterPath="$PROJECT_DIR$/bin/play/PingPanel$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/PingPanel$Accessor.class" afterPath="$PROJECT_DIR$/bin/play/PingPanel$Accessor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/PingPanel.class" afterPath="$PROJECT_DIR$/bin/play/PingPanel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/RXCardLayout$CardAction.class" afterPath="$PROJECT_DIR$/bin/play/RXCardLayout$CardAction.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/RXCardLayout.class" afterPath="$PROJECT_DIR$/bin/play/RXCardLayout.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Single_Player$1.class" afterPath="$PROJECT_DIR$/bin/play/Single_Player$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Single_Player$2.class" afterPath="$PROJECT_DIR$/bin/play/Single_Player$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Single_Player$3.class" afterPath="$PROJECT_DIR$/bin/play/Single_Player$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Single_Player$Accessor.class" afterPath="$PROJECT_DIR$/bin/play/Single_Player$Accessor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Single_Player.class" afterPath="$PROJECT_DIR$/bin/play/Single_Player.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/slidinglayout/SLAnimator$1$1.class" afterPath="$PROJECT_DIR$/bin/slidinglayout/SLAnimator$1$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/slidinglayout/SLAnimator$1.class" afterPath="$PROJECT_DIR$/bin/slidinglayout/SLAnimator$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/slidinglayout/SLAnimator$ComponentAccessor.class" afterPath="$PROJECT_DIR$/bin/slidinglayout/SLAnimator$ComponentAccessor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/slidinglayout/SLAnimator.class" afterPath="$PROJECT_DIR$/bin/slidinglayout/SLAnimator.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/slidinglayout/SLConfig$Column.class" afterPath="$PROJECT_DIR$/bin/slidinglayout/SLConfig$Column.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/slidinglayout/SLConfig$Grid.class" afterPath="$PROJECT_DIR$/bin/slidinglayout/SLConfig$Grid.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/slidinglayout/SLConfig$Row.class" afterPath="$PROJECT_DIR$/bin/slidinglayout/SLConfig$Row.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/slidinglayout/SLConfig$Tile.class" afterPath="$PROJECT_DIR$/bin/slidinglayout/SLConfig$Tile.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/slidinglayout/SLConfig.class" afterPath="$PROJECT_DIR$/bin/slidinglayout/SLConfig.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/slidinglayout/SLKeyframe$Callback.class" afterPath="$PROJECT_DIR$/bin/slidinglayout/SLKeyframe$Callback.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/slidinglayout/SLKeyframe.class" afterPath="$PROJECT_DIR$/bin/slidinglayout/SLKeyframe.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/slidinglayout/SLPanel$1.class" afterPath="$PROJECT_DIR$/bin/slidinglayout/SLPanel$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/slidinglayout/SLPanel.class" afterPath="$PROJECT_DIR$/bin/slidinglayout/SLPanel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/slidinglayout/SLSide.class" afterPath="$PROJECT_DIR$/bin/slidinglayout/SLSide.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/slidinglayout/SLTransition$1.class" afterPath="$PROJECT_DIR$/bin/slidinglayout/SLTransition$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/slidinglayout/SLTransition.class" afterPath="$PROJECT_DIR$/bin/slidinglayout/SLTransition.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/artifacts/Assignment_3_jar/Assignment 3.jar" afterPath="$PROJECT_DIR$/classes/artifacts/Assignment_3_jar/Assignment 3.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/network/ConnectionToServer.java" afterPath="$PROJECT_DIR$/src/network/ConnectionToServer.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/network/LocalServer.java" afterPath="$PROJECT_DIR$/src/network/LocalServer.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/network/ReadData.java" afterPath="$PROJECT_DIR$/src/network/ReadData.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/play/BoardMulti.java" afterPath="$PROJECT_DIR$/src/play/BoardMulti.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/play/Multi_New.java" afterPath="$PROJECT_DIR$/src/play/Multi_New.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/play/Multi_Player.java" afterPath="$PROJECT_DIR$/src/play/Multi_Player.java" />
     </list>
     <ignored path="Assignment 3.iws" />
@@ -105,11 +35,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Multi_Player.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Multi_Player.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/play/Multi_Player.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="426" column="33" selection-start-line="426" selection-start-column="30" selection-end-line="426" selection-end-column="33" />
+            <state relative-caret-position="673">
+              <caret line="286" column="43" selection-start-line="286" selection-start-column="39" selection-end-line="286" selection-end-column="43" />
               <folding>
                 <element signature="method#mouseReleased#0;class#1777:2535" expanded="false" />
                 <element signature="method#show_small#0;class#Multi_Player#0" expanded="false" />
@@ -127,7 +57,7 @@
       <file leaf-file-name="Multi_New.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/play/Multi_New.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="149">
+            <state relative-caret-position="5145">
               <caret line="370" column="80" selection-start-line="370" selection-start-column="78" selection-end-line="370" selection-end-column="80" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -144,8 +74,8 @@
       <file leaf-file-name="ReadData.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/network/ReadData.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="16" column="24" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
+            <state relative-caret-position="328">
+              <caret line="46" column="28" selection-start-line="46" selection-start-column="28" selection-end-line="46" selection-end-column="28" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#ReadData#0;class#ReadData#0" expanded="false" />
@@ -159,13 +89,12 @@
       <file leaf-file-name="BoardMulti.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/play/BoardMulti.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="149">
-              <caret line="251" column="62" selection-start-line="251" selection-start-column="60" selection-end-line="251" selection-end-column="62" />
+            <state relative-caret-position="-1192">
+              <caret line="265" column="24" selection-start-line="265" selection-start-column="24" selection-end-line="265" selection-end-column="24" />
               <folding>
-                <element signature="method#BoardMulti#0;class#BoardMulti#0" expanded="false" />
                 <element signature="method#get_pos#0;class#BoardMulti#0" expanded="false" />
-                <element signature="e#4453#4454#0" expanded="true" />
-                <element signature="e#4467#4468#0" expanded="true" />
+                <element signature="e#4448#4449#0" expanded="true" />
+                <element signature="e#4462#4463#0" expanded="true" />
                 <element signature="method#analyse#0;class#BoardMulti#0" expanded="false" />
                 <element signature="method#handlecollision#0;class#BoardMulti#0" expanded="false" />
                 <element signature="method#paintComponent#0;class#BoardMulti#0" expanded="false" />
@@ -175,6 +104,8 @@
                 <element signature="method#zeros#0;class#BoardMulti#0" expanded="false" />
                 <element signature="method#fetch#0;class#BoardMulti#0" expanded="false" />
                 <element signature="method#create_paddle#0;class#BoardMulti#0" expanded="false" />
+                <element signature="method#parse_packet#0;class#BoardMulti#0" expanded="false" />
+                <element signature="method#changeHost#0;class#BoardMulti#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -195,11 +126,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LocalServer.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="LocalServer.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/network/LocalServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="329">
-              <caret line="140" column="38" selection-start-line="140" selection-start-column="38" selection-end-line="140" selection-end-column="38" />
+            <state relative-caret-position="313">
+              <caret line="68" column="26" selection-start-line="68" selection-start-column="26" selection-end-line="68" selection-end-column="26" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#getAllAvailableIP#0;class#LocalServer#0" expanded="false" />
@@ -217,7 +148,7 @@
       <file leaf-file-name="NewClient.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/network/NewClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="223">
+            <state relative-caret-position="428">
               <caret line="42" column="9" selection-start-line="42" selection-start-column="8" selection-end-line="42" selection-end-column="9" />
               <folding>
                 <element signature="method#threadMessage#0;class#NewClient#0" expanded="false" />
@@ -268,11 +199,11 @@
         <option value="$PROJECT_DIR$/src/Board.java" />
         <option value="$PROJECT_DIR$/src/BoardMulti.java" />
         <option value="$PROJECT_DIR$/src/network/ConnectionToServer.java" />
-        <option value="$PROJECT_DIR$/src/network/ReadData.java" />
         <option value="$PROJECT_DIR$/src/play/Multi_New.java" />
-        <option value="$PROJECT_DIR$/src/play/BoardMulti.java" />
-        <option value="$PROJECT_DIR$/src/network/LocalServer.java" />
         <option value="$PROJECT_DIR$/src/play/Multi_Player.java" />
+        <option value="$PROJECT_DIR$/src/play/BoardMulti.java" />
+        <option value="$PROJECT_DIR$/src/network/ReadData.java" />
+        <option value="$PROJECT_DIR$/src/network/LocalServer.java" />
       </list>
     </option>
   </component>
@@ -851,7 +782,7 @@
       <workItem from="1461840601628" duration="1961000" />
       <workItem from="1461845657676" duration="4270000" />
       <workItem from="1461861663053" duration="11945000" />
-      <workItem from="1461915637650" duration="4560000" />
+      <workItem from="1461915637650" duration="9623000" />
     </task>
     <task id="LOCAL-00001" summary="Changed the API for accepting new client, set timeout for connections, added the API for enumerating all IPs">
       <created>1461585896685</created>
@@ -878,7 +809,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="75359000" />
+    <option name="totallyTimeSpent" value="80422000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1366" height="743" extended-state="0" />
@@ -892,7 +823,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329582" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.329582" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329582" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1377,29 +1308,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/network/ReadData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="16" column="24" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#ReadData#0;class#ReadData#0" expanded="false" />
-            <element signature="method#readFromBuffer#0;class#ReadData#0" expanded="false" />
-            <element signature="method#threadMessage#0;class#ReadData#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/network/NewClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="42" column="9" selection-start-line="42" selection-start-column="8" selection-end-line="42" selection-end-column="9" />
-          <folding>
-            <element signature="method#threadMessage#0;class#NewClient#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/network/ConnectionToServer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="196">
@@ -1413,26 +1321,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/network/LocalServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="140" column="38" selection-start-line="140" selection-start-column="38" selection-end-line="140" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#getAllAvailableIP#0;class#LocalServer#0" expanded="false" />
-            <element signature="method#LocalServer#0;class#LocalServer#0" expanded="false" />
-            <element signature="method#acceptClient#0;class#LocalServer#0" expanded="false" />
-            <element signature="method#disconnect#0;class#LocalServer#0" expanded="false" />
-            <element signature="method#writeToClient#0;class#LocalServer#0" expanded="false" />
-            <element signature="method#readFromClient#0;class#LocalServer#0" expanded="false" />
-            <element signature="method#threadMessage#0;class#LocalServer#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/play/Multi_New.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
+        <state relative-caret-position="5145">
           <caret line="370" column="80" selection-start-line="370" selection-start-column="78" selection-end-line="370" selection-end-column="80" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1445,32 +1336,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/play/BoardMulti.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="251" column="62" selection-start-line="251" selection-start-column="60" selection-end-line="251" selection-end-column="62" />
-          <folding>
-            <element signature="method#BoardMulti#0;class#BoardMulti#0" expanded="false" />
-            <element signature="method#get_pos#0;class#BoardMulti#0" expanded="false" />
-            <element signature="e#4453#4454#0" expanded="true" />
-            <element signature="e#4467#4468#0" expanded="true" />
-            <element signature="method#analyse#0;class#BoardMulti#0" expanded="false" />
-            <element signature="method#handlecollision#0;class#BoardMulti#0" expanded="false" />
-            <element signature="method#paintComponent#0;class#BoardMulti#0" expanded="false" />
-            <element signature="method#keyTyped#0;class#BoardMulti#0" expanded="false" />
-            <element signature="method#keyPressed#0;class#BoardMulti#0" expanded="false" />
-            <element signature="method#keyReleased#0;class#BoardMulti#0" expanded="false" />
-            <element signature="method#zeros#0;class#BoardMulti#0" expanded="false" />
-            <element signature="method#fetch#0;class#BoardMulti#0" expanded="false" />
-            <element signature="method#create_paddle#0;class#BoardMulti#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/play/Multi_Player.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="426" column="33" selection-start-line="426" selection-start-column="30" selection-end-line="426" selection-end-column="33" />
+        <state relative-caret-position="673">
+          <caret line="286" column="43" selection-start-line="286" selection-start-column="39" selection-end-line="286" selection-end-column="43" />
           <folding>
             <element signature="method#mouseReleased#0;class#1777:2535" expanded="false" />
             <element signature="method#show_small#0;class#Multi_Player#0" expanded="false" />
@@ -1480,6 +1349,69 @@
             <element signature="method#hideBorder#0;class#Multi_Player#0" expanded="false" />
             <element signature="method#paintComponent#0;class#Multi_Player#0" expanded="false" />
             <element signature="class#Accessor#0;class#Multi_Player#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/play/BoardMulti.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1192">
+          <caret line="265" column="24" selection-start-line="265" selection-start-column="24" selection-end-line="265" selection-end-column="24" />
+          <folding>
+            <element signature="method#get_pos#0;class#BoardMulti#0" expanded="false" />
+            <element signature="e#4448#4449#0" expanded="true" />
+            <element signature="e#4462#4463#0" expanded="true" />
+            <element signature="method#analyse#0;class#BoardMulti#0" expanded="false" />
+            <element signature="method#handlecollision#0;class#BoardMulti#0" expanded="false" />
+            <element signature="method#paintComponent#0;class#BoardMulti#0" expanded="false" />
+            <element signature="method#keyTyped#0;class#BoardMulti#0" expanded="false" />
+            <element signature="method#keyPressed#0;class#BoardMulti#0" expanded="false" />
+            <element signature="method#keyReleased#0;class#BoardMulti#0" expanded="false" />
+            <element signature="method#zeros#0;class#BoardMulti#0" expanded="false" />
+            <element signature="method#fetch#0;class#BoardMulti#0" expanded="false" />
+            <element signature="method#create_paddle#0;class#BoardMulti#0" expanded="false" />
+            <element signature="method#parse_packet#0;class#BoardMulti#0" expanded="false" />
+            <element signature="method#changeHost#0;class#BoardMulti#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/network/ReadData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="328">
+          <caret line="46" column="28" selection-start-line="46" selection-start-column="28" selection-end-line="46" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#ReadData#0;class#ReadData#0" expanded="false" />
+            <element signature="method#readFromBuffer#0;class#ReadData#0" expanded="false" />
+            <element signature="method#threadMessage#0;class#ReadData#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/network/NewClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="428">
+          <caret line="42" column="9" selection-start-line="42" selection-start-column="8" selection-end-line="42" selection-end-column="9" />
+          <folding>
+            <element signature="method#threadMessage#0;class#NewClient#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/network/LocalServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="313">
+          <caret line="68" column="26" selection-start-line="68" selection-start-column="26" selection-end-line="68" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#getAllAvailableIP#0;class#LocalServer#0" expanded="false" />
+            <element signature="method#LocalServer#0;class#LocalServer#0" expanded="false" />
+            <element signature="method#acceptClient#0;class#LocalServer#0" expanded="false" />
+            <element signature="method#disconnect#0;class#LocalServer#0" expanded="false" />
+            <element signature="method#writeToClient#0;class#LocalServer#0" expanded="false" />
+            <element signature="method#readFromClient#0;class#LocalServer#0" expanded="false" />
+            <element signature="method#threadMessage#0;class#LocalServer#0" expanded="false" />
           </folding>
         </state>
       </provider>

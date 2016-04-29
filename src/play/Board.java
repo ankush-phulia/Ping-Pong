@@ -339,6 +339,9 @@ public class Board extends JPanel implements ActionListener, KeyListener{
                     	this.playerScores[tmp.pos-1]++;
                     }
                     P1.lives--;
+                    if (get_pos(this.position)+1==1 && P1.lives==0){
+                    	this.state="Done2";
+                    }
             	}
             }
             else{
@@ -361,6 +364,9 @@ public class Board extends JPanel implements ActionListener, KeyListener{
                     	this.playerScores[tmp.pos-1]++;
                     }
         			P2.lives--;
+        			if (get_pos(this.position)+1==2 && P2.lives==0){
+                    	this.state="Done2";
+                    }
             	}
             }
         	else{
@@ -385,6 +391,9 @@ public class Board extends JPanel implements ActionListener, KeyListener{
                     	this.playerScores[tmp.pos-1]++;
                     }
                     P3.lives--;
+                    if (get_pos(this.position)+1==3 && P3.lives==0){
+                    	this.state="Done2";
+                    }
             	}
             }
         	else{
@@ -408,6 +417,9 @@ public class Board extends JPanel implements ActionListener, KeyListener{
                     	this.playerScores[tmp.pos-1]++;
                     }
         			P4.lives--;
+        			if (get_pos(this.position)+1==4 && P4.lives==0){
+                    	this.state="Done2";
+                    }
             	}
             }
         	else{
@@ -503,6 +515,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
         		
 			case "Playing":
 				
+				g.setColor(Color.ORANGE);
 				//draw "goal lines" on each side
 	            g.drawLine((int)(5+Xdim/100), 0,(int) (5+Xdim/100),(int) (this.Ydim));
 	            g.drawLine((int)(Xdim-(5+Xdim/100)), 0,(int) (Xdim-(5+Xdim/100)),(int) (this.Ydim));
@@ -595,7 +608,14 @@ public class Board extends JPanel implements ActionListener, KeyListener{
 						winner=sc.pos;
 					}
 				}				
-				g.drawString("Player "+(winner)+" won!", (int)Xdim/2-100, (int)this.Ydim/2-200);
+				g.drawString("Player "+(winner)+" won!", (int)Xdim/2-60, (int)this.Ydim/2-200);
+                g.drawString("Press 'Backspace' to play again", (int)Xdim/2-160, (int)this.Ydim/2);
+				break;
+				
+			case "Done2":
+				g.setFont(new Font(Font.DIALOG, Font.BOLD, 24));
+						
+				g.drawString("Game Over", (int)Xdim/2-60, (int)this.Ydim/2-200);
                 g.drawString("Press 'Backspace' to play again", (int)Xdim/2-160, (int)this.Ydim/2);
 				break;
         }
@@ -644,26 +664,13 @@ public class Board extends JPanel implements ActionListener, KeyListener{
 				break;
 				
 			case "Done":
-				/*if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-					this.state="Playing";
-					this.playerScores=new int[] {0,0,0,0};
-					for (int i=0;i<4;i++){
-						int x=this.playerLives2[i];
-						this.playerLives[i]=x;
-					}
-					this.balls=new ArrayList<play.Ball>();
-					for (int i=0;i<this.balls2.size();i++){
-						play.Ball b=this.balls2.get(i);
-						play.Ball bb=new play.Ball(b.Xpos, b.Ypos, b.Xvel, b.Yvel, b.origin);
-						this.balls.add(bb);
-					}
-					this.players=new ArrayList<play.Paddle>();
-					for (int i=0;i<this.players2.size();i++){
-						play.Paddle b=this.players2.get(i);
-						play.Paddle bb=new play.Paddle(b.Xdim, b.Ydim, b.cXpos, b.cYpos,b.pos,b.lives);
-						this.players.add(bb);
-					}
-	            }*/
+				if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+	            	RXCardLayout cdl=(RXCardLayout) getParent().getLayout();
+	            	cdl.show(getParent(), "MenuPanel");
+	            }
+				repaint();
+				break;
+			case "Done2":
 				if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
 	            	RXCardLayout cdl=(RXCardLayout) getParent().getLayout();
 	            	cdl.show(getParent(), "MenuPanel");

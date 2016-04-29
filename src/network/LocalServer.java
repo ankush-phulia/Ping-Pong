@@ -60,7 +60,13 @@ public class LocalServer {
     // returns list of IP Address of all clients
     // (useful for keeping track of all clients)
     public List<InetAddress> getAllClients () {
-        return new ArrayList<>(ip_address);
+        ArrayList<InetAddress> connections = new ArrayList<>();
+        for (int count = 0; count < clientSocket.size(); count++) {
+            if (inputStreamClient.get(count).isAlive) {
+                connections.add(ip_address.get(count));
+            }
+        }
+        return connections;
     }
 
 
@@ -131,6 +137,7 @@ public class LocalServer {
             }
             catch (IOException e) {
                 e.printStackTrace();
+
                     threadMessage("Client is disconnected...");
                     // Client is disconnected. Take necessary steps here
                     lost = ip_address.remove(position);

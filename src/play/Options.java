@@ -105,7 +105,7 @@ public class Options extends JPanel {
 		add(panel);
 		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		JLabel lblOptions_1 = new JLabel("play.Options");
+		JLabel lblOptions_1 = new JLabel("Options");
 		lblOptions_1.setFont(new Font("Tahoma", Font.PLAIN, 38));
 		panel.add(lblOptions_1);
 		
@@ -658,7 +658,7 @@ public class Options extends JPanel {
 		add(panel_2);
 		panel_2.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		JButton btnBackToMain = new JButton("Back to play.Main Menu");
+		JButton btnBackToMain = new JButton("Back to Main Menu");
 		btnBackToMain.setFont(new Font("Tahoma", Font.PLAIN, 34));
 		btnBackToMain.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
