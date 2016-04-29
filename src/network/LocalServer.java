@@ -119,9 +119,9 @@ public class LocalServer {
 
 
     // writes 'writeData' to all clients
-    // returns false if any client is disconnected else true
-    public boolean writeToAllClients (String writeData) {
-        boolean success = true;
+    // returns IP address of lost client
+    public InetAddress writeToAllClients (String writeData) {
+        InetAddress lost = null;
         for (int position = 0; position < clientSocket.size(); position++) {
             DataOutputStream out = writingStreamClient.get(position);
             Socket client = clientSocket.get(position);
@@ -131,21 +131,19 @@ public class LocalServer {
             }
             catch (IOException e) {
                 e.printStackTrace();
-                if (!client.isConnected()) {
                     threadMessage("Client is disconnected...");
                     // Client is disconnected. Take necessary steps here
-                    ip_address.remove(position);
+                    lost = ip_address.remove(position);
                     writingStreamClient.remove(position);
                     clientSocket.remove(position);
                     inputStreamClient.remove(position);
 
+                    threadMessage("Disconnected: " + lost + client.toString());
+
                     position--;
-                    if (success)
-                        success = false;
-                }
             }
         }
-        return success;
+        return lost;
     }
 
 

@@ -1,6 +1,5 @@
 package network;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import play.BoardMulti;
 
 import java.io.DataInputStream;
@@ -42,7 +41,7 @@ public class ReadData implements Runnable {
             }
         }
         catch (IOException e) {
-            threadMessage("Unable to read?");
+            threadMessage("Unable to read! Disconnected probably?");
         }
 
     }

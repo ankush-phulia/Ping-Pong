@@ -34,10 +34,10 @@ import javax.swing.JCheckBox;
 public class Multi_New extends JPanel implements ActionListener{
 
 	LocalServer gameServer;
-	List<Thread> clientsThread = new ArrayList<>();
+	Thread clientsThread;
 	List<ConnectionToServer> connections = new ArrayList<>();
 
-	boolean expanded=false;
+	boolean expanded = false;
 	private static final Color FG_COLOR = new Color(0xFFFFFF);
 	private static final Color BG_COLOR = new Color(0x3B5998);
 	private static final Color BORDER_COLOR = new Color(0x000000);
@@ -47,7 +47,9 @@ public class Multi_New extends JPanel implements ActionListener{
 	public Multi_New(LocalServer gs) {
 
 		this.gameServer = gs;
-		takeEntry();
+		clientsThread = gameServer.acceptClient();
+
+		System.out.println("IPs of host: " + LocalServer.getAllAvailableIP());
 		
 		populate_layout();		
 	
@@ -56,14 +58,6 @@ public class Multi_New extends JPanel implements ActionListener{
 
 	}
 
-	private void takeEntry() {
-		
-		clientsThread.add(gameServer.acceptClient());
-		clientsThread.add(gameServer.acceptClient());
-		clientsThread.add(gameServer.acceptClient());
-		
-		System.out.println(LocalServer.getAllAvailableIP());
-	}
 
 	private void populate_layout() {
 		
@@ -332,13 +326,17 @@ public class Multi_New extends JPanel implements ActionListener{
 				RXCardLayout cdl = (RXCardLayout) getParent().getLayout();
 
 				if (gameServer != null) {
+					gameServer.writeToAllClients("DISCONNECT");
 					gameServer.disconnect();
 
 					for (ConnectionToServer cs : connections) {
 						cs.disconnect();
 					}
 
+					clientsThread.stop();
+
 					if (!gameServer.alive()) {
+						System.out.println("Stopping hosted server...");
 						removeAll();
 						cdl.show(getParent(), "Multiplayer");
 					}
@@ -356,19 +354,24 @@ public class Multi_New extends JPanel implements ActionListener{
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				while (!clientsThread.isEmpty()) {
-					clientsThread.get(0).stop();
-					clientsThread.remove(0);
-				}
+				clientsThread.stop();
 				
 				List<InetAddress> l = gameServer.getAllClients();
+				List<InetAddress> serverIPs = LocalServer.getAllAvailableIP();
+				String ipOfHost = null;
+				for (InetAddress ip : serverIPs) {
+					if (ip.toString().substring(1,9).equals(l.get(0).toString().substring(1,9))) {
+						ipOfHost = ip.toString().substring(1);
+						break;
+					}
+				}
 
 				for (InetAddress IP : l) {
-					//System.out.println(IP.toString());
-					ConnectionToServer cs = new ConnectionToServer(IP.toString().substring(1), 8080);
+					ConnectionToServer cs = new ConnectionToServer(IP.toString().substring(1), 8000);
+					System.out.println("ConnectionToServer - connection established = " + cs.connectionEstablished()
+							+ "with IP : " + IP);
 					connections.add(cs);
-					cs.readingStream.isStateBoardMulti=true;
-					//System.out.println(cs.connectionEstablished());
+					cs.readingStream.isStateBoardMulti = true;
 				}				
 
 				String startData = "START:"+(String)ownPosition.getSelectedItem()+":"+
@@ -384,14 +387,14 @@ public class Multi_New extends JPanel implements ActionListener{
 				ArrayList<Integer> positions = new ArrayList<Integer>();
 						
 				startData += ":"+l.size();
-				for (int i=0; i< l.size(); i++){
+				for (int i=0; i < l.size(); i++){
 					InetAddress ip = l.get(i);
 					startData += ":" + ip + "," + ((k+i+1)%4);
 					isPC[(k+i+1)%4] = false;
 					positions.add((k+i+1)%4);
 				}
 				
-				for (int i=0; i<4;i++){
+				for (int i=0; i<4; i++){
 					startData += ":"+(Boolean)isPC[i];
 				}
 
@@ -399,9 +402,9 @@ public class Multi_New extends JPanel implements ActionListener{
 				
 				BoardMulti game = new BoardMulti(true,gameServer,getWidth(),getHeight(),(String)ownPosition.getSelectedItem(),ownLives.getValue(),
 						(String)GameMode.getSelectedItem(),ball_Num.getValue(),spd.getValue(),powerups.isSelected(),Player2.isSelected()
-						,getWindowAncestor().keys,isPC,PCpl.isSelected(),(ArrayList<InetAddress>) gameServer.getAllClients(),positions);
+						,getWindowAncestor().keys,isPC,PCpl.isSelected(),ipOfHost,(ArrayList<InetAddress>) gameServer.getAllClients(),positions);
 
-				//System.out.println(positions.toString());
+				System.out.println("Starting new game...");
 				
 				add(game,"Game");
 				cdl.show(Multi_New.this, "Game");

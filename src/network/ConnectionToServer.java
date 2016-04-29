@@ -17,13 +17,13 @@ public class ConnectionToServer {
 
     /* Connect to a client with IP Address/Name 'inetAddr' & port no. 'port'
      *  Throws IOException if unsuccessful
-     *  Timeout of 5 seconds is set
+     *  Timeout of 10 seconds is set
      */
     public ConnectionToServer(String inetAddr, int port) {
         try {
             clientSocket = new Socket();
             try {
-                clientSocket.connect(new InetSocketAddress(inetAddr, port), 5000);
+                clientSocket.connect(new InetSocketAddress(inetAddr, port), 10000);
             } catch (IOException e) {
             	e.printStackTrace();
                 threadMessage("Unable to connect to a given IP address.");

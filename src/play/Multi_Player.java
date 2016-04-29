@@ -41,7 +41,7 @@ import network.LocalServer;
 public class Multi_Player extends JPanel {
 
 	LocalServer gameServer;
-	List<Thread> clientsThread = new ArrayList<>();
+	Thread clientsThread = new Thread();
 	List<ConnectionToServer> otherConnections = new ArrayList<>();
 
 	int State=0;
@@ -85,6 +85,12 @@ public class Multi_Player extends JPanel {
 					}
 				}
 				else if (State==1) {
+					if (gameServer.alive()) {
+						gameServer.disconnect();
+					}
+					for (ConnectionToServer cs : otherConnections) {
+						cs.disconnect();
+					}
 					removeAll();
 					show_small();
 				}
@@ -227,21 +233,20 @@ public class Multi_Player extends JPanel {
 		JButton btnJoinExistingOne = new JButton("Join Existing One");
 		btnJoinExistingOne.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
-				ConnectionToServer cs = new ConnectionToServer(ipAddress.getText(), 8080);
+				System.out.println(ipAddress.getText());
+				String ipOfHost = ipAddress.getText();
+				ConnectionToServer cs = new ConnectionToServer(ipOfHost, 8080);
 
 				if (cs.connectionEstablished()) {
 					try {
-						gameServer = new LocalServer(8080);
+						gameServer = new LocalServer(8000);
 					}
 					catch (IOException ioe) {
 						cs.disconnect();
 						return;
 					}
 
-					clientsThread.add(gameServer.acceptClient());
-					clientsThread.add(gameServer.acceptClient());
-					clientsThread.add(gameServer.acceptClient());
+					clientsThread = gameServer.acceptClient();
 
 					String resp, type;
 					
@@ -249,6 +254,8 @@ public class Multi_Player extends JPanel {
 						resp = cs.readFromServer();
 						System.out.println(resp);
 						type = parseResponse(resp);
+						if (type.equalsIgnoreCase("DISCONNECT"))
+							return;
 						
 					} while (!type.equalsIgnoreCase("START"));
 
@@ -257,29 +264,29 @@ public class Multi_Player extends JPanel {
 						conn.readingStream.isStateBoardMulti = true;
 					}
 
-					while (!clientsThread.isEmpty()) {
-						clientsThread.get(0).stop();
-						clientsThread.remove(0);
-					}
+					clientsThread.stop();
 
 					
 					// start the game here
 					RXCardLayout cdl=(RXCardLayout) getLayout();
 					
 					String[] tokens = resp.split(":");
-					boolean[] isPC = new boolean[] {Boolean.parseBoolean(tokens[tokens.length-4]),Boolean.parseBoolean(tokens[tokens.length-3]),Boolean.parseBoolean(tokens[tokens.length-2]),Boolean.parseBoolean(tokens[tokens.length-1])};
-					ArrayList<InetAddress> IPs= new ArrayList<InetAddress>();
-					int ipsnum=Integer.parseInt(tokens[8]);
-					String mypos="Left";
+					boolean[] isPC = new boolean[] {Boolean.parseBoolean(tokens[tokens.length-4]),
+													Boolean.parseBoolean(tokens[tokens.length-3]),
+													Boolean.parseBoolean(tokens[tokens.length-2]),
+													Boolean.parseBoolean(tokens[tokens.length-1])};
+					ArrayList<InetAddress> IPs = new ArrayList<InetAddress>();
+					int ipsnum = Integer.parseInt(tokens[8]);
+					String mypos = "Left";
 					
 					ArrayList<Integer> positions=new ArrayList<Integer>();
 					positions.add(Multi_New.get_pos(tokens[1]));
 					
-					for (int i=0;i<ipsnum;i++){
-						String[] pair=tokens[9+i].split(",");
+					for (int i=0; i<ipsnum; i++){
+						String[] pair = tokens[9+i].split(",");
 						positions.add(Integer.parseInt(pair[1]));
 						if (cs.getIPAddress().toString().equals(pair[0])){
-							mypos=get_rev_pos(Integer.parseInt(pair[1]));
+							mypos = get_rev_pos(Integer.parseInt(pair[1]));
 						}
 						try {
 							IPs.add(InetAddress.getByName(pair[0].substring(1)));
@@ -290,19 +297,19 @@ public class Multi_Player extends JPanel {
 					
 					BoardMulti game = new BoardMulti(false,gameServer,getWidth(),getHeight(),mypos,Integer.parseInt(tokens[2]),
 							tokens[3],Integer.parseInt(tokens[4]),Integer.parseInt(tokens[5]),Boolean.parseBoolean(tokens[6]),false
-							,getWindowAncestor().keys,isPC,Boolean.parseBoolean(tokens[7]), IPs,positions);
+							,getWindowAncestor().keys,isPC,Boolean.parseBoolean(tokens[7]), ipOfHost, IPs,positions);
 
-					//System.out.println(IPs.toString()+","+positions.toString());
-					
-					//System.out.println(IPs.toString()+","+positions.toString());
+					System.out.println("Starting new game...");
+
 					add(game,"Game");
 					cdl.show(Multi_Player.this, "Game");
-					State=2;
+					State = 2;
 					game.requestFocusInWindow();
 
 				}
 				else {
 					// do something here if connection could not be established
+					System.out.println("Connection with server could not be established!");
 
 				}
 			}
@@ -409,6 +416,7 @@ public class Multi_Player extends JPanel {
 					ipOfOtherClient = InetAddress.getByName(tokens[1].substring(1));
 				} catch (UnknownHostException uhe) {
 					// do something if unable to connect
+
 					uhe.printStackTrace();
 					break;
 				}
@@ -416,7 +424,7 @@ public class Multi_Player extends JPanel {
 				List<InetAddress> myIPs = LocalServer.getAllAvailableIP();
 				boolean isMe = false;
 				for (InetAddress ia : myIPs) {
-					if (!ia.isLoopbackAddress() && ia.equals(ipOfOtherClient)) {
+					if (/*!ia.isLoopbackAddress() && */ia.equals(ipOfOtherClient)) {
 						isMe = true;
 					}
 				}
@@ -424,8 +432,15 @@ public class Multi_Player extends JPanel {
 					ConnectionToServer cs = new ConnectionToServer(ipOfOtherClient.toString().substring(1), 8080);
 					otherConnections.add(cs);
 				}
-
 				break;
+
+			case "DISCONNECT":
+				gameServer = null;
+				clientsThread.stop();
+				for (ConnectionToServer cs : otherConnections) {
+					cs.disconnect();
+				}
+				return "DISCONNECT";
 
 			default:
 
