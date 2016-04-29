@@ -15,6 +15,7 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import javax.swing.text.Position;
 
 import network.ConnectionToServer;
 import network.LocalServer;
@@ -29,6 +30,7 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
 	public static int hostPosition;
 	public static String hostIp;
 	static LocalServer gameServer;
+	public static long startTime;
     
     //AESTHETICS
 	public double Xdim;
@@ -148,7 +150,9 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
             }
         });
         
-        BoardMulti.state = "Playing";
+        BoardMulti.state = "Ready";
+
+		startTime = System.currentTimeMillis();
         
     }
 
@@ -173,8 +177,30 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
 	}
     
     public void step(){
-    	
-    	if(BoardMulti.state.equals("Playing")){
+
+		if (BoardMulti.state.equals("Ready")) {
+			if (isHost && System.currentTimeMillis() - startTime > 1000) {
+				state = "Steady";
+				InetAddress lostIP = gameServer.writeToAllClients("STATE:Steady");
+				replacePlayerWithAI(lostIP);
+			}
+		}
+		else if (BoardMulti.state.equals("Steady")) {
+			if (isHost && System.currentTimeMillis() - startTime > 2000) {
+				state = "Go";
+				InetAddress lostIP = gameServer.writeToAllClients("STATE:Go");
+				replacePlayerWithAI(lostIP);
+			}
+		}
+		else if (BoardMulti.state.equals("Go")) {
+			if (isHost && System.currentTimeMillis() - startTime > 3000) {
+				state = "Playing";
+				InetAddress lostIP = gameServer.writeToAllClients("STATE:Playing");
+				replacePlayerWithAI(lostIP);
+			}
+		}
+
+    	else if(BoardMulti.state.equals("Playing")) {
     		
     		Paddle P1 = fetch(1,players);
             if (P1!=null){
@@ -612,8 +638,16 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
         super.paintComponent(g);
         g.setColor(ccolor);
 
-        switch(state){
-        		
+        switch (state) {
+
+			case "Ready":
+			case "Steady":
+			case "Go":
+
+				g.setFont(new Font(Font.DIALOG, Font.BOLD, 36));
+				g.setColor(Color.MAGENTA);
+				g.drawString(state, (int)(this.Ydim/2), (int) (Xdim/2) - 20);
+
 			case "Playing":
 				
 				g.setColor(Color.ORANGE);
@@ -625,7 +659,7 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
 				
 				//draw paddles
 				
-				for (int i=0;i<BoardMulti.players.size();i++){
+				for (int i=0; i<BoardMulti.players.size(); i++){
 					Paddle b=BoardMulti.players.get(i);
 					if (b.lives>0) {
 						//System.out.println(b.pos);
@@ -796,9 +830,9 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
     }   
     
     public static Paddle fetch(int i,ArrayList<Paddle> players){
-    	for (int j=0;j<players.size();j++){
-    		Paddle p=players.get(j);
-    		if (p.pos==i){
+    	for (int j=0; j<players.size(); j++) {
+    		Paddle p = players.get(j);
+    		if (p.pos ==i ) {
     			return p;
     		}
     	}
@@ -856,7 +890,11 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
 			case "Done":
 				state = "Done";
 				break;
-    				
+
+			case "STATE":
+				state = tokens[1];
+				break;
+
     	}
     	return true;
     }
@@ -872,10 +910,10 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
 				System.out.println(IPs);
 				for (int index = 0; index < IPs.size(); index++) {
 					
-					if (lostIP.equals(IPs.get(index))){
+					if (lostIP.equals(IPs.get(index))) {
 						System.out.println(positions.get(index));
 						isPC[positions.get(index)] = true;
-						PCplayers=true;
+						PCplayers = true;
 					}
 						
 				}
