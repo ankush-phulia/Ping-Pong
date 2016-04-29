@@ -188,7 +188,7 @@ public class Single_Player extends JPanel implements ActionListener{
 		gbc_separator_4.gridy = 6;
 		SelectionPanel.add(separator_4, gbc_separator_4);
 		
-		JLabel label_1 = new JLabel("play.Paddle Position");
+		JLabel label_1 = new JLabel("Paddle Position");
 		label_1.setFont(new Font("Tahoma", Font.PLAIN, 34));
 		GridBagConstraints gbc_label_1 = new GridBagConstraints();
 		gbc_label_1.insets = new Insets(0, 0, 5, 5);
@@ -641,7 +641,7 @@ public class Single_Player extends JPanel implements ActionListener{
 		
 		JPanel ButtonPanel = new JPanel();
 		MenuPanel.add(ButtonPanel);		
-		JButton button = new JButton("Back to play.Main Menu");
+		JButton button = new JButton("Back to Main Menu");
 		button.setFont(new Font("Tahoma", Font.PLAIN, 34));
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

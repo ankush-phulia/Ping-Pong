@@ -90,7 +90,7 @@ public class Options extends JPanel {
 	
 	private void show_small() {
 		setLayout(new BorderLayout(0, 0));		
-		JLabel lblOptions = new JLabel("play.Options");
+		JLabel lblOptions = new JLabel("Options");
 		lblOptions.setFont(new Font("Tahoma", Font.PLAIN, 34));
 		lblOptions.setHorizontalAlignment(SwingConstants.CENTER);
 		add(lblOptions, BorderLayout.CENTER);

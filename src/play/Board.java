@@ -498,7 +498,6 @@ public class Board extends JPanel implements ActionListener, KeyListener{
     public void paintComponent(Graphics g){
 
         super.paintComponent(g);
-        g.setColor(ccolor);
 
         switch(state){
         		
@@ -516,6 +515,12 @@ public class Board extends JPanel implements ActionListener, KeyListener{
 					Paddle b=this.players.get(i);
 					if (b.lives>0) {
 						//System.out.println(b.pos);
+						if (b.pos==(get_pos(position)+1)){
+							g.setColor(Color.BLUE);
+						}
+						else{
+							g.setColor(Color.RED);
+						}
 						g.fillRect((int)(b.cXpos-b.Xdim/2),(int)(b.cYpos-b.Ydim/2),(int) (b.Xdim), (int) (b.Ydim));
 					}
 				}
@@ -523,6 +528,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
 				//draw balls
 				for (int i=0;i<this.balls.size();i++){
 					Ball b=this.balls.get(i);
+					g.setColor(Color.WHITE);
 					g.fillOval((int)(b.Xpos-b.dia/2),(int)(b.Ypos-b.dia/2),(int) (b.dia), (int) (b.dia));
 				}
 				
@@ -530,24 +536,48 @@ public class Board extends JPanel implements ActionListener, KeyListener{
 	            g.setFont(new Font(Font.DIALOG, Font.BOLD, 36));
 	            Paddle P1=fetch(1,players);
 	            if (P1!=null){
+	            	if (1==(get_pos(position)+1)){
+						g.setColor(Color.BLUE);
+					}
+					else{
+						g.setColor(Color.RED);
+					}
 	            	g.drawString(String.valueOf(this.playerScores[0]), (int)(this.Ydim/2-200), (int) (Xdim/2-100));
 	 	            g.drawString(String.valueOf(P1.lives), (int)(this.Ydim/2-200), (int) (Xdim/2+100));
 	 	        }
 	            
 	            Paddle P2=fetch(2,players);
 	            if (P2!=null){
+	            	if (2==(get_pos(position)+1)){
+						g.setColor(Color.BLUE);
+					}
+					else{
+						g.setColor(Color.RED);
+					}
 	            	g.drawString(String.valueOf(this.playerScores[1]), (int)(this.Ydim/2+200), (int) (Xdim/2-100));
 	            	g.drawString(String.valueOf(P2.lives), (int)(this.Ydim/2+200), (int) (Xdim/2+100));
 	            }
 	            
 	            Paddle P3=fetch(3,players);
 	            if (P3!=null){
+	            	if (3==(get_pos(position)+1)){
+						g.setColor(Color.BLUE);
+					}
+					else{
+						g.setColor(Color.RED);
+					}
 	            	g.drawString(String.valueOf(this.playerScores[2]), (int)(this.Ydim/2-100), (int) (Xdim/2-200));
 			        g.drawString(String.valueOf(P3.lives), (int)(this.Ydim/2+100), (int) (Xdim/2-200));
 			    }
 	            
 	            Paddle P4=fetch(4,players);
 	            if (P4!=null){
+	            	if (4==(get_pos(position)+1)){
+						g.setColor(Color.BLUE);
+					}
+					else{
+						g.setColor(Color.RED);
+					}
 	            	g.drawString(String.valueOf(this.playerScores[3]), (int)(this.Ydim/2-100), (int) (Xdim/2+200));
 				    g.drawString(String.valueOf(P4.lives), (int)(this.Ydim/2+100), (int) (Xdim/2+200));
 		        }

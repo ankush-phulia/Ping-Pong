@@ -1,6 +1,7 @@
 package play;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -17,6 +18,8 @@ import javax.swing.Timer;
 import javax.swing.JSlider;
 import javax.swing.JSeparator;
 import javax.swing.BoxLayout;
+import javax.swing.DefaultListModel;
+
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -27,8 +30,10 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import javax.swing.JCheckBox;
+import javax.swing.JList;
 
 
 public class Multi_New extends JPanel implements ActionListener{
@@ -42,7 +47,9 @@ public class Multi_New extends JPanel implements ActionListener{
 	private static final Color BG_COLOR = new Color(0x3B5998);
 	private static final Color BORDER_COLOR = new Color(0x000000);
 	private BufferedImage bgImg;
-	private int borderThickness = 1;	
+	private int borderThickness = 1;
+	
+	private HashMap<String,Component> cMap=new HashMap<String,Component>();
 
 	public Multi_New(LocalServer gs) {
 
@@ -77,10 +84,10 @@ public class Multi_New extends JPanel implements ActionListener{
 		JPanel SelectionPanel = new JPanel();	
 		MenuPanel.add(SelectionPanel);
 		GridBagLayout gbl_SelectionPanel = new GridBagLayout();
-		gbl_SelectionPanel.columnWidths = new int[]{58, 0, 0, 307, 0, 249, 0, 289, 81, 0, 0};
-		gbl_SelectionPanel.rowHeights = new int[]{33, 0, 0, 0, 0, -15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 56, 0, 0, 0, 0, 0};
-		gbl_SelectionPanel.columnWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
-		gbl_SelectionPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_SelectionPanel.columnWidths = new int[]{58, 0, 0, 296, 403, 289, 81, 0, 0};
+		gbl_SelectionPanel.rowHeights = new int[]{33, 0, 0, 0, 0, -15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 56, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_SelectionPanel.columnWeights = new double[]{0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_SelectionPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
 		SelectionPanel.setLayout(gbl_SelectionPanel);
 		
 		JLabel label = new JLabel("Multi Player");
@@ -89,31 +96,24 @@ public class Multi_New extends JPanel implements ActionListener{
 		GridBagConstraints gbc_label = new GridBagConstraints();
 		gbc_label.anchor = GridBagConstraints.NORTH;
 		gbc_label.insets = new Insets(0, 0, 5, 5);
-		gbc_label.gridx = 5;
+		gbc_label.gridx = 4;
 		gbc_label.gridy = 0;
 		SelectionPanel.add(label, gbc_label);
-		
-		JSeparator separator_14 = new JSeparator();
-		GridBagConstraints gbc_separator_14 = new GridBagConstraints();
-		gbc_separator_14.insets = new Insets(0, 0, 25, 25);
-		gbc_separator_14.gridx = 6;
-		gbc_separator_14.gridy = 0;
-		SelectionPanel.add(separator_14, gbc_separator_14);
 		
 		JSeparator separator = new JSeparator();
 		GridBagConstraints gbc_separator = new GridBagConstraints();
 		gbc_separator.insets = new Insets(0, 0, 35, 35);
-		gbc_separator.gridx = 5;
+		gbc_separator.gridx = 4;
 		gbc_separator.gridy = 1;
 		SelectionPanel.add(separator, gbc_separator);
 		
-		JLabel label_1 = new JLabel("play.Paddle Position");
-		label_1.setFont(new Font("Tahoma", Font.PLAIN, 34));
-		GridBagConstraints gbc_label_1 = new GridBagConstraints();
-		gbc_label_1.insets = new Insets(0, 0, 5, 5);
-		gbc_label_1.gridx = 3;
-		gbc_label_1.gridy = 2;
-		SelectionPanel.add(label_1, gbc_label_1);
+		JLabel lblPaddlePosition = new JLabel("Paddle Position");
+		lblPaddlePosition.setFont(new Font("Tahoma", Font.PLAIN, 34));
+		GridBagConstraints gbc_lblPaddlePosition = new GridBagConstraints();
+		gbc_lblPaddlePosition.insets = new Insets(0, 0, 5, 5);
+		gbc_lblPaddlePosition.gridx = 3;
+		gbc_lblPaddlePosition.gridy = 2;
+		SelectionPanel.add(lblPaddlePosition, gbc_lblPaddlePosition);
 		
 		final JComboBox<String> ownPosition = new JComboBox<String>();
 		ownPosition.setFont(new Font("Tahoma", Font.PLAIN, 34));
@@ -124,7 +124,7 @@ public class Multi_New extends JPanel implements ActionListener{
 		GridBagConstraints gbc_ownPosition = new GridBagConstraints();
 		gbc_ownPosition.fill = GridBagConstraints.HORIZONTAL;
 		gbc_ownPosition.insets = new Insets(0, 0, 5, 5);
-		gbc_ownPosition.gridx = 7;
+		gbc_ownPosition.gridx = 5;
 		gbc_ownPosition.gridy = 2;
 		SelectionPanel.add(ownPosition, gbc_ownPosition);
 		
@@ -152,7 +152,7 @@ public class Multi_New extends JPanel implements ActionListener{
 		GridBagConstraints gbc_ownLives = new GridBagConstraints();
 		gbc_ownLives.fill = GridBagConstraints.HORIZONTAL;
 		gbc_ownLives.insets = new Insets(0, 0, 5, 5);
-		gbc_ownLives.gridx = 7;
+		gbc_ownLives.gridx = 5;
 		gbc_ownLives.gridy = 4;
 		SelectionPanel.add(ownLives, gbc_ownLives);
 		
@@ -187,7 +187,7 @@ public class Multi_New extends JPanel implements ActionListener{
 		GridBagConstraints gbc_GameMode = new GridBagConstraints();
 		gbc_GameMode.insets = new Insets(0, 0, 5, 5);
 		gbc_GameMode.fill = GridBagConstraints.HORIZONTAL;
-		gbc_GameMode.gridx = 7;
+		gbc_GameMode.gridx = 5;
 		gbc_GameMode.gridy = 7;
 		SelectionPanel.add(GameMode, gbc_GameMode);
 		
@@ -215,7 +215,7 @@ public class Multi_New extends JPanel implements ActionListener{
 		GridBagConstraints gbc_ball_Num = new GridBagConstraints();
 		gbc_ball_Num.fill = GridBagConstraints.HORIZONTAL;
 		gbc_ball_Num.insets = new Insets(0, 0, 5, 5);
-		gbc_ball_Num.gridx = 7;
+		gbc_ball_Num.gridx = 5;
 		gbc_ball_Num.gridy = 9;
 		SelectionPanel.add(ball_Num, gbc_ball_Num);
 		
@@ -243,7 +243,7 @@ public class Multi_New extends JPanel implements ActionListener{
 		GridBagConstraints gbc_spd = new GridBagConstraints();
 		gbc_spd.fill = GridBagConstraints.HORIZONTAL;
 		gbc_spd.insets = new Insets(0, 0, 5, 5);
-		gbc_spd.gridx = 7;
+		gbc_spd.gridx = 5;
 		gbc_spd.gridy = 11;
 		SelectionPanel.add(spd, gbc_spd);
 		
@@ -266,7 +266,7 @@ public class Multi_New extends JPanel implements ActionListener{
 		powerups.setFont(new Font("Tahoma", Font.PLAIN, 34));
 		GridBagConstraints gbc_powerups = new GridBagConstraints();
 		gbc_powerups.insets = new Insets(0, 0, 5, 5);
-		gbc_powerups.gridx = 7;
+		gbc_powerups.gridx = 5;
 		gbc_powerups.gridy = 13;
 		SelectionPanel.add(powerups, gbc_powerups);
 		
@@ -289,7 +289,7 @@ public class Multi_New extends JPanel implements ActionListener{
 		Player2.setFont(new Font("Tahoma", Font.PLAIN, 34));
 		GridBagConstraints gbc_Player2 = new GridBagConstraints();
 		gbc_Player2.insets = new Insets(0, 0, 5, 5);
-		gbc_Player2.gridx = 7;
+		gbc_Player2.gridx = 5;
 		gbc_Player2.gridy = 15;
 		SelectionPanel.add(Player2, gbc_Player2);
 		
@@ -311,9 +311,48 @@ public class Multi_New extends JPanel implements ActionListener{
 		final JCheckBox PCpl = new JCheckBox("");
 		GridBagConstraints gbc_PCpl = new GridBagConstraints();
 		gbc_PCpl.insets = new Insets(0, 0, 5, 5);
-		gbc_PCpl.gridx = 7;
+		gbc_PCpl.gridx = 5;
 		gbc_PCpl.gridy = 17;
 		SelectionPanel.add(PCpl, gbc_PCpl);
+		
+		JSeparator separator_3 = new JSeparator();
+		GridBagConstraints gbc_separator_3 = new GridBagConstraints();
+		gbc_separator_3.insets = new Insets(0, 0, 25, 25);
+		gbc_separator_3.gridx = 3;
+		gbc_separator_3.gridy = 18;
+		SelectionPanel.add(separator_3, gbc_separator_3);
+		
+		JLabel lblPlayersConnected = new JLabel("Players Connected");
+		lblPlayersConnected.setFont(new Font("Tahoma", Font.PLAIN, 34));
+		GridBagConstraints gbc_lblPlayersConnected = new GridBagConstraints();
+		gbc_lblPlayersConnected.insets = new Insets(0, 0, 5, 5);
+		gbc_lblPlayersConnected.gridx = 4;
+		gbc_lblPlayersConnected.gridy = 19;
+		SelectionPanel.add(lblPlayersConnected, gbc_lblPlayersConnected);
+		
+		JSeparator separator_6 = new JSeparator();
+		GridBagConstraints gbc_separator_6 = new GridBagConstraints();
+		gbc_separator_6.insets = new Insets(0, 0, 15, 15);
+		gbc_separator_6.gridx = 4;
+		gbc_separator_6.gridy = 20;
+		SelectionPanel.add(separator_6, gbc_separator_6);
+		
+		JList list = new JList();
+		list.setFont(new Font("Tahoma", Font.PLAIN, 34));
+		GridBagConstraints gbc_list = new GridBagConstraints();
+		gbc_list.insets = new Insets(0, 0, 5, 5);
+		gbc_list.fill = GridBagConstraints.BOTH;
+		gbc_list.gridx = 4;
+		gbc_list.gridy = 21;
+		SelectionPanel.add(list, gbc_list);
+		cMap.put("IPs",list);
+		
+		JSeparator separator_4 = new JSeparator();
+		GridBagConstraints gbc_separator_4 = new GridBagConstraints();
+		gbc_separator_4.insets = new Insets(0, 0, 0, 5);
+		gbc_separator_4.gridx = 3;
+		gbc_separator_4.gridy = 22;
+		SelectionPanel.add(separator_4, gbc_separator_4);
 
 
 		JPanel ButtonPanel = new JPanel();
@@ -383,9 +422,9 @@ public class Multi_New extends JPanel implements ActionListener{
 				
 				boolean[] isPC = new boolean[] {true,true,true,true};
 				isPC[k] = false;
-				
-				ArrayList<Integer> positions = new ArrayList<Integer>();
 						
+				ArrayList<Integer> positions=new ArrayList<Integer>();
+				
 				startData += ":"+l.size();
 				for (int i=0; i < l.size(); i++){
 					InetAddress ip = l.get(i);
@@ -413,7 +452,6 @@ public class Multi_New extends JPanel implements ActionListener{
 		});
 		button_1.setFont(new Font("Tahoma", Font.PLAIN, 34));
 		ButtonPanel.add(button_1);
-			
 		
 	}
 	
@@ -476,6 +514,14 @@ public class Multi_New extends JPanel implements ActionListener{
 			parseResponse(resp);
 		}
 
+		JList<String> List=(JList<String>) cMap.get("IPs") ;
+		DefaultListModel<String> model = new DefaultListModel<String>();
+		List<InetAddress>l=gameServer.getAllClients();
+		for (int i=0;i<l.size();i++){
+			model.addElement((String)l.get(i).toString());
+		}
+		List.setModel(model);
+		
 		repaint();
 	}
 
