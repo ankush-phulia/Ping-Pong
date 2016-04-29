@@ -15,6 +15,7 @@ public class ReadData implements Runnable {
     Socket connection;
     DataInputStream in;
     List<String> buffer;
+    boolean isAlive = false;
     public Boolean isStateBoardMulti = false;
 
     public ReadData(Socket connection) {
@@ -26,6 +27,7 @@ public class ReadData implements Runnable {
         catch (IOException e) {
             threadMessage("Cannot get DataInputStream of client...");
         }
+        isAlive = true;
     }
 
     @Override
@@ -42,6 +44,7 @@ public class ReadData implements Runnable {
         }
         catch (IOException e) {
             threadMessage("Unable to read! Disconnected probably?");
+            isAlive = false;
         }
 
     }

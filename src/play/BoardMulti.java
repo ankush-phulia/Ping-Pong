@@ -102,7 +102,7 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
     	BoardMulti.position = ownPosition;
     	this.PCplayers = PCplayers;
     	this.isPC = isPC;
-    	//System.out.println(isPC[3]);
+    	System.out.println(isPC);
 
     	//players
     	BoardMulti.players = new ArrayList<>();
@@ -194,6 +194,7 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
 					InetAddress lostIP = gameServer.writeToAllClients("Pos:1:Y:" + P1.cYpos);
 					System.out.println(hostPosition);
 					if (lostIP != null && lostIP.toString().equals(hostIp)) {
+						System.out.println("lostIP: " + lostIP);
 						changeHost();
 					}
 
@@ -219,7 +220,7 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
             	}
             }
             
-            Paddle P2=fetch(2,players);
+            Paddle P2 = fetch(2,players);
             if (P2!=null){
             	if (BoardMulti.position.equals("Right")){
             		P2.set_cYvel(20*gameSpd);
@@ -235,8 +236,8 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
                     }
 
 					InetAddress lostIP = gameServer.writeToAllClients("Pos:2:Y:" + P2.cYpos);
-					System.out.println(lostIP);
-					if (lostIP != null && lostIP.toString().equals(hostIp)) {
+					if (lostIP != null && lostIP.toString().substring(1).equals(hostIp)) {
+						System.out.println("lostIP: " + lostIP);
 						changeHost();
 					}
 
@@ -262,7 +263,7 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
             	}
             }
             
-            Paddle P3=fetch(3,players);
+            Paddle P3 = fetch(3,players);
             if (P3!=null){
             	if (BoardMulti.position.equals("Top")){
             		P3.set_cXvel(20*gameSpd);
@@ -279,6 +280,7 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
 
 					InetAddress lostIP = gameServer.writeToAllClients("Pos:3:X:" + P3.cXpos);
 					if (lostIP != null && lostIP.toString().equals(hostIp)) {
+						System.out.println("lostIP: " + lostIP);
 						changeHost();
 					}
 
@@ -321,6 +323,7 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
 
 					InetAddress lostIP = gameServer.writeToAllClients("Pos:4:X:" + P4.cXpos);
 					if (lostIP != null && lostIP.toString().equals(hostIp)) {
+						System.out.println("lostIP: " + lostIP);
 						changeHost();
 					}
 
@@ -341,7 +344,7 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
             	else if (PCplayers && isPC[P4.pos-1]){
             		AIplayer2.moveAIplayer3(P4, balls, this, 20*gameSpd);
             	}
-            	else{
+            	else {
             		
             	}
             }
@@ -355,6 +358,7 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
 	            }
 				InetAddress lostIP = gameServer.writeToAllClients(ballInfo);
 				if (lostIP != null && lostIP.toString().equals(hostIp)) {
+					System.out.println("lostIP: " + lostIP);
 					changeHost();
 				}
 	            
@@ -863,16 +867,18 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
 
 
 	private static void changeHost() {
-		System.out.println(hostPosition + "yo");
+		System.out.println("previous host position: " + hostPosition);
 		isPC[hostPosition] = true;
+
 		do {
 			hostPosition++;
-		} while (!isPC[hostPosition]);
+		} while (isPC[hostPosition]);
 
 		if (hostPosition == get_pos(position)) {
+			System.out.println("This pc is made HOST now...");
 			isHost = true;
 		}
-		System.out.println(hostPosition);
+		System.out.println("Current host position: " + hostPosition);
 	}
     
 }

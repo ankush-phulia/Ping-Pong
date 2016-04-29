@@ -235,6 +235,11 @@ public class Multi_Player extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println(ipAddress.getText());
 				String ipOfHost = ipAddress.getText();
+				try {
+					ipOfHost = InetAddress.getByName(ipAddress.getText()).toString().substring(1);
+				} catch (UnknownHostException uhe) {
+
+				}
 				ConnectionToServer cs = new ConnectionToServer(ipOfHost, 8080);
 
 				if (cs.connectionEstablished()) {
