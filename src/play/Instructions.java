@@ -89,7 +89,7 @@ public class Instructions extends JPanel {
 		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JLabel lblHowToPlay_1 = new JLabel("How To Play");
-		lblHowToPlay_1.setFont(new Font("Tahoma", Font.PLAIN, 38));
+		lblHowToPlay_1.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		panel.add(lblHowToPlay_1);
 		
 		JPanel panel_1 = new JPanel();
@@ -109,7 +109,7 @@ public class Instructions extends JPanel {
 		panel_1.add(separator_1, gbc_separator_1);
 		
 		JLabel lblRandomBs = new JLabel("Random BS");
-		lblRandomBs.setFont(new Font("Tahoma", Font.PLAIN, 34));
+		lblRandomBs.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblRandomBs = new GridBagConstraints();
 		gbc_lblRandomBs.insets = new Insets(0, 0, 5, 5);
 		gbc_lblRandomBs.gridx = 1;

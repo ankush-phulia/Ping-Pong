@@ -92,7 +92,7 @@ public class Multi_New extends JPanel implements ActionListener{
 		
 		JLabel label = new JLabel("Multi Player");
 		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setFont(new Font("Tahoma", Font.PLAIN, 38));
+		label.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		GridBagConstraints gbc_label = new GridBagConstraints();
 		gbc_label.anchor = GridBagConstraints.NORTH;
 		gbc_label.insets = new Insets(0, 0, 5, 5);
@@ -108,7 +108,7 @@ public class Multi_New extends JPanel implements ActionListener{
 		SelectionPanel.add(separator, gbc_separator);
 		
 		JLabel lblPaddlePosition = new JLabel("Paddle Position");
-		lblPaddlePosition.setFont(new Font("Tahoma", Font.PLAIN, 34));
+		lblPaddlePosition.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblPaddlePosition = new GridBagConstraints();
 		gbc_lblPaddlePosition.insets = new Insets(0, 0, 5, 5);
 		gbc_lblPaddlePosition.gridx = 3;
@@ -116,7 +116,7 @@ public class Multi_New extends JPanel implements ActionListener{
 		SelectionPanel.add(lblPaddlePosition, gbc_lblPaddlePosition);
 		
 		final JComboBox<String> ownPosition = new JComboBox<String>();
-		ownPosition.setFont(new Font("Tahoma", Font.PLAIN, 34));
+		ownPosition.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		ownPosition.addItem("Left");
 		ownPosition.addItem("Right");
 		ownPosition.addItem("Top");
@@ -136,7 +136,7 @@ public class Multi_New extends JPanel implements ActionListener{
 		SelectionPanel.add(separator_5, gbc_separator_5);
 		
 		JLabel label_2 = new JLabel("Number of Lives");
-		label_2.setFont(new Font("Tahoma", Font.PLAIN, 34));
+		label_2.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		GridBagConstraints gbc_label_2 = new GridBagConstraints();
 		gbc_label_2.insets = new Insets(0, 0, 5, 5);
 		gbc_label_2.gridx = 3;
@@ -171,7 +171,7 @@ public class Multi_New extends JPanel implements ActionListener{
 		SelectionPanel.add(separator_7, gbc_separator_7);
 		
 		JLabel lblGameMode = new JLabel("Game Mode");
-		lblGameMode.setFont(new Font("Tahoma", Font.PLAIN, 34));
+		lblGameMode.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblGameMode = new GridBagConstraints();
 		gbc_lblGameMode.insets = new Insets(0, 0, 5, 5);
 		gbc_lblGameMode.gridx = 3;
@@ -179,7 +179,7 @@ public class Multi_New extends JPanel implements ActionListener{
 		SelectionPanel.add(lblGameMode, gbc_lblGameMode);
 		
 		final JComboBox<String> GameMode = new JComboBox<String>();
-		GameMode.setFont(new Font("Tahoma", Font.PLAIN, 34));
+		GameMode.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		GameMode.addItem("Classic");
 		GameMode.addItem("Arcade");
 		GameMode.addItem("Endless");
@@ -199,7 +199,7 @@ public class Multi_New extends JPanel implements ActionListener{
 		SelectionPanel.add(separator_8, gbc_separator_8);
 		
 		JLabel lblNumberOfBalls = new JLabel("Number of Balls");
-		lblNumberOfBalls.setFont(new Font("Tahoma", Font.PLAIN, 34));
+		lblNumberOfBalls.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblNumberOfBalls = new GridBagConstraints();
 		gbc_lblNumberOfBalls.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNumberOfBalls.gridx = 3;
@@ -227,7 +227,7 @@ public class Multi_New extends JPanel implements ActionListener{
 		SelectionPanel.add(separator_33, gbc_separator_33);
 		
 		JLabel lblGameSpeed = new JLabel("Game Speed");
-		lblGameSpeed.setFont(new Font("Tahoma", Font.PLAIN, 34));
+		lblGameSpeed.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblGameSpeed = new GridBagConstraints();
 		gbc_lblGameSpeed.insets = new Insets(0, 0, 5, 5);
 		gbc_lblGameSpeed.gridx = 3;
@@ -255,7 +255,7 @@ public class Multi_New extends JPanel implements ActionListener{
 		SelectionPanel.add(separator_2, gbc_separator_2);
 		
 		JLabel lblPowerupsEnabled = new JLabel("Powerups Enabled");
-		lblPowerupsEnabled.setFont(new Font("Tahoma", Font.PLAIN, 34));
+		lblPowerupsEnabled.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblPowerupsEnabled = new GridBagConstraints();
 		gbc_lblPowerupsEnabled.insets = new Insets(0, 0, 5, 5);
 		gbc_lblPowerupsEnabled.gridx = 3;
@@ -278,7 +278,7 @@ public class Multi_New extends JPanel implements ActionListener{
 		SelectionPanel.add(separator_30, gbc_separator_30);
 		
 		JLabel lblPlayer = new JLabel("Player 2");
-		lblPlayer.setFont(new Font("Tahoma", Font.PLAIN, 34));
+		lblPlayer.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblPlayer = new GridBagConstraints();
 		gbc_lblPlayer.insets = new Insets(0, 0, 5, 5);
 		gbc_lblPlayer.gridx = 3;
@@ -301,7 +301,7 @@ public class Multi_New extends JPanel implements ActionListener{
 		SelectionPanel.add(separator_1, gbc_separator_1);
 		
 		JLabel lblPlayerTwo = new JLabel("PC Players");
-		lblPlayerTwo.setFont(new Font("Tahoma", Font.PLAIN, 34));
+		lblPlayerTwo.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblPlayerTwo = new GridBagConstraints();
 		gbc_lblPlayerTwo.insets = new Insets(0, 0, 5, 5);
 		gbc_lblPlayerTwo.gridx = 3;
@@ -323,7 +323,7 @@ public class Multi_New extends JPanel implements ActionListener{
 		SelectionPanel.add(separator_3, gbc_separator_3);
 		
 		JLabel lblPlayersConnected = new JLabel("Players Connected");
-		lblPlayersConnected.setFont(new Font("Tahoma", Font.PLAIN, 34));
+		lblPlayersConnected.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblPlayersConnected = new GridBagConstraints();
 		gbc_lblPlayersConnected.insets = new Insets(0, 0, 5, 5);
 		gbc_lblPlayersConnected.gridx = 4;
@@ -338,7 +338,7 @@ public class Multi_New extends JPanel implements ActionListener{
 		SelectionPanel.add(separator_6, gbc_separator_6);
 		
 		JList list = new JList();
-		list.setFont(new Font("Tahoma", Font.PLAIN, 34));
+		list.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		GridBagConstraints gbc_list = new GridBagConstraints();
 		gbc_list.insets = new Insets(0, 0, 5, 5);
 		gbc_list.fill = GridBagConstraints.BOTH;
@@ -358,7 +358,7 @@ public class Multi_New extends JPanel implements ActionListener{
 		JPanel ButtonPanel = new JPanel();
 		MenuPanel.add(ButtonPanel);		
 		JButton button = new JButton("Back to Multiplayer Menu");
-		button.setFont(new Font("Tahoma", Font.PLAIN, 34));
+		button.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -451,7 +451,7 @@ public class Multi_New extends JPanel implements ActionListener{
 				game.requestFocusInWindow();
 			}
 		});
-		button_1.setFont(new Font("Tahoma", Font.PLAIN, 34));
+		button_1.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		ButtonPanel.add(button_1);
 		
 	}
