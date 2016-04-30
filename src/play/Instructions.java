@@ -95,7 +95,7 @@ public class Instructions extends JPanel {
 		JPanel panel_1 = new JPanel();
 		add(panel_1);
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
-		gbl_panel_1.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0};
+		gbl_panel_1.columnWidths = new int[]{0, 630, 0, 0, 0, 0, 0};
 		gbl_panel_1.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0};
 		gbl_panel_1.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_panel_1.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
@@ -103,18 +103,21 @@ public class Instructions extends JPanel {
 		
 		JSeparator separator_1 = new JSeparator();
 		GridBagConstraints gbc_separator_1 = new GridBagConstraints();
-		gbc_separator_1.insets = new Insets(0, 0, 50, 0);
+		gbc_separator_1.insets = new Insets(0, 0, 30, 0);
 		gbc_separator_1.gridx = 5;
 		gbc_separator_1.gridy = 0;
 		panel_1.add(separator_1, gbc_separator_1);
 		
-		JLabel lblRandomBs = new JLabel("Random BS");
+		JLabel lblRandomBs = new JLabel();
 		lblRandomBs.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblRandomBs = new GridBagConstraints();
+		gbc_lblRandomBs.gridwidth = 5;
+		gbc_lblRandomBs.fill = GridBagConstraints.HORIZONTAL;
 		gbc_lblRandomBs.insets = new Insets(0, 0, 5, 5);
 		gbc_lblRandomBs.gridx = 1;
 		gbc_lblRandomBs.gridy = 1;
 		panel_1.add(lblRandomBs, gbc_lblRandomBs);
+		lblRandomBs.setText("<html><body>In this game the player has to protect the boundary by hitting the ball with the paddle.<br>He can add the velocity in the tangential direction in which the paddle was moving while hitting the ball.<br> Powerups appear randomly, the rectangle ones can either increase or decrease the length of the paddle and also a wall appear randomly.<br> Powerups are given to the player whose paddle was collided with the ball.<br> Beat the game by surviving or by making other players miss the ball.</body></html>");
 		
 		JSeparator separator = new JSeparator();
 		GridBagConstraints gbc_separator = new GridBagConstraints();

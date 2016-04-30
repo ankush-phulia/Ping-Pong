@@ -1023,8 +1023,8 @@ public class Board extends JPanel implements ActionListener, KeyListener{
     
     public int gen_vel(){
     	Random vel=new Random();
-    	int s=vel.nextInt(4)+5;
-    	int s2=-(vel.nextInt(4)+5);
+    	int s=vel.nextInt(8)+5;
+    	int s2=-(vel.nextInt(8)+5);
     	int choose=vel.nextInt(2);
     	if (choose==0){
     		return s;
