@@ -244,7 +244,7 @@ public class Multi_Player extends JPanel {
 						return;
 					}
 
-					cs.writeToServer("MYIP:" + cs.getIPAddress());
+					// cs.writeToServer("MYIP:" + cs.getIPAddress());
 					clientsThread = gameServer.acceptClient();
 
 					String resp, type;
@@ -405,11 +405,11 @@ public class Multi_Player extends JPanel {
 
 		String[] tokens = response.split(":");
 		switch (tokens[0]) {
-			case "MYIP":
+			/*case "MYIP":
 				String ipOfClient = tokens[1];
-				gameServer.writeToAllClients("ConnectToIP:" + ipOfClient);
+				gameServer.writeToAllClients("CONNECTTOIP:" + ipOfClient);
 				break;
-
+*/
 			case "CONNECTTOIP":
 				System.out.println(response);
 

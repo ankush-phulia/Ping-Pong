@@ -406,6 +406,7 @@ public class Multi_New extends JPanel implements ActionListener{
 				}
 
 				for (InetAddress IP : l) {
+					gameServer.writeToAllClients("CONNECTTOIP:" + IP);
 					ConnectionToServer cs = new ConnectionToServer(IP.toString().substring(1), 8080);
 					System.out.println("ConnectionToServer - connection established = " + cs.connectionEstablished()
 							+ " with IP : " + IP);
