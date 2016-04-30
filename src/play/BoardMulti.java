@@ -109,6 +109,8 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
     	this.power_en=powerups;
     	
     	//balls
+    	balls=new ArrayList<Ball>();
+    	int xx=gen_vel()*gameSpd;
     	BoardMulti.balls.add(new Ball(this.Xdim/2-10, this.Ydim/2-10, gen_vel()*gameSpd, gen_vel()*gameSpd,2));
     	if (ball_Num>1){
     		BoardMulti.balls.add(new Ball(this.Xdim/2, this.Ydim/2, gen_vel()*gameSpd, gen_vel()*gameSpd,1));
@@ -223,6 +225,7 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
 		}
 		else if (BoardMulti.state.equals("Go")) {
 			if (isHost && System.currentTimeMillis() - startTime > 3000) {
+				//System.out.println("yo");
 				state = "Playing";
 				InetAddress lostIP = gameServer.writeToAllClients("STATE:Playing");
 				replacePlayerWithAI(lostIP);
@@ -230,7 +233,7 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
 		}
 
     	else if(BoardMulti.state.equals("Playing")) {
-    		
+    		//System.out.println("yoyo");
     		Paddle P1 = fetch(1,players);
             if (P1!=null){
             	if (BoardMulti.position.equals("Left")){
@@ -391,7 +394,7 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
             	}
             }
 
-            if (isHost && power_en){
+            if (isHost){
             	String ballInfo = "play.Ball";
 	            for (int i=0; i<BoardMulti.balls.size(); i++){
 	            	Ball b = BoardMulti.balls.get(i);
@@ -402,24 +405,25 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
 				InetAddress lostIP = gameServer.writeToAllClients(ballInfo);
 				replacePlayerWithAI(lostIP);
 	            
-				
-				Random pu = new Random() ;
-            	if (!powerup){
-            		if (pu.nextInt(1201) > 1199){
-            			powerup = true ;
-            			poweruptime = currenttime ;
-            			powertype = pupos.nextInt(2) ; 
-            			puXpos = (pupos.nextDouble()/2 + 0.25)*Xdim ; 
-            			puYpos = (pupos.nextDouble()/2 + 0.25)*Ydim ;
-            		}
-            	}
-            	else
-            	{
-            		if (currenttime  >  15+poweruptime){
-            			powerup = false  ; 
-            		}
-            	}
-            	currenttime += 1.0/60.0 ;
+				if (power_en){
+					Random pu = new Random() ;
+	            	if (!powerup){
+	            		if (pu.nextInt(1201) > 1199){
+	            			powerup = true ;
+	            			poweruptime = currenttime ;
+	            			powertype = pupos.nextInt(2) ; 
+	            			puXpos = (pupos.nextDouble()/2 + 0.25)*Xdim ; 
+	            			puYpos = (pupos.nextDouble()/2 + 0.25)*Ydim ;
+	            		}
+	            	}
+	            	else
+	            	{
+	            		if (currenttime  >  15+poweruptime){
+	            			powerup = false  ; 
+	            		}
+	            	}
+	            	currenttime += 1.0/60.0 ;
+				}				
             }
             
             
