@@ -7,6 +7,7 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
+import java.util.Random;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -21,15 +22,26 @@ public class Board extends JPanel implements ActionListener, KeyListener{
 	public String state;
 	Timer timer;
 	//public boolean route2=false;
-    
+    double poweruptime = 0 ; 
+    public double currenttime = 0 ; 
+    public boolean powerup = false ; 
+    double puXpos = 0 ; 
+    double puYpos = 0  ; 
+    Random pupos =  new Random() ;
+    double initialdim  ;
+    int player = -1;  
+    int powertype = -1 ;
     //AESTHETICS
-	public double Xdim;
+	
+    
+    
+    
+    public double Xdim;
 	public double Ydim;
     public Color bgcolor;
     public Color ccolor;
     public double fps;
     public int gameSpd=1;
-    
     //Players
     public String position;
     public ArrayList<Paddle> players;
@@ -270,6 +282,25 @@ public class Board extends JPanel implements ActionListener, KeyListener{
             	Ball b=this.balls.get(i);
             	analyse(b);
             }
+            
+            Random pu = new Random() ;
+            if (!powerup){
+            	if (pu.nextInt(201) > 199){
+            		powerup = true ;
+            		poweruptime = currenttime ;
+            		powertype = pupos.nextInt(2) ; 
+            		puXpos = (pupos.nextDouble()/2 + 0.25)*Xdim ; 
+            		puYpos = (pupos.nextDouble()/2 + 0.25)*Ydim ;
+            	}
+            }else {
+            	if (currenttime  >  15+poweruptime){
+            		powerup = false  ; 
+            	}
+            }
+            currenttime += 1.0/60.0 ;             
+            
+            
+            
             repaint();
     	} 
     }
@@ -425,6 +456,85 @@ public class Board extends JPanel implements ActionListener, KeyListener{
         if (zeros(this.players,players.size()-1)){
         	this.state="Done";
         }
+        
+        //double res1  ;
+        
+        if (powerup){
+        	if (Math.sqrt(Math.pow((b.Xpos-puXpos),2)+Math.pow((b.Ypos-puYpos),2)) < ((b.dia)/2+(40)/2)){
+        		powerup = false ; 
+        		System.out.println("mila") ;
+        		System.out.println(b.origin) ;
+        		switch (b.origin){
+        		case 1  :
+        				initialdim = players.get(0).Ydim ; 
+        				if (powertype == 0){
+        					players.get(0).Ydim = 3*(this.Ydim)/4 ; 
+        				}else{
+        					players.get(0).Ydim = (this.Ydim)/10  ; 
+        				}
+        				poweruptime = currenttime ; 
+        				player = 1 ;
+        				break ;
+        		case 2 :
+        			initialdim = players.get(1).Ydim ; 
+    				//players.get(1).Ydim = 3*(this.Ydim)/4 ; 
+    				if (powertype == 0){
+    					players.get(1).Ydim = 3*(this.Ydim)/4 ; 
+    				}else{
+    					players.get(1).Ydim = (this.Ydim)/10  ; 
+    				}
+    				poweruptime = currenttime ; 
+    				player = 2 ;
+    				break ;
+        		case 3 : 
+        			initialdim = players.get(2).Xdim ; 
+    				//players.get(2).Xdim = 3*(this.Xdim)/4 ; 
+        			if (powertype == 0){
+    					players.get(2).Xdim = 3*(this.Xdim)/4 ; 
+    				}else{
+    					players.get(2).Xdim = (this.Xdim)/10  ; 
+    				}
+        			poweruptime = currenttime ; 
+    				player = 3 ;
+    				break ;
+        		case 4 :
+        			initialdim = players.get(3).Xdim ; 
+    				//players.get(3).Xdim = 3*(this.Xdim)/4 ; 
+    				if (powertype == 0){
+    					players.get(3).Xdim = 3*(this.Xdim)/4 ; 
+    				}else{
+    					players.get(3).Xdim = (this.Xdim)/10  ; 
+    				}
+    				poweruptime = currenttime ; 
+    				player = 4 ;
+    				break ;
+        		}
+        	}
+        }
+        
+        if (!powerup){
+        	if (currenttime > 1+poweruptime){
+        		switch (player){
+            	case 1 :
+            		players.get(0).Ydim = initialdim ; 
+            		player = -1 ; 
+            		break ;
+            	case 2 :
+            		players.get(1).Ydim = initialdim ; 
+            		player = -1 ; 
+            		break ;
+            	case 3 :
+            		players.get(2).Xdim = initialdim ; 
+            		player = -1 ; 
+            		break ;
+            	case 4 :
+            		players.get(3).Xdim = initialdim ; 
+            		player = -1 ; 
+            		break ;	
+            	}
+        	}
+        	
+        }
     	
     	//checking for collison condition between the balls 
         boolean collisionball = false ;
@@ -526,6 +636,12 @@ public class Board extends JPanel implements ActionListener, KeyListener{
 					g.fillOval((int)(b.Xpos-b.dia/2),(int)(b.Ypos-b.dia/2),(int) (b.dia), (int) (b.dia));
 				}
 				
+				if (powerup){
+					
+					g.fillOval((int)puXpos, (int)puYpos,40,40 );
+					
+					
+				}
 				//draw the scores
 	            g.setFont(new Font(Font.DIALOG, Font.BOLD, 36));
 	            Paddle P1=fetch(1,players);
