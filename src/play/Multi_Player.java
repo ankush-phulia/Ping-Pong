@@ -232,7 +232,7 @@ public class Multi_Player extends JPanel {
 
 				if (cs.connectionEstablished()) {
 					try {
-						gameServer = new LocalServer(8080);
+						gameServer = new LocalServer(8000);
 					}
 					catch (IOException ioe) {
 						cs.disconnect();

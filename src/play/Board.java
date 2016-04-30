@@ -82,7 +82,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
     	this.players.add(P1);
 	
     	if (!Difficulty1.equals("")){
-    		Paddle P2=this.create_paddle((k+1)%4+1,Lives1);
+    	Paddle P2=this.create_paddle((k+1)%4+1,Lives1);
         	this.players.add(P2);
         }
     	if (!Difficulty2.equals("")){

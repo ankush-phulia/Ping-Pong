@@ -15,6 +15,7 @@ public class Ball {
     public boolean ballcollision;
     public double colparam ;
     public int colid ;
+    public int flag,flag1,flag2,flag3 =0 ; 
     
     public Ball(double Xstart,double Ystart,double Vxstart,double Vystart,int or){
     	this.dia=30   ;
