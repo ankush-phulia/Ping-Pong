@@ -1,0 +1,16 @@
+-- Time Limits on the Game not set
+	Not Really Required as Scoring and Lives are both present
+
+-- Game Modes not completely functional yet
+
+++ User positions flexible, as per the host's choice
+	
+-- Paddle Shape fixed, not flexible
+	
+++ Corner cases handled better by collision with paddles' corners
+
+++ Speed Variabilty added by slicing ball with paddles
+
+++ More Difficulty Levels added, includes a randomised predictor/alligner
+
+-- Limited number of powerups, mainly dealing with adjusting paddle size

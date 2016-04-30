@@ -157,6 +157,7 @@ public class Multi_Player extends JPanel {
 					gameServer = new LocalServer(8080);
 					RXCardLayout cdl = (RXCardLayout) getLayout();
 					Multi_New mn = new Multi_New(gameServer);
+					JOptionPane.showMessageDialog(getParent().getParent().getParent().getParent().getParent(),"Your IPs are : "+LocalServer.getAllAvailableIP().toString());
 					add(mn,"new game");
 					cdl.show(Multi_Player.this, "new game");
 				} catch (IOException e1) {
@@ -244,6 +245,7 @@ public class Multi_Player extends JPanel {
 						return;
 					}
 
+					cs.writeToServer("MYIP:" + cs.getIPAddress());
 					clientsThread = gameServer.acceptClient();
 
 					String resp, type;
@@ -299,6 +301,8 @@ public class Multi_Player extends JPanel {
 							getWindowAncestor().sounds);
 
 					System.out.println("Starting new game...");
+					
+					
 
 					add(game,"Game");
 					cdl.show(Multi_Player.this, "Game");
@@ -404,12 +408,14 @@ public class Multi_Player extends JPanel {
 
 		String[] tokens = response.split(":");
 		switch (tokens[0]) {
-			case "MyIP":
+			case "MYIP":
 				String ipOfClient = tokens[1];
 				gameServer.writeToAllClients("ConnectToIP:" + ipOfClient);
 				break;
 
-			case "ConnectToIP":
+			case "CONNECTTOIP":
+				System.out.println(response);
+
 				InetAddress ipOfOtherClient;
 				try {
 					ipOfOtherClient = InetAddress.getByName(tokens[1].substring(1));

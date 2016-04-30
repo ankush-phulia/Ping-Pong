@@ -54,6 +54,9 @@ public class Board extends JPanel implements ActionListener, KeyListener{
     //Controls
     public int[] keys;
     
+    public String GameMode;
+    public int cnt=0;
+    
     //powerups
     public boolean power_en;
     double poweruptime = 0 ; 
@@ -135,6 +138,8 @@ public class Board extends JPanel implements ActionListener, KeyListener{
         timer = new Timer((int) (1000/this.fps), this);
         timer.start();
         
+        this.GameMode=GameMode;
+        
         this.addComponentListener( new ComponentAdapter() {
             public void componentShown( ComponentEvent e ) {
                 Board.this.requestFocusInWindow();
@@ -179,6 +184,12 @@ public class Board extends JPanel implements ActionListener, KeyListener{
 	}
     
     public void step(){
+    	
+    	if (GameMode.equals("Arcade") && cnt==7500){
+    		this.state="Done";
+    	}
+    	
+    	cnt++;
     	
     	if(this.state.equals("Playing")){
     		
@@ -828,13 +839,26 @@ public class Board extends JPanel implements ActionListener, KeyListener{
 				g.setFont(new Font(Font.DIALOG, Font.BOLD, 24));
 				
 				int winner=0;
+				int maxscore=0;
 				
-				for (int i=0;i<players.size();i++){
-					Paddle sc=this.players.get(i);
-					if (sc.lives>0){
-						winner=sc.pos;
+				if (!GameMode.equals("Arcade")){
+						for (int i=0;i<players.size();i++){
+						Paddle sc=this.players.get(i);
+						if (sc.lives>0){
+							winner=sc.pos;
+						}
 					}
-				}				
+				}
+				else{
+					for (int i=0;i<players.size();i++){
+						Paddle sc=this.players.get(i);
+						if (sc.lives>0 && this.playerScores[sc.pos-1]>=maxscore){
+							winner=sc.pos;
+							maxscore=this.playerScores[sc.pos-1];
+						}
+					}
+				}
+								
 				g.drawString("Player "+(winner)+" won!", (int)Xdim/2-60, (int)this.Ydim/2-200);
                 g.drawString("Press 'Backspace' to play again", (int)Xdim/2-160, (int)this.Ydim/2);
 				break;

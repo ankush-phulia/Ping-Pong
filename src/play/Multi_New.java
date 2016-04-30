@@ -34,6 +34,7 @@ import java.util.HashMap;
 import java.util.List;
 import javax.swing.JCheckBox;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 
 
 public class Multi_New extends JPanel implements ActionListener{
@@ -63,6 +64,7 @@ public class Multi_New extends JPanel implements ActionListener{
 		Timer timer = new Timer((int) (1000/60), this);
 		timer.start();
 
+		//JOptionPane.showMessageDialog(getParent().getParent().getParent().getParent().getParent(),"Your IPs is :"+LocalServer.getAllAvailableIP().toString());
 	}
 
 
@@ -85,9 +87,9 @@ public class Multi_New extends JPanel implements ActionListener{
 		MenuPanel.add(SelectionPanel);
 		GridBagLayout gbl_SelectionPanel = new GridBagLayout();
 		gbl_SelectionPanel.columnWidths = new int[]{58, 0, 0, 296, 403, 289, 81, 0, 0};
-		gbl_SelectionPanel.rowHeights = new int[]{33, 0, 0, 0, 0, -15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 56, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_SelectionPanel.rowHeights = new int[]{33, 0, 0, 0, 0, -15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 56, 0, 0, 0, 0, 0, 0, 0};
 		gbl_SelectionPanel.columnWeights = new double[]{0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
-		gbl_SelectionPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
+		gbl_SelectionPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
 		SelectionPanel.setLayout(gbl_SelectionPanel);
 		
 		JLabel label = new JLabel("Multi Player");
@@ -315,26 +317,19 @@ public class Multi_New extends JPanel implements ActionListener{
 		gbc_PCpl.gridy = 17;
 		SelectionPanel.add(PCpl, gbc_PCpl);
 		
-		JSeparator separator_3 = new JSeparator();
-		GridBagConstraints gbc_separator_3 = new GridBagConstraints();
-		gbc_separator_3.insets = new Insets(0, 0, 25, 25);
-		gbc_separator_3.gridx = 3;
-		gbc_separator_3.gridy = 18;
-		SelectionPanel.add(separator_3, gbc_separator_3);
-		
 		JLabel lblPlayersConnected = new JLabel("Players Connected");
 		lblPlayersConnected.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblPlayersConnected = new GridBagConstraints();
 		gbc_lblPlayersConnected.insets = new Insets(0, 0, 5, 5);
 		gbc_lblPlayersConnected.gridx = 4;
-		gbc_lblPlayersConnected.gridy = 19;
+		gbc_lblPlayersConnected.gridy = 18;
 		SelectionPanel.add(lblPlayersConnected, gbc_lblPlayersConnected);
 		
 		JSeparator separator_6 = new JSeparator();
 		GridBagConstraints gbc_separator_6 = new GridBagConstraints();
 		gbc_separator_6.insets = new Insets(0, 0, 15, 15);
 		gbc_separator_6.gridx = 4;
-		gbc_separator_6.gridy = 20;
+		gbc_separator_6.gridy = 19;
 		SelectionPanel.add(separator_6, gbc_separator_6);
 		
 		JList list = new JList();
@@ -343,16 +338,9 @@ public class Multi_New extends JPanel implements ActionListener{
 		gbc_list.insets = new Insets(0, 0, 5, 5);
 		gbc_list.fill = GridBagConstraints.BOTH;
 		gbc_list.gridx = 4;
-		gbc_list.gridy = 21;
+		gbc_list.gridy = 20;
 		SelectionPanel.add(list, gbc_list);
 		cMap.put("IPs",list);
-		
-		JSeparator separator_4 = new JSeparator();
-		GridBagConstraints gbc_separator_4 = new GridBagConstraints();
-		gbc_separator_4.insets = new Insets(0, 0, 0, 5);
-		gbc_separator_4.gridx = 3;
-		gbc_separator_4.gridy = 22;
-		SelectionPanel.add(separator_4, gbc_separator_4);
 
 
 		JPanel ButtonPanel = new JPanel();
@@ -533,10 +521,10 @@ public class Multi_New extends JPanel implements ActionListener{
 
 		String[] tokens = response.split(":");
 		switch (tokens[0]) {
-			/*case "MYIP":
+			case "MYIP":
 				String ipOfClient = tokens[1];
 				gameServer.writeToAllClients("CONNECTTOIP:" + ipOfClient);
-				break;*/
+				break;
 			default:
 
 		}
