@@ -250,7 +250,7 @@ public class Multi_Player extends JPanel {
 					
 					do {
 						resp = cs.readFromServer();
-						System.out.println(resp);
+						// System.out.println(resp);
 						type = parseResponse(resp);
 						if (type.equalsIgnoreCase("DISCONNECT"))
 							return;
