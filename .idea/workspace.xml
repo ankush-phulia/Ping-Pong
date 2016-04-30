@@ -2,61 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="64f55a98-e9ef-4b62-a820-0c6ba508b302" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bgm.wav" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/AIplayer.class" afterPath="$PROJECT_DIR$/bin/play/AIplayer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/AIplayer2.class" afterPath="$PROJECT_DIR$/bin/play/AIplayer2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Board$1.class" afterPath="$PROJECT_DIR$/bin/play/Board$1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Board.class" afterPath="$PROJECT_DIR$/bin/play/Board.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/BoardMulti$1.class" afterPath="$PROJECT_DIR$/bin/play/BoardMulti$1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/BoardMulti.class" afterPath="$PROJECT_DIR$/bin/play/BoardMulti.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Instructions.class" afterPath="$PROJECT_DIR$/bin/play/Instructions.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Main.class" afterPath="$PROJECT_DIR$/bin/play/Main.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Main_Frame$1$1.class" afterPath="$PROJECT_DIR$/bin/play/Main_Frame$1$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Main_Frame$1.class" afterPath="$PROJECT_DIR$/bin/play/Main_Frame$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Main_Frame$2$1.class" afterPath="$PROJECT_DIR$/bin/play/Main_Frame$2$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Main_Frame$2.class" afterPath="$PROJECT_DIR$/bin/play/Main_Frame$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Main_Frame$3$1.class" afterPath="$PROJECT_DIR$/bin/play/Main_Frame$3$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Main_Frame$3.class" afterPath="$PROJECT_DIR$/bin/play/Main_Frame$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Main_Frame$4$1.class" afterPath="$PROJECT_DIR$/bin/play/Main_Frame$4$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Main_Frame$4.class" afterPath="$PROJECT_DIR$/bin/play/Main_Frame$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Main_Frame$5$1.class" afterPath="$PROJECT_DIR$/bin/play/Main_Frame$5$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Main_Frame$5.class" afterPath="$PROJECT_DIR$/bin/play/Main_Frame$5.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Main_Frame$6$1.class" afterPath="$PROJECT_DIR$/bin/play/Main_Frame$6$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Main_Frame$6.class" afterPath="$PROJECT_DIR$/bin/play/Main_Frame$6.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Main_Frame$7$1.class" afterPath="$PROJECT_DIR$/bin/play/Main_Frame$7$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Main_Frame$7.class" afterPath="$PROJECT_DIR$/bin/play/Main_Frame$7.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Main_Frame$8$1.class" afterPath="$PROJECT_DIR$/bin/play/Main_Frame$8$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Main_Frame$8.class" afterPath="$PROJECT_DIR$/bin/play/Main_Frame$8.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Main_Frame.class" afterPath="$PROJECT_DIR$/bin/play/Main_Frame.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Multi_New$2.class" afterPath="$PROJECT_DIR$/bin/play/Multi_New$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Multi_New.class" afterPath="$PROJECT_DIR$/bin/play/Multi_New.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Multi_Player$1.class" afterPath="$PROJECT_DIR$/bin/play/Multi_Player$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Multi_Player$3.class" afterPath="$PROJECT_DIR$/bin/play/Multi_Player$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Multi_Player$Accessor.class" afterPath="$PROJECT_DIR$/bin/play/Multi_Player$Accessor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Multi_Player.class" afterPath="$PROJECT_DIR$/bin/play/Multi_Player.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Options$1.class" afterPath="$PROJECT_DIR$/bin/play/Options$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Options$2.class" afterPath="$PROJECT_DIR$/bin/play/Options$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Options$3.class" afterPath="$PROJECT_DIR$/bin/play/Options$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Options$Accessor.class" afterPath="$PROJECT_DIR$/bin/play/Options$Accessor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Options.class" afterPath="$PROJECT_DIR$/bin/play/Options.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Single_Player$1.class" afterPath="$PROJECT_DIR$/bin/play/Single_Player$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Single_Player$2.class" afterPath="$PROJECT_DIR$/bin/play/Single_Player$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Single_Player$3.class" afterPath="$PROJECT_DIR$/bin/play/Single_Player$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Single_Player$Accessor.class" afterPath="$PROJECT_DIR$/bin/play/Single_Player$Accessor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/play/Single_Player.class" afterPath="$PROJECT_DIR$/bin/play/Single_Player.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/artifacts/Assignment_3_jar/Assignment 3.jar" afterPath="$PROJECT_DIR$/classes/artifacts/Assignment_3_jar/Assignment 3.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/play/AIplayer.java" afterPath="$PROJECT_DIR$/src/play/AIplayer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/play/AIplayer2.java" afterPath="$PROJECT_DIR$/src/play/AIplayer2.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/play/Board.java" afterPath="$PROJECT_DIR$/src/play/Board.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/play/BoardMulti.java" afterPath="$PROJECT_DIR$/src/play/BoardMulti.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/play/Instructions.java" afterPath="$PROJECT_DIR$/src/play/Instructions.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/play/Main.java" afterPath="$PROJECT_DIR$/src/play/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/play/Main_Frame.java" afterPath="$PROJECT_DIR$/src/play/Main_Frame.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/play/Multi_New.java" afterPath="$PROJECT_DIR$/src/play/Multi_New.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/play/Multi_Player.java" afterPath="$PROJECT_DIR$/src/play/Multi_Player.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/play/Options.java" afterPath="$PROJECT_DIR$/src/play/Options.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/play/Single_Player.java" afterPath="$PROJECT_DIR$/src/play/Single_Player.java" />
     </list>
     <ignored path="Assignment 3.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -89,8 +43,8 @@
       <file leaf-file-name="Multi_Player.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/play/Multi_Player.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3075">
-              <caret line="246" column="56" selection-start-line="246" selection-start-column="56" selection-end-line="246" selection-end-column="56" />
+            <state relative-caret-position="45">
+              <caret line="239" column="56" selection-start-line="239" selection-start-column="56" selection-end-line="239" selection-end-column="56" />
               <folding>
                 <element signature="method#show_small#0;class#Multi_Player#0" expanded="false" />
                 <element signature="method#getWindowAncestor#0;class#Multi_Player#0" expanded="false" />
@@ -107,8 +61,8 @@
       <file leaf-file-name="Multi_New.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/play/Multi_New.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6120">
-              <caret line="408" column="98" selection-start-line="408" selection-start-column="98" selection-end-line="408" selection-end-column="98" />
+            <state relative-caret-position="682">
+              <caret line="425" column="47" selection-start-line="425" selection-start-column="47" selection-end-line="425" selection-end-column="47" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#get_pos#0;class#Multi_New#0" expanded="false" />
@@ -127,6 +81,7 @@
             <state relative-caret-position="450">
               <caret line="46" column="28" selection-start-line="46" selection-start-column="28" selection-end-line="46" selection-end-column="28" />
               <folding>
+                <element signature="imports" expanded="false" />
                 <element signature="method#ReadData#0;class#ReadData#0" expanded="false" />
                 <element signature="method#readFromBuffer#0;class#ReadData#0" expanded="false" />
                 <element signature="method#threadMessage#0;class#ReadData#0" expanded="false" />
@@ -138,18 +93,23 @@
       <file leaf-file-name="BoardMulti.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/play/BoardMulti.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="173">
-              <caret line="432" column="31" selection-start-line="432" selection-start-column="31" selection-end-line="432" selection-end-column="31" />
+            <state relative-caret-position="324">
+              <caret line="1274" column="52" selection-start-line="1274" selection-start-column="52" selection-end-line="1274" selection-end-column="52" />
               <folding>
                 <element signature="method#get_pos#0;class#BoardMulti#0" expanded="false" />
-                <element signature="method#analyse#0;class#BoardMulti#0" expanded="false" />
+                <element signature="method#step#0;class#BoardMulti#0" expanded="false" />
                 <element signature="method#handlecollision#0;class#BoardMulti#0" expanded="false" />
+                <element signature="method#paintComponent#0;class#BoardMulti#0" expanded="false" />
                 <element signature="method#keyTyped#0;class#BoardMulti#0" expanded="false" />
                 <element signature="method#keyPressed#0;class#BoardMulti#0" expanded="false" />
                 <element signature="method#keyReleased#0;class#BoardMulti#0" expanded="false" />
                 <element signature="method#zeros#0;class#BoardMulti#0" expanded="false" />
                 <element signature="method#fetch#0;class#BoardMulti#0" expanded="false" />
                 <element signature="method#create_paddle#0;class#BoardMulti#0" expanded="false" />
+                <element signature="method#parse_packet#0;class#BoardMulti#0" expanded="false" />
+                <element signature="method#replacePlayerWithAI#0;class#BoardMulti#0" expanded="false" />
+                <element signature="method#changeHost#0;class#BoardMulti#0" expanded="false" />
+                <element signature="method#gen_vel#0;class#BoardMulti#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -161,10 +121,34 @@
             <state relative-caret-position="375">
               <caret line="53" column="33" selection-start-line="53" selection-start-column="33" selection-end-line="53" selection-end-column="33" />
               <folding>
+                <element signature="imports" expanded="false" />
                 <element signature="method#ConnectionToServer#0;class#ConnectionToServer#0" expanded="false" />
                 <element signature="method#disconnect#0;class#ConnectionToServer#0" expanded="false" />
                 <element signature="method#writeToServer#0;class#ConnectionToServer#0" expanded="false" />
+                <element signature="e#2667#2668#0" expanded="false" />
+                <element signature="e#2721#2722#0" expanded="false" />
                 <element signature="method#threadMessage#0;class#ConnectionToServer#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Board.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/play/Board.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="612" column="38" selection-start-line="612" selection-start-column="38" selection-end-line="625" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="method#handlecollision#0;class#Board#0" expanded="false" />
+                <element signature="method#paintComponent#0;class#Board#0" expanded="false" />
+                <element signature="method#keyPressed#0;class#Board#0" expanded="false" />
+                <element signature="method#keyReleased#0;class#Board#0" expanded="false" />
+                <element signature="method#zeros#0;class#Board#0" expanded="false" />
+                <element signature="method#fetch#0;class#Board#0" expanded="false" />
+                <element signature="method#create_paddle#0;class#Board#0" expanded="false" />
+                <element signature="method#get_diff#0;class#Board#0" expanded="false" />
+                <element signature="method#gen_vel#0;class#Board#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -173,10 +157,9 @@
       <file leaf-file-name="LocalServer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/network/LocalServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="615">
+            <state relative-caret-position="540">
               <caret line="68" column="26" selection-start-line="68" selection-start-column="26" selection-end-line="68" selection-end-column="26" />
               <folding>
-                <element signature="imports" expanded="true" />
                 <element signature="method#getAllAvailableIP#0;class#LocalServer#0" expanded="false" />
                 <element signature="method#LocalServer#0;class#LocalServer#0" expanded="false" />
                 <element signature="method#acceptClient#0;class#LocalServer#0" expanded="false" />
@@ -195,6 +178,9 @@
             <state relative-caret-position="570">
               <caret line="42" column="9" selection-start-line="42" selection-start-column="8" selection-end-line="42" selection-end-column="9" />
               <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#268#269#0" expanded="false" />
+                <element signature="e#304#305#0" expanded="false" />
                 <element signature="method#threadMessage#0;class#NewClient#0" expanded="false" />
               </folding>
             </state>
@@ -246,9 +232,10 @@
         <option value="$PROJECT_DIR$/src/network/ReadData.java" />
         <option value="$PROJECT_DIR$/src/network/LocalServer.java" />
         <option value="$PROJECT_DIR$/src/play/Options.java" />
-        <option value="$PROJECT_DIR$/src/play/BoardMulti.java" />
-        <option value="$PROJECT_DIR$/src/play/Multi_New.java" />
+        <option value="$PROJECT_DIR$/src/play/Board.java" />
         <option value="$PROJECT_DIR$/src/play/Multi_Player.java" />
+        <option value="$PROJECT_DIR$/src/play/Multi_New.java" />
+        <option value="$PROJECT_DIR$/src/play/BoardMulti.java" />
       </list>
     </option>
   </component>
@@ -258,7 +245,8 @@
     <detection-done>true</detection-done>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="width" value="1366" />
+    <option name="x" value="-1" />
+    <option name="width" value="1368" />
     <option name="height" value="743" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -286,8 +274,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -344,7 +332,7 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -812,7 +800,8 @@
       <workItem from="1461861663053" duration="11945000" />
       <workItem from="1461915637650" duration="12393000" />
       <workItem from="1461943055165" duration="4226000" />
-      <workItem from="1461948630744" duration="76000" />
+      <workItem from="1461948630744" duration="9458000" />
+      <workItem from="1461971982991" duration="4768000" />
     </task>
     <task id="LOCAL-00001" summary="Changed the API for accepting new client, set timeout for connections, added the API for enumerating all IPs">
       <created>1461585896685</created>
@@ -839,11 +828,11 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="87494000" />
+    <option name="totallyTimeSpent" value="101644000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1366" height="743" extended-state="0" />
-    <editor active="false" />
+    <frame x="-1" y="0" width="1368" height="743" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -853,12 +842,13 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329582" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.329582" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329582" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18512899" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18484849" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287879" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329582" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -869,7 +859,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39871383" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329582" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -904,6 +893,7 @@
         <state relative-caret-position="165">
           <caret line="11" column="22" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="42" />
           <folding>
+            <element signature="imports" expanded="false" />
             <element signature="method#ReadData#0;class#ReadData#0" expanded="false" />
             <element signature="method#readFromBuffer#0;class#ReadData#0" expanded="false" />
             <element signature="method#threadMessage#0;class#ReadData#0" expanded="false" />
@@ -916,9 +906,12 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
+            <element signature="imports" expanded="false" />
             <element signature="method#ConnectionToServer#0;class#ConnectionToServer#0" expanded="false" />
             <element signature="method#disconnect#0;class#ConnectionToServer#0" expanded="false" />
             <element signature="method#writeToServer#0;class#ConnectionToServer#0" expanded="false" />
+            <element signature="e#2667#2668#0" expanded="false" />
+            <element signature="e#2721#2722#0" expanded="false" />
             <element signature="method#threadMessage#0;class#ConnectionToServer#0" expanded="false" />
           </folding>
         </state>
@@ -929,9 +922,16 @@
         <state relative-caret-position="1335">
           <caret line="365" column="0" selection-start-line="365" selection-start-column="0" selection-end-line="365" selection-end-column="0" />
           <folding>
-            <element signature="method#step#0;class#Board#0" expanded="false" />
-            <element signature="method#analyse#0;class#Board#0" expanded="false" />
+            <element signature="imports" expanded="true" />
             <element signature="method#handlecollision#0;class#Board#0" expanded="false" />
+            <element signature="method#paintComponent#0;class#Board#0" expanded="false" />
+            <element signature="method#keyPressed#0;class#Board#0" expanded="false" />
+            <element signature="method#keyReleased#0;class#Board#0" expanded="false" />
+            <element signature="method#zeros#0;class#Board#0" expanded="false" />
+            <element signature="method#fetch#0;class#Board#0" expanded="false" />
+            <element signature="method#create_paddle#0;class#Board#0" expanded="false" />
+            <element signature="method#get_diff#0;class#Board#0" expanded="false" />
+            <element signature="method#gen_vel#0;class#Board#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -978,7 +978,6 @@
         <state relative-caret-position="360">
           <caret line="30" column="59" selection-start-line="30" selection-start-column="59" selection-end-line="30" selection-end-column="59" />
           <folding>
-            <element signature="imports" expanded="true" />
             <element signature="method#getAllAvailableIP#0;class#LocalServer#0" expanded="false" />
             <element signature="method#LocalServer#0;class#LocalServer#0" expanded="false" />
             <element signature="method#acceptClient#0;class#LocalServer#0" expanded="false" />
@@ -995,6 +994,7 @@
         <state relative-caret-position="105">
           <caret line="11" column="22" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="42" />
           <folding>
+            <element signature="imports" expanded="false" />
             <element signature="method#ReadData#0;class#ReadData#0" expanded="false" />
             <element signature="method#readFromBuffer#0;class#ReadData#0" expanded="false" />
             <element signature="method#threadMessage#0;class#ReadData#0" expanded="false" />
@@ -1007,9 +1007,12 @@
         <state relative-caret-position="315">
           <caret line="23" column="8" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="8" />
           <folding>
+            <element signature="imports" expanded="false" />
             <element signature="method#ConnectionToServer#0;class#ConnectionToServer#0" expanded="false" />
             <element signature="method#disconnect#0;class#ConnectionToServer#0" expanded="false" />
             <element signature="method#writeToServer#0;class#ConnectionToServer#0" expanded="false" />
+            <element signature="e#2667#2668#0" expanded="false" />
+            <element signature="e#2721#2722#0" expanded="false" />
             <element signature="method#threadMessage#0;class#ConnectionToServer#0" expanded="false" />
           </folding>
         </state>
@@ -1050,7 +1053,6 @@
         <state relative-caret-position="270">
           <caret line="18" column="9" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
           <folding>
-            <element signature="imports" expanded="true" />
             <element signature="method#getAllAvailableIP#0;class#LocalServer#0" expanded="false" />
             <element signature="method#LocalServer#0;class#LocalServer#0" expanded="false" />
             <element signature="method#acceptClient#0;class#LocalServer#0" expanded="false" />
@@ -1067,6 +1069,7 @@
         <state relative-caret-position="210">
           <caret line="14" column="17" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
           <folding>
+            <element signature="imports" expanded="false" />
             <element signature="method#ReadData#0;class#ReadData#0" expanded="false" />
             <element signature="method#readFromBuffer#0;class#ReadData#0" expanded="false" />
             <element signature="method#threadMessage#0;class#ReadData#0" expanded="false" />
@@ -1079,9 +1082,12 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
+            <element signature="imports" expanded="false" />
             <element signature="method#ConnectionToServer#0;class#ConnectionToServer#0" expanded="false" />
             <element signature="method#disconnect#0;class#ConnectionToServer#0" expanded="false" />
             <element signature="method#writeToServer#0;class#ConnectionToServer#0" expanded="false" />
+            <element signature="e#2667#2668#0" expanded="false" />
+            <element signature="e#2721#2722#0" expanded="false" />
             <element signature="method#threadMessage#0;class#ConnectionToServer#0" expanded="false" />
           </folding>
         </state>
@@ -1108,7 +1114,6 @@
         <state relative-caret-position="585">
           <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
             <element signature="method#getAllAvailableIP#0;class#LocalServer#0" expanded="false" />
             <element signature="method#LocalServer#0;class#LocalServer#0" expanded="false" />
             <element signature="method#acceptClient#0;class#LocalServer#0" expanded="false" />
@@ -1125,9 +1130,12 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
+            <element signature="imports" expanded="false" />
             <element signature="method#ConnectionToServer#0;class#ConnectionToServer#0" expanded="false" />
             <element signature="method#disconnect#0;class#ConnectionToServer#0" expanded="false" />
             <element signature="method#writeToServer#0;class#ConnectionToServer#0" expanded="false" />
+            <element signature="e#2667#2668#0" expanded="false" />
+            <element signature="e#2721#2722#0" expanded="false" />
             <element signature="method#threadMessage#0;class#ConnectionToServer#0" expanded="false" />
           </folding>
         </state>
@@ -1138,6 +1146,7 @@
         <state relative-caret-position="390">
           <caret line="51" column="11" selection-start-line="51" selection-start-column="11" selection-end-line="51" selection-end-column="11" />
           <folding>
+            <element signature="imports" expanded="false" />
             <element signature="method#ReadData#0;class#ReadData#0" expanded="false" />
             <element signature="method#readFromBuffer#0;class#ReadData#0" expanded="false" />
             <element signature="method#threadMessage#0;class#ReadData#0" expanded="false" />
@@ -1150,9 +1159,16 @@
         <state relative-caret-position="165">
           <caret line="11" column="26" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
           <folding>
-            <element signature="method#step#0;class#Board#0" expanded="false" />
-            <element signature="method#analyse#0;class#Board#0" expanded="false" />
+            <element signature="imports" expanded="true" />
             <element signature="method#handlecollision#0;class#Board#0" expanded="false" />
+            <element signature="method#paintComponent#0;class#Board#0" expanded="false" />
+            <element signature="method#keyPressed#0;class#Board#0" expanded="false" />
+            <element signature="method#keyReleased#0;class#Board#0" expanded="false" />
+            <element signature="method#zeros#0;class#Board#0" expanded="false" />
+            <element signature="method#fetch#0;class#Board#0" expanded="false" />
+            <element signature="method#create_paddle#0;class#Board#0" expanded="false" />
+            <element signature="method#get_diff#0;class#Board#0" expanded="false" />
+            <element signature="method#gen_vel#0;class#Board#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1231,20 +1247,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/play/Single_Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1620">
-          <caret line="144" column="14" selection-start-line="144" selection-start-column="14" selection-end-line="144" selection-end-column="14" />
-          <folding>
-            <element signature="method#getWindowAncestor#0;class#Single_Player#0" expanded="false" />
-            <element signature="method#showBorder#0;class#Single_Player#0" expanded="false" />
-            <element signature="method#hideBorder#0;class#Single_Player#0" expanded="false" />
-            <element signature="method#paintComponent#0;class#Single_Player#0" expanded="false" />
-            <element signature="class#Accessor#0;class#Single_Player#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/play/AIplayer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -1265,18 +1267,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/play/Board.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-          <folding>
-            <element signature="method#step#0;class#Board#0" expanded="false" />
-            <element signature="method#analyse#0;class#Board#0" expanded="false" />
-            <element signature="method#handlecollision#0;class#Board#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1316,9 +1306,12 @@
         <state relative-caret-position="375">
           <caret line="53" column="33" selection-start-line="53" selection-start-column="33" selection-end-line="53" selection-end-column="33" />
           <folding>
+            <element signature="imports" expanded="false" />
             <element signature="method#ConnectionToServer#0;class#ConnectionToServer#0" expanded="false" />
             <element signature="method#disconnect#0;class#ConnectionToServer#0" expanded="false" />
             <element signature="method#writeToServer#0;class#ConnectionToServer#0" expanded="false" />
+            <element signature="e#2667#2668#0" expanded="false" />
+            <element signature="e#2721#2722#0" expanded="false" />
             <element signature="method#threadMessage#0;class#ConnectionToServer#0" expanded="false" />
           </folding>
         </state>
@@ -1329,6 +1322,7 @@
         <state relative-caret-position="450">
           <caret line="46" column="28" selection-start-line="46" selection-start-column="28" selection-end-line="46" selection-end-column="28" />
           <folding>
+            <element signature="imports" expanded="false" />
             <element signature="method#ReadData#0;class#ReadData#0" expanded="false" />
             <element signature="method#readFromBuffer#0;class#ReadData#0" expanded="false" />
             <element signature="method#threadMessage#0;class#ReadData#0" expanded="false" />
@@ -1341,6 +1335,9 @@
         <state relative-caret-position="570">
           <caret line="42" column="9" selection-start-line="42" selection-start-column="8" selection-end-line="42" selection-end-column="9" />
           <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#268#269#0" expanded="false" />
+            <element signature="e#304#305#0" expanded="false" />
             <element signature="method#threadMessage#0;class#NewClient#0" expanded="false" />
           </folding>
         </state>
@@ -1348,10 +1345,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/network/LocalServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
+        <state relative-caret-position="540">
           <caret line="68" column="26" selection-start-line="68" selection-start-column="26" selection-end-line="68" selection-end-column="26" />
           <folding>
-            <element signature="imports" expanded="true" />
             <element signature="method#getAllAvailableIP#0;class#LocalServer#0" expanded="false" />
             <element signature="method#LocalServer#0;class#LocalServer#0" expanded="false" />
             <element signature="method#acceptClient#0;class#LocalServer#0" expanded="false" />
@@ -1371,25 +1367,43 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/play/Multi_New.java">
+    <entry file="file://$PROJECT_DIR$/src/play/Single_Player.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6120">
-          <caret line="408" column="98" selection-start-line="408" selection-start-column="98" selection-end-line="408" selection-end-column="98" />
+        <state relative-caret-position="9060">
+          <caret line="637" column="121" selection-start-line="637" selection-start-column="121" selection-end-line="637" selection-end-column="121" />
+          <folding>
+            <element signature="method#getWindowAncestor#0;class#Single_Player#0" expanded="false" />
+            <element signature="method#showBorder#0;class#Single_Player#0" expanded="false" />
+            <element signature="method#hideBorder#0;class#Single_Player#0" expanded="false" />
+            <element signature="method#paintComponent#0;class#Single_Player#0" expanded="false" />
+            <element signature="class#Accessor#0;class#Single_Player#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/play/Board.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="612" column="38" selection-start-line="612" selection-start-column="38" selection-end-line="625" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#get_pos#0;class#Multi_New#0" expanded="false" />
-            <element signature="method#getWindowAncestor#0;class#Multi_New#0" expanded="false" />
-            <element signature="method#paintComponent#0;class#Multi_New#0" expanded="false" />
-            <element signature="method#actionPerformed#0;class#Multi_New#0" expanded="false" />
-            <element signature="method#parseResponse#0;class#Multi_New#0" expanded="false" />
+            <element signature="method#handlecollision#0;class#Board#0" expanded="false" />
+            <element signature="method#paintComponent#0;class#Board#0" expanded="false" />
+            <element signature="method#keyPressed#0;class#Board#0" expanded="false" />
+            <element signature="method#keyReleased#0;class#Board#0" expanded="false" />
+            <element signature="method#zeros#0;class#Board#0" expanded="false" />
+            <element signature="method#fetch#0;class#Board#0" expanded="false" />
+            <element signature="method#create_paddle#0;class#Board#0" expanded="false" />
+            <element signature="method#get_diff#0;class#Board#0" expanded="false" />
+            <element signature="method#gen_vel#0;class#Board#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/play/Multi_Player.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3075">
-          <caret line="246" column="56" selection-start-line="246" selection-start-column="56" selection-end-line="246" selection-end-column="56" />
+        <state relative-caret-position="45">
+          <caret line="239" column="56" selection-start-line="239" selection-start-column="56" selection-end-line="239" selection-end-column="56" />
           <folding>
             <element signature="method#show_small#0;class#Multi_Player#0" expanded="false" />
             <element signature="method#getWindowAncestor#0;class#Multi_Player#0" expanded="false" />
@@ -1402,20 +1416,40 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/play/Multi_New.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="682">
+          <caret line="425" column="47" selection-start-line="425" selection-start-column="47" selection-end-line="425" selection-end-column="47" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#get_pos#0;class#Multi_New#0" expanded="false" />
+            <element signature="method#getWindowAncestor#0;class#Multi_New#0" expanded="false" />
+            <element signature="method#paintComponent#0;class#Multi_New#0" expanded="false" />
+            <element signature="method#actionPerformed#0;class#Multi_New#0" expanded="false" />
+            <element signature="method#parseResponse#0;class#Multi_New#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/play/BoardMulti.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="173">
-          <caret line="432" column="31" selection-start-line="432" selection-start-column="31" selection-end-line="432" selection-end-column="31" />
+        <state relative-caret-position="324">
+          <caret line="1274" column="52" selection-start-line="1274" selection-start-column="52" selection-end-line="1274" selection-end-column="52" />
           <folding>
             <element signature="method#get_pos#0;class#BoardMulti#0" expanded="false" />
-            <element signature="method#analyse#0;class#BoardMulti#0" expanded="false" />
+            <element signature="method#step#0;class#BoardMulti#0" expanded="false" />
             <element signature="method#handlecollision#0;class#BoardMulti#0" expanded="false" />
+            <element signature="method#paintComponent#0;class#BoardMulti#0" expanded="false" />
             <element signature="method#keyTyped#0;class#BoardMulti#0" expanded="false" />
             <element signature="method#keyPressed#0;class#BoardMulti#0" expanded="false" />
             <element signature="method#keyReleased#0;class#BoardMulti#0" expanded="false" />
             <element signature="method#zeros#0;class#BoardMulti#0" expanded="false" />
             <element signature="method#fetch#0;class#BoardMulti#0" expanded="false" />
             <element signature="method#create_paddle#0;class#BoardMulti#0" expanded="false" />
+            <element signature="method#parse_packet#0;class#BoardMulti#0" expanded="false" />
+            <element signature="method#replacePlayerWithAI#0;class#BoardMulti#0" expanded="false" />
+            <element signature="method#changeHost#0;class#BoardMulti#0" expanded="false" />
+            <element signature="method#gen_vel#0;class#BoardMulti#0" expanded="false" />
           </folding>
         </state>
       </provider>

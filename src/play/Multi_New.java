@@ -406,24 +406,24 @@ public class Multi_New extends JPanel implements ActionListener{
 				}
 
 				for (InetAddress IP : l) {
-					ConnectionToServer cs = new ConnectionToServer(IP.toString().substring(1), 8080);
+					ConnectionToServer cs = new ConnectionToServer(IP.toString().substring(1), 8000);
 					System.out.println("ConnectionToServer - connection established = " + cs.connectionEstablished()
-							+ "with IP : " + IP);
+							+ " with IP : " + IP);
 					connections.add(cs);
 					cs.readingStream.isStateBoardMulti = true;
 				}				
 
-				String startData = "START:"+(String)ownPosition.getSelectedItem()+":"+
-						((Integer)ownLives.getValue())+":"+(String)GameMode.getSelectedItem()+":"+
-						((Integer)ball_Num.getValue())+":"+((Integer)spd.getValue())+":"+
-						((Boolean)powerups.isSelected()+":"+((Boolean)PCpl.isSelected()));
+				String startData = "START:"+ownPosition.getSelectedItem()+":"+
+						(ownLives.getValue())+":"+GameMode.getSelectedItem()+":"+
+						(ball_Num.getValue())+":"+(spd.getValue())+":"+
+						(powerups.isSelected()+":"+(PCpl.isSelected()));
 				
 				int k = get_pos((String)ownPosition.getSelectedItem());
 				
 				boolean[] isPC = new boolean[] {true,true,true,true};
 				isPC[k] = false;
 						
-				ArrayList<Integer> positions=new ArrayList<Integer>();
+				ArrayList<Integer> positions = new ArrayList<Integer>();
 				
 				startData += ":"+l.size();
 				for (int i=0; i < l.size(); i++){

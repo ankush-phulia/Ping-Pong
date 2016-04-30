@@ -1,19 +1,19 @@
 package play;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Rectangle2D;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Random;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -80,7 +80,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
     	this.Ydim=y;
     	this.bgcolor=Color.CYAN;
     	this.ccolor=Color.blue;
-    	this.fps=100;
+    	this.fps=60;
     	this.power_en=powerups;
     	
     	//balls
@@ -278,26 +278,44 @@ public class Board extends JPanel implements ActionListener, KeyListener{
             	Ball b=this.balls.get(i);
             	analyse(b);
             }
-            
-            if (power_en){
-            	Random pu = new Random() ;
-            	if (!powerup){
-            		if (pu.nextInt(1201) > 1199){
-            			powerup = true ;
-            			poweruptime = currenttime ;
-            			powertype = pupos.nextInt(2) ; 
-            			puXpos = (pupos.nextDouble()/2 + 0.25)*Xdim ; 
-            			puYpos = (pupos.nextDouble()/2 + 0.25)*Ydim ;
-            		}
-            	}
-            	else
-            	{
-            		if (currenttime  >  15+poweruptime){
-            			powerup = false  ; 
-            		}
-            	}
-            	currenttime += 1.0/60.0 ;
-            }
+
+			if (power_en) {
+				Random pu = new Random();
+
+				if (!powerup) {
+					if (pu.nextInt(1203) > 1199){
+						poweruptime = currenttime ;
+						powerup = true ;
+						powertype = 2;//pupos.nextInt(3) ;
+						if (powertype < 2) {
+							puYpos = (pupos.nextDouble() / 2 + 0.25) * Ydim;
+							puXpos = (pupos.nextDouble() / 2 + 0.25) * Xdim;
+						}
+						else {
+							boolean safe = false;
+							do {
+								puYpos = (pupos.nextDouble() / 2 + 0.25) * Ydim;
+								puXpos = (pupos.nextDouble() / 2 + 0.25) * Xdim;
+								Rectangle2D wall = new Rectangle((int)puXpos, (int)puYpos, 100, 100);
+								for (Ball b : balls) {
+									Ellipse2D.Float sphere = new Ellipse2D.Float((float)(b.Xpos-b.dia/2), (float)(b.Ypos-b.dia/2), (float)b.dia, (float)b.dia);
+									if (sphere.intersects(wall)) {
+										safe = false;
+										break;
+									}
+									safe = true;
+								}
+
+							} while (!safe);
+						}
+					}
+				} else {
+					if (currenttime  >  15+poweruptime){
+						powerup = false  ;
+					}
+				}
+				currenttime += 1.0/fps ;
+			}
             
             repaint();
     	} 
@@ -394,11 +412,12 @@ public class Board extends JPanel implements ActionListener, KeyListener{
                 }
             }
             b.Xvel *=-1;
-            
+            b.Xpos += b.Xvel;
         }
 		else if (nextLeftPos < 0){
 			//b.origin=1;
             b.Xvel *= -1;
+			b.Xpos += b.Xvel;
 		}
         //will the ball go off the right side?
 		if (P2!=null && nextRightPos > playerTwoLeft) {
@@ -437,10 +456,12 @@ public class Board extends JPanel implements ActionListener, KeyListener{
                 }
         	}
             b.Xvel *=-1;
+			b.Xpos += b.Xvel;
         }
 		else if (nextRightPos > this.Xdim){
 			//b.origin=2;
             b.Xvel *= -1;
+			b.Xpos += b.Xvel;
 		}
       //will the ball go off the top?
         if (P3!=null && nextTopPos < playerThreeBottom) {
@@ -480,10 +501,12 @@ public class Board extends JPanel implements ActionListener, KeyListener{
                 }
         	}
             b.Yvel *=-1;
+			b.Ypos += b.Yvel;
         }
         else if (nextTopPos < 0 ) {
         	//b.origin=3;
-            b.Yvel *=-1;               
+            b.Yvel *=-1;
+			b.Ypos += b.Yvel;
         }
       //will the ball go off the bottom?
         if (P4!= null && nextBottomPos > playerFourTop) {
@@ -522,11 +545,13 @@ public class Board extends JPanel implements ActionListener, KeyListener{
                 }
         	}
             b.Yvel *=-1;
+			b.Ypos += b.Yvel;
         }
 		//bounce off the bottom
         else if (nextBottomPos > this.Ydim) {
 			//b.origin=4;
-            b.Yvel *=-1;               
+            b.Yvel *=-1;
+			b.Ypos += b.Yvel;
         }
         
         if (zeros(this.players,players.size()-1)){
@@ -535,7 +560,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
         
         //checking for power up
         if (powerup){
-        	if (Math.sqrt(Math.pow((b.Xpos-puXpos),2)+Math.pow((b.Ypos-puYpos),2)) < ((b.dia)/2+(40)/2)){
+        	if (powertype < 2 && Math.sqrt(Math.pow((b.Xpos-puXpos),2)+Math.pow((b.Ypos-puYpos),2)) < ((b.dia)/2+(40)/2)){
         		powerup = false ; 
         		System.out.println("mila") ;
         		System.out.println(b.origin) ;
@@ -544,7 +569,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
         				initialdim = players.get(0).Ydim ; 
         				if (powertype == 0){
         					players.get(0).Ydim = 2*(this.Ydim)/5 ; 
-        				}else{
+        				}else if (powertype == 1){
         					players.get(0).Ydim = (this.Ydim)/10  ; 
         				}
         				poweruptime = currenttime ; 
@@ -555,7 +580,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
     				//players.get(1).Ydim = 3*(this.Ydim)/4 ; 
     				if (powertype == 0){
     					players.get(1).Ydim = 2*(this.Ydim)/5 ; 
-    				}else{
+    				}else if (powertype == 1){
     					players.get(1).Ydim = (this.Ydim)/10  ; 
     				}
     				poweruptime = currenttime ; 
@@ -566,7 +591,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
     				//players.get(2).Xdim = 3*(this.Xdim)/4 ; 
         			if (powertype == 0){
     					players.get(2).Xdim = 2*(this.Xdim)/5 ; 
-    				}else{
+    				}else if (powertype == 1){
     					players.get(2).Xdim = (this.Xdim)/10  ; 
     				}
         			poweruptime = currenttime ; 
@@ -577,7 +602,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
     				//players.get(3).Xdim = 3*(this.Xdim)/4 ; 
     				if (powertype == 0){
     					players.get(3).Xdim = 2*(this.Xdim)/5 ; 
-    				}else{
+    				}else if (powertype == 1){
     					players.get(3).Xdim = (this.Xdim)/10  ; 
     				}
     				poweruptime = currenttime ; 
@@ -585,6 +610,21 @@ public class Board extends JPanel implements ActionListener, KeyListener{
     				break ;
         		}
         	}
+			else if (powertype == 2) {
+				Rectangle2D wall = new Rectangle((int)puXpos, (int)puYpos, 100, 100);
+				Ellipse2D.Float sphere = new Ellipse2D.Float((float)(b.Xpos-b.dia/2), (float)(b.Ypos-b.dia/2), (float)b.dia, (float)b.dia);
+
+				if (sphere.intersects(wall)) {
+					if ((nextRightPos > puXpos || nextLeftPos < puXpos + 100) && (nextTopPos > puYpos && nextBottomPos < puYpos + 100)) {
+						b.Xvel *= -1;
+						b.Xpos += b.Xvel;
+					} else if ((nextBottomPos > puYpos || nextTopPos < puYpos + 100) && (nextRightPos > puXpos && nextLeftPos < puXpos + 100)) {
+						b.Yvel *= -1;
+						b.Ypos += b.Yvel;
+					}
+				}
+			}
+
         }
         else {
         	if (currenttime > 5+poweruptime){
@@ -709,18 +749,27 @@ public class Board extends JPanel implements ActionListener, KeyListener{
 						g.fillRect((int)(b.cXpos-b.Xdim/2),(int)(b.cYpos-b.Ydim/2),(int) (b.Xdim), (int) (b.Ydim));
 					}
 				}
-				
+
 				//draw balls
 				for (int i=0;i<this.balls.size();i++){
 					Ball b=this.balls.get(i);
 					g.setColor(Color.WHITE);
 					g.fillOval((int)(b.Xpos-b.dia/2),(int)(b.Ypos-b.dia/2),(int) (b.dia), (int) (b.dia));
 				}
-				
-				g.setColor(Color.darkGray);
-				if (powerup){					
-					g.fillRect((int)puXpos, (int)puYpos,40,40 );
+
+
+				// power ups
+				if (powerup){
+					if (powertype < 2) {
+						g.setColor(Color.DARK_GRAY);
+						g.fillOval((int) puXpos - 20, (int) puYpos - 20, 40, 40);
+					}
+					else if (powertype == 2) {
+						g.setColor(Color.PINK);
+						g.fillRect((int) puXpos, (int) puYpos, 100, 100);
+					}
 				}
+
 				
 				//draw the scores
 	            g.setFont(new Font(Font.DIALOG, Font.BOLD, 36));
