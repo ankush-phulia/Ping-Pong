@@ -1146,7 +1146,7 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
     }
     
     public static boolean parse_packet(String response){
-		// System.out.println(response);
+		 System.out.println(response);
     	if (response == null)
     		return false;
     	

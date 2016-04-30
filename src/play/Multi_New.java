@@ -533,10 +533,10 @@ public class Multi_New extends JPanel implements ActionListener{
 
 		String[] tokens = response.split(":");
 		switch (tokens[0]) {
-			/*case "MYIP":
+			case "MYIP":
 				String ipOfClient = tokens[1];
 				gameServer.writeToAllClients("CONNECTTOIP:" + ipOfClient);
-				break;*/
+				break;
 			default:
 
 		}
