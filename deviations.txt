@@ -1,7 +1,8 @@
 -- Time Limits on the Game not set
-	Not Really Required as Scoring and Lives are both present
+	-- Not Really Required as Scoring and Lives are both present
+	++ Implemented in Arcade Mode
 
--- Game Modes not completely functional yet
+-- Game Modes for multi-player not completely functional yet
 
 ++ User positions flexible, as per the host's choice
 	
@@ -9,8 +10,8 @@
 	
 ++ Corner cases handled better by collision with paddles' corners
 
-++ Speed Variabilty added by slicing ball with paddles
+++ Speed variability added by slicing ball with paddles
 
-++ More Difficulty Levels added, includes a randomised predictor/alligner
+++ More Difficulty Levels added, includes a randomised predictor
 
--- Limited number of powerups, mainly dealing with adjusting paddle size
+-- Limited number of power-ups, mainly dealing with adjusting paddle size

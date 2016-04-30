@@ -92,11 +92,11 @@ public class Board extends JPanel implements ActionListener, KeyListener{
     	this.balls=new ArrayList<Ball>();
     	this.balls2=new ArrayList<Ball>();
 
-    	this.balls.add(new Ball(this.Xdim/2-10, this.Ydim/2-10, gen_vel()*gameSpd, gen_vel()*gameSpd,2));
+    	this.balls.add(new Ball(this.Xdim/2-10, this.Ydim/2-10, gen_vel()*gameSpd, gen_vel()*gameSpd,5));
     	if (ball_Num>1){
-    		this.balls.add(new Ball(this.Xdim/2, this.Ydim/2, gen_vel()*gameSpd, gen_vel()*gameSpd,1));
+    		this.balls.add(new Ball(this.Xdim/2, this.Ydim/2, gen_vel()*gameSpd, gen_vel()*gameSpd,5));
     		if (ball_Num>2){    			
-				this.balls.add(new Ball(this.Xdim/2+10, this.Ydim/2-10, gen_vel()*gameSpd, gen_vel()*gameSpd,4));
+				this.balls.add(new Ball(this.Xdim/2+10, this.Ydim/2-10, gen_vel()*gameSpd, gen_vel()*gameSpd,5));
         	}
     	}
     	//paddles
@@ -124,7 +124,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
     	}
 		
 
-    	this.playerScores=new int[] {0,0,0,0};
+    	this.playerScores=new int[] {0,0,0,0,0};
     	
     	//focused window
         this.setFocusable(true);
@@ -347,7 +347,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
     	
     	Paddle P1=this.fetch(1, players);
     	if (P1!=null){
-    		playerOneRight = P1.cXpos - 2* P1.Xdim;
+    		playerOneRight = P1.cXpos - P1.Xdim;
     		playerOneTop = P1.cYpos-(P1.Ydim/2);
     		playerOneBottom = playerOneTop+(P1.Ydim);
     	}    	
@@ -358,7 +358,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
     	
     	Paddle P2=this.fetch(2, players);
     	if (P2!=null){
-    		playerTwoLeft = P2.cXpos + 2* P2.Xdim;
+    		playerTwoLeft = P2.cXpos + P2.Xdim;
         	playerTwoTop = P2.cYpos - (P2.Ydim/2);
         	playerTwoBottom = playerTwoTop + (P2.Ydim);
     	}
@@ -397,6 +397,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
                     	this.playerScores[tmp.pos-1]++;
                     }
                     P1.lives--;
+                    //System.out.println(P1.lives);
                     if (get_pos(this.position)+1==1 && P1.lives==0){
                     	this.state="Done2";
                     }
@@ -424,6 +425,8 @@ public class Board extends JPanel implements ActionListener, KeyListener{
             }
             b.Xvel *=-1;
             b.Xpos += b.Xvel;
+            
+            playCollideSound();
         }
 		else if (nextLeftPos < 0){
 			//b.origin=1;
@@ -468,6 +471,8 @@ public class Board extends JPanel implements ActionListener, KeyListener{
         	}
             b.Xvel *=-1;
 			b.Xpos += b.Xvel;
+			
+			playCollideSound();
         }
 		else if (nextRightPos > this.Xdim){
 			//b.origin=2;
@@ -513,6 +518,8 @@ public class Board extends JPanel implements ActionListener, KeyListener{
         	}
             b.Yvel *=-1;
 			b.Ypos += b.Yvel;
+			
+			playCollideSound();
         }
         else if (nextTopPos < 0 ) {
         	//b.origin=3;
@@ -558,6 +565,8 @@ public class Board extends JPanel implements ActionListener, KeyListener{
         	}
             b.Yvel *=-1;
 			b.Ypos += b.Yvel;
+			
+			playCollideSound();
         }
 		//bounce off the bottom
         else if (nextBottomPos > this.Ydim) {
@@ -574,8 +583,8 @@ public class Board extends JPanel implements ActionListener, KeyListener{
         if (powerup){
         	if (powertype < 2 && Math.sqrt(Math.pow((b.Xpos-puXpos),2)+Math.pow((b.Ypos-puYpos),2)) < ((b.dia)/2+(40)/2)){
         		powerup = false ; 
-        		System.out.println("mila") ;
-        		System.out.println(b.origin) ;
+        		//System.out.println("mila") ;
+        		//System.out.println(b.origin) ;
         		switch (b.origin){
         		case 1  :
         				initialdim = players.get(0).Ydim ; 
@@ -908,8 +917,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
 	                pressed[5] = true;
 	            }
 	            if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-	            	AudioPlayer.player.suspend();
-					AudioPlayer.player.stop(audioStream);
+	            	AudioPlayer.player.stop(audioStream);
 	            	RXCardLayout cdl=(RXCardLayout) getParent().getLayout();
 	            	cdl.show(getParent(), "MenuPanel");
 	            }
@@ -920,6 +928,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
 				if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
 					//AudioPlayer.player.suspend();
 					AudioPlayer.player.stop(audioStream);
+					//AudioPlayer.player.stop(as);
 	            	RXCardLayout cdl=(RXCardLayout) getParent().getLayout();
 	            	cdl.show(getParent(), "MenuPanel");
 	            }
@@ -1024,5 +1033,18 @@ public class Board extends JPanel implements ActionListener, KeyListener{
     		return s2;
     	}
     }
+    
+    void playCollideSound () {
+		// create an audiostream from the inputstream
+		try {
+			in = new FileInputStream("ballBounce.wav");
+			audioStream = new AudioStream(in);
+			// play the audio clip with the audioplayer class
+			AudioPlayer.player.start(audioStream);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
     
 }

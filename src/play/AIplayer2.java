@@ -53,7 +53,7 @@ public  class AIplayer2 {
 			}
 			
 			
-			predictedordinate = predictedordinatetemp + p.Ydim*error1/(10 + 30*p.difficulty) ;  
+			predictedordinate = predictedordinatetemp + p.Ydim*error1/(1.5 + 4*p.difficulty) ;  
 			if (p.cYpos - predictedordinate > epsilon){
 					if (p.cYpos-p.cYvel > p.Ydim/2) {
 		                p.set_Ypos((p.cYpos)-p.cYvel);
@@ -107,7 +107,7 @@ public  class AIplayer2 {
 			
 			double predictedordinatetemp  = (balltobefollowed.Ypos-(balltobefollowed.Yvel/balltobefollowed.Xvel)*balltobefollowed.Xpos) ; 
 			
-			predictedordinate = predictedordinatetemp + p.Ydim*error/(5 + 20*p.difficulty) ;  
+			predictedordinate = predictedordinatetemp + p.Ydim*error/(1.5 + 4*p.difficulty) ;  
 			
 			
 			
@@ -172,7 +172,7 @@ public  class AIplayer2 {
 			//double predictedordinatetemp  = (balltobefollowed.Ypos-(balltobefollowed.Yvel/balltobefollowed.Xvel)*balltobefollowed.Xpos) ; 
 			double predictedordinatetemp = (balltobefollowed.Xvel/balltobefollowed.Yvel)*749+(balltobefollowed.Xpos-(balltobefollowed.Xvel/balltobefollowed.Yvel)*balltobefollowed.Ypos) ; 
 			
-			predictedordinate = predictedordinatetemp + p.Ydim*error/(5 + 20*p.difficulty) ; 
+			predictedordinate = predictedordinatetemp + p.Ydim*error/(1.5 + 4*p.difficulty) ; 
 			
 			
 			p.set_cXvel(initialvelocity);
@@ -191,7 +191,8 @@ public  class AIplayer2 {
 			}
 		}
 		//System.out.println(balls.size());
-				
+		
+		
 	}
 	
 	public static void moveAIplayer4(Paddle p,ArrayList<Ball> balls,BoardMulti b,double initialvelocity){
@@ -236,7 +237,7 @@ public  class AIplayer2 {
 			//double predictedordinatetemp = (balltobefollowed.Xvel/balltobefollowed.Yvel)*749+(balltobefollowed.Xpos-(balltobefollowed.Xvel/balltobefollowed.Yvel)*balltobefollowed.Ypos) ; 
 			double predictedordinatetemp = (balltobefollowed.Xpos-(balltobefollowed.Xvel/balltobefollowed.Yvel)*balltobefollowed.Ypos) ; 
 			
-			predictedordinate = predictedordinatetemp + p.Ydim*error/(5 + 20*p.difficulty) ; 
+			predictedordinate = predictedordinatetemp + p.Ydim*error/(1.5 + 4*p.difficulty) ; 
 			
 			
 			p.set_cXvel(initialvelocity);

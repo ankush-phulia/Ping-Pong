@@ -110,11 +110,11 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
     	
     	//balls
 		balls = new ArrayList<>();
-    	BoardMulti.balls.add(new Ball(this.Xdim/2-10, this.Ydim/2-10, gen_vel()*gameSpd, gen_vel()*gameSpd,2));
+    	BoardMulti.balls.add(new Ball(this.Xdim/2-10, this.Ydim/2-10, gen_vel()*gameSpd, gen_vel()*gameSpd,5));
     	if (ball_Num>1){
-    		BoardMulti.balls.add(new Ball(this.Xdim/2, this.Ydim/2, gen_vel()*gameSpd, gen_vel()*gameSpd,1));
+    		BoardMulti.balls.add(new Ball(this.Xdim/2, this.Ydim/2, gen_vel()*gameSpd, gen_vel()*gameSpd,5));
     		if (ball_Num>2){    			
-				BoardMulti.balls.add(new Ball(this.Xdim/2+10, this.Ydim/2-10, gen_vel()*gameSpd, gen_vel()*gameSpd,4));
+				BoardMulti.balls.add(new Ball(this.Xdim/2+10, this.Ydim/2-10, gen_vel()*gameSpd, gen_vel()*gameSpd,5));
         	}
     	}
     	
@@ -147,7 +147,7 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
     		}
     	}    	
 		
-    	BoardMulti.playerScores = new int[] {0,0,0,0};
+    	BoardMulti.playerScores = new int[] {0,0,0,0,0};
     	
     	//focused window
         this.setFocusable(true);
@@ -1273,10 +1273,11 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener{
 	void playCollideSound () {
 		// create an audiostream from the inputstream
 		try {
+			AudioStream as;
 			in = new FileInputStream("ballBounce.wav");
-			audioStream = new AudioStream(in);
+			as = new AudioStream(in);
 			// play the audio clip with the audioplayer class
-			AudioPlayer.player.start(audioStream);
+			AudioPlayer.player.start(as);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
