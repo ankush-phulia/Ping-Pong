@@ -237,7 +237,7 @@ public class Multi_Player extends JPanel {
 
 				if (cs.connectionEstablished()) {
 					try {
-						gameServer = new LocalServer(8000);
+						gameServer = new LocalServer(8080);
 					}
 					catch (IOException ioe) {
 						cs.disconnect();
@@ -250,7 +250,7 @@ public class Multi_Player extends JPanel {
 					
 					do {
 						resp = cs.readFromServer();
-						System.out.println(resp);
+						// System.out.println(resp);
 						type = parseResponse(resp);
 						if (type.equalsIgnoreCase("DISCONNECT"))
 							return;
