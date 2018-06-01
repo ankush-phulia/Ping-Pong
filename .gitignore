@@ -1,4 +1,7 @@
-/META-INF/
-/network/
-/play/
-/slidinglayout/
+*/META-INF/
+*/network/
+*/play/
+*/slidinglayout/
+.classpath
+.project
+.idea
