@@ -33,7 +33,7 @@ import javax.swing.JLayeredPane;
  *    .push(new SLKeyframe(config2, 0.6f)
  *        .setEndSide(SLSide.BOTTOM, child1, child2)
  *        .setStartSide(SLSide.UP, child3, child4))
- *    .play();
+ *    .game();
  * </pre>
  *
  * @see SLConfig
