@@ -73,15 +73,18 @@ public class Multi_Player extends JPanel {
 
                     @Override
                     public void mouseReleased(MouseEvent e) {
-                        if (action != null && actionEnabled && State != 2) action.run();
+                        if (action != null && actionEnabled && State != 2) 
+                            action.run();
                         if (State == 0) {
                             removeAll();
                             try {
                                 populate_layout();
-                            } catch (ParseException e1) {
+                            } 
+                            catch (ParseException e1) {
                                 e1.printStackTrace();
                             }
-                        } else if (State == 1) {
+                        } 
+                        else if (State == 1) {
                             if (gameServer != null && gameServer.alive()) {
                                 gameServer.disconnect();
                             }
@@ -90,8 +93,6 @@ public class Multi_Player extends JPanel {
                             }
                             removeAll();
                             show_small();
-                        } else {
-
                         }
                     }
                 });
@@ -151,7 +152,6 @@ public class Multi_Player extends JPanel {
         btnStartNewGame.addActionListener(
                 new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
-
                         try {
                             gameServer = new LocalServer(8080);
                             RXCardLayout cdl = (RXCardLayout) getLayout();
@@ -161,7 +161,8 @@ public class Multi_Player extends JPanel {
                                     "Your IPs are : " + LocalServer.getAllAvailableIP().toString());
                             add(mn, "new game");
                             cdl.show(Multi_Player.this, "new game");
-                        } catch (IOException e1) {
+                        } 
+                        catch (IOException e1) {
                             JOptionPane.showMessageDialog(
                                     getParent().getParent().getParent().getParent().getParent(),
                                     "Error Establishing Host");
@@ -238,7 +239,8 @@ public class Multi_Player extends JPanel {
                                     InetAddress.getByName(ipAddress.getText())
                                             .toString()
                                             .substring(1);
-                        } catch (UnknownHostException uhe) {
+                        } 
+                        catch (UnknownHostException uhe) {
 
                         }
                         ConnectionToServer cs = new ConnectionToServer(ipOfHost, 8080);
@@ -246,7 +248,8 @@ public class Multi_Player extends JPanel {
                         if (cs.connectionEstablished()) {
                             try {
                                 gameServer = new LocalServer(8080);
-                            } catch (IOException ioe) {
+                            } 
+                            catch (IOException ioe) {
                                 cs.disconnect();
                                 return;
                             }
@@ -297,7 +300,8 @@ public class Multi_Player extends JPanel {
                                 }
                                 try {
                                     IPs.add(InetAddress.getByName(pair[0].substring(1)));
-                                } catch (UnknownHostException e1) {
+                                } 
+                                catch (UnknownHostException e1) {
                                     e1.printStackTrace();
                                 }
                             }
@@ -330,7 +334,8 @@ public class Multi_Player extends JPanel {
                             State = 2;
                             game.requestFocusInWindow();
 
-                        } else {
+                        } 
+                        else {
                             // do something here if connection could not be established
                             System.out.println("Connection with server could not be established!");
                         }
@@ -411,7 +416,8 @@ public class Multi_Player extends JPanel {
                 int tw = h * imgW / imgH;
                 int th = h;
                 gg.drawImage(bgImg, (w - tw) / 2, 0, tw, th, null);
-            } else {
+            } 
+            else {
                 int tw = w;
                 int th = w * imgH / imgW;
                 gg.drawImage(bgImg, 0, (h - th) / 2, tw, th, null);
@@ -431,20 +437,15 @@ public class Multi_Player extends JPanel {
 
         String[] tokens = response.split(":");
         switch (tokens[0]) {
-                /*case "MYIP":
-                				String ipOfClient = tokens[1];
-                				gameServer.writeToAllClients("CONNECTTOIP:" + ipOfClient);
-                				break;
-                */
             case "CONNECTTOIP":
                 System.out.println(response);
 
                 InetAddress ipOfOtherClient;
                 try {
                     ipOfOtherClient = InetAddress.getByName(tokens[1].substring(1));
-                } catch (UnknownHostException uhe) {
+                } 
+                catch (UnknownHostException uhe) {
                     // do something if unable to connect
-
                     uhe.printStackTrace();
                     break;
                 }
@@ -452,8 +453,7 @@ public class Multi_Player extends JPanel {
                 List<InetAddress> myIPs = LocalServer.getAllAvailableIP();
                 boolean isMe = false;
                 for (InetAddress ia : myIPs) {
-                    if (
-                    /*!ia.isLoopbackAddress() && */ ia.equals(ipOfOtherClient)) {
+                    if (ia.equals(ipOfOtherClient)) {
                         isMe = true;
                     }
                 }

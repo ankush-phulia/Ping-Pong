@@ -40,17 +40,17 @@ public class RXCardLayout extends CardLayout implements HierarchyListener {
         super(hgap, vgap);
     }
 
-    //  Overridden methods
-
     public void addLayoutComponent(Component comp, Object constraints) {
         super.addLayoutComponent(comp, constraints);
 
-        if (!(comp instanceof JComponent)) return;
+        if (!(comp instanceof JComponent)) 
+            return;
 
         JComponent component = (JComponent) comp;
         cards.add(component);
 
-        if (firstCard == null) firstCard = component;
+        if (firstCard == null) 
+            firstCard = component;
 
         lastCard = component;
 
@@ -60,7 +60,8 @@ public class RXCardLayout extends CardLayout implements HierarchyListener {
     public void removeLayoutComponent(Component comp) {
         super.removeLayoutComponent(comp);
 
-        if (!(comp instanceof JComponent)) return;
+        if (!(comp instanceof JComponent)) 
+            return;
 
         JComponent component = (JComponent) comp;
         component.removeHierarchyListener(this);
@@ -74,8 +75,6 @@ public class RXCardLayout extends CardLayout implements HierarchyListener {
             lastCard = cards.get(cards.size() - 1);
         }
     }
-
-    //  New methods
 
     public JComponent getCurrentCard() {
         return currentCard;
@@ -91,7 +90,6 @@ public class RXCardLayout extends CardLayout implements HierarchyListener {
             nextAction.putValue(Action.MNEMONIC_KEY, (int) name.charAt(0));
             nextAction.setEnabled(isNextCardAvailable());
         }
-
         return nextAction;
     }
 
@@ -105,7 +103,6 @@ public class RXCardLayout extends CardLayout implements HierarchyListener {
             previousAction.putValue(Action.MNEMONIC_KEY, (int) name.charAt(0));
             previousAction.setEnabled(isNextCardAvailable());
         }
-
         return previousAction;
     }
 
@@ -134,11 +131,14 @@ public class RXCardLayout extends CardLayout implements HierarchyListener {
         if ((HierarchyEvent.SHOWING_CHANGED & e.getChangeFlags()) != 0 && component.isShowing()) {
             currentCard = component;
 
-            if (isRequestFocusOnCard) currentCard.transferFocus();
+            if (isRequestFocusOnCard) 
+                currentCard.transferFocus();
 
-            if (nextAction != null) nextAction.setEnabled(isNextCardAvailable());
+            if (nextAction != null) 
+                nextAction.setEnabled(isNextCardAvailable());
 
-            if (previousAction != null) previousAction.setEnabled(isPreviousCardAvailable());
+            if (previousAction != null) 
+                previousAction.setEnabled(isPreviousCardAvailable());
         }
     }
 
@@ -154,8 +154,10 @@ public class RXCardLayout extends CardLayout implements HierarchyListener {
         public void actionPerformed(ActionEvent e) {
             Container parent = getCurrentCard().getParent();
 
-            if (isNext) next(parent);
-            else previous(parent);
+            if (isNext) 
+                next(parent);
+            else 
+                previous(parent);
         }
     }
 }

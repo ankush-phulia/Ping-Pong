@@ -81,7 +81,8 @@ public class Options extends JPanel {
                     @Override
                     public void mouseEntered(MouseEvent e) {
                         hover = true;
-                        if (actionEnabled) showBorder();
+                        if (actionEnabled) 
+                            showBorder();
                     }
 
                     @Override
@@ -96,9 +97,6 @@ public class Options extends JPanel {
                         if (!expanded) {
                             removeAll();
                             populate_layout();
-                        } else {
-                            /*removeAll();
-                            show_small();*/
                         }
                     }
                 });
@@ -547,9 +545,11 @@ public class Options extends JPanel {
         final JComboBox<String> act1 = new JComboBox<String>(Keys3);
         if (getWindowAncestor().keys[2] == 26) {
             act1.setSelectedItem("UP");
-        } else if (getWindowAncestor().keys[2] == 28) {
+        } 
+        else if (getWindowAncestor().keys[2] == 28) {
             act1.setSelectedItem("DOWN");
-        } else {
+        } 
+        else {
             act1.setSelectedItem(String.valueOf(((char) (getWindowAncestor().keys[2]))));
         }
         act1.setFont(new Font("Tahoma", Font.PLAIN, 22));
@@ -650,9 +650,11 @@ public class Options extends JPanel {
         up2.setFont(new Font("Tahoma", Font.PLAIN, 22));
         if (getWindowAncestor().keys[3] == 26) {
             up2.setSelectedItem("UP");
-        } else if (getWindowAncestor().keys[3] == 28) {
+        } 
+        else if (getWindowAncestor().keys[3] == 28) {
             up2.setSelectedItem("DOWN");
-        } else {
+        } 
+        else {
             up2.setSelectedItem(String.valueOf(((char) (getWindowAncestor().keys[3]))));
         }
         GridBagConstraints gbc_up2 = new GridBagConstraints();
@@ -688,9 +690,11 @@ public class Options extends JPanel {
         down2.setFont(new Font("Tahoma", Font.PLAIN, 22));
         if (getWindowAncestor().keys[4] == 26) {
             down2.setSelectedItem("UP");
-        } else if (getWindowAncestor().keys[4] == 28) {
+        } 
+        else if (getWindowAncestor().keys[4] == 28) {
             down2.setSelectedItem("DOWN");
-        } else {
+        } 
+        else {
             down2.setSelectedItem(String.valueOf(((char) (getWindowAncestor().keys[4]))));
         }
         GridBagConstraints gbc_down2 = new GridBagConstraints();
@@ -726,9 +730,11 @@ public class Options extends JPanel {
         act2.setFont(new Font("Tahoma", Font.PLAIN, 22));
         if (getWindowAncestor().keys[5] == 26) {
             act2.setSelectedItem("UP");
-        } else if (getWindowAncestor().keys[5] == 28) {
+        } 
+        else if (getWindowAncestor().keys[5] == 28) {
             act2.setSelectedItem("DOWN");
-        } else {
+        } 
+        else {
             act2.setSelectedItem(String.valueOf(((char) (getWindowAncestor().keys[5]))));
         }
         GridBagConstraints gbc_act2 = new GridBagConstraints();
@@ -806,9 +812,11 @@ public class Options extends JPanel {
     public int convert(String s) {
         if (s.equals("UP")) {
             return KeyEvent.VK_UP;
-        } else if (s.equals("DOWN")) {
+        } 
+        else if (s.equals("DOWN")) {
             return KeyEvent.VK_DOWN;
-        } else {
+        } 
+        else {
             Character c = s.toCharArray()[0];
             return Character.getNumericValue(c) + 55;
         }
@@ -820,7 +828,8 @@ public class Options extends JPanel {
 
     public void enableAction() {
         actionEnabled = true;
-        if (hover) showBorder();
+        if (hover) 
+            showBorder();
     }
 
     public void disableAction() {
@@ -854,7 +863,8 @@ public class Options extends JPanel {
                 int tw = h * imgW / imgH;
                 int th = h;
                 gg.drawImage(bgImg, (w - tw) / 2, 0, tw, th, null);
-            } else {
+            } 
+            else {
                 int tw = w;
                 int th = w * imgH / imgW;
                 gg.drawImage(bgImg, 0, (h - th) / 2, tw, th, null);

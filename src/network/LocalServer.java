@@ -33,11 +33,13 @@ public class LocalServer {
                         InetAddress i = (Inet4Address) ee.nextElement();
                         IPs.add(i);
                         System.out.println(i.getHostAddress());
-                    } catch (ClassCastException c) {
+                    } 
+                    catch (ClassCastException c) {
                     }
                 }
             }
-        } catch (IOException e) {
+        } 
+        catch (IOException e) {
             e.printStackTrace();
         }
 
@@ -79,7 +81,8 @@ public class LocalServer {
         try {
             myServer.close();
             return true;
-        } catch (IOException e) {
+        } 
+        catch (IOException e) {
             return false;
         }
     }
@@ -98,7 +101,8 @@ public class LocalServer {
 
         try {
             out.writeUTF(writeData);
-        } catch (IOException e) {
+        } 
+        catch (IOException e) {
             e.printStackTrace();
             if (!client.isConnected()) {
                 threadMessage("Client is disconnected...");
@@ -123,7 +127,8 @@ public class LocalServer {
 
             try {
                 out.writeUTF(writeData);
-            } catch (IOException e) {
+            } 
+            catch (IOException e) {
                 e.printStackTrace();
 
                 threadMessage("Client is disconnected...");

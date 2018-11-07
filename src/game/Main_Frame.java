@@ -32,20 +32,9 @@ public class Main_Frame extends JFrame {
     public boolean sounds = false;
 
     public Main_Frame(int x, int y) {
-
-        // default controls
-        // this.keys=new int[]
-        // {KeyEvent.VK_Q,KeyEvent.VK_A,KeyEvent.VK_UP,KeyEvent.VK_DOWN,KeyEvent.VK_C,KeyEvent.VK_V,KeyEvent.VK_O,KeyEvent.VK_P};;
-
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Swing Pong");
         getContentPane().setBackground(Color.WHITE);
-
-        /*JScrollPane scrollPane = new JScrollPane(panel);
-        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-              scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
-              scrollPane.setBounds(50, 30, 300, 50);*/
-
         getContentPane().add(panel, BorderLayout.CENTER);
 
         spp.setAction(sppAction);

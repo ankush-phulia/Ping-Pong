@@ -208,7 +208,8 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener {
                 audioStream = new AudioStream(in);
                 // game the audio clip with the audioplayer class
                 AudioPlayer.player.start(audioStream);
-            } catch (IOException e) {
+            } 
+            catch (IOException e) {
                 e.printStackTrace();
             }
         }
@@ -241,13 +242,15 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener {
                 InetAddress lostIP = gameServer.writeToAllClients("STATE:Steady");
                 replacePlayerWithAI(lostIP);
             }
-        } else if (BoardMulti.state.equals("Steady")) {
+        } 
+        else if (BoardMulti.state.equals("Steady")) {
             if (isHost && System.currentTimeMillis() - startTime > 2000) {
                 state = "Go";
                 InetAddress lostIP = gameServer.writeToAllClients("STATE:Go");
                 replacePlayerWithAI(lostIP);
             }
-        } else if (BoardMulti.state.equals("Go")) {
+        } 
+        else if (BoardMulti.state.equals("Go")) {
             System.out.println("Go");
             if (isHost && System.currentTimeMillis() - startTime > 3000) {
                 // System.out.println("yo");
@@ -255,7 +258,8 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener {
                 InetAddress lostIP = gameServer.writeToAllClients("STATE:Playing");
                 replacePlayerWithAI(lostIP);
             }
-        } else if (BoardMulti.state.equals("Playing")) {
+        } 
+        else if (BoardMulti.state.equals("Playing")) {
             // System.out.println("yoyo");
             Paddle P1 = fetch(1, players);
             if (P1 != null) {
@@ -275,7 +279,8 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener {
                     InetAddress lostIP = gameServer.writeToAllClients("Pos:1:Y:" + P1.cYpos);
                     replacePlayerWithAI(lostIP);
 
-                } else if (player2 && BoardMulti.position.equals("Right")) {
+                } 
+                else if (player2 && BoardMulti.position.equals("Right")) {
                     P1.set_cYvel(15 * gameSpd);
                     if (pressed[3]) {
                         if (P1.cYpos - P1.cYvel > P1.Ydim / 2) {
@@ -287,10 +292,9 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener {
                             P1.set_Ypos(P1.cYpos + P1.cYvel);
                         }
                     }
-                } else if (PCplayers && isPC[P1.pos - 1]) {
+                } 
+                else if (PCplayers && isPC[P1.pos - 1]) {
                     AIplayer2.moveAIplayer1(P1, balls, this, 15 * gameSpd);
-                } else {
-
                 }
             }
 
@@ -312,7 +316,8 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener {
                     InetAddress lostIP = gameServer.writeToAllClients("Pos:2:Y:" + P2.cYpos);
                     replacePlayerWithAI(lostIP);
 
-                } else if (player2 && BoardMulti.position.equals("Left")) {
+                } 
+                else if (player2 && BoardMulti.position.equals("Left")) {
                     P2.set_cYvel(15 * gameSpd);
                     if (pressed[3]) {
                         if (P2.cYpos - P2.cYvel > P2.Ydim / 2) {
@@ -324,10 +329,9 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener {
                             P2.set_Ypos(P2.cYpos + P2.cYvel);
                         }
                     }
-                } else if (PCplayers && isPC[P2.pos - 1]) {
+                } 
+                else if (PCplayers && isPC[P2.pos - 1]) {
                     AIplayer2.moveAIplayer(P2, balls, this, 15 * gameSpd);
-                } else {
-
                 }
             }
 
@@ -349,7 +353,8 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener {
                     InetAddress lostIP = gameServer.writeToAllClients("Pos:3:X:" + P3.cXpos);
                     replacePlayerWithAI(lostIP);
 
-                } else if (player2 && BoardMulti.position.equals("Bottom")) {
+                } 
+                else if (player2 && BoardMulti.position.equals("Bottom")) {
                     P3.set_cXvel(15 * gameSpd);
                     if (pressed[3]) {
                         if (P3.cXpos - P3.cXvel > P3.Xdim / 2) {
@@ -361,10 +366,9 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener {
                             P3.set_Xpos(P3.cXpos + P3.cXvel);
                         }
                     }
-                } else if (PCplayers && isPC[P3.pos - 1]) {
+                } 
+                else if (PCplayers && isPC[P3.pos - 1]) {
                     AIplayer2.moveAIplayer4(P3, balls, this, 15 * gameSpd);
-                } else {
-
                 }
             }
 
@@ -386,7 +390,8 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener {
                     InetAddress lostIP = gameServer.writeToAllClients("Pos:4:X:" + P4.cXpos);
                     replacePlayerWithAI(lostIP);
 
-                } else if (player2 && BoardMulti.position.equals("Top")) {
+                } 
+                else if (player2 && BoardMulti.position.equals("Top")) {
                     P4.set_cXvel(15 * gameSpd);
                     if (pressed[3]) {
                         if (P4.cXpos - P4.cXvel > P4.Xdim / 2) {
@@ -398,10 +403,9 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener {
                             P4.set_Xpos(P4.cXpos + P4.cXvel);
                         }
                     }
-                } else if (PCplayers && isPC[P4.pos - 1]) {
+                } 
+                else if (PCplayers && isPC[P4.pos - 1]) {
                     AIplayer2.moveAIplayer3(P4, balls, this, 15 * gameSpd);
-                } else {
-
                 }
             }
 
@@ -428,7 +432,8 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener {
                             if (powertype < 2) {
                                 puYpos = (pupos.nextDouble() / 2 + 0.25) * Ydim;
                                 puXpos = (pupos.nextDouble() / 2 + 0.25) * Xdim;
-                            } else {
+                            } 
+                            else {
                                 boolean safe = false;
                                 do {
                                     puYpos = (pupos.nextDouble() / 2 + 0.25) * Ydim;
@@ -448,7 +453,6 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener {
                                         }
                                         safe = true;
                                     }
-
                                 } while (!safe);
                             }
 
@@ -462,7 +466,8 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener {
                                                     + puYpos);
                             replacePlayerWithAI(lostIP);
                         }
-                    } else {
+                    } 
+                    else {
                         if (currenttime > 15 + poweruptime) {
                             powerup = false;
                             lostIP = gameServer.writeToAllClients("PowerUpEnded");
@@ -548,21 +553,25 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener {
                         gameServer.writeToAllClients("Lives:1");
                     }
                 }
-            } else {
+            } 
+            else {
                 b.origin = 1;
                 // add """"spin""""
                 if (get_pos(BoardMulti.position) + 1 == 1 && this.pressed[0] && !this.pressed[1]) {
                     if (b.Yvel > 0) {
                         b.Yvel *= 0.7;
-                    } else {
+                    } 
+                    else {
                         b.Yvel *= 1.2;
                     }
-                } else if (get_pos(BoardMulti.position) + 1 == 1
+                } 
+                else if (get_pos(BoardMulti.position) + 1 == 1
                         && this.pressed[1]
                         && !this.pressed[0]) {
                     if (b.Yvel > 0) {
                         b.Yvel *= 1.2;
-                    } else {
+                    } 
+                    else {
                         b.Yvel *= 0.7;
                     }
                 }
@@ -571,7 +580,8 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener {
             b.Xpos += b.Xvel;
 
             playCollideSound();
-        } else if (nextLeftPos < 0 && P1.lives == 0) {
+        } 
+        else if (nextLeftPos < 0 && P1.lives == 0) {
             b.origin = 1;
             b.Xvel *= -1;
             b.Xpos += b.Xvel;
@@ -594,21 +604,25 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener {
                         gameServer.writeToAllClients("Lives:2");
                     }
                 }
-            } else {
+            } 
+            else {
                 b.origin = 2;
                 // add """"spin""""
                 if (get_pos(BoardMulti.position) + 1 == 2 && this.pressed[0] && !this.pressed[1]) {
                     if (b.Yvel > 0) {
                         b.Yvel *= 0.7;
-                    } else {
+                    } 
+                    else {
                         b.Yvel *= 1.2;
                     }
-                } else if (get_pos(BoardMulti.position) + 1 == 2
+                } 
+                else if (get_pos(BoardMulti.position) + 1 == 2
                         && this.pressed[1]
                         && !this.pressed[0]) {
                     if (b.Yvel > 0) {
                         b.Yvel *= 1.2;
-                    } else {
+                    } 
+                    else {
                         b.Yvel *= 0.7;
                     }
                 }
@@ -618,7 +632,8 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener {
             b.Xpos += b.Xvel;
 
             playCollideSound();
-        } else if (nextRightPos > this.Xdim && P2.lives == 0) {
+        } 
+        else if (nextRightPos > this.Xdim && P2.lives == 0) {
             b.origin = 2;
             b.Xvel *= -1;
             b.Xpos += b.Xvel;
@@ -629,7 +644,6 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener {
             if (b.Xpos > playerThreeRight || b.Xpos < playerThreeLeft) {
 
                 if (P3.lives > 0) {
-
                     Paddle tmp = fetch(b.origin, players);
                     if (tmp != null && tmp.lives > 0) {
                         BoardMulti.playerScores[tmp.pos - 1]++;
@@ -642,21 +656,25 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener {
                         gameServer.writeToAllClients("Lives:3");
                     }
                 }
-            } else {
+            } 
+            else {
                 b.origin = 3;
                 // add """"spin""""
                 if (get_pos(BoardMulti.position) + 1 == 3 && this.pressed[0] && !this.pressed[1]) {
                     if (b.Xvel > 0) {
                         b.Xvel *= 0.7;
-                    } else {
+                    } 
+                    else {
                         b.Xvel *= 1.2;
                     }
-                } else if (get_pos(BoardMulti.position) + 1 == 3
+                } 
+                else if (get_pos(BoardMulti.position) + 1 == 3
                         && this.pressed[1]
                         && !this.pressed[0]) {
                     if (b.Xvel > 0) {
                         b.Xvel *= 1.2;
-                    } else {
+                    }
+                    else {
                         b.Xvel *= 0.7;
                     }
                 }
@@ -666,7 +684,8 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener {
             b.Ypos += b.Yvel;
 
             playCollideSound();
-        } else if (nextTopPos < 0 && P3.lives == 0) {
+        } 
+        else if (nextTopPos < 0 && P3.lives == 0) {
             b.origin = 3;
             b.Yvel *= -1;
             b.Ypos += b.Yvel;
@@ -689,20 +708,24 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener {
                         gameServer.writeToAllClients("Lives:4");
                     }
                 }
-            } else {
+            } 
+            else {
                 b.origin = 4;
                 if (get_pos(BoardMulti.position) + 1 == 4 && this.pressed[0] && !this.pressed[1]) {
                     if (b.Xvel > 0) {
                         b.Xvel *= 0.7;
-                    } else {
+                    } 
+                    else {
                         b.Xvel *= 1.2;
                     }
-                } else if (get_pos(BoardMulti.position) + 1 == 4
+                } 
+                else if (get_pos(BoardMulti.position) + 1 == 4
                         && this.pressed[1]
                         && !this.pressed[0]) {
                     if (b.Xvel > 0) {
                         b.Xvel *= 1.2;
-                    } else {
+                    } 
+                    else {
                         b.Xvel *= 0.7;
                     }
                 }
@@ -745,7 +768,8 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener {
                         initialdim = players.get(0).Ydim;
                         if (powertype == 0) {
                             players.get(0).Ydim = 2 * (this.Ydim) / 5;
-                        } else if (powertype == 1) {
+                        } 
+                        else if (powertype == 1) {
                             players.get(0).Ydim = (this.Ydim) / 10;
                         }
                         poweruptime = currenttime;
@@ -758,7 +782,8 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener {
                         initialdim = players.get(1).Ydim;
                         if (powertype == 0) {
                             players.get(1).Ydim = 2 * (this.Ydim) / 5;
-                        } else if (powertype == 1) {
+                        } 
+                        else if (powertype == 1) {
                             players.get(1).Ydim = (this.Ydim) / 10;
                         }
                         poweruptime = currenttime;
@@ -771,7 +796,8 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener {
                         initialdim = players.get(2).Xdim;
                         if (powertype == 0) {
                             players.get(2).Xdim = 2 * (this.Xdim) / 5;
-                        } else if (powertype == 1) {
+                        } 
+                        else if (powertype == 1) {
                             players.get(2).Xdim = (this.Xdim) / 10;
                         }
                         poweruptime = currenttime;
@@ -784,7 +810,8 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener {
                         initialdim = players.get(3).Xdim;
                         if (powertype == 0) {
                             players.get(3).Xdim = 2 * (this.Xdim) / 5;
-                        } else if (powertype == 1) {
+                        } 
+                        else if (powertype == 1) {
                             players.get(3).Xdim = (this.Xdim) / 10;
                         }
                         poweruptime = currenttime;
@@ -793,7 +820,8 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener {
                         player = 4;
                         break;
                 }
-            } else if (powertype == 2) {
+            } 
+            else if (powertype == 2) {
                 Rectangle2D wall = new Rectangle((int) puXpos, (int) puYpos, 100, 100);
                 Ellipse2D.Float sphere =
                         new Ellipse2D.Float(
@@ -807,7 +835,8 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener {
                             && (nextTopPos > puYpos && nextBottomPos < puYpos + 100)) {
                         b.Xvel *= -1;
                         b.Xpos += b.Xvel;
-                    } else if ((nextBottomPos > puYpos || nextTopPos < puYpos + 100)
+                    } 
+                    else if ((nextBottomPos > puYpos || nextTopPos < puYpos + 100)
                             && (nextRightPos > puXpos && nextLeftPos < puXpos + 100)) {
                         b.Yvel *= -1;
                         b.Ypos += b.Yvel;
@@ -815,7 +844,8 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener {
                 }
             }
 
-        } else if (!powerup && isHost) {
+        } 
+        else if (!powerup && isHost) {
             InetAddress lostIP;
             if (currenttime > 5 + poweruptime) {
                 switch (player) {
@@ -865,20 +895,17 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener {
         double res = 0;
         for (int j = 0; j < balls.size(); j++) {
             temp2 = balls.get(j);
-            res =
-                    Math.sqrt(
-                            Math.pow((temp1.Xpos - temp2.Xpos), 2)
-                                    + Math.pow((temp1.Ypos - temp2.Ypos), 2));
+            res = Math.sqrt(
+                        Math.pow((temp1.Xpos - temp2.Xpos), 2)
+                                + Math.pow((temp1.Ypos - temp2.Ypos), 2));
 
             if (res < ((temp1.dia) / 2 + (temp2.dia) / 2) && res > 0) {
-
                 collisionball = true;
                 break;
             }
         }
 
         // handling collision
-
         if (collisionball && b.type == 0) {
             if (b.colid == 1 && temp2.colid == 1) {
                 if (res <= b.colparam) {
@@ -890,13 +917,11 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener {
                     handlecollision(balls, b);
                 }
             }
-
             handlecollision(balls, b);
-        } else {
-            // if (b.type== -1) {b.type = 0 ;}
+        } 
+        else {
             b.Xpos += b.Xvel;
             b.Ypos += b.Yvel;
-            // System.out.println(b.Xvel+","+b.Yvel);
         }
     }
 
@@ -905,8 +930,7 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener {
         Ball temp1 = b1;
         for (int j = 0; j < balls.size(); j++) {
             temp2 = balls.get(j);
-            double res =
-                    Math.sqrt(
+            double res = Math.sqrt(
                             Math.pow((temp1.Xpos - temp2.Xpos), 2)
                                     + Math.pow((temp1.Ypos - temp2.Ypos), 2));
             if (res < ((temp1.dia) / 2 + (temp2.dia) / 2) && res > 0) {
@@ -959,13 +983,13 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener {
                         (int) (this.Ydim - (5 + this.Ydim / 100)));
 
                 // draw paddles
-
                 for (int i = 0; i < BoardMulti.players.size(); i++) {
                     Paddle b = BoardMulti.players.get(i);
                     if (b.lives > 0) {
                         if (b.pos == (get_pos(position) + 1)) {
                             g.setColor(Color.BLUE);
-                        } else {
+                        } 
+                        else {
                             g.setColor(Color.RED);
                         }
                         g.fillRect(
@@ -981,7 +1005,8 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener {
                 if (powerup) {
                     if (powertype < 2) {
                         g.fillOval((int) puXpos - 20, (int) puYpos - 20, 40, 40);
-                    } else if (powertype == 2) {
+                    } 
+                    else if (powertype == 2) {
                         g.fillRect((int) puXpos, (int) puYpos, 100, 100);
                     }
                 }
@@ -1003,7 +1028,8 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener {
                 if (P1 != null && P1.lives > 0) {
                     if (1 == (get_pos(position) + 1)) {
                         g.setColor(Color.BLUE);
-                    } else {
+                    } 
+                    else {
                         g.setColor(Color.RED);
                     }
                     g.drawString(
@@ -1020,7 +1046,8 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener {
                 if (P2 != null && P2.lives > 0) {
                     if (2 == (get_pos(position) + 1)) {
                         g.setColor(Color.BLUE);
-                    } else {
+                    } 
+                    else {
                         g.setColor(Color.RED);
                     }
                     g.drawString(
@@ -1037,7 +1064,8 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener {
                 if (P3 != null && P3.lives > 0) {
                     if (3 == (get_pos(position) + 1)) {
                         g.setColor(Color.BLUE);
-                    } else {
+                    } 
+                    else {
                         g.setColor(Color.RED);
                     }
                     g.drawString(
@@ -1054,7 +1082,8 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener {
                 if (P4 != null && P4.lives > 0) {
                     if (4 == (get_pos(position) + 1)) {
                         g.setColor(Color.BLUE);
-                    } else {
+                    } 
+                    else {
                         g.setColor(Color.RED);
                     }
                     g.drawString(
@@ -1100,21 +1129,23 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener {
             case "Playing":
                 if (e.getKeyCode() == keys[0]) {
                     pressed[0] = true;
-                } else if (e.getKeyCode() == keys[1]) {
+                } 
+                else if (e.getKeyCode() == keys[1]) {
                     pressed[1] = true;
-                } else if (e.getKeyCode() == keys[2]) {
+                }
+                else if (e.getKeyCode() == keys[2]) {
                     pressed[2] = true;
-                } else if (e.getKeyCode() == keys[3]) {
+                } 
+                else if (e.getKeyCode() == keys[3]) {
                     pressed[3] = true;
-                } else if (e.getKeyCode() == keys[4]) {
+                } 
+                else if (e.getKeyCode() == keys[4]) {
                     pressed[4] = true;
-                } else if (e.getKeyCode() == keys[5]) {
+                } 
+                else if (e.getKeyCode() == keys[5]) {
                     pressed[5] = true;
                 }
-                /*if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-                	game.RXCardLayout cdl=(game.RXCardLayout) getParent().getLayout();
-                	cdl.show(getParent(), "MenuPanel");
-                }*/
+
                 repaint();
                 break;
 
@@ -1135,15 +1166,20 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener {
         if (state.equals("Playing")) {
             if (e.getKeyCode() == keys[0]) {
                 pressed[0] = false;
-            } else if (e.getKeyCode() == keys[1]) {
+            } 
+            else if (e.getKeyCode() == keys[1]) {
                 pressed[1] = false;
-            } else if (e.getKeyCode() == keys[2]) {
+            } 
+            else if (e.getKeyCode() == keys[2]) {
                 pressed[2] = false;
-            } else if (e.getKeyCode() == keys[3]) {
+            } 
+            else if (e.getKeyCode() == keys[3]) {
                 pressed[3] = false;
-            } else if (e.getKeyCode() == keys[4]) {
+            } 
+            else if (e.getKeyCode() == keys[4]) {
                 pressed[4] = false;
-            } else if (e.getKeyCode() == keys[5]) {
+            } 
+            else if (e.getKeyCode() == keys[5]) {
                 pressed[5] = false;
             }
         }
@@ -1242,13 +1278,15 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener {
             case "ChangeDim":
                 if (tokens[2].equals("X")) {
                     players.get(Integer.parseInt(tokens[1])).Xdim = Double.parseDouble(tokens[3]);
-                } else if (tokens[2].equals("Y")) {
+                } 
+                else if (tokens[2].equals("Y")) {
                     players.get(Integer.parseInt(tokens[1])).Ydim = Double.parseDouble(tokens[3]);
                 }
 
                 if (tokens.length == 4) {
                     player = Integer.parseInt(tokens[1] + 1);
-                } else if (tokens.length == 5) {
+                } 
+                else if (tokens.length == 5) {
                     player = -1;
                 }
                 break;
@@ -1262,7 +1300,8 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener {
 
             if (lostIP.toString().substring(1).equals(hostIp)) {
                 changeHost();
-            } else {
+            } 
+            else {
                 System.out.println(IPs);
                 for (int index = 0; index < IPs.size(); index++) {
 
@@ -1298,7 +1337,8 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener {
         int choose = vel.nextInt(2);
         if (choose == 0) {
             return s;
-        } else {
+        } 
+        else {
             return s2;
         }
     }
@@ -1311,7 +1351,8 @@ public class BoardMulti extends JPanel implements ActionListener, KeyListener {
             as = new AudioStream(in);
             // game the audio clip with the audioplayer class
             AudioPlayer.player.start(as);
-        } catch (IOException e) {
+        } 
+        catch (IOException e) {
             e.printStackTrace();
         }
     }

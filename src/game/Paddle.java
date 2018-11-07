@@ -15,19 +15,6 @@ public class Paddle {
     public int flag = 0;
     public int difficulty = 1;
 
-    //    public game.Paddle(double typ,double Xstart,double Ystart){
-    //    	if (typ==0){
-    //    		this.Xdim=10;
-    //    		this.Ydim=200;
-    //    	}
-    //    	else{
-    //    		this.dia=200;
-    //    	}
-    //    	this.type=typ;
-    //    	this.cXpos=Xstart;
-    //    	this.cYpos=Ystart;
-    //    }
-
     public Paddle(double d, double Xstart, double Ystart, int pos) {
         this.type = 1;
         this.dia = d;

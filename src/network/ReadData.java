@@ -20,7 +20,8 @@ public class ReadData implements Runnable {
         buffer = new ArrayList<>();
         try {
             in = new DataInputStream(connection.getInputStream());
-        } catch (IOException e) {
+        } 
+        catch (IOException e) {
             threadMessage("Cannot get DataInputStream of client...");
         }
         isAlive = true;
@@ -32,17 +33,21 @@ public class ReadData implements Runnable {
             String lineRead;
             while (connection.isConnected()) {
                 lineRead = in.readUTF();
-                if (isStateBoardMulti) BoardMulti.parse_packet(lineRead);
-                else buffer.add(lineRead);
+                if (isStateBoardMulti) 
+                    BoardMulti.parse_packet(lineRead);
+                else 
+                    buffer.add(lineRead);
             }
-        } catch (IOException e) {
+        } 
+        catch (IOException e) {
             threadMessage("Unable to read! Disconnected probably?");
             isAlive = false;
         }
     }
 
     public String readFromBuffer() {
-        if (buffer.isEmpty()) return null;
+        if (buffer.isEmpty()) 
+            return null;
         String token = buffer.get(0);
         buffer.remove(0);
         return token;

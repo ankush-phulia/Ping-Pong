@@ -44,7 +44,8 @@ public class SLAnimator {
                             if (sleep > 1)
                                 try {
                                     Thread.sleep(sleep);
-                                } catch (InterruptedException ex) {
+                                } 
+                                catch (InterruptedException ex) {
                                 }
 
                             long deltaNewMillis = System.currentTimeMillis();
@@ -60,8 +61,10 @@ public class SLAnimator {
                                                         i++) tweenManagers.get(i).update(delta);
                                             }
                                         });
-                            } catch (InterruptedException ex) {
-                            } catch (InvocationTargetException ex) {
+                            } 
+                            catch (InterruptedException ex) {
+                            } 
+                            catch (InvocationTargetException ex) {
                             }
 
                             deltaLastMillis = newMillis;

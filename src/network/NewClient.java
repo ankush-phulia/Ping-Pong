@@ -19,7 +19,8 @@ public class NewClient implements Runnable {
                 Socket waitingForClient;
                 try {
                     waitingForClient = localServer.myServer.accept();
-                } catch (IOException e) {
+                } 
+                catch (IOException e) {
                     continue;
                 }
 
@@ -35,7 +36,8 @@ public class NewClient implements Runnable {
 
                 threadMessage("Just connected to " + waitingForClient.getRemoteSocketAddress());
             }
-        } catch (IOException e) {
+        } 
+        catch (IOException e) {
             threadMessage("Problem occurred while accepting new client. :(");
         }
     }

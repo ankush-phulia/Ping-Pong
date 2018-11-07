@@ -59,7 +59,8 @@ public class Single_Player extends JPanel implements ActionListener {
                     @Override
                     public void mouseEntered(MouseEvent e) {
                         hover = true;
-                        if (actionEnabled) showBorder();
+                        if (actionEnabled) 
+                            showBorder();
                     }
 
                     @Override
@@ -70,13 +71,11 @@ public class Single_Player extends JPanel implements ActionListener {
 
                     @Override
                     public void mouseReleased(MouseEvent e) {
-                        if (action != null && actionEnabled && !expanded) action.run();
+                        if (action != null && actionEnabled && !expanded) 
+                            action.run();
                         if (!expanded) {
                             removeAll();
                             populate_layout();
-                        } else {
-                            // removeAll();
-                            // show_small();
                         }
                     }
                 });
@@ -715,7 +714,8 @@ public class Single_Player extends JPanel implements ActionListener {
 
     public void enableAction() {
         actionEnabled = true;
-        if (hover) showBorder();
+        if (hover) s
+            howBorder();
     }
 
     public void disableAction() {
@@ -749,7 +749,8 @@ public class Single_Player extends JPanel implements ActionListener {
                 int tw = h * imgW / imgH;
                 int th = h;
                 gg.drawImage(bgImg, (w - tw) / 2, 0, tw, th, null);
-            } else {
+            } 
+            else {
                 int tw = w;
                 int th = w * imgH / imgW;
                 gg.drawImage(bgImg, 0, (h - th) / 2, tw, th, null);
@@ -776,7 +777,8 @@ public class Single_Player extends JPanel implements ActionListener {
             Single_Player tp = (Single_Player) target;
 
             int ret = super.getValues(target, tweenType, returnValues);
-            if (ret >= 0) return ret;
+            if (ret >= 0) 
+                return ret;
 
             switch (tweenType) {
                 case BORDER_THICKNESS:
@@ -804,7 +806,6 @@ public class Single_Player extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        // TODO Auto-generated method stub
         repaint();
     }
 }

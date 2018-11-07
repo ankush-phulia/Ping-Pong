@@ -45,7 +45,8 @@ public class PingPanel extends JPanel {
 
         try {
             bgImg = ImageIO.read(new File(imgPath));
-        } catch (IOException ex) {
+        } 
+        catch (IOException ex) {
             System.err.println("[error] cannot read image path '" + imgPath + "'");
             add(label, BorderLayout.CENTER);
         }
@@ -55,7 +56,8 @@ public class PingPanel extends JPanel {
                     @Override
                     public void mouseEntered(MouseEvent e) {
                         hover = true;
-                        if (actionEnabled) showBorder();
+                        if (actionEnabled) 
+                            showBorder();
                     }
 
                     @Override
@@ -66,7 +68,8 @@ public class PingPanel extends JPanel {
 
                     @Override
                     public void mouseReleased(MouseEvent e) {
-                        if (action != null && actionEnabled) action.run();
+                        if (action != null && actionEnabled) 
+                            action.run();
                     }
                 });
     }
@@ -77,7 +80,8 @@ public class PingPanel extends JPanel {
 
     public void enableAction() {
         actionEnabled = true;
-        if (hover) showBorder();
+        if (hover) 
+            showBorder();
     }
 
     public void disableAction() {
@@ -111,7 +115,8 @@ public class PingPanel extends JPanel {
                 int tw = h * imgW / imgH;
                 int th = h;
                 gg.drawImage(bgImg, (w - tw) / 2, 0, tw, th, null);
-            } else {
+            } 
+            else {
                 int tw = w;
                 int th = w * imgH / imgW;
                 gg.drawImage(bgImg, 0, (h - th) / 2, tw, th, null);
@@ -138,7 +143,8 @@ public class PingPanel extends JPanel {
             PingPanel tp = (PingPanel) target;
 
             int ret = super.getValues(target, tweenType, returnValues);
-            if (ret >= 0) return ret;
+            if (ret >= 0) 
+                return ret;
 
             switch (tweenType) {
                 case BORDER_THICKNESS:

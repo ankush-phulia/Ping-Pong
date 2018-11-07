@@ -38,7 +38,6 @@ public class Instructions extends JPanel {
     public Instructions() {
 
         show_small();
-        // populate_layout();
 
         addMouseListener(
                 new MouseAdapter() {
@@ -56,11 +55,13 @@ public class Instructions extends JPanel {
 
                     @Override
                     public void mouseReleased(MouseEvent e) {
-                        if (action != null && actionEnabled) action.run();
+                        if (action != null && actionEnabled) 
+                            action.run();
                         if (!expanded) {
                             removeAll();
                             populate_layout();
-                        } else {
+                        } 
+                        else {
                             removeAll();
                             show_small();
                         }
@@ -130,7 +131,8 @@ public class Instructions extends JPanel {
 
     public void enableAction() {
         actionEnabled = true;
-        if (hover) showBorder();
+        if (hover) 
+            showBorder();
     }
 
     public void disableAction() {
@@ -164,7 +166,8 @@ public class Instructions extends JPanel {
                 int tw = h * imgW / imgH;
                 int th = h;
                 gg.drawImage(bgImg, (w - tw) / 2, 0, tw, th, null);
-            } else {
+            } 
+            else {
                 int tw = w;
                 int th = w * imgH / imgW;
                 gg.drawImage(bgImg, 0, (h - th) / 2, tw, th, null);

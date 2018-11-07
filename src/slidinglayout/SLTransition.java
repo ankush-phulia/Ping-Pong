@@ -95,12 +95,14 @@ public class SLTransition {
                         Tween.to(c, SLAnimator.ComponentAccessor.XYWH, duration)
                                 .target(t.x, t.y, t.w, t.h)
                                 .delay(kf.getDelay(c)));
-            } else if (animXY) {
+            } 
+            else if (animXY) {
                 timeline.push(
                         Tween.to(c, SLAnimator.ComponentAccessor.XY, duration)
                                 .target(t.x, t.y)
                                 .delay(kf.getDelay(c)));
-            } else if (animWH) {
+            } 
+            else if (animWH) {
                 timeline.push(
                         Tween.to(c, SLAnimator.ComponentAccessor.WH, duration)
                                 .target(t.w, t.h)
@@ -120,14 +122,16 @@ public class SLTransition {
                             panel.remove(c);
                         }
 
-                        if (kf.getCallback() != null) kf.getCallback().done();
+                        if (kf.getCallback() != null) 
+                            kf.getCallback().done();
 
                         if (currentKeyframe < keyframes.size() - 1) {
                             currentKeyframe++;
                             play(
                                     keyframes.get(currentKeyframe),
                                     keyframes.get(currentKeyframe - 1));
-                        } else {
+                        } 
+                        else {
                             panel.isTransitionPlaying = false;
                         }
                     }

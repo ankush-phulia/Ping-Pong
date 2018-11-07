@@ -21,7 +21,8 @@ public class ConnectionToServer {
             clientSocket = new Socket();
             try {
                 clientSocket.connect(new InetSocketAddress(inetAddr, port), 10000);
-            } catch (IOException e) {
+            } 
+            catch (IOException e) {
                 e.printStackTrace();
                 threadMessage("Unable to connect to a given IP address.");
                 clientSocket = null;
@@ -38,7 +39,8 @@ public class ConnectionToServer {
             readingStream = new ReadData(clientSocket);
             Thread readThread = new Thread(readingStream);
             readThread.start();
-        } catch (IOException e) {
+        } 
+        catch (IOException e) {
             threadMessage("Error occurred while obtaining output stream of server.");
             clientSocket = null;
         }
@@ -54,7 +56,8 @@ public class ConnectionToServer {
         try {
             clientSocket.close();
             return true;
-        } catch (IOException ioe) {
+        } 
+        catch (IOException ioe) {
             return false;
         }
     }
@@ -70,7 +73,8 @@ public class ConnectionToServer {
 
         try {
             writingStream.writeUTF(writeData);
-        } catch (IOException e) {
+        } 
+        catch (IOException e) {
             e.printStackTrace();
             if (!clientSocket.isConnected()) {
                 threadMessage("Server is disconnected...");

@@ -194,12 +194,15 @@ public class SLConfig {
         int totalHeight = grid.h - vgap * (grid.rows.size() - 1);
 
         for (Row r : grid.rows) {
-            if (r.fixedHeight) totalHeight -= r.h;
-            else totalRelHeight += r.relHeight;
+            if (r.fixedHeight) 
+                totalHeight -= r.h;
+            else 
+                totalRelHeight += r.relHeight;
         }
 
         for (Row r : grid.rows) {
-            if (!r.fixedHeight) r.h = (int) (totalHeight * r.relHeight / totalRelHeight);
+            if (!r.fixedHeight) 
+                r.h = (int) (totalHeight * r.relHeight / totalRelHeight);
         }
 
         // Place columns
@@ -208,12 +211,15 @@ public class SLConfig {
         int totalWidth = grid.w - hgap * (grid.cols.size() - 1);
 
         for (Column c : grid.cols) {
-            if (c.fixedWidth) totalWidth -= c.w;
-            else totalRelWidth += c.relWidth;
+            if (c.fixedWidth) 
+                totalWidth -= c.w;
+            else 
+                totalRelWidth += c.relWidth;
         }
 
         for (Column c : grid.cols) {
-            if (!c.fixedWidth) c.w = (int) (totalWidth * c.relWidth / totalRelWidth);
+            if (!c.fixedWidth) 
+                c.w = (int) (totalWidth * c.relWidth / totalRelWidth);
         }
 
         // Place tiles
@@ -223,12 +229,14 @@ public class SLConfig {
         for (int iRow = 0; iRow < grid.rows.size(); iRow++) {
             for (int iCol = 0; iCol < grid.cols.size(); iCol++) {
                 for (Tile t : grid.tiles) {
-                    if (t.row != iRow || t.col != iCol) continue;
+                    if (t.row != iRow || t.col != iCol) 
+                        continue;
                     t.x = x;
                     t.y = y;
                     t.w = grid.cols.get(t.col).w;
                     t.h = grid.rows.get(t.row).h;
-                    if (t instanceof Grid) placeAndRoute((Grid) t);
+                    if (t instanceof Grid) 
+                        placeAndRoute((Grid) t);
                 }
                 x += grid.cols.get(iCol).w + hgap;
             }

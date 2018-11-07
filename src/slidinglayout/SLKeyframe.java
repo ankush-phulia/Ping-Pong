@@ -183,14 +183,16 @@ public class SLKeyframe {
         // assigned start side is put into the list of this side.
         if (sideForNewCmps != null) {
             for (Component c : newCmps)
-                if (!isPartOf(c, cmpsWithStartSide)) cmpsWithStartSide.get(sideForNewCmps).add(c);
+                if (!isPartOf(c, cmpsWithStartSide)) 
+                    cmpsWithStartSide.get(sideForNewCmps).add(c);
         }
 
         // If a "sideForOldCmps" is defined, every old component without an
         // assigned end side is put into the list of this side.
         if (sideForOldCmps != null) {
             for (Component c : oldCmps)
-                if (!isPartOf(c, cmpsWithEndSide)) cmpsWithEndSide.get(sideForOldCmps).add(c);
+                if (!isPartOf(c, cmpsWithEndSide)) 
+                    cmpsWithEndSide.get(sideForOldCmps).add(c);
         }
 
         // If new components have a start side, they are added to the panel and
@@ -201,7 +203,8 @@ public class SLKeyframe {
             if (isPartOf(c, cmpsWithStartSide)) {
                 cfg.getPanel().add(c, new Integer(1));
                 startTiles.put(c, cfg.getTile(c).clone());
-            } else {
+            } 
+            else {
                 cmpsToAddAfterTransition.add(c);
                 Tile t = cfg.getTile(c);
                 c.setBounds(t.x, t.y, t.w, t.h);
@@ -216,7 +219,8 @@ public class SLKeyframe {
             if (isPartOf(c, cmpsWithEndSide)) {
                 cmpsToRemoveAfterTransition.add(c);
                 targetTiles.put(c, prevKf.cfg.getTile(c).clone());
-            } else {
+            } 
+            else {
                 cfg.getPanel().remove(c);
             }
         }
@@ -273,7 +277,8 @@ public class SLKeyframe {
     }
 
     private void hideTiles(List<Tile> tiles, SLSide side) {
-        if (tiles.isEmpty()) return;
+        if (tiles.isEmpty()) 
+            return;
 
         int w = cfg.getPanel().getWidth();
         int h = cfg.getPanel().getHeight();

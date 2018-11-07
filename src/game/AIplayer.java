@@ -25,24 +25,17 @@ public class AIplayer {
         }
 
         if (balltobefollowed == null) {
-            // balltobefollowed = balls.get(0) ;
             for (int i = 0; i < balls.size(); i++) {
                 balls.get(i).flag = 0;
             }
         } else {
             int temp1 = balltobefollowed.flag;
-            //			for (int i = 0 ; i < balls.size() ; i++){
-            //				balls.get(i).flag = 0 ;
-            //			}
             balltobefollowed.flag = temp1;
-            // System.out.println(balltobefollowed.flag) ;
-
             double predictedordinatetemp =
                     (balltobefollowed.Yvel / balltobefollowed.Xvel) * 749
                             + (balltobefollowed.Ypos
                                     - (balltobefollowed.Yvel / balltobefollowed.Xvel)
                                             * balltobefollowed.Xpos);
-            // double error = 5  ;
             double predictedordinate = 5;
             p.set_cYvel(initialvelocity);
             Random dice = new Random();
@@ -50,12 +43,7 @@ public class AIplayer {
             double errortemp = (dice.nextInt(201) - 100) / ((double) 100);
             if (balltobefollowed.flag == 0) {
                 error1 = errortemp;
-                // System.out.println(error1);
-                // System.out.println(counter++);
                 balltobefollowed.flag = 1;
-                if (balltobefollowed.Xpos > 3 * b.Xdim / 4 + 100) {
-                    // System.out.println("eroraya");
-                }
             }
 
             predictedordinate = predictedordinatetemp + p.Ydim * error1 / (1.5 + 4 * p.difficulty);
@@ -63,7 +51,8 @@ public class AIplayer {
                 if (p.cYpos - p.cYvel > p.Ydim / 2) {
                     p.set_Ypos((p.cYpos) - p.cYvel);
                 }
-            } else {
+            } 
+            else {
                 if (p.cYpos + p.cYvel + p.Ydim / 2 < b.getHeight()
                         && (p.cYpos - predictedordinate < (-1 * epsilon))) {
                     p.set_Ypos(p.cYpos + p.cYvel);
@@ -94,7 +83,8 @@ public class AIplayer {
             for (int i = 0; i < balls.size(); i++) {
                 balls.get(i).flag3 = 0;
             }
-        } else {
+        } 
+        else {
             int temp1 = balltobefollowed.flag3;
             for (int i = 0; i < balls.size(); i++) {
                 balls.get(i).flag3 = 0;
@@ -108,8 +98,6 @@ public class AIplayer {
             double errortemp = (dice.nextInt(201) - 100) / ((double) 100);
             if (balltobefollowed.flag3 == 0) {
                 error = errortemp;
-                // System.out.println(error);
-                // System.out.println(counter++);
                 balltobefollowed.flag3 = 1;
             }
 
@@ -119,25 +107,19 @@ public class AIplayer {
                                     * balltobefollowed.Xpos);
 
             predictedordinate = predictedordinatetemp + p.Ydim * error / (1.5 + 4 * p.difficulty);
-
-            // p.set_cYvel(initialvelocity);
-
-            // double epsilon = initialvelocity/2+1 ;
-
+            
             if (p.cYpos - predictedordinate > epsilon) {
                 if (p.cYpos - p.cYvel > p.Ydim / 2) {
                     p.set_Ypos(p.cYpos - p.cYvel);
                 }
-            } else {
+            } 
+            else {
                 if (p.cYpos + p.cYvel + p.Ydim / 2 < b.getHeight()
                         && (p.cYpos - predictedordinate < (-1 * epsilon))) {
                     p.set_Ypos(p.cYpos + p.cYvel);
                 }
             }
         }
-
-        // System.out.println(balls.size());
-
     }
 
     public static void moveAIplayer3(
@@ -161,7 +143,8 @@ public class AIplayer {
             for (int i = 0; i < balls.size(); i++) {
                 balls.get(i).flag2 = 0;
             }
-        } else {
+        } 
+        else {
             int temp1 = balltobefollowed.flag2;
             for (int i = 0; i < balls.size(); i++) {
                 balls.get(i).flag2 = 0;
@@ -175,13 +158,8 @@ public class AIplayer {
             double errortemp = (dice.nextInt(201) - 100) / ((double) 100);
             if (balltobefollowed.flag2 == 0) {
                 error = errortemp;
-                // System.out.println(error);
-                // System.out.println(counter++);
                 balltobefollowed.flag2 = 1;
             }
-
-            // double predictedordinatetemp  =
-            // (balltobefollowed.Ypos-(balltobefollowed.Yvel/balltobefollowed.Xvel)*balltobefollowed.Xpos) ;
             double predictedordinatetemp =
                     (balltobefollowed.Xvel / balltobefollowed.Yvel) * 749
                             + (balltobefollowed.Xpos
@@ -191,22 +169,18 @@ public class AIplayer {
             predictedordinate = predictedordinatetemp + p.Ydim * error / (1.5 + 4 * p.difficulty);
 
             p.set_cXvel(initialvelocity);
-
-            // double epsilon = initialvelocity/2+1 ;
-
             if (p.cXpos - predictedordinate > epsilon) {
                 if (p.cXpos - p.cXvel > p.Xdim / 2) {
                     p.set_Xpos(p.cXpos - p.cXvel);
                 }
-            } else {
+            }
+            else {
                 if (p.cXpos + p.cXvel + p.Xdim / 2 < b.getWidth()
                         && (p.cXpos - predictedordinate < (-1 * epsilon))) {
                     p.set_Xpos(p.cXpos + p.cXvel);
                 }
             }
         }
-        // System.out.println(balls.size());
-
     }
 
     public static void moveAIplayer4(
@@ -231,7 +205,8 @@ public class AIplayer {
             for (int i = 0; i < balls.size(); i++) {
                 balls.get(i).flag1 = 0;
             }
-        } else {
+        } 
+        else {
             int temp1 = balltobefollowed.flag1;
             for (int i = 0; i < balls.size(); i++) {
                 balls.get(i).flag1 = 0;
@@ -245,15 +220,9 @@ public class AIplayer {
             double errortemp = (dice.nextInt(201) - 100) / ((double) 100);
             if (balltobefollowed.flag1 == 0) {
                 error = errortemp;
-                // System.out.println(error);
-                // System.out.println(counter++);
                 balltobefollowed.flag1 = 1;
             }
 
-            // double predictedordinatetemp  =
-            // (balltobefollowed.Ypos-(balltobefollowed.Yvel/balltobefollowed.Xvel)*balltobefollowed.Xpos) ;
-            // double predictedordinatetemp =
-            // (balltobefollowed.Xvel/balltobefollowed.Yvel)*749+(balltobefollowed.Xpos-(balltobefollowed.Xvel/balltobefollowed.Yvel)*balltobefollowed.Ypos) ;
             double predictedordinatetemp =
                     (balltobefollowed.Xpos
                             - (balltobefollowed.Xvel / balltobefollowed.Yvel)
@@ -262,11 +231,6 @@ public class AIplayer {
             predictedordinate = predictedordinatetemp + p.Ydim * error / (1.5 + 4 * p.difficulty);
 
             p.set_cXvel(initialvelocity);
-
-            // p.set_cXvel(initialvelocity);
-
-            // double epsilon = initialvelocity/2+1 ;
-
             if (p.cXpos - predictedordinate > epsilon) {
                 if (p.cXpos - p.cXvel > p.Xdim / 2) {
                     p.set_Xpos(p.cXpos - p.cXvel);
@@ -278,8 +242,5 @@ public class AIplayer {
                 }
             }
         }
-
-        // System.out.println(balls.size());
-
     }
 }

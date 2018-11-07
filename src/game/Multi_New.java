@@ -57,8 +57,6 @@ public class Multi_New extends JPanel implements ActionListener {
 
         Timer timer = new Timer((int) (1000 / 60), this);
         timer.start();
-
-        // JOptionPane.showMessageDialog(getParent().getParent().getParent().getParent().getParent(),"Your IPs is :"+LocalServer.getAllAvailableIP().toString());
     }
 
     private void populate_layout() {
@@ -378,7 +376,6 @@ public class Multi_New extends JPanel implements ActionListener {
                             for (ConnectionToServer cs : connections) {
                                 cs.disconnect();
                             }
-
                             clientsThread.stop();
 
                             if (!gameServer.alive()) {
@@ -386,7 +383,8 @@ public class Multi_New extends JPanel implements ActionListener {
                                 removeAll();
                                 cdl.show(getParent(), "Multiplayer");
                             }
-                        } else {
+                        } 
+                        else {
                             removeAll();
                             cdl.show(getParent(), "Multiplayer");
                         }
@@ -529,7 +527,8 @@ public class Multi_New extends JPanel implements ActionListener {
                 int tw = h * imgW / imgH;
                 int th = h;
                 gg.drawImage(bgImg, (w - tw) / 2, 0, tw, th, null);
-            } else {
+            } 
+            else {
                 int tw = w;
                 int th = w * imgH / imgW;
                 gg.drawImage(bgImg, 0, (h - th) / 2, tw, th, null);
@@ -564,7 +563,8 @@ public class Multi_New extends JPanel implements ActionListener {
     }
 
     private void parseResponse(String response) {
-        if (response == null) return;
+        if (response == null) 
+            return;
 
         String[] tokens = response.split(":");
         switch (tokens[0]) {
@@ -572,7 +572,6 @@ public class Multi_New extends JPanel implements ActionListener {
                 String ipOfClient = tokens[1];
                 gameServer.writeToAllClients("CONNECTTOIP:" + ipOfClient);
                 break;
-            default:
         }
     }
 }
